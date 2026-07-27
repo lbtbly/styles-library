@@ -1,0 +1,149 @@
+{
+  "id": "field-notes",
+  "name": "Field Notes",
+  "collection": "Set in Type",
+  "pairing": "Landscape photograph × monospace caption",
+  "concept": "Analytics dressed as a magazine: full-bleed landscape, serif headline, monospace figures inline in prose.",
+  "keywords": [
+    "full-bleed-landscape",
+    "serif-headline",
+    "monospace-figures",
+    "magazine-grammar",
+    "tracked-caps",
+    "page-sheet"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#FAFAF8",
+      "surface": "#FFFFFF",
+      "sheet": "rgba(255, 255, 255, 0.86)",
+      "ink": "#1C221E",
+      "muted": "#6B7169",
+      "line": "#E4E5E0",
+      "accent": "#4E6030",
+      "accent_ink": "#FFFFFF"
+    },
+    "type": {
+      "families": "Three voices, deliberately. A serif for headlines (Instrument Serif, Fraunces, Source Serif), a neo-grotesque for UI and body, and a monospace (JetBrains Mono, IBM Plex Mono) for every figure, date and code.",
+      "hierarchy": "Headline serif 48/54 regular, ending in a full stop · deck 18/28 sans regular · body 15/24 sans · figures mono 14/20 · issue labels 10/12 mono ALL-CAPS 0.14em.",
+      "usage": "Headlines end with a period — magazine grammar. Monospace figures appear *inline in running prose*, not just in tables. Letterspaced ALL-CAPS mono for section and issue labels."
+    },
+    "texture": "A translucent white page sheet (`rgba(255,255,255,.86)`, optional `backdrop-filter: blur(8px)`) floats over a full-bleed defocused landscape photograph. Surfaces are otherwise print-flat. Corners are softly rounded (16-20px) on the sheet, square on internal rules. A faint grain is acceptable over the photograph only.",
+    "layout": "A page, not a screen. One centred column (max 720px) of content sitting on the sheet, with the photograph bleeding to all four edges behind it. 8px scale, 32-40px sheet padding, hairline rules between sections instead of cards. Data, when present, is set as a magazine table — ruled, mono, right-aligned."
+  },
+  "fit": {
+    "best_for": [
+      "sustainability and climate products",
+      "outdoor, travel and agriculture",
+      "research and data journalism",
+      "reports and annual reviews",
+      "brands with real photography to spend"
+    ],
+    "avoid_for": [
+      "high-frequency operational tools",
+      "developer consoles",
+      "products with no photographic assets",
+      "dense transactional interfaces"
+    ],
+    "mood": [
+      "considered",
+      "grounded",
+      "editorial",
+      "natural",
+      "literate"
+    ],
+    "artifact_types_proven": [
+      "landing page",
+      "dashboard",
+      "web app"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop",
+      "tablet"
+    ],
+    "artifacts": [
+      "landing page",
+      "dashboard",
+      "web app"
+    ],
+    "artifact_counts": {
+      "landing page": 3,
+      "dashboard": 2,
+      "web app": 1
+    },
+    "device_counts": {
+      "desktop": 5,
+      "tablet": 1
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as landscape photograph, natural light, slightly defocused.\n\nSTYLE — apply all of the following, they are not optional:\n- full-bleed natural landscape — hills, field, forest, sky\n- soft overcast or golden-hour light, no harsh sun\n- muted natural greens and earth tones, low saturation\n- slight defocus so the image reads as a backdrop, not a subject\n- horizon placed low or high, never centred\n\nNEGATIVE SPACE: The centre must be quiet and low-contrast so a white sheet of type can sit on it.\n\nDO NOT INCLUDE: people looking at camera, urban or industrial scenes, high saturation, HDR processing, vector or 3D rendering, text in the image.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "full-bleed natural landscape — hills, field, forest, sky",
+      "soft overcast or golden-hour light, no harsh sun",
+      "muted natural greens and earth tones, low saturation",
+      "slight defocus so the image reads as a backdrop, not a subject",
+      "horizon placed low or high, never centred",
+      "negative space — The centre must be quiet and low-contrast so a white sheet of type can sit on it.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "people looking at camera",
+      "urban or industrial scenes",
+      "high saturation",
+      "HDR processing",
+      "vector or 3D rendering",
+      "text in the image"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/27338369-SaaS-Website",
+      "designer": "Wonklab",
+      "local_image": "shots/27338369-saas-website.jpg",
+      "thumbnail": "thumbs/27338369.jpg",
+      "title": "SaaS Website"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26513509-AI-SaaS-Web-Platform",
+      "designer": "Awsmd",
+      "local_image": "shots/26513509-ai-saas-web-platform.png",
+      "thumbnail": "thumbs/26513509.jpg",
+      "title": "AI SaaS Web Platform"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27237804-SaaS-Landing-Page-Design-Product-Analytics-Platform-UI-UX",
+      "designer": "Erik Padamans",
+      "local_image": "shots/27237804-saas-landing-page-design-product-analytics-platf.png",
+      "thumbnail": "thumbs/27237804.jpg",
+      "title": "SaaS Landing Page Design | Product Analytics Platform (UI/UX)"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27322689-LeonAnd-Minimal-SaaS-Analytics-Dashboard",
+      "designer": "Paperpillar",
+      "local_image": "shots/27322689-leonand-minimal-saas-analytics-dashboard.png",
+      "thumbnail": "thumbs/27322689.jpg",
+      "title": "LeonAnd — Minimal SaaS Analytics Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25578130-Costar-Real-Estate-SaaS-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/25578130-costar-real-estate-saas-dashboard.png",
+      "thumbnail": "thumbs/25578130.jpg",
+      "title": "Costar - Real Estate SaaS Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26523370-RoomSketch-Interior-Design-SaaS-Web-App",
+      "designer": "Phenomenon Studio",
+      "local_image": "shots/26523370-roomsketch-interior-design-saas-web-app.png",
+      "thumbnail": "thumbs/26523370.jpg",
+      "title": "RoomSketch – Interior Design SaaS Web App"
+    }
+  ],
+  "index": 15
+}

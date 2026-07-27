@@ -1,0 +1,13 @@
+{
+  "name": "styles-library",
+  "owner": {
+    "name": "Lambert BOULEY"
+  },
+  "plugins": [
+    {
+      "name": "styles-library",
+      "source": "./",
+      "description": "18 reusable visual styles derived from a personal Dribbble collection, with agent-ready briefs, parameterised image recipes, live preview artifacts and a style-picker skill."
+    }
+  ]
+}

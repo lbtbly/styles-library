@@ -1,0 +1,497 @@
+[
+  {
+    "index": 90,
+    "shot_id": "26504537",
+    "title": "SaaS B2B Marketing Dashboard Design",
+    "designer": "Conceptzilla",
+    "artifact_type": "marketing-analytics dashboard (data table + KPI strip) shown in a photographic laptop mockup",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#F0F0F0",
+      "surface": "#FCFCFC",
+      "ink": "#181818",
+      "accent": "#C05858",
+      "secondary": "#70A0C0"
+    },
+    "palette_note": "Desaturated near-monochrome greys and near-black text; the only chroma is a dusty red vs steel blue pair on the trend lines plus three ~12%-tint status pills (red / green / amber).",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "low",
+      "case_usage": "mixed",
+      "note": "Everything is tiny — 11-13px body — with 9px ALL-CAPS wide-tracked column headers (DATE / COMPANY / EMAIL). KPI numerals jump to ~20px medium while their labels stay 11px grey; tabular lining figures throughout and no display type anywhere."
+    },
+    "texture": ["flat", "soft-shadow"],
+    "imagery": "product screenshots inside a photographic device mockup (plus 4 postage-stamp social thumbnails)",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Three-zone shell: pill-item left rail, centre content, fixed right insight column. The data table has zero card chrome — rows separated only by 1px hairlines — and the KPI strip is divided by thin verticals rather than boxed. Padding is deliberately starved so ~18 rows are visible at once."
+    },
+    "mood": ["forensic", "understated", "instrument-panel", "rationed", "utilitarian"],
+    "style_signature": "Chromeless white panels divided by 1px hairlines instead of cards, 9px wide-tracked uppercase column labels over a starved-padding table of lining figures, and colour rationed to two chart strokes plus faint-tint status pills.",
+    "provisional_cluster": "clinical-light-data-dense"
+  },
+  {
+    "index": 91,
+    "shot_id": "25432271",
+    "title": "WindFarm SaaS - Renewable Energy Dashboard",
+    "designer": "RonDesignLab ⭐️",
+    "artifact_type": "industrial monitoring dashboard, presented as an angled monitor render over a 3D turbine scene",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#E4F0F0",
+      "surface": "#D8E4E4",
+      "ink": "#181818",
+      "accent": "#E84020",
+      "secondary": "#F8F800"
+    },
+    "palette_note": "Cold ice-blue/periwinkle field at very low saturation, punctured by exactly two hot notes — a vermilion CTA-and-chart-bar red and a pure acid yellow reserved for the 'Active' status chip and progress underline.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "high",
+      "case_usage": "sentence",
+      "note": "Split-weight numerals are the signature: '4.2 GWh' and '157.2 k/W' set the integer at ~48px light and the decimal+unit at ~18px, so each metric reads as one glyph cluster. Card titles stay 15px regular grey; no caps, no bold."
+    },
+    "texture": ["3d-render", "soft-shadow", "gradient-fill", "blur", "flat"],
+    "imagery": "3D renders (pale monochrome turbine modelled in the same blue as the UI, used as a full-bleed backdrop)",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "none",
+      "note": "Screen is photographed in strong perspective so the card grid recedes; an asymmetric mosaic of 20px-radius near-white cards on a barely-darker gutter, borderless, separated by air alone. A dark translucent status popover and a headline overhang the screen edge onto the 3D scene."
+    },
+    "mood": ["glacial", "instrument-grade", "aerodynamic", "cool-industrial", "poised"],
+    "style_signature": "A perspective-tilted screen of borderless near-white cards on an ice-blue gutter, radial gauge dials with tick-mark rings, split-scale numerals, and exactly two hot accents (vermilion and acid yellow) against a monochrome 3D turbine backdrop.",
+    "provisional_cluster": "cold-glass-perspective-dash"
+  },
+  {
+    "index": 92,
+    "shot_id": "27206717",
+    "title": "Team Analytics App – SaaS Dashboard UI",
+    "designer": "Nixtio",
+    "artifact_type": "mobile app (team analytics overview)",
+    "bg_mode": "dark",
+    "palette": {
+      "bg": "#000000",
+      "surface": "#281858",
+      "ink": "#FFFFFF",
+      "accent": "#8030A8",
+      "secondary": "#301878"
+    },
+    "palette_note": "True-black OLED UI floating on a hyper-saturated magenta→indigo gradient mesh; the app itself owns no brand colour at all — hue arrives entirely from the environment and from pure-RGB gel lighting on the portraits.",
+    "type": {
+      "family_character": "mono",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Monospaced display headline ('Overview Panel', 'Production Team') with visibly wide default mono tracking, deliberately paired against a neutral grotesque for subtitles and metric rows — the mono/grotesque clash is the whole typographic idea. Values right-align in bold, labels stay 50% white."
+    },
+    "texture": ["glassmorphism", "blur", "gradient-mesh", "glow", "duotone-photo"],
+    "imagery": "cut-out photography — circular portrait crops each lit with a single saturated gel (green, red, blue, orange, violet)",
+    "layout": {
+      "density": "sparse",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Bottom-weighted: a scattered constellation of avatar circles at varying scale fills the upper two-thirds, then one hairline-stroked frosted card slides up over it. Floating circular pill tab bar detached from the screen edge. Enormous empty air above the headline."
+    },
+    "mood": ["nocturnal", "synthetic", "clubby", "high-voltage", "gallery-lit"],
+    "style_signature": "Pure-black app chrome over a magenta-indigo gradient mesh, with a 1px-stroked frosted glass card sliding up over a scattered constellation of gel-lit circular portrait cut-outs, headlines set in monospace.",
+    "provisional_cluster": "dark-glow-device-render"
+  },
+  {
+    "index": 93,
+    "shot_id": "27082904",
+    "title": "Ardex DevOps SaaS — API Monitoring Mobile App",
+    "designer": "RonDesignLab ⭐️",
+    "artifact_type": "mobile app (API/session monitoring with a spatial heatmap), shown in a rendered hand",
+    "bg_mode": "dark",
+    "palette": {
+      "bg": "#0C0C0C",
+      "surface": "#202020",
+      "ink": "#FFFFFF",
+      "accent": "#C04008",
+      "secondary": "#D0A028"
+    },
+    "palette_note": "Matte-black chassis with graphite chips; all saturation is delegated to a scientific inferno ramp (deep indigo → blood red → orange → amber → white-hot) plus a mint/amber/red status triad, over a warm grey-to-terracotta backdrop.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Rounded geometric sans throughout; metric numerals blown up to ~34px with the '%' sign dropped to half-size and greyed, card titles wrapped onto two 17px lines. No caps, no tracking tricks — hierarchy is pure scale."
+    },
+    "texture": ["glow", "3d-render", "gradient-fill", "flat", "soft-shadow"],
+    "imagery": "3D renders (photoreal hand holding the device) with a pixel-grid data heatmap as the in-app hero visual",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "none",
+      "note": "Full-bleed heatmap canvas with UI parked at the edges: segmented filter chips top, a vertical stack of square tool buttons hugging the left rail, and a two-up metric shelf entering from the bottom. Deliberately cropped by the frame so the app reads as in-use rather than laid out."
+    },
+    "mood": ["thermal", "ops-room", "tactile-dark", "alarm-ready", "cinematic"],
+    "style_signature": "Matte-black graphite chips floating over a full-bleed pixel-grid inferno heatmap, square icon-only tool buttons stacked on the left rail, half-size greyed units beside oversized numerals, and a warm terracotta gradient environment around the device.",
+    "provisional_cluster": "dark-glow-device-render"
+  },
+  {
+    "index": 94,
+    "shot_id": "24677624",
+    "title": "IdeaPilot AI - Onboarding design for AI-powered SaaS platform",
+    "designer": "Outcrowd",
+    "artifact_type": "onboarding / auth flow (multi-screen presentation board)",
+    "bg_mode": "dark",
+    "palette": {
+      "bg": "#0C0C0C",
+      "surface": "#242424",
+      "ink": "#FFFFFF",
+      "accent": "#7048F8",
+      "secondary": "#8490A8"
+    },
+    "palette_note": "Charcoal-on-near-black with one electric blue-violet doing every selected/primary job; a lavender-grey presentation backdrop and a violet nebula bloom keep the darks from going flat, with mint/orange only inside progress bars.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "high",
+      "case_usage": "sentence",
+      "note": "~44px light-weight geometric headlines against 14px grey sub-copy, with italic used as the emphasis device instead of bold ('AI-Powered', 'been created!', the 'Pilot' in the wordmark) — an unusually literary move for a dark SaaS flow."
+    },
+    "texture": ["noise-grain", "glow", "gradient-fill", "soft-shadow", "flat"],
+    "imagery": "product screenshots (tilted device renders of the app) plus glossy multi-colour app-icon tiles and line illustration",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Every screen is a hard 50/50 split — form left, glowing product render right, bleeding off the panel edge. A 6-segment dashed progress bar pins the top; Back (ghost) and Next (violet fill) anchor the bottom. Choice cards are full-width stacked, 3×3 for the icon grid."
+    },
+    "mood": ["nebular", "premium-dark", "cinematic", "engineered", "assured"],
+    "style_signature": "Grained charcoal cards on near-black lit by a violet nebula bloom, one electric #7048F8 fill marking every selected and primary state, six dashed progress segments across the top, and italics carrying emphasis inside geometric-sans headlines.",
+    "provisional_cluster": "dark-glow-device-render"
+  },
+  {
+    "index": 95,
+    "shot_id": "27243109",
+    "title": "Approvio SaaS – Workflow Automation Dashboard",
+    "designer": "RonDesignLab ⭐️",
+    "artifact_type": "node-canvas workflow automation builder (design-tool UI)",
+    "bg_mode": "dark",
+    "palette": {
+      "bg": "#000000",
+      "surface": "#303030",
+      "ink": "#D8D8D8",
+      "accent": "#40B030",
+      "secondary": null
+    },
+    "palette_note": "Almost 70% literal #000000; a single acid green rides the connector arrows and node status dots, and the only other hue in frame is one photographic storefront thumbnail and three third-party logo badges.",
+    "type": {
+      "family_character": "humanist sans",
+      "weight_contrast": "low",
+      "case_usage": "mixed",
+      "note": "UI labels held small and at low contrast (~55% grey) so the type recedes behind the graph; the node ID 'STD_DEMOv2' is set in a wide-tracked technical face with an underscore — the sole typographic gesture in the frame."
+    },
+    "texture": ["blur", "glow", "soft-shadow", "flat"],
+    "imagery": "product screenshots (documents, storefront photo) embedded as node payloads, plus logo badges",
+    "layout": {
+      "density": "sparse",
+      "radius": "soft",
+      "borders": "none",
+      "note": "Infinite dotted canvas shot at a tilt with heavy depth-of-field: exactly one node is legible and the rest smear into bokeh. Nodes float on no grid, connected by long lazy S-curve beziers. Composition reads as a photograph of software, not a layout."
+    },
+    "mood": ["stealthy", "focus-pulled", "technical", "hushed", "macro"],
+    "style_signature": "A tilted macro shot of an infinite black dotted canvas with everything but one node racked out of focus, dark-grey rounded node cards holding real document payloads, and acid-green S-curve beziers terminating in solid triangular arrowheads.",
+    "provisional_cluster": "black-canvas-node-macro"
+  },
+  {
+    "index": 96,
+    "shot_id": "26504074",
+    "title": "SaaS - Website Design",
+    "designer": "Awsmd",
+    "artifact_type": "landing page / marketing site (art marketplace hero)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#F0F0F0",
+      "surface": "#FCFCFC",
+      "ink": "#101010",
+      "accent": "#2050E8",
+      "secondary": "#60A088"
+    },
+    "palette_note": "The page itself is strictly neutral grey/white with pure-black type and a black pill CTA; all chroma is outsourced to two candy speech-bubble chips (electric blue, sage green) and the riot of colour inside the artwork deck.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "high",
+      "case_usage": "sentence",
+      "note": "One ~90px two-line headline with tight negative tracking and a hard full stop, then a 6:1 drop straight to 14px regular body — nothing occupies the middle of the scale. Nav sits at 15px medium, evenly spaced, no caps anywhere."
+    },
+    "texture": ["noise-grain", "soft-shadow", "flat", "paper"],
+    "imagery": "cut-out photography — an arcing fan of overlapping rounded-square poster/collage artworks",
+    "layout": {
+      "density": "sparse",
+      "radius": "mixed",
+      "borders": "none",
+      "note": "One giant ~28px-radius white panel inset in flat grey, with the whole hero on a single centre axis. The card fan arcs across the fold and deliberately breaks the panel's left and right padding; primary and secondary CTAs sit as adjacent pills, one filled black, one grey."
+    },
+    "mood": ["gallery-like", "poster-ish", "spacious", "confident", "curated"],
+    "style_signature": "A grain-flecked rounded white page-panel inset in flat grey, carrying one oversized negative-tracked grotesque headline, with all colour delegated to an arcing fan of overlapping artwork cards tagged by two candy speech-bubble chips.",
+    "provisional_cluster": "airy-white-marketing-hero"
+  },
+  {
+    "index": 97,
+    "shot_id": "26523370",
+    "title": "RoomSketch – Interior Design SaaS Web App",
+    "designer": "Phenomenon Studio",
+    "artifact_type": "web app (shoppable interior-design canvas) in a tablet mockup",
+    "bg_mode": "mixed",
+    "palette": {
+      "bg": "#6C6054",
+      "surface": "#FCFCFC",
+      "ink": "#202020",
+      "accent": "#102808",
+      "secondary": "#786040"
+    },
+    "palette_note": "Warm and photographic — oak, terracotta, cream and taupe come from the imagery, not the design system; the UI contributes only chalk-white chips and one near-black forest green used for pins and the primary button.",
+    "type": {
+      "family_character": "humanist sans",
+      "weight_contrast": "low",
+      "case_usage": "sentence",
+      "note": "Deliberately no display type at all — nothing above ~16px inside the app, so the photograph carries the page. Product name in medium, price in semibold as the single emphasis; description drops to 13px with an em-dash clause."
+    },
+    "texture": ["blur", "soft-shadow", "flat"],
+    "imagery": "photoreal interior renders (full-bleed) plus a cut-out product shot in the detail card",
+    "layout": {
+      "density": "sparse",
+      "radius": "mixed",
+      "borders": "none",
+      "note": "Full-bleed image canvas with pill and card chrome parked only at the four corners — UI never covers more than ~20% of the frame. Small green pin dots sit directly on shoppable objects and the product card hangs off one of them; the whole thing is framed by a warm out-of-focus bokeh border."
+    },
+    "mood": ["warm", "domestic", "editorial-calm", "tactile", "premium-retail"],
+    "style_signature": "A full-bleed warm photographic interior as the entire canvas, with chalk-white pill chrome floating only at the corners, small forest-green dots pinned to shoppable objects, and a white product card tethered to one pin ending in a near-black green CTA.",
+    "provisional_cluster": "warm-photographic-product"
+  },
+  {
+    "index": 98,
+    "shot_id": "27096422",
+    "title": "Quarn SaaS – AI Workflow Control Dashboard",
+    "designer": "RonDesignLab ⭐️",
+    "artifact_type": "node-canvas AI workflow builder (design-tool UI)",
+    "bg_mode": "dark",
+    "palette": {
+      "bg": "#000000",
+      "surface": "#181818",
+      "ink": "#FCFCFC",
+      "accent": "#48A050",
+      "secondary": "#187018"
+    },
+    "palette_note": "Black-on-black at ~85% coverage with one node flooded by a top-to-bottom green gradient; connector lines are white or green, and a single red trash glyph is the only other hue in the frame.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "low",
+      "case_usage": "sentence",
+      "note": "Light-weight rounded geometric sans at generous size inside cards; field labels use the identical weight at ~55% opacity, so hierarchy is carried entirely by opacity rather than weight. The camera's perspective shears everything into a pseudo-italic."
+    },
+    "texture": ["gradient-fill", "blur", "glow", "glassmorphism", "flat"],
+    "imagery": "iconography only (OpenAI and Postgres marks as the sole graphic content)",
+    "layout": {
+      "density": "sparse",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Tilted infinite dotted canvas with two nodes in focus and everything else smeared by depth-of-field. Each node sits inside a faint hairline selection frame; named connector stubs ('Model', 'Memory') hang above their ports on funnel-shaped tips. Inner controls are translucent white-on-green pills."
+    },
+    "mood": ["clandestine", "matte-black", "focus-pulled", "engineered", "quietly-luminous"],
+    "style_signature": "A near-pure-black dotted node canvas photographed at a tilt with racked focus, where one card is flooded with a vertical green gradient and its inputs become translucent white-on-green pills, ports labelled by funnel-tipped stubs.",
+    "provisional_cluster": "black-canvas-node-macro"
+  },
+  {
+    "index": 99,
+    "shot_id": "25284960",
+    "title": "Integrate – Client Dashboard UI Design for SaaS",
+    "designer": "Phenomenon Studio",
+    "artifact_type": "hospitality order-management dashboard in a laptop mockup",
+    "bg_mode": "mixed",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#F0F0F0",
+      "ink": "#0C0C0C",
+      "accent": "#A078F8",
+      "secondary": "#081018"
+    },
+    "palette_note": "White body capped by a near-black navy band; a lilac-violet primary plus a traffic-light pill set (amber / mint / lilac / pink) at low tint are the only other hues, all sitting on a dark ribbed studio backdrop.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Friendly geometric with rounded terminals; KPI numerals blown to ~40px semibold against 15px regular labels, section title at ~34px. Status words shrink to 13px medium inside their pills. Nothing is ever set in caps."
+    },
+    "texture": ["gradient-fill", "soft-shadow", "glow", "flat"],
+    "imagery": "illustration — 3D-style food thumbnails and cartoon avatar heads used as data ornaments",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Full-width dark KPI band with a 4-up stat row caps a white 3-column card grid plus a left filter rail. One card is deliberately pulled out of the grid, rotated a few degrees and dropped on a heavy shadow to demo the detail state — the composition's only piece of energy."
+    },
+    "mood": ["approachable", "service-industry", "tidy", "hospitable", "softly-corporate"],
+    "style_signature": "A full-bleed near-black navy KPI band capping a white 3-column card grid, lilac-violet primary, cartoon and 3D-food thumbnails standing in for data avatars, and one card lifted, tilted and shadowed out of the grid.",
+    "provisional_cluster": "soft-rounded-consumer-dash"
+  },
+  {
+    "index": 100,
+    "shot_id": "26824576",
+    "title": "PicGen SaaS - Image Generator Dashboard",
+    "designer": "RonDesignLab ⭐️",
+    "artifact_type": "design tool UI (node-based image-generation workflow) photographed on a monitor",
+    "bg_mode": "dark",
+    "palette": {
+      "bg": "#0C0C0C",
+      "surface": "#242424",
+      "ink": "#FCFCFC",
+      "accent": "#68E890",
+      "secondary": "#F870E8"
+    },
+    "palette_note": "Graphite-on-black with a mint 'Generate' as the only filled button; multiplayer cursors inject yellow, pink and blue at postage-stamp size, and the generated artwork supplies the frame's single soft pastel gradient.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "low",
+      "case_usage": "sentence",
+      "note": "Uniformly light-weight small type with no bold anywhere except numeric fields; placeholder copy sits at ~40% opacity. The monitor's off-axis capture shears every label slightly, which reads as an intentional oblique."
+    },
+    "texture": ["blur", "gradient-mesh", "glow", "soft-shadow", "flat"],
+    "imagery": "abstract gradients (the generated image is a soft iridescent pastel blur) over a dotted node canvas",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Strict left-to-right node flow — Model → Prompt → Generator → Preview — on a dotted canvas, each node a dark rounded card with red/green/yellow port dots and thin grey beziers between. Floating toolbars pinned to the right edge and bottom centre; a live telemetry column sits bottom-right in the corner."
+    },
+    "mood": ["dim-studio", "collaborative", "low-key", "filmic", "instrument-like"],
+    "style_signature": "Graphite rounded node cards on a black dotted canvas wired by thin grey beziers with red/green/yellow port dots, exactly one mint pill CTA, and named multiplayer cursors in candy colours drifting over the graph.",
+    "provisional_cluster": "black-canvas-node-macro"
+  },
+  {
+    "index": 101,
+    "shot_id": "24190386",
+    "title": "Dashboard for a Finance SaaS ✦ Twisty",
+    "designer": "HALO LAB",
+    "artifact_type": "freelancer finance dashboard",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#E4E4E4",
+      "surface": "#FCFCFC",
+      "ink": "#181818",
+      "accent": "#D84828",
+      "secondary": "#70A0D0"
+    },
+    "palette_note": "Cool grey-white app shell floating on a dusty periwinkle field; a single vermilion is reserved for brand mark and seniority tags, powder blue for data points and chips — everything else is fully desaturated.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "high",
+      "case_usage": "sentence",
+      "note": "'Income Tracker' at ~46px semibold and '+20%' at ~54px are the loudest elements, sitting directly against 15px regular grey body with nothing between. Active nav marked by a 2px underline rather than colour or weight."
+    },
+    "texture": ["soft-shadow", "gradient-fill", "flat"],
+    "imagery": "iconography only — squircle brand tiles and cut-out circular avatar photos",
+    "layout": {
+      "density": "moderate",
+      "radius": "mixed",
+      "borders": "none",
+      "note": "One large ~32px-radius app shell inset into the coloured field, split roughly 2/3–1/3. Inside, 24px-radius white cards sit on grey with generous 32px gutters; lollipop bar chart with circular day-pills as the x-axis, and hairline-free pill chips for every tag."
+    },
+    "mood": ["soft-fintech", "pastel-corporate", "calm", "rounded", "reassuring"],
+    "style_signature": "A cool grey-white rounded app shell inset in a dusty periwinkle field, 24px-radius white-on-grey cards, lollipop bar charts whose axis is a row of circular day pills, and one vermilion accent held back for brand and priority tags only.",
+    "provisional_cluster": "soft-rounded-consumer-dash"
+  },
+  {
+    "index": 102,
+    "shot_id": "25142812",
+    "title": "Task Management Saas Web App - Detail Task Activity",
+    "designer": "Keitoto",
+    "artifact_type": "web app (kanban board with a task-detail drawer over a scrim)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#F0F0F0",
+      "ink": "#181818",
+      "accent": "#6840C0",
+      "secondary": "#F8A010"
+    },
+    "palette_note": "Flat white under a neutral grey scrim; one indigo-violet marks every active/selected state, joined by a four-colour status set (amber, indigo, blue, red) each rendered as a saturated dot on a ~12%-tint pill.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Inter-like throughout: ~30px semibold drawer title, 14px UI body, status text down to 12px inside pills. The activity feed leans on colour-weight contrast — actor names in near-black medium, verbs in grey regular, object names back to near-black — so each line parses without any icon."
+    },
+    "texture": ["flat", "soft-shadow"],
+    "imagery": "iconography only — thin line icons paired with small circular avatars",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Three-zone shell: ~280px sidebar, kanban columns, then a wide right drawer that overlays and dims rather than pushes. Cards use hairline borders with no shadow; the drawer's metadata is a strict icon+label / value two-column list, and both tab rows are underlined in indigo."
+    },
+    "mood": ["procedural", "legible", "office-neutral", "orderly", "low-drama"],
+    "style_signature": "Hairline-bordered shadowless white cards behind a scrimmed full-height overlay drawer, whose metadata is an icon+label/value two-column list, with indigo confined to tab underlines and selection dots against 12%-tint status pills.",
+    "provisional_cluster": "clinical-light-data-dense"
+  },
+  {
+    "index": 103,
+    "shot_id": "27131881",
+    "title": "Synthex UI – Analytics SaaS Dashboard",
+    "designer": "RonDesignLab ⭐️",
+    "artifact_type": "analytics dashboard — widget/component picker canvas",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#D8E4E4",
+      "surface": "#CCD8D8",
+      "ink": "#183040",
+      "accent": "#9090E8",
+      "secondary": "#E07080"
+    },
+    "palette_note": "A washed mint-to-steel gradient where nearly every value sits inside a 20% band; the only saturation in the frame is a periwinkle bar and a coral bar chart living inside two miniature widget thumbnails.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "low",
+      "case_usage": "sentence",
+      "note": "Card titles at ~30px medium over a lighter, smaller subtitle in the same family; no bold anywhere. The one-point perspective shears all type into a consistent oblique, which becomes the shot's dominant typographic character."
+    },
+    "texture": ["glassmorphism", "blur", "gradient-fill", "soft-shadow", "flat"],
+    "imagery": "product screenshots — miniature white widget cards used as picker previews",
+    "layout": {
+      "density": "sparse",
+      "radius": "mixed",
+      "borders": "hairline",
+      "note": "Extreme one-point perspective with a racked focus so only the middle band is legible. Frosted translucent cards sit on a soft grid with a dashed 'add' tile at the left; each card's thumbnail preview escapes over its own top edge, and pill filter chips run underneath."
+    },
+    "mood": ["vaporous", "clinical-cool", "weightless", "serene", "apple-adjacent"],
+    "style_signature": "Frosted translucent cards on a pale mint-steel wash, shot in one-point perspective with racked focus, where miniature widget thumbnails spill out over each card's top edge and colour appears only inside those thumbnails.",
+    "provisional_cluster": "cold-glass-perspective-dash"
+  },
+  {
+    "index": 104,
+    "shot_id": "27190142",
+    "title": "AI Project Management Assistant – SaaS Landing Page",
+    "designer": "Orix Creative",
+    "artifact_type": "landing page / marketing site (AI PM tool hero)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#F0F0F0",
+      "surface": "#FCFCFC",
+      "ink": "#101010",
+      "accent": "#0078F8",
+      "secondary": null
+    },
+    "palette_note": "Monochrome white-on-white with pure-black type and a black pill CTA; the only owned colour is a faint periwinkle bloom behind the floating cards — everything else is borrowed brand-logo colour from the orbiting integration chips.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "high",
+      "case_usage": "sentence",
+      "note": "~72px bold headline with clear negative tracking and a tight ~1.05 line-height, dropping straight to 18px regular grey body. Nav at 15px medium; the only caps in the frame are a 10px 'NEW' badge and the greyscale logo wall."
+    },
+    "texture": ["outline-stroke", "glow", "soft-shadow", "flat"],
+    "imagery": "iconography only — real third-party brand logos in white circular chips, plus stacked notification-card screenshots",
+    "layout": {
+      "density": "sparse",
+      "radius": "mixed",
+      "borders": "hairline",
+      "note": "Strict centre axis: concentric hairline orbit arcs radiate from the hero and carry logo chips out to the frame edges. Floating pill nav detached at the top, huge vertical air around the headline, greyscale logo wall pinned to the bottom of the rounded page panel."
+    },
+    "mood": ["airy", "trust-signalling", "centred", "weightless", "enterprise-friendly"],
+    "style_signature": "A centred white hero ringed by concentric hairline orbit arcs studded with real brand-logo chips, one oversized negative-tracked grotesque headline over a black pill CTA, and a soft periwinkle bloom lifting a stack of notification cards.",
+    "provisional_cluster": "airy-white-marketing-hero"
+  }
+]

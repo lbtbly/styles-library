@@ -1,0 +1,153 @@
+{
+  "id": "dark-bench",
+  "name": "Dark Bench",
+  "collection": "Night Work",
+  "pairing": "Node graph × macro lens",
+  "concept": "Matte graphite tools on an infinite dotted canvas — one node in focus, the rest racked away.",
+  "keywords": [
+    "dotted-canvas",
+    "graphite-card",
+    "racked-focus",
+    "bezier-wire",
+    "matte-dark",
+    "port-dot",
+    "no-glow"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#0B0B0B",
+      "surface": "#1C1C1C",
+      "raised": "#262626",
+      "ink": "#FAFAFA",
+      "muted": "#8C8C8C",
+      "line": "#333333",
+      "accent": "#3FBF52",
+      "accent_ink": "#052A0C",
+      "dot": "rgba(255, 255, 255, 0.10)",
+      "warn": "#E0A32E",
+      "negative": "#E0503F"
+    },
+    "type": {
+      "families": "Geometric or humanist sans at small sizes (Inter, General Sans). Monospace for identifiers, ports and payload snippets.",
+      "hierarchy": "Node title 13/18 medium · node body 12/16 regular · port label 10/13 mono · canvas heading 20/26 medium. Everything is small — the canvas is the subject, not the type.",
+      "usage": "Sentence case. Monospace for any machine-facing string. Truncate aggressively inside nodes; the node is a summary, not a document."
+    },
+    "texture": "Matte and flat — this is the dark style with no glow. Cards are solid `--surface` with a 1px `--line` border and no shadow beyond a tight `0 2px 8px rgb(0 0 0 / .5)`. The ground is a dotted canvas: `radial-gradient(var(--dot) 1px, transparent 1px)` at a 24px grid. Connections are 2px bezier curves in `--muted` that turn `--accent` when active, ending in solid triangular arrowheads or small port dots.",
+    "layout": "An infinite canvas, not a page. Nodes are 240-320px wide cards placed freely and wired together; a floating toolbar pill and a minimap dock over the canvas. 4px scale inside nodes, 12px node padding, 10px radius. Presentation trick: photograph the canvas at a slight tilt with everything but one node racked out of focus, so a single node reads as the subject."
+  },
+  "fit": {
+    "best_for": [
+      "workflow and automation builders",
+      "AI agent and pipeline tooling",
+      "data engineering and ETL",
+      "developer infrastructure consoles",
+      "any product whose object is a graph"
+    ],
+    "avoid_for": [
+      "marketing landing pages",
+      "content and editorial sites",
+      "consumer mobile apps",
+      "form-heavy administrative software"
+    ],
+    "mood": [
+      "technical",
+      "matte",
+      "engineered",
+      "focused",
+      "unglamorous"
+    ],
+    "artifact_types_proven": [
+      "design tool",
+      "dashboard",
+      "mobile app"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "artifacts": [
+      "design tool",
+      "dashboard",
+      "mobile app"
+    ],
+    "artifact_counts": {
+      "dashboard": 2,
+      "mobile app": 1,
+      "design tool": 3
+    },
+    "device_counts": {
+      "desktop": 5,
+      "mobile": 1
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as macro photograph of a dark screen at a slight tilt, shallow depth of field.\n\nSTYLE — apply all of the following, they are not optional:\n- near-black #0B0B0B ground with a faint regular dot grid\n- matte graphite panels, absolutely no glow or bloom\n- one green #3FBF52 as the only saturated colour, on connector lines only\n- shallow depth of field — one element sharp, the rest falling off\n- slight perspective tilt, cool neutral colour temperature\n\nNEGATIVE SPACE: The out-of-focus region should occupy the outer half of the frame.\n\nDO NOT INCLUDE: neon glow, iridescence, warm colour casts, flat orthographic vector, light backgrounds, lens flare.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "near-black #0B0B0B ground with a faint regular dot grid",
+      "matte graphite panels, absolutely no glow or bloom",
+      "one green #3FBF52 as the only saturated colour, on connector lines only",
+      "shallow depth of field — one element sharp, the rest falling off",
+      "slight perspective tilt, cool neutral colour temperature",
+      "negative space — The out-of-focus region should occupy the outer half of the frame.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "neon glow",
+      "iridescence",
+      "warm colour casts",
+      "flat orthographic vector",
+      "light backgrounds",
+      "lens flare"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/16860326-Fleet-management-SaaS",
+      "designer": "Eugene Paryhin",
+      "local_image": "shots/16860326-fleet-management-saas.png",
+      "thumbnail": "thumbs/16860326.jpg",
+      "title": "Fleet management SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27521592-SaaS-Web-Dashboard",
+      "designer": "Ronas IT | UI/UX Team",
+      "local_image": "shots/27521592-saas-web-dashboard.png",
+      "thumbnail": "thumbs/27521592.jpg",
+      "title": "SaaS Web Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27082904-Ardex-DevOps-SaaS-API-Monitoring-Mobile-App",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/27082904-ardex-devops-saas-api-monitoring-mobile-app.png",
+      "thumbnail": "thumbs/27082904.jpg",
+      "title": "Ardex DevOps SaaS — API Monitoring Mobile App"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27243109-Approvio-SaaS-Workflow-Automation-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/27243109-approvio-saas-workflow-automation-dashboard.png",
+      "thumbnail": "thumbs/27243109.jpg",
+      "title": "Approvio SaaS – Workflow Automation Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27096422-Quarn-SaaS-AI-Workflow-Control-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/27096422-quarn-saas-ai-workflow-control-dashboard.jpg",
+      "thumbnail": "thumbs/27096422.jpg",
+      "title": "Quarn SaaS –  AI Workflow Control Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26824576-PicGen-SaaS-Image-Generator-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/26824576-picgen-saas-image-generator-dashboard.png",
+      "thumbnail": "thumbs/26824576.jpg",
+      "title": "PicGen SaaS - Image Generator Dashboard"
+    }
+  ],
+  "index": 9
+}

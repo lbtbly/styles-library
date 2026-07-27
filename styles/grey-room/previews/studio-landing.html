@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grey Room — Fold &amp; Field studio</title>
+<style>
+  :root{
+    --bg:#EFEFEF;
+    --surface:#F8F8F8;
+    --raised:#FFFFFF;
+    --ink:#171717;
+    --muted:#767676;
+    --line:#E0E0E0;
+    --accent:#000000;
+    --accent-ink:#FFFFFF;
+    --tint:rgba(23, 23, 23, 0.06);
+    --font: Inter, "Helvetica Now Display", "Söhne", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:var(--font);font-size:14px;line-height:21px;
+    color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  img,svg{display:block;max-width:100%}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .caps{font-size:10px;line-height:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .fade{color:var(--muted);font-style:normal}
+
+  .btn{height:40px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+  .btn-primary{background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent)}
+  .btn-primary:hover{background:#262626}
+  .btn-secondary{background:var(--raised);color:var(--ink);border:1px solid var(--line)}
+  .btn-secondary:hover{background:var(--surface)}
+  .btn-ghost{color:var(--muted);border:1px solid transparent}
+  .btn-ghost:hover{background:var(--tint);color:var(--ink)}
+  .btn svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:20;background:rgb(239 239 239 / .92);border-bottom:1px solid var(--line)}
+  .nav .wrap{height:64px;display:flex;align-items:center;gap:24px}
+  .wordmark{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;letter-spacing:-.02em}
+  .wordmark i{width:20px;height:20px;border-radius:6px;background:var(--ink);display:inline-block;position:relative}
+  .wordmark i::after{content:"";position:absolute;left:5px;top:5px;width:10px;height:10px;border-radius:2px;background:var(--bg)}
+  .nav nav{display:flex;gap:26px;margin-left:auto;font-size:14px;color:var(--muted)}
+  .nav nav a:hover{color:var(--ink)}
+  .nav .cta{margin-left:auto}
+  .nav nav + .cta{margin-left:0}
+
+  /* hero */
+  .hero{padding:96px 0 64px}
+  .hero .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .hero h1{font-size:56px;line-height:58px;font-weight:600;letter-spacing:-.035em;margin:20px 0 24px}
+  .hero p{font-size:14px;line-height:21px;color:var(--muted);max-width:44ch}
+  .hero .row{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+  .hero .note{margin-top:24px;font-size:12px;line-height:18px;color:var(--muted)}
+
+  .heroart{aspect-ratio:4/5;border-radius:12px;background:var(--tint);overflow:hidden;position:relative}
+  .heroart svg{width:100%;height:100%}
+
+  /* logo row */
+  .logos{padding:36px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .logos .wrap{display:flex;align-items:center;gap:32px;flex-wrap:wrap;justify-content:space-between}
+  .logos span{font-size:17px;font-weight:600;letter-spacing:-.02em;color:var(--muted);opacity:.8}
+  .logos .caps{flex-basis:100%;margin-bottom:4px}
+
+  /* section shell */
+  section.block{padding:96px 0}
+  .head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+  .head h2{font-size:40px;line-height:44px;font-weight:600;letter-spacing:-.03em;max-width:16ch}
+  .head .caps{margin-bottom:14px}
+  .head p{color:var(--muted);max-width:42ch}
+
+  /* work grid */
+  .work{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .proj{background:var(--surface);border-radius:12px;padding:16px;display:block;transition:none}
+  .proj:hover{background:var(--raised);box-shadow:0 1px 2px rgb(0 0 0 / .05)}
+  .proj .media{border-radius:8px;background:var(--tint);aspect-ratio:16/10;overflow:hidden;filter:grayscale(1)}
+  .proj .media svg{width:100%;height:100%}
+  .proj .meta{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 6px 6px}
+  .proj h3{font-size:15px;line-height:22px;font-weight:500;letter-spacing:-.005em}
+  .proj .sub{font-size:12px;line-height:18px;color:var(--muted);margin-top:2px}
+  .proj .yr{font-size:12px;color:var(--muted);white-space:nowrap;padding-top:2px}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;padding:0 6px 4px}
+  .chip{height:24px;padding:0 10px;border-radius:999px;background:var(--tint);color:var(--muted);font-size:12px;line-height:24px;font-weight:500}
+  .chip-outline{background:transparent;border:1px solid var(--line)}
+
+  /* capability list */
+  .caps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .cap{background:var(--surface);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px;min-height:200px}
+  .cap .n{font-size:28px;line-height:32px;font-weight:500;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .cap h3{font-size:15px;line-height:22px;font-weight:500}
+  .cap p{color:var(--muted);font-size:14px;line-height:21px}
+  .cap .rule{height:1px;background:var(--line);margin-top:auto}
+  .cap ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:12px}
+  .cap li{font-size:12px;line-height:18px;color:var(--muted);display:flex;gap:9px;align-items:baseline}
+  .cap li i{width:5px;height:5px;border-radius:999px;background:var(--ink);flex:none;transform:translateY(-2px)}
+
+  /* numbers */
+  .numbers{background:var(--surface);border-radius:12px;padding:40px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+  .numbers .n{font-size:40px;line-height:44px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .numbers .caps{margin-top:10px}
+
+  /* quote */
+  .quote{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center}
+  .quote blockquote{font-size:22px;line-height:32px;font-weight:500;letter-spacing:-.015em}
+  .quote .who{display:flex;align-items:center;gap:12px;margin-top:28px}
+  .quote .who .av{width:28px;height:28px;border-radius:999px;background:var(--tint);display:grid;place-items:center;font-size:10px;font-weight:600;color:var(--muted)}
+  .quote .who b{font-weight:500;font-size:14px}
+  .quote .who span{color:var(--muted);font-size:12px;display:block}
+  .quoteart{aspect-ratio:3/2;border-radius:12px;background:var(--tint);overflow:hidden}
+  .quoteart svg{width:100%;height:100%}
+
+  /* process table */
+  table{width:100%;border-collapse:collapse}
+  th{font-size:10px;line-height:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;padding:12px 16px;border-bottom:1px solid var(--line)}
+  th:last-child,td:last-child{text-align:right}
+  td{padding:16px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top}
+  td .sub{color:var(--muted);font-size:12px;line-height:18px;margin-top:3px}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  tr:hover td{background:var(--tint)}
+
+  /* cta */
+  .cta-block{background:var(--surface);border-radius:12px;padding:64px 32px;text-align:center}
+  .cta-block h2{font-size:40px;line-height:44px;font-weight:600;letter-spacing:-.03em;max-width:18ch;margin:16px auto 16px}
+  .cta-block p{color:var(--muted);max-width:46ch;margin:0 auto}
+  .cta-block .row{display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+  .cta-block form{display:flex;gap:8px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+  .field{height:40px;padding:0 14px;background:var(--raised);border:1px solid var(--line);border-radius:10px;font-size:14px;color:var(--ink);min-width:240px}
+  .field::placeholder{color:var(--muted)}
+  .field:focus{border-color:var(--ink);box-shadow:0 0 0 3px var(--tint);outline:none}
+
+  /* footer */
+  footer{background:var(--surface);border-top:1px solid var(--line);margin-top:96px}
+  footer .wrap{padding:64px 24px 0}
+  .fcols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+  .fcols p{color:var(--muted);font-size:14px;line-height:21px;max-width:32ch;margin-top:14px}
+  .fcols ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:16px}
+  .fcols a{font-size:14px;color:var(--muted)}
+  .fcols a:hover{color:var(--ink)}
+  .fbottom{margin-top:56px;border-top:1px solid var(--line);padding:22px 0;display:flex;justify-content:space-between;gap:16px;font-size:12px;line-height:18px;color:var(--muted);flex-wrap:wrap}
+  .fbottom nav{display:flex;gap:20px}
+
+  @media (max-width:900px){
+    .hero .grid{grid-template-columns:1fr;gap:40px}
+    .hero h1{font-size:40px;line-height:44px;letter-spacing:-.03em}
+    .caps-grid{grid-template-columns:1fr}
+    .quote{grid-template-columns:1fr;gap:32px}
+    .numbers{grid-template-columns:1fr 1fr;gap:28px}
+    .fcols{grid-template-columns:1fr 1fr}
+    .nav nav{display:none}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero{padding:56px 0 40px}
+    section.block{padding:56px 0}
+    .hero h1{font-size:32px;line-height:36px}
+    .head h2,.cta-block h2{font-size:28px;line-height:32px}
+    .work{grid-template-columns:1fr}
+    .numbers{grid-template-columns:1fr 1fr;padding:28px 20px}
+    .numbers .n{font-size:28px;line-height:32px}
+    .fcols{grid-template-columns:1fr}
+    .tablescroll{overflow-x:auto}
+    footer .wrap{padding:40px 16px 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="wordmark" href="#top"><i></i>Fold &amp; Field</a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#studio">Studio</a>
+      <a href="#practice">Practice</a>
+      <a href="#writing">Writing</a>
+    </nav>
+    <div class="cta"><a class="btn btn-primary" href="#brief">Start a brief</a></div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ---------------- hero ---------------- -->
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <span class="caps">Independent design studio · Copenhagen</span>
+        <h1>Design for the <em class="fade">quiet end</em> of the brief</h1>
+        <p>We build identity systems and product interfaces for companies whose work is already interesting enough. No decoration, no house colour, no borrowed energy — just structure that holds up after the launch post.</p>
+        <div class="row">
+          <a class="btn btn-primary" href="#brief">Start a brief</a>
+          <a class="btn btn-secondary" href="#work">See selected work<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="note">Currently booking from March 2026 · two engagements at a time</div>
+      </div>
+
+      <div class="heroart">
+        <svg viewBox="0 0 400 500" role="img" aria-label="Greyscale studio still life: stacked matte forms on a seamless ground">
+          <defs>
+            <radialGradient id="ground" cx="50%" cy="18%" r="92%">
+              <stop offset="0%" stop-color="#FFFFFF"/>
+              <stop offset="70%" stop-color="#EFEFEF"/>
+              <stop offset="100%" stop-color="#E4E4E4"/>
+            </radialGradient>
+            <linearGradient id="f1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#D6D6D6"/><stop offset="100%" stop-color="#B9B9B9"/>
+            </linearGradient>
+            <linearGradient id="f2" x1="0" y1="0" x2="0.2" y2="1">
+              <stop offset="0%" stop-color="#EDEDED"/><stop offset="100%" stop-color="#CFCFCF"/>
+            </linearGradient>
+            <linearGradient id="f3" x1="1" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#A8A8A8"/><stop offset="100%" stop-color="#8A8A8A"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="500" fill="url(#ground)"/>
+          <ellipse cx="196" cy="418" rx="150" ry="16" fill="#171717" opacity=".07"/>
+          <rect x="58" y="330" width="188" height="88" rx="8" fill="url(#f2)"/>
+          <rect x="214" y="212" width="128" height="206" rx="8" fill="url(#f1)"/>
+          <rect x="104" y="248" width="94" height="82" rx="8" fill="url(#f3)"/>
+          <circle cx="128" cy="176" r="46" fill="url(#f1)"/>
+          <rect x="214" y="212" width="128" height="9" fill="#171717" opacity=".06"/>
+          <rect x="270" y="86" width="5" height="130" rx="2.5" fill="#171717" opacity=".13"/>
+          <path d="M58 330h188v7H58z" fill="#171717" opacity=".05"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- clients ---------------- -->
+  <section class="logos">
+    <div class="wrap">
+      <span class="caps">Recent partners</span>
+      <span>Marlowe</span><span>Ostbank</span><span>Halvard</span><span>Nine Kilns</span><span>Ferrous</span><span>Palmgren</span>
+    </div>
+  </section>
+
+  <!-- ---------------- work ---------------- -->
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="caps">Selected work</span>
+          <h2>Eleven projects, <em class="fade">four of them public</em></h2>
+        </div>
+        <p>Most of what we make sits inside someone else's product. These are the pieces we are allowed to show.</p>
+      </div>
+
+      <div class="work">
+        <a class="proj" href="#ostbank">
+          <div class="media">
+            <svg viewBox="0 0 320 200" role="img" aria-label="Greyscale render: layered horizontal planes">
+              <rect width="320" height="200" fill="#E7E7E7"/>
+              <rect x="0" y="128" width="320" height="72" fill="#DADADA"/>
+              <rect x="34" y="44" width="118" height="118" rx="8" fill="#C4C4C4"/>
+              <rect x="168" y="72" width="118" height="90" rx="8" fill="#ADADAD"/>
+              <rect x="34" y="44" width="118" height="10" fill="#171717" opacity=".07"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <div>
+              <h3>Ostbank</h3>
+              <div class="sub">Identity system and a 240-component product library for a Nordic private bank.</div>
+            </div>
+            <span class="yr">2025</span>
+          </div>
+          <div class="tags"><span class="chip">Identity</span><span class="chip">Design system</span><span class="chip-outline chip">18 months</span></div>
+        </a>
+
+        <a class="proj" href="#nine-kilns">
+          <div class="media">
+            <svg viewBox="0 0 320 200" role="img" aria-label="Greyscale render: nested arcs">
+              <rect width="320" height="200" fill="#EAEAEA"/>
+              <circle cx="160" cy="180" r="130" fill="#D2D2D2"/>
+              <circle cx="160" cy="180" r="88" fill="#BCBCBC"/>
+              <circle cx="160" cy="180" r="46" fill="#9E9E9E"/>
+              <rect x="0" y="176" width="320" height="24" fill="#171717" opacity=".05"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <div>
+              <h3>Nine Kilns</h3>
+              <div class="sub">Packaging, catalogue and a slow-loading website for a ceramics workshop in Jutland.</div>
+            </div>
+            <span class="yr">2025</span>
+          </div>
+          <div class="tags"><span class="chip">Print</span><span class="chip">Art direction</span><span class="chip-outline chip">Ongoing</span></div>
+        </a>
+
+        <a class="proj" href="#halvard">
+          <div class="media">
+            <svg viewBox="0 0 320 200" role="img" aria-label="Greyscale render: vertical rods at varying heights">
+              <rect width="320" height="200" fill="#E5E5E5"/>
+              <rect x="40" y="72" width="26" height="128" rx="6" fill="#C9C9C9"/>
+              <rect x="84" y="40" width="26" height="160" rx="6" fill="#B4B4B4"/>
+              <rect x="128" y="96" width="26" height="104" rx="6" fill="#D3D3D3"/>
+              <rect x="172" y="56" width="26" height="144" rx="6" fill="#A0A0A0"/>
+              <rect x="216" y="112" width="26" height="88" rx="6" fill="#C9C9C9"/>
+              <rect x="260" y="80" width="26" height="120" rx="6" fill="#B4B4B4"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <div>
+              <h3>Halvard Instruments</h3>
+              <div class="sub">Interface for a laboratory scheduling platform used across nine research sites.</div>
+            </div>
+            <span class="yr">2024</span>
+          </div>
+          <div class="tags"><span class="chip">Product</span><span class="chip">Research</span><span class="chip-outline chip">11 months</span></div>
+        </a>
+
+        <a class="proj" href="#ferrous">
+          <div class="media">
+            <svg viewBox="0 0 320 200" role="img" aria-label="Greyscale render: folded plane">
+              <rect width="320" height="200" fill="#ECECEC"/>
+              <path d="M0 200 L96 52 L200 138 L320 24 L320 200Z" fill="#CDCDCD"/>
+              <path d="M0 200 L96 52 L200 138 L200 200Z" fill="#B6B6B6"/>
+              <path d="M200 138 L320 24 L320 200 L200 200Z" fill="#9C9C9C"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <div>
+              <h3>Ferrous</h3>
+              <div class="sub">Wayfinding and signage for a converted foundry now housing thirty studios.</div>
+            </div>
+            <span class="yr">2024</span>
+          </div>
+          <div class="tags"><span class="chip">Environmental</span><span class="chip">Typography</span><span class="chip-outline chip">6 months</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- capabilities ---------------- -->
+  <section class="block" id="practice" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="caps">How we work</span>
+          <h2>Three things, <em class="fade">done properly</em></h2>
+        </div>
+        <p>We do not run a service menu. Every engagement is one of these three, sized to the problem and scoped in writing before anything is drawn.</p>
+      </div>
+
+      <div class="caps-grid">
+        <div class="cap">
+          <span class="n">01</span>
+          <h3>Identity systems</h3>
+          <p>Wordmark, type, grid, photography direction and the rules that keep it intact once we leave.</p>
+          <ul>
+            <li><i></i>Naming and positioning</li>
+            <li><i></i>Type commissioning</li>
+            <li><i></i>Written guidelines, not a PDF of moodboards</li>
+          </ul>
+          <div class="rule"></div>
+        </div>
+        <div class="cap">
+          <span class="n">02</span>
+          <h3>Product interfaces</h3>
+          <p>Screens, states and the component library underneath them, built with your engineers rather than thrown over a wall.</p>
+          <ul>
+            <li><i></i>Discovery and interviews</li>
+            <li><i></i>Token architecture</li>
+            <li><i></i>Paired build sessions</li>
+          </ul>
+          <div class="rule"></div>
+        </div>
+        <div class="cap">
+          <span class="n">03</span>
+          <h3>Editorial and print</h3>
+          <p>Catalogues, reports and packaging where the object has to survive being picked up.</p>
+          <ul>
+            <li><i></i>Art direction</li>
+            <li><i></i>Paper and finishing specification</li>
+            <li><i></i>Press attendance</li>
+          </ul>
+          <div class="rule"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- numbers ---------------- -->
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="numbers">
+        <div><div class="n">11</div><div class="caps">Projects since 2021</div></div>
+        <div><div class="n">4</div><div class="caps">People, no contractors</div></div>
+        <div><div class="n">92%</div><div class="caps">Repeat engagement</div></div>
+        <div><div class="n">2</div><div class="caps">Clients at a time</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- quote ---------------- -->
+  <section class="block" id="studio" style="padding-top:0">
+    <div class="wrap quote">
+      <div>
+        <span class="caps">Client note</span>
+        <blockquote style="margin-top:16px">“They removed more than they added. Six months on, the system has absorbed two acquisitions and a new product line without anyone needing to ask us for permission.”</blockquote>
+        <div class="who">
+          <span class="av">EL</span>
+          <div><b>Elin Lauritzen</b><span>Head of Brand, Ostbank</span></div>
+        </div>
+      </div>
+      <div class="quoteart">
+        <svg viewBox="0 0 600 400" role="img" aria-label="Greyscale studio photograph: a matte form on a seamless ground">
+          <defs>
+            <radialGradient id="g2" cx="42%" cy="10%" r="96%">
+              <stop offset="0%" stop-color="#FCFCFC"/><stop offset="66%" stop-color="#EAEAEA"/><stop offset="100%" stop-color="#DEDEDE"/>
+            </radialGradient>
+            <linearGradient id="obj" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#DCDCDC"/><stop offset="55%" stop-color="#B5B5B5"/><stop offset="100%" stop-color="#8E8E8E"/>
+            </linearGradient>
+          </defs>
+          <rect width="600" height="400" fill="url(#g2)"/>
+          <ellipse cx="310" cy="322" rx="168" ry="20" fill="#171717" opacity=".08"/>
+          <path d="M232 322 L232 150 a78 78 0 0 1 156 0 L388 322 Z" fill="url(#obj)"/>
+          <ellipse cx="310" cy="150" rx="78" ry="22" fill="#CFCFCF"/>
+          <ellipse cx="310" cy="150" rx="52" ry="14" fill="#A9A9A9"/>
+          <rect x="232" y="238" width="156" height="8" fill="#171717" opacity=".06"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- process table ---------------- -->
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="caps">Engagement</span>
+          <h2>What it costs, <em class="fade">roughly</em></h2>
+        </div>
+        <p>Fixed fee against a written scope. We publish the ranges so nobody wastes a call finding out we are too expensive.</p>
+      </div>
+      <div class="tablescroll">
+        <table>
+          <thead>
+            <tr><th>Engagement</th><th>Typical shape</th><th>Duration</th><th>From</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Identity system<div class="sub">Everything from naming through to the written guideline</div></td>
+              <td>Full studio, two sprints of six weeks</td>
+              <td class="num">14–20 weeks</td>
+              <td class="num">€68,000</td>
+            </tr>
+            <tr>
+              <td>Product interface<div class="sub">Discovery, screens, tokens, paired build</div></td>
+              <td>Two designers embedded with your team</td>
+              <td class="num">10–16 weeks</td>
+              <td class="num">€52,000</td>
+            </tr>
+            <tr>
+              <td>Editorial and print<div class="sub">Catalogue, report or packaging programme</div></td>
+              <td>Art director plus one, press attendance included</td>
+              <td class="num">6–10 weeks</td>
+              <td class="num">€24,000</td>
+            </tr>
+            <tr>
+              <td>Systems review<div class="sub">A written audit of what you already have</div></td>
+              <td>One week, one document, one working session</td>
+              <td class="num">1 week</td>
+              <td class="num">€6,500</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- cta ---------------- -->
+  <section class="block" id="brief" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-block">
+        <span class="caps">Next opening: March 2026</span>
+        <h2>Tell us what is <em class="fade">actually wrong</em></h2>
+        <p>Send two paragraphs. If it is a fit we will reply within three working days with a scope and a number. If it is not, we will say so and suggest someone better placed.</p>
+        <form onsubmit="return false">
+          <input class="field" type="email" placeholder="you@company.com" aria-label="Your email address">
+          <button class="btn btn-primary" type="submit">Request a scope</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div>
+        <a class="wordmark" href="#top"><i></i>Fold &amp; Field</a>
+        <p>An independent design studio working on identity, product and print. Gothersgade 41, 1123 Copenhagen K.</p>
+      </div>
+      <div>
+        <span class="caps">Studio</span>
+        <ul><li><a href="#studio">About</a></li><li><a href="#practice">Practice</a></li><li><a href="#people">People</a></li><li><a href="#careers">Careers</a></li></ul>
+      </div>
+      <div>
+        <span class="caps">Work</span>
+        <ul><li><a href="#ostbank">Ostbank</a></li><li><a href="#nine-kilns">Nine Kilns</a></li><li><a href="#halvard">Halvard</a></li><li><a href="#ferrous">Ferrous</a></li></ul>
+      </div>
+      <div>
+        <span class="caps">Elsewhere</span>
+        <ul><li><a href="#writing">Writing</a></li><li><a href="#index">Index</a></li><li><a href="#colophon">Colophon</a></li><li><a href="#contact">Contact</a></li></ul>
+      </div>
+    </div>
+    <div class="fbottom">
+      <span>© 2026 Fold &amp; Field ApS · CVR 41 22 08 76</span>
+      <nav><a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="#accessibility">Accessibility</a></nav>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+30	27274113	shots/27274113-saas-landing-page.png	Oripio	SaaS Landing Page
+31	27378070	shots/27378070-schedulo-online-booking-request-in-saas-booking.png	Fikri Studio	Schedulo — Online Booking Request in SaaS Booking App
+32	21344417	shots/21344417-imagica-clean-saas-design-tool.png	Gleb Kuznetsov ✈	Imagica clean SAAS design tool
+33	26435991	shots/26435991-convox-saas-call-center-dashboard.png	RonDesignLab ⭐️	Convox SaaS - Call Center Dashboard
+34	23334877	shots/23334877-aqara-mobile-app-smart-home-saas.jpg	RonDesignLab ⭐️	Aqara Mobile App - Smart Home SaaS
+35	25478062	shots/25478062-convox-saas-call-center-solution.jpg	RonDesignLab ⭐️	Convox SaaS - Call Center Solution
+36	25188771	shots/25188771-farm-management-saas-dashboard.png	RonDesignLab ⭐️	Farm Management SaaS Dashboard
+37	26513509	shots/26513509-ai-saas-web-platform.png	Awsmd	AI SaaS Web Platform
+38	25887194	shots/25887194-contextual-delete-confirmation-for-saas.png	Virgil Pana	Contextual delete confirmation for SaaS
+39	26435909	shots/26435909-constellation-ai-saas-startup-platform-landing-p.jpeg	LAIN	Constellation - AI SaaS Startup Platform Landing Page Website
+40	27578441	shots/27578441-case-study-for-squadhub-saas-team-management-web.png	Plainthing Studio	Case Study for Squadhub - Saas Team Management Website
+41	25906740	shots/25906740-datagrid-table-filters-for-saas-dashboards-and-w.png	Virgil Pana	DataGrid Table Filters for Saas Dashboards and web apps
+42	27458403	shots/27458403-kirridesk-ai-reply-draft-suggestion-in-saas-csm.png	Fikri Studio	KirriDesk - AI Reply Draft Suggestion in SaaS CSM
+43	26996553	shots/26996553-devtools-flow-details-node-in-saas-api-testing.png	Fikri Studio	DevTools — Flow Details (Node) in SaaS API Testing
+44	26558620	shots/26558620-notification-center-for-dashboard-saas-real-esta.png	Virgil Pana	Notification center for dashboard saas real estate web app ui/ux

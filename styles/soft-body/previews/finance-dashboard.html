@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comma — money overview</title>
+<style>
+:root{
+  /* ---- Soft Body tokens (styles/soft-body/style.json) ---- */
+  --bg:#E7E8F0;
+  --surface:#FFFFFF;
+  --subtle:#F4F5F9;
+  --ink:#131C33;
+  --muted:#6A7288;
+  --line:#E6E8EF;
+  --accent:#4A46D8;
+  --accent-ink:#FFFFFF;
+  --pastel-mint:#DFF3E9;
+  --pastel-lilac:#E9E6FA;
+  --pastel-peach:#FCEBE4;
+  --pastel-butter:#FBF4DC;
+  --pastel-sky:#E2EEFB;
+  /* derived: matching ink per pastel */
+  --on-mint:#1F6B4C;
+  --on-lilac:#4A3FA8;
+  --on-peach:#A2542F;
+  --on-butter:#7A6320;
+  --on-sky:#2A5E96;
+  --accent-wash:rgba(74,70,216,.10);
+  --shadow-card:0 2px 8px rgb(19 28 51 / .06);
+  --shadow-raise:0 8px 24px -8px rgb(19 28 51 / .14);
+  --shadow-shell:0 24px 60px -24px rgb(19 28 51 / .22);
+  --font-sans:"Plus Jakarta Sans","Nunito Sans","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font-sans);font-size:14px;line-height:21px;
+  -webkit-font-smoothing:antialiased;padding:28px}
+svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4,p{margin:0}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:12px}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- shell ---------- */
+.shell{background:var(--subtle);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-shell);
+  display:grid;grid-template-columns:236px 1fr;min-height:calc(100vh - 56px)}
+
+/* ---------- sidebar (no border — the tone change IS the separation) ---------- */
+.side{background:var(--bg);padding:24px 16px;display:flex;flex-direction:column;gap:28px}
+.brand{display:flex;align-items:center;gap:10px;padding:0 6px;font-weight:600;font-size:17px;letter-spacing:-.02em}
+.brand__g{width:34px;height:34px;border-radius:12px;background:var(--accent);flex:none;
+  display:grid;place-items:center;box-shadow:0 8px 18px -8px rgb(74 70 216 / .7)}
+.brand__g i{display:block;width:12px;height:12px;border-radius:0 0 0 999px;background:#fff;transform:rotate(-12deg)}
+.navlist{display:flex;flex-direction:column;gap:4px}
+.navlist h4{font-size:11px;line-height:15px;font-weight:500;color:var(--muted);padding:0 14px;margin-bottom:6px}
+.nav-item{display:flex;align-items:center;gap:12px;height:44px;padding:0 14px;border-radius:16px;
+  font-weight:500;color:var(--muted);transition:background-color .18s ease,color .18s ease,box-shadow .18s ease}
+.nav-item svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.nav-item:hover{background:var(--subtle);color:var(--ink)}
+.nav-item[aria-current="page"]{background:var(--accent);color:#fff;box-shadow:0 8px 20px -10px rgb(74 70 216 / .7)}
+.nav-item .count{margin-left:auto;font-size:11px;font-weight:600;background:var(--surface);color:var(--muted);
+  padding:3px 8px;border-radius:999px}
+.side__foot{margin-top:auto;background:var(--pastel-lilac);color:var(--on-lilac);border-radius:20px;padding:18px}
+.side__foot h4{font-size:14px;line-height:20px;font-weight:600;margin-bottom:6px}
+.side__foot p{font-size:12px;line-height:18px;opacity:.85}
+.side__foot button{margin-top:12px;width:100%}
+
+/* ---------- top bar ---------- */
+.main{background:var(--surface);display:flex;flex-direction:column;min-width:0}
+.top{height:68px;flex:none;display:flex;align-items:center;gap:14px;padding:0 24px}
+.field{font:400 14px/1.5 var(--font-sans);color:var(--ink);background:var(--subtle);
+  border:1px solid transparent;border-radius:16px;padding:11px 16px;width:100%}
+.field::placeholder{color:var(--muted)}
+.field:focus{outline:none;background:var(--surface);border-color:var(--accent);box-shadow:0 0 0 3px rgba(74,70,216,.14)}
+.field--search{border-radius:999px;padding-left:42px;max-width:330px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ccircle cx='7' cy='7' r='5.2' fill='none' stroke='%236A7288' stroke-width='1.6'/%3E%3Cpath d='M11 11l4 4' stroke='%236A7288' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:16px center}
+.top__right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.ibtn{width:40px;height:40px;border:0;border-radius:50%;background:var(--subtle);display:grid;place-items:center;cursor:pointer;
+  transition:background-color .18s ease,transform .18s ease}
+.ibtn:hover{background:var(--bg);transform:translateY(-1px)}
+.ibtn svg{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ibtn .pip{position:absolute;margin:-14px 0 0 14px;width:8px;height:8px;border-radius:50%;background:var(--accent);border:2px solid var(--subtle)}
+.me{display:flex;align-items:center;gap:10px;padding-left:6px}
+.av{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:12px;font-weight:600}
+.me div{font-size:13px;line-height:17px}
+.me span{color:var(--muted);font-size:11px}
+
+/* ---------- content ---------- */
+.content{padding:8px 24px 24px;display:flex;flex-direction:column;gap:20px}
+.pagehead{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+h1{font-size:26px;line-height:32px;font-weight:600;letter-spacing:-.02em}
+.pagehead p{color:var(--muted);font-size:13px;margin-top:2px}
+.pagehead__r{margin-left:auto;display:flex;align-items:center;gap:10px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-weight:600;font-size:14px;line-height:1;letter-spacing:-.01em;
+  padding:12px 20px;border-radius:999px;border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:background-color .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease}
+.btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+.btn--primary{background:var(--accent);color:var(--accent-ink)}
+.btn--primary:hover{background:#3F3BC4;transform:translateY(-1px);box-shadow:0 8px 20px -8px rgb(74 70 216 / .5)}
+.btn--secondary{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-card)}
+.btn--secondary:hover{transform:translateY(-1px);box-shadow:var(--shadow-raise)}
+.btn--ghost{background:transparent;color:var(--muted)}
+.btn--ghost:hover{background:var(--subtle);color:var(--ink)}
+.btn--sm{padding:9px 15px;font-size:13px}
+
+.seg{display:inline-flex;gap:2px;background:var(--subtle);border-radius:999px;padding:4px}
+.seg button{border:0;background:transparent;color:var(--muted);font-size:12px;font-weight:500;
+  padding:7px 14px;border-radius:999px;cursor:pointer}
+.seg button.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-card)}
+
+/* cards */
+.card{background:var(--surface);border-radius:22px;padding:24px;box-shadow:var(--shadow-card)}
+.card--flat{box-shadow:none;background:var(--subtle)}
+.cardhead{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+h2{font-size:16px;line-height:22px;font-weight:600;letter-spacing:-.01em}
+.cardhead .seg,.cardhead .btn{margin-left:auto}
+.cardhead p{font-size:12px;color:var(--muted)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat{padding:20px}
+.stat__k{font-size:12px;line-height:18px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.stat__ic{width:30px;height:30px;border-radius:12px;display:grid;place-items:center;flex:none}
+.stat__ic svg{width:15px;height:15px;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.stat__v{font-size:30px;line-height:36px;font-weight:600;letter-spacing:-.02em;margin-top:10px}
+.stat__d{margin-top:10px}
+
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;line-height:15px;font-weight:500;
+  padding:6px 11px;border-radius:999px}
+.chip .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.chip--mint{background:var(--pastel-mint);color:var(--on-mint)}
+.chip--lilac{background:var(--pastel-lilac);color:var(--on-lilac)}
+.chip--peach{background:var(--pastel-peach);color:var(--on-peach)}
+.chip--butter{background:var(--pastel-butter);color:var(--on-butter)}
+.chip--sky{background:var(--pastel-sky);color:var(--on-sky)}
+.chip--ink{background:var(--ink);color:#fff}
+
+.row2{display:grid;grid-template-columns:1.75fr 1fr;gap:20px}
+
+/* lollipop chart */
+.chart{margin-top:6px}
+.chart svg{width:100%;height:210px}
+.legend{display:flex;gap:16px;margin-top:14px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:-1px}
+
+/* next-up pastel block */
+.next{background:var(--pastel-sky);color:var(--on-sky);border-radius:22px;padding:24px;display:flex;flex-direction:column}
+.next h2{color:var(--on-sky)}
+.next__big{font-size:40px;line-height:46px;font-weight:600;letter-spacing:-.025em;margin-top:4px}
+.next p{font-size:13px;line-height:20px;margin-top:8px;opacity:.85}
+.next__list{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.next__item{background:rgb(255 255 255 / .62);border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:13px}
+.next__item b{font-weight:600}
+.next__item span{margin-left:auto;font-weight:600}
+.next .btn{margin-top:18px}
+
+/* table */
+table{width:100%;border-collapse:separate;border-spacing:0}
+th{font-size:12px;line-height:18px;font-weight:500;color:var(--muted);text-align:left;padding:12px 16px;background:var(--subtle)}
+th:first-child{border-radius:12px 0 0 12px}
+th:last-child{border-radius:0 12px 12px 0;text-align:right}
+td{padding:16px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+tbody tr{transition:background-color .18s ease}
+tbody tr:hover td{background:var(--subtle)}
+td:first-child{border-radius:12px 0 0 12px}
+td:last-child{border-radius:0 12px 12px 0;text-align:right}
+.client{display:flex;align-items:center;gap:12px}
+.client b{font-weight:600;display:block}
+.client span{color:var(--muted);font-size:12px}
+
+/* donut */
+.donut{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.donut svg{width:150px;height:150px;flex:none}
+.donut ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;flex:1;min-width:150px}
+.donut li{display:flex;align-items:center;gap:10px;font-size:13px}
+.donut i{width:10px;height:10px;border-radius:50%;flex:none}
+.donut b{margin-left:auto;font-weight:600}
+
+.appfoot{margin-top:auto;background:var(--subtle);height:56px;display:flex;align-items:center;
+  gap:16px;padding:0 24px;font-size:12px;color:var(--muted)}
+.appfoot .r{margin-left:auto;display:flex;gap:6px}
+
+@media (max-width:1040px){
+  .stats{grid-template-columns:1fr 1fr}
+  .row2{grid-template-columns:1fr}
+}
+@media (max-width:900px){
+  body{padding:0}
+  .shell{grid-template-columns:1fr;border-radius:0;min-height:100vh}
+  .side{flex-direction:row;align-items:center;gap:14px;padding:14px 16px;overflow-x:auto;flex:none}
+  .side__foot{display:none}
+  .navlist{flex-direction:row;gap:6px}
+  .navlist h4{display:none}
+  .nav-item{height:38px;padding:0 12px;font-size:13px;white-space:nowrap}
+  .nav-item .count{display:none}
+  .top{padding:0 16px;gap:10px}
+  .field--search{max-width:none}
+  .me div{display:none}
+  .content{padding:8px 16px 16px;gap:14px}
+}
+@media (max-width:640px){
+  .top{height:60px}
+  .field--search{display:none}
+  h1{font-size:22px;line-height:28px}
+  .stats{grid-template-columns:1fr 1fr;gap:12px}
+  .stat{padding:16px}
+  .stat__v{font-size:24px;line-height:30px}
+  .card{padding:18px;border-radius:20px}
+  .next{padding:18px;border-radius:20px}
+  .next__big{font-size:32px;line-height:38px}
+  .row2{gap:14px}
+  .chart svg{height:170px}
+  .t-hide{display:none}
+  td,th{padding:12px 10px}
+  .client span{display:none}
+  .donut svg{width:120px;height:120px}
+  .pagehead__r .seg{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="side">
+    <div class="brand"><span class="brand__g"><i></i></span>Comma</div>
+
+    <nav class="navlist">
+      <h4>Money</h4>
+      <a class="nav-item" aria-current="page" href="#overview">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2.5"/><rect x="13" y="3" width="8" height="8" rx="2.5"/><rect x="3" y="13" width="8" height="8" rx="2.5"/><rect x="13" y="13" width="8" height="8" rx="2.5"/></svg>
+        Overview
+      </a>
+      <a class="nav-item" href="#invoices">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9.5 8h5M9.5 12h5"/></svg>
+        Invoices <span class="count">4</span>
+      </a>
+      <a class="nav-item" href="#expenses">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="19" height="13" rx="3.5"/><path d="M2.5 10.5h19"/></svg>
+        Expenses
+      </a>
+      <a class="nav-item" href="#clients">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.4"/><path d="M3 19a6 6 0 0 1 12 0"/><path d="M16 7.2a3.2 3.2 0 0 1 0 6.1M17.5 19a5.6 5.6 0 0 0-2-4"/></svg>
+        Clients
+      </a>
+    </nav>
+
+    <nav class="navlist">
+      <h4>Admin</h4>
+      <a class="nav-item" href="#tax">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><circle cx="8.2" cy="8.2" r="2.2"/><circle cx="15.8" cy="15.8" r="2.2"/></svg>
+        Tax &amp; VAT
+      </a>
+      <a class="nav-item" href="#settings">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="side__foot">
+      <h4>Q3 return due</h4>
+      <p>You have set aside 84% of what you will owe on 31 October.</p>
+      <button class="btn btn--secondary btn--sm">Review estimate</button>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <div class="main">
+
+    <header class="top">
+      <input class="field field--search" type="search" placeholder="Search invoices, clients, expenses" aria-label="Search">
+      <div class="top__right">
+        <button class="ibtn" aria-label="Notifications">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11a7 7 0 0 1 14 0v5l1.5 2.5h-17L5 16z"/><path d="M10 21h4"/></svg>
+          <span class="pip" aria-hidden="true"></span>
+        </button>
+        <button class="ibtn" aria-label="Help">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.7-.9 1.3v.5"/><path d="M12 17h.01"/></svg>
+        </button>
+        <div class="me">
+          <span class="av" style="background:var(--pastel-peach);color:var(--on-peach)">NR</span>
+          <div>Nadia Reyes<br><span>Sole trader</span></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <div class="pagehead">
+        <div>
+          <h1>Good morning, Nadia</h1>
+          <p>Three invoices moved since Friday. Nothing needs chasing today.</p>
+        </div>
+        <div class="pagehead__r">
+          <div class="seg" role="group" aria-label="Date range">
+            <button class="on" type="button">Month</button>
+            <button type="button">Quarter</button>
+            <button type="button">Year</button>
+          </div>
+          <button class="btn btn--primary" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            New invoice
+          </button>
+        </div>
+      </div>
+
+      <!-- ---- stat tiles ---- -->
+      <section class="stats">
+        <article class="card stat">
+          <div class="stat__k">
+            <span class="stat__ic" style="background:var(--pastel-mint)"><svg viewBox="0 0 24 24" style="stroke:var(--on-mint)"><path d="M4 16 10 9l4 4 6-8"/></svg></span>
+            Paid this month
+          </div>
+          <div class="stat__v num">£8,940</div>
+          <div class="stat__d"><span class="chip chip--mint"><i class="dot"></i>+18% on September</span></div>
+        </article>
+
+        <article class="card stat">
+          <div class="stat__k">
+            <span class="stat__ic" style="background:var(--pastel-sky)"><svg viewBox="0 0 24 24" style="stroke:var(--on-sky)"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></svg></span>
+            Awaiting payment
+          </div>
+          <div class="stat__v num">£4,215</div>
+          <div class="stat__d"><span class="chip chip--sky"><i class="dot"></i>4 invoices out</span></div>
+        </article>
+
+        <article class="card stat">
+          <div class="stat__k">
+            <span class="stat__ic" style="background:var(--pastel-peach)"><svg viewBox="0 0 24 24" style="stroke:var(--on-peach)"><path d="M12 4.5 21 19H3z"/><path d="M12 10v4M12 16.6h.01"/></svg></span>
+            Overdue
+          </div>
+          <div class="stat__v num">£980</div>
+          <div class="stat__d"><span class="chip chip--peach"><i class="dot"></i>1 invoice, 6 days</span></div>
+        </article>
+
+        <article class="card stat">
+          <div class="stat__k">
+            <span class="stat__ic" style="background:var(--pastel-butter)"><svg viewBox="0 0 24 24" style="stroke:var(--on-butter)"><rect x="3.5" y="6" width="17" height="12" rx="3.5"/><circle cx="12" cy="12" r="2.4"/></svg></span>
+            Set aside for tax
+          </div>
+          <div class="stat__v num">£3,120</div>
+          <div class="stat__d"><span class="chip chip--butter"><i class="dot"></i>84% of estimate</span></div>
+        </article>
+      </section>
+
+      <!-- ---- chart + next up ---- -->
+      <section class="row2">
+        <article class="card">
+          <div class="cardhead">
+            <div>
+              <h2>Income by week</h2>
+              <p>Last eight weeks, invoices marked paid</p>
+            </div>
+            <div class="seg" role="group" aria-label="Chart range">
+              <button class="on" type="button">8 weeks</button>
+              <button type="button">6 months</button>
+            </div>
+          </div>
+
+          <div class="chart">
+            <svg viewBox="0 0 620 210" role="img" aria-label="Lollipop chart of weekly income; week of 30 September is the highest at £2,410">
+              <!-- soft baseline -->
+              <line x1="0" y1="176" x2="620" y2="176" stroke="#E6E8EF" stroke-width="1"/>
+              <line x1="0" y1="120" x2="620" y2="120" stroke="#E6E8EF" stroke-width="1" stroke-dasharray="3 6"/>
+              <line x1="0" y1="64"  x2="620" y2="64"  stroke="#E6E8EF" stroke-width="1" stroke-dasharray="3 6"/>
+
+              <!-- stems + caps -->
+              <g>
+                <rect x="35"  y="118" width="5" height="58"  rx="2.5" fill="#E6E8EF"/><circle cx="37.5"  cy="118" r="8" fill="#4A46D8"/>
+                <rect x="108" y="100" width="5" height="76"  rx="2.5" fill="#E6E8EF"/><circle cx="110.5" cy="100" r="8" fill="#4A46D8"/>
+                <rect x="181" y="132" width="5" height="44"  rx="2.5" fill="#E6E8EF"/><circle cx="183.5" cy="132" r="8" fill="#4A46D8"/>
+                <rect x="254" y="86"  width="5" height="90"  rx="2.5" fill="#E6E8EF"/><circle cx="256.5" cy="86"  r="8" fill="#4A46D8"/>
+                <rect x="327" y="108" width="5" height="68"  rx="2.5" fill="#E6E8EF"/><circle cx="329.5" cy="108" r="8" fill="#4A46D8"/>
+                <!-- highlighted week -->
+                <rect x="384" y="30" width="60" height="146" rx="22" fill="#F4F5F9"/>
+                <rect x="400" y="62"  width="5" height="114" rx="2.5" fill="#DDDFEA"/><circle cx="402.5" cy="62"  r="10" fill="#131C33"/>
+                <rect x="473" y="94"  width="5" height="82"  rx="2.5" fill="#E6E8EF"/><circle cx="475.5" cy="94"  r="8" fill="#4A46D8"/>
+                <rect x="546" y="76"  width="5" height="100" rx="2.5" fill="#E6E8EF"/><circle cx="548.5" cy="76"  r="8" fill="#4A46D8"/>
+              </g>
+
+              <!-- value pill on the highlighted week -->
+              <g>
+                <rect x="368" y="10" width="70" height="26" rx="13" fill="#131C33"/>
+                <text x="403" y="27" text-anchor="middle" fill="#FFFFFF" font-family="inherit" font-size="12" font-weight="600">£2,410</text>
+              </g>
+
+              <!-- week caps -->
+              <g font-family="inherit" font-size="11" fill="#6A7288" text-anchor="middle">
+                <text x="37.5"  y="198">18 Aug</text>
+                <text x="110.5" y="198">25 Aug</text>
+                <text x="183.5" y="198">1 Sep</text>
+                <text x="256.5" y="198">8 Sep</text>
+                <text x="329.5" y="198">15 Sep</text>
+                <text x="402.5" y="198" fill="#131C33" font-weight="600">30 Sep</text>
+                <text x="475.5" y="198">7 Oct</text>
+                <text x="548.5" y="198">14 Oct</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="legend">
+            <span><i style="background:#4A46D8"></i>Paid invoices</span>
+            <span><i style="background:#131C33"></i>Best week</span>
+            <span><i style="background:#E6E8EF"></i>Weekly average £1,480</span>
+          </div>
+        </article>
+
+        <article class="next">
+          <h2>Landing next</h2>
+          <div class="next__big num">£4,215</div>
+          <p>Expected before 31 October, based on each client&rsquo;s usual payment habit.</p>
+          <div class="next__list">
+            <div class="next__item"><b>Harbourline</b><span class="num">£1,850</span></div>
+            <div class="next__item"><b>Fennel &amp; Co</b><span class="num">£1,385</span></div>
+            <div class="next__item"><b>Orpheus Press</b><span class="num">£980</span></div>
+          </div>
+          <button class="btn btn--secondary" type="button">Send a gentle nudge</button>
+        </article>
+      </section>
+
+      <!-- ---- invoices + donut ---- -->
+      <section class="row2">
+        <article class="card">
+          <div class="cardhead">
+            <h2>Recent invoices</h2>
+            <button class="btn btn--ghost btn--sm" type="button">View all 34</button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th class="t-hide">Reference</th>
+                <th class="t-hide">Due</th>
+                <th>Status</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="client"><span class="av" style="background:var(--pastel-lilac);color:var(--on-lilac)">HL</span><div><b>Harbourline</b><span>Brand system, phase 2</span></div></div></td>
+                <td class="t-hide num">INV-0142</td>
+                <td class="t-hide">28 Oct</td>
+                <td><span class="chip chip--sky"><i class="dot"></i>Sent</span></td>
+                <td class="num">£1,850.00</td>
+              </tr>
+              <tr>
+                <td><div class="client"><span class="av" style="background:var(--pastel-mint);color:var(--on-mint)">FC</span><div><b>Fennel &amp; Co</b><span>October retainer</span></div></div></td>
+                <td class="t-hide num">INV-0141</td>
+                <td class="t-hide">31 Oct</td>
+                <td><span class="chip chip--sky"><i class="dot"></i>Sent</span></td>
+                <td class="num">£1,385.00</td>
+              </tr>
+              <tr>
+                <td><div class="client"><span class="av" style="background:var(--pastel-peach);color:var(--on-peach)">OP</span><div><b>Orpheus Press</b><span>Cover illustration</span></div></div></td>
+                <td class="t-hide num">INV-0138</td>
+                <td class="t-hide">15 Oct</td>
+                <td><span class="chip chip--peach"><i class="dot"></i>Overdue</span></td>
+                <td class="num">£980.00</td>
+              </tr>
+              <tr>
+                <td><div class="client"><span class="av" style="background:var(--pastel-butter);color:var(--on-butter)">WM</span><div><b>Westmoor Trust</b><span>Annual report layout</span></div></div></td>
+                <td class="t-hide num">INV-0136</td>
+                <td class="t-hide">9 Oct</td>
+                <td><span class="chip chip--mint"><i class="dot"></i>Paid</span></td>
+                <td class="num">£3,240.00</td>
+              </tr>
+              <tr>
+                <td><div class="client"><span class="av" style="background:var(--pastel-sky);color:var(--on-sky)">BD</span><div><b>Bellamy Dance</b><span>Season poster set</span></div></div></td>
+                <td class="t-hide num">INV-0134</td>
+                <td class="t-hide">2 Oct</td>
+                <td><span class="chip chip--mint"><i class="dot"></i>Paid</span></td>
+                <td class="num">£1,120.00</td>
+              </tr>
+              <tr>
+                <td><div class="client"><span class="av" style="background:var(--pastel-lilac);color:var(--on-lilac)">KV</span><div><b>Kestrel Ventures</b><span>Pitch deck refresh</span></div></div></td>
+                <td class="t-hide num">INV-0131</td>
+                <td class="t-hide">24 Sep</td>
+                <td><span class="chip chip--mint"><i class="dot"></i>Paid</span></td>
+                <td class="num">£2,410.00</td>
+              </tr>
+              <tr>
+                <td><div class="client"><span class="av" style="background:var(--pastel-mint);color:var(--on-mint)">SG</span><div><b>Saltgate Farm</b><span>Packaging artwork</span></div></div></td>
+                <td class="t-hide num">INV-0129</td>
+                <td class="t-hide">18 Sep</td>
+                <td><span class="chip chip--butter"><i class="dot"></i>Draft</span></td>
+                <td class="num">£640.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card">
+          <div class="cardhead">
+            <h2>Where it went</h2>
+            <p style="margin-left:auto">October</p>
+          </div>
+          <div class="donut">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Donut chart of October expenses by category">
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#F4F5F9" stroke-width="16"/>
+              <!-- circumference = 289.03 -->
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#4A46D8" stroke-width="16" stroke-linecap="round"
+                      stroke-dasharray="98 191" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#A2542F" stroke-width="16" stroke-linecap="round"
+                      stroke-dasharray="66 223" stroke-dashoffset="-104" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#2A5E96" stroke-width="16" stroke-linecap="round"
+                      stroke-dasharray="52 237" stroke-dashoffset="-176" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#1F6B4C" stroke-width="16" stroke-linecap="round"
+                      stroke-dasharray="38 251" stroke-dashoffset="-234" transform="rotate(-90 60 60)"/>
+              <text x="60" y="57" text-anchor="middle" font-family="inherit" font-size="18" font-weight="600" fill="#131C33">£1,842</text>
+              <text x="60" y="73" text-anchor="middle" font-family="inherit" font-size="10" fill="#6A7288">total spend</text>
+            </svg>
+            <ul>
+              <li><i style="background:#4A46D8"></i>Studio rent <b class="num">£640</b></li>
+              <li><i style="background:#A2542F"></i>Subcontractors <b class="num">£430</b></li>
+              <li><i style="background:#2A5E96"></i>Software <b class="num">£338</b></li>
+              <li><i style="background:#1F6B4C"></i>Travel <b class="num">£246</b></li>
+              <li><i style="background:#E6E8EF"></i>Everything else <b class="num">£188</b></li>
+            </ul>
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <div class="appfoot">
+      <span>Last synced 4 minutes ago from Monzo Business and Starling</span>
+      <span class="r"><a href="#help">Help</a> · <a href="#keyboard">Keyboard shortcuts</a></span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+{
+  "id": "bloom",
+  "name": "Bloom",
+  "collection": "Night Work",
+  "pairing": "Planetarium × keynote stage",
+  "concept": "Colour arrives as light: feathered radial glow behind 1px-stroked cards on near-black.",
+  "keywords": [
+    "radial-glow",
+    "near-black",
+    "hairline-stroked-card",
+    "iridescent-3d",
+    "indigo-bleed",
+    "no-fill-cards"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#08080D",
+      "surface": "rgba(255, 255, 255, 0.03)",
+      "raised": "#12121B",
+      "ink": "#F4F4F7",
+      "muted": "#9A9AAA",
+      "line": "rgba(255, 255, 255, 0.10)",
+      "accent": "#5B57F0",
+      "accent_ink": "#FFFFFF",
+      "glow_a": "#4A3FD8",
+      "glow_b": "#B838C8"
+    },
+    "type": {
+      "families": "Geometric sans (Aeonik, General Sans, Satoshi). Headlines set tight at -0.025em; italic is permitted for emphasis inside a headline.",
+      "hierarchy": "Hero 56/60 medium · section 32/38 medium · body 15/24 regular in `--muted` · micro-caps 10/12 medium ALL-CAPS 0.12em with a small bullet dot. Body text is deliberately grey, not white — only headlines get full `--ink`.",
+      "usage": "Sentence case headlines, tracked micro-caps as section eyebrows. Never set long body copy in pure white on black — it vibrates. Cap paragraph width at 62 characters."
+    },
+    "texture": "Colour arrives as light, never as fill. Cards are defined by a 1px `rgba(255,255,255,.10)` stroke over an almost invisible 3% white fill — no solid card colours. Behind them, one or two large feathered radial gradients (`radial-gradient(60% 50% at 30% 0%, var(--glow-a) 0%, transparent 70%)`) bleed from an edge or from behind a 3D hero object. Add 2-4% noise over the whole page to stop the gradients banding.",
+    "layout": "Modules butted edge to edge with hairline dividers and zero gutters, so the page reads as one continuous dark surface subdivided by light. 8px scale, 28-32px module padding, 14px radius. The hero object (a faceted, iridescent or chrome 3D form) is the only saturated mass; everything else is stroke and glow."
+  },
+  "fit": {
+    "best_for": [
+      "AI and ML platforms",
+      "developer infrastructure",
+      "crypto and fintech",
+      "product launches and keynotes",
+      "premium technical positioning"
+    ],
+    "avoid_for": [
+      "dense working dashboards used all day",
+      "healthcare and accessibility-first services",
+      "children's or education products",
+      "print-first or document-heavy tools"
+    ],
+    "mood": [
+      "cinematic",
+      "advanced",
+      "premium",
+      "atmospheric",
+      "engineered"
+    ],
+    "artifact_types_proven": [
+      "landing page",
+      "dashboard",
+      "auth & onboarding"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop"
+    ],
+    "artifacts": [
+      "landing page",
+      "dashboard",
+      "auth & onboarding"
+    ],
+    "artifact_counts": {
+      "landing page": 5,
+      "dashboard": 1,
+      "auth & onboarding": 1
+    },
+    "device_counts": {
+      "desktop": 7
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as 3D render, iridescent or chrome material, dark studio.\n\nSTYLE — apply all of the following, they are not optional:\n- near-black background #08080D with deep falloff\n- one faceted or organic 3D form as the sole subject, iridescent indigo-to-magenta refraction\n- light appears as a soft feathered bloom around the object, not as a lamp\n- subtle film grain across the whole frame\n- no ground plane — the object floats in void\n\nNEGATIVE SPACE: The lower 40% falls to near-black for text overlay.\n\nDO NOT INCLUDE: flat vector, white or light backgrounds, hard rim lighting, text or UI in the image, busy multi-object scenes, warm orange casts.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "near-black background #08080D with deep falloff",
+      "one faceted or organic 3D form as the sole subject, iridescent indigo-to-magenta refraction",
+      "light appears as a soft feathered bloom around the object, not as a lamp",
+      "subtle film grain across the whole frame",
+      "no ground plane — the object floats in void",
+      "negative space — The lower 40% falls to near-black for text overlay.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "flat vector",
+      "white or light backgrounds",
+      "hard rim lighting",
+      "text or UI in the image",
+      "busy multi-object scenes",
+      "warm orange casts"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/26435909-Constellation-AI-SaaS-Startup-Platform-Landing-Page-Website",
+      "designer": "LAIN",
+      "local_image": "shots/26435909-constellation-ai-saas-startup-platform-landing-p.jpeg",
+      "thumbnail": "thumbs/26435909.jpg",
+      "title": "Constellation - AI SaaS Startup Platform Landing Page Website"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27540722-Saas-Landing-page-design",
+      "designer": "theosm™",
+      "local_image": "shots/27540722-saas-landing-page-design.jpg",
+      "thumbnail": "thumbs/27540722.jpg",
+      "title": "Saas Landing  page design"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25686392-Dashboard-for-a-Management-SaaS-Mytasky",
+      "designer": "HALO LAB",
+      "local_image": "shots/25686392-dashboard-for-a-management-saas-mytasky.png",
+      "thumbnail": "thumbs/25686392.jpg",
+      "title": "Dashboard for a Management SaaS ✦ Mytasky"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/15711117-SkyFort-Corporate-Cyber-Security-SaaS-Website-Web-Design",
+      "designer": "Phenomenon Studio",
+      "local_image": "shots/15711117-skyfort-corporate-cyber-security-saas-website-we.png",
+      "thumbnail": "thumbs/15711117.jpg",
+      "title": "SkyFort - Corporate Cyber Security SaaS Website Web Design"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26475403-Constellation-AI-SaaS-Startup-Product-Platform-About-Website",
+      "designer": "LAIN",
+      "local_image": "shots/26475403-constellation-ai-saas-startup-product-platform-a.jpg",
+      "thumbnail": "thumbs/26475403.jpg",
+      "title": "Constellation - AI SaaS Startup Product Platform About Website"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/24677624-IdeaPilot-AI-Onboarding-design-for-AI-powered-SaaS-platform",
+      "designer": "Outcrowd",
+      "local_image": "shots/24677624-ideapilot-ai-onboarding-design-for-ai-powered-sa.png",
+      "thumbnail": "thumbs/24677624.jpg",
+      "title": "IdeaPilot AI - Onboarding design for AI-powered SaaS platform"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25679017-Landing-Page-Saas-Digital-Marketing",
+      "designer": "Yoga V Wijaya",
+      "local_image": "shots/25679017-landing-page-saas-digital-marketing.png",
+      "thumbnail": "thumbs/25679017.jpg",
+      "title": "Landing Page (Saas Digital Marketing)"
+    }
+  ],
+  "index": 8
+}

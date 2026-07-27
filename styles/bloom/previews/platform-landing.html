@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bloom — Meridian inference platform</title>
+<style>
+:root{
+  --bg:#08080D; --surface:rgba(255,255,255,.03); --raised:#12121B;
+  --ink:#F4F4F7; --muted:#9A9AAA; --line:rgba(255,255,255,.10);
+  --accent:#5B57F0; --glow-a:#4A3FD8; --glow-b:#B838C8;
+  --sans:"Aeonik","General Sans","Satoshi",ui-sans-serif,-apple-system,"Segoe UI",Inter,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* noise stops the glows banding */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+
+/* nav floats — never gains a solid background */
+nav{position:sticky;top:0;z-index:4;border-bottom:1px solid var(--line);
+  backdrop-filter:blur(14px);background:rgba(8,8,13,.55)}
+nav .wrap{display:flex;align-items:center;gap:26px;height:62px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:600;letter-spacing:-.015em;font-size:16px}
+.mark{width:20px;height:20px;border-radius:6px;flex-shrink:0;
+  background:conic-gradient(from 210deg,var(--glow-a),var(--glow-b),var(--accent),var(--glow-a))}
+nav a.l{font-size:14px;color:var(--muted)}
+nav a.l:hover{color:var(--ink)}
+.grow{flex:1}
+.pill{border:1px solid var(--line);border-radius:999px;padding:8px 17px;font-size:13.5px;
+  color:var(--ink);display:inline-block}
+.pill:hover{border-color:var(--muted)}
+.pill.pri{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:500;
+  box-shadow:0 8px 24px -8px rgb(91 87 240/.55)}
+
+/* hero — colour arrives as light */
+.hero{position:relative;padding:96px 0 84px;text-align:center;overflow:hidden}
+.hero::before,.hero::after{content:"";position:absolute;pointer-events:none;z-index:0}
+.hero::before{inset:-30% 20% auto -10%;height:620px;
+  background:radial-gradient(50% 50% at 40% 30%,var(--glow-a) 0%,transparent 70%);opacity:.5;filter:blur(30px)}
+.hero::after{inset:-20% -15% auto 45%;height:560px;
+  background:radial-gradient(50% 50% at 60% 30%,var(--glow-b) 0%,transparent 70%);opacity:.34;filter:blur(40px)}
+.hero > *{position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:22px}
+.eyebrow i{width:4px;height:4px;border-radius:50%;background:var(--accent);display:block}
+h1{font-size:clamp(38px,6.2vw,62px);line-height:1.04;font-weight:500;letter-spacing:-.028em;
+  margin:0 0 20px;max-width:16ch;margin-inline:auto}
+h1 em{font-style:italic;font-weight:400}
+.lede{color:var(--muted);font-size:17px;max-width:56ch;margin:0 auto 30px}
+.cta{display:flex;gap:11px;justify-content:center;flex-wrap:wrap}
+
+/* the 3D hero object — the only saturated mass */
+.orb{width:min(340px,72vw);aspect-ratio:1;margin:52px auto 0;position:relative}
+.orb svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 90px rgba(91,87,240,.55))}
+
+/* modules butt edge to edge, sharing hairlines, zero gutters */
+.mods{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(3,1fr)}
+.mod{padding:30px 28px;border-right:1px solid var(--line);background:var(--surface)}
+.mod:last-child{border-right:0}
+.mod b{display:block;font-size:29px;font-weight:500;letter-spacing:-.02em;margin-bottom:5px}
+.mod span{color:var(--muted);font-size:13.5px}
+@media(max-width:760px){.mods{grid-template-columns:1fr}
+  .mod{border-right:0;border-bottom:1px solid var(--line)}
+  .mod:last-child{border-bottom:0}}
+
+section.band{padding:76px 0;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(26px,3.6vw,34px);line-height:1.15;font-weight:500;letter-spacing:-.024em;
+  margin:0 0 12px;max-width:20ch}
+.sub{color:var(--muted);max-width:60ch;margin:0 0 34px;font-size:15.5px}
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.feat{padding:26px 24px;border-right:1px solid var(--line);background:var(--surface)}
+.feat:last-child{border-right:0}
+.feat h3{font-size:16px;font-weight:500;margin:0 0 7px;letter-spacing:-.012em}
+.feat p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+.ico{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);margin-bottom:14px;
+  display:grid;place-items:center;color:var(--accent)}
+
+.code{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--raised)}
+.code .bar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.code .bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:block}
+.code .bar span{margin-left:6px;font-size:11.5px;color:var(--muted)}
+pre{margin:0;padding:18px 20px;font:12.5px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color:var(--muted);overflow-x:auto}
+pre b{color:var(--ink);font-weight:400}
+pre .k{color:#8F8BFF} pre .s{color:#68D8B0}
+
+footer{padding:56px 0 44px}
+.fcols{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:28px;margin-bottom:44px}
+@media(max-width:760px){.fcols{grid-template-columns:1fr 1fr}}
+.fcols h4{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+  margin:0 0 12px;font-weight:600}
+.fcols a{display:block;color:var(--muted);font-size:13.5px;padding:3px 0}
+.fcols a:hover{color:var(--ink)}
+.wordmark{font-size:clamp(56px,15vw,150px);font-weight:500;letter-spacing:-.05em;line-height:.85;
+  color:transparent;-webkit-background-clip:text;background-clip:text;
+  background-image:linear-gradient(180deg,rgba(244,244,247,.20),rgba(244,244,247,.02));
+  white-space:nowrap;overflow:hidden}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand"><span class="mark"></span>Meridian</span>
+    <a class="l" href="#">Platform</a><a class="l" href="#">Models</a>
+    <a class="l" href="#">Pricing</a><a class="l" href="#">Docs</a>
+    <span class="grow"></span>
+    <a class="pill" href="#">Sign in</a>
+    <a class="pill pri" href="#">Start building</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><i></i>Inference, v4</span>
+    <h1>Serve any model, <em>anywhere</em> it needs to run</h1>
+    <p class="lede">Meridian compiles your weights once and deploys them to every region you
+      operate in — with cold starts under 400ms and no infrastructure to manage.</p>
+    <div class="cta">
+      <a class="pill pri" href="#">Start building</a>
+      <a class="pill" href="#">Read the benchmarks</a>
+    </div>
+
+    <div class="orb" aria-hidden="true">
+      <svg viewBox="0 0 300 300" fill="none">
+        <defs>
+          <linearGradient id="f1" x1="60" y1="30" x2="250" y2="270">
+            <stop offset="0" stop-color="#8F8BFF"/><stop offset=".55" stop-color="#5B57F0"/>
+            <stop offset="1" stop-color="#B838C8"/></linearGradient>
+          <linearGradient id="f2" x1="150" y1="20" x2="150" y2="280">
+            <stop offset="0" stop-color="#C9C6FF" stop-opacity=".95"/>
+            <stop offset="1" stop-color="#4A3FD8" stop-opacity=".5"/></linearGradient>
+          <linearGradient id="f3" x1="90" y1="240" x2="230" y2="90">
+            <stop offset="0" stop-color="#B838C8" stop-opacity=".85"/>
+            <stop offset="1" stop-color="#5B57F0" stop-opacity=".3"/></linearGradient>
+        </defs>
+        <path d="M150 26 262 92v132L150 290 38 224V92z" fill="url(#f1)" opacity=".92"/>
+        <path d="M150 26 262 92 150 158 38 92z" fill="url(#f2)"/>
+        <path d="M150 158v132L38 224V92z" fill="url(#f3)" opacity=".8"/>
+        <path d="M150 26 262 92v132L150 290 38 224V92z" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
+        <path d="M150 158 262 92M150 158 38 92M150 158v132" stroke="rgba(255,255,255,.28)" stroke-width="1"/>
+        <path d="M150 78 206 110 150 142 94 110z" fill="rgba(255,255,255,.34)"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="mods">
+  <div class="mod"><b>380ms</b><span>Median cold start, p50 across all regions</span></div>
+  <div class="mod"><b>31</b><span>Edge regions with GPU capacity</span></div>
+  <div class="mod"><b>99.98%</b><span>Rolling twelve-month availability</span></div>
+</div>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Built for the part nobody demos</h2>
+    <p class="sub">Getting a model to answer once is easy. Keeping it answering under load,
+      across regions, at a cost you can defend — that is the work.</p>
+    <div class="feats">
+      <div class="feat">
+        <div class="ico"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1.5 14 5v6l-6 3.5L2 11V5z" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <h3>Compile once</h3>
+        <p>Upload weights in any common format. Meridian quantises, compiles and caches a
+          per-architecture artefact so every region boots from the same binary.</p>
+      </div>
+      <div class="feat">
+        <div class="ico"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M8 4v4l3 2" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <h3>Scale to zero</h3>
+        <p>Idle deployments cost nothing. Traffic wakes capacity in the nearest region and
+          drains it again when the burst passes.</p>
+      </div>
+      <div class="feat">
+        <div class="ico"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 12V6m4 6V3m4 9V7m4 5V4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+        <h3>Per-token accounting</h3>
+        <p>Every request carries region, model version and cost. Export it to your warehouse
+          or read it from the dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Three lines to production</h2>
+    <p class="sub">The SDK is deliberately small. If you can call an HTTP endpoint, you can
+      deploy on Meridian.</p>
+    <div class="code">
+      <div class="bar"><i></i><i></i><i></i><span>deploy.py</span></div>
+<pre><span class="k">from</span> meridian <span class="k">import</span> Model
+
+model = Model.compile(<span class="s">"./weights/atlas-7b"</span>, quantize=<span class="s">"int8"</span>)
+model.deploy(regions=[<span class="s">"fra"</span>, <span class="s">"iad"</span>, <span class="s">"sin"</span>], scale_to_zero=<span class="k">True</span>)
+
+<b>→ compiled 7.2B params in 94s
+→ live in 3 regions · https://atlas-7b.meridian.run</b></pre>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div>
+        <span class="brand"><span class="mark"></span>Meridian</span>
+        <p style="color:var(--muted);font-size:13.5px;max-width:30ch;margin:12px 0 0">
+          Inference infrastructure for teams who would rather ship the product.</p>
+      </div>
+      <div><h4>Platform</h4><a href="#">Compile</a><a href="#">Deploy</a><a href="#">Observe</a><a href="#">Registry</a></div>
+      <div><h4>Developers</h4><a href="#">Documentation</a><a href="#">SDK reference</a><a href="#">Status</a><a href="#">Changelog</a></div>
+      <div><h4>Company</h4><a href="#">About</a><a href="#">Careers</a><a href="#">Security</a><a href="#">Contact</a></div>
+    </div>
+    <div class="wordmark">MERIDIAN</div>
+  </div>
+</footer>
+
+</body>
+</html>

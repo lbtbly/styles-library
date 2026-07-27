@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiet Hours — early access</title>
+<style>
+:root{
+  /* ---- Aura tokens (styles/aura/style.json) ---- */
+  --bg:#F2F2F3;
+  --surface:#FFFFFF;
+  --ink:#0C0C0C;
+  --muted:#6C6F76;
+  --line:#E7E8EA;
+  --accent:#2450E8;
+  --accent-ink:#FFFFFF;
+  --bloom-a:rgba(88, 132, 255, 0.28);
+  --bloom-b:rgba(255, 176, 140, 0.24);
+  /* derived */
+  --accent-wash:rgba(36,80,232,.08);
+  --shadow-card:0 8px 32px -12px rgb(12 12 12 / .12);
+  --shadow-lift:0 24px 64px -24px rgb(12 12 12 / .18);
+  --font-sans:"Inter Display","Inter","General Sans","Aeonik",-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font-sans);font-size:16px;line-height:26px;-webkit-font-smoothing:antialiased;
+  min-height:100vh;display:flex;flex-direction:column}
+svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p{margin:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px;width:100%}
+.narrow{max-width:720px}
+
+/* ---------- bloom ground ---------- */
+.bloom-field{position:relative;background:var(--bg);isolation:isolate;overflow:hidden}
+.bloom-field::before{
+  content:"";position:absolute;inset:-14% -10% auto -10%;height:160%;z-index:-1;
+  background:
+    radial-gradient(54% 44% at 50% 0%,var(--bloom-a),transparent 70%),
+    radial-gradient(48% 38% at 12% 26%,var(--bloom-b),transparent 72%),
+    radial-gradient(50% 40% at 90% 40%,var(--bloom-a),transparent 74%);
+  pointer-events:none;
+}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:20;background:rgb(255 255 255 / .88);border-bottom:1px solid var(--line)}
+.nav__in{display:flex;align-items:center;height:64px;gap:16px}
+.mark{display:flex;align-items:center;gap:9px;font-weight:600;font-size:16px;letter-spacing:-.02em}
+.mark__glyph{width:26px;height:26px;border-radius:8px;background:var(--ink);display:grid;place-items:center;flex:none}
+.mark__glyph i{display:block;width:9px;height:9px;border-radius:50%;background:var(--bloom-b);box-shadow:0 0 0 3px rgb(255 255 255 / .3)}
+.nav__right{margin-left:auto;display:flex;align-items:center;gap:8px}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:inherit;font-weight:500;font-size:15px;line-height:1;letter-spacing:-.01em;
+  padding:14px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:background-color .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease,color .16s ease}
+.btn--primary{background:var(--ink);color:#fff}
+.btn--primary:hover{background:#000;transform:translateY(-1px);box-shadow:0 8px 24px -10px rgb(12 12 12 / .45)}
+.btn--accent{background:var(--accent);color:var(--accent-ink)}
+.btn--accent:hover{background:#1B41C8}
+.btn--secondary{background:var(--surface);color:var(--ink);border-color:var(--line);box-shadow:0 2px 8px -4px rgb(12 12 12 / .12)}
+.btn--ghost{background:transparent;color:var(--muted);padding-inline:10px}
+.btn--ghost:hover{color:var(--ink)}
+.btn--sm{padding:10px 16px;font-size:14px}
+
+/* ---------- chips ---------- */
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:12px;line-height:1;font-weight:500;padding:8px 13px;border-radius:999px}
+.chip--accent{background:var(--accent-wash);color:var(--accent)}
+.chip--neutral{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+
+/* ---------- hero ---------- */
+main{flex:1}
+.hero{padding:84px 0 96px;text-align:center}
+h1{font-size:64px;line-height:64px;font-weight:600;letter-spacing:-.035em;margin:22px auto 0;max-width:15ch}
+.lead{font-size:18px;line-height:30px;color:var(--muted);max-width:520px;margin:22px auto 0}
+.lead b{color:var(--ink);font-weight:600}
+
+/* ---------- capture ---------- */
+.capture{display:flex;gap:8px;padding:8px;background:var(--surface);border:1px solid var(--line);
+  border-radius:999px;box-shadow:var(--shadow-card);max-width:480px;margin:36px auto 0;
+  transition:border-color .16s ease,box-shadow .16s ease}
+.capture:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(36,80,232,.14),var(--shadow-card)}
+.capture input{flex:1;min-width:0;border:0;background:transparent;outline:none;
+  font-family:inherit;font-size:15px;line-height:1.4;color:var(--ink);padding:0 8px 0 16px}
+.capture input::placeholder{color:var(--muted)}
+.capture .btn{flex:none}
+.capture.is-invalid{border-color:var(--ink);box-shadow:0 0 0 3px rgb(12 12 12 / .08),var(--shadow-card)}
+.hint{font-size:14px;line-height:22px;color:var(--muted);margin-top:14px}
+.hint--err{color:var(--ink);font-weight:500}
+.hint[hidden]{display:none}
+
+/* social proof */
+.proof{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:32px;flex-wrap:wrap}
+.stack{display:flex}
+.stack span{width:32px;height:32px;border-radius:50%;border:2px solid var(--surface);margin-left:-9px;
+  background:linear-gradient(140deg,var(--bloom-a),var(--bloom-b))}
+.stack span:first-child{margin-left:0}
+.stack span:nth-child(2){background:linear-gradient(200deg,var(--bloom-b),var(--bloom-a))}
+.stack span:nth-child(3){background:linear-gradient(60deg,var(--bloom-a),var(--bloom-b))}
+.stack span:nth-child(4){background:var(--ink);color:#fff;font-size:11px;display:grid;place-items:center;font-weight:500}
+.proof p{font-size:14px;line-height:22px;color:var(--muted)}
+
+/* ---------- confirmed state ---------- */
+.done{max-width:480px;margin:36px auto 0;background:var(--surface);border:1px solid var(--line);
+  border-radius:16px;padding:28px 24px;box-shadow:var(--shadow-card)}
+.done[hidden]{display:none}
+.done__tick{width:44px;height:44px;border-radius:50%;background:var(--accent-wash);display:grid;place-items:center;margin:0 auto 16px}
+.done__tick svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.done h3{font-size:20px;line-height:28px;font-weight:600;letter-spacing:-.015em}
+.done p{margin-top:8px;font-size:15px;line-height:24px;color:var(--muted)}
+.done__pos{display:flex;justify-content:center;gap:24px;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.done__pos div{text-align:center}
+.done__pos b{display:block;font-size:26px;line-height:32px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.done__pos span{font-size:12px;line-height:16px;color:var(--muted)}
+
+/* ---------- preview card ---------- */
+.peek{max-width:900px;margin:72px auto 0;background:var(--surface);border:1px solid var(--line);
+  border-radius:20px;box-shadow:var(--shadow-lift);overflow:hidden;text-align:left}
+.peek__bar{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
+.peek__bar b{color:var(--ink);font-weight:600;font-size:13px}
+.peek__bar .chip{margin-left:auto}
+.week{display:grid;grid-template-columns:44px repeat(5,1fr);gap:0}
+.week__h{padding:10px 6px;font-size:11px;line-height:16px;color:var(--muted);text-align:center;border-bottom:1px solid var(--line)}
+.week__t{padding:8px 6px;font-size:10px;line-height:14px;color:var(--muted);text-align:right;border-right:1px solid var(--line)}
+.week__c{border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:34px;padding:3px}
+.week__c:nth-child(6n){border-right:0}
+.ev{border-radius:8px;font-size:10px;line-height:14px;padding:4px 6px;height:100%;overflow:hidden}
+.ev--focus{background:var(--ink);color:#fff}
+.ev--meet{background:var(--accent-wash);color:var(--accent)}
+.ev--soft{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+
+/* ---------- detail band ---------- */
+.band{background:var(--surface);border-top:1px solid var(--line);padding:80px 0}
+h2{font-size:36px;line-height:42px;font-weight:600;letter-spacing:-.025em}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow-card)}
+.icon{width:40px;height:40px;border-radius:12px;background:var(--accent-wash);display:grid;place-items:center;margin-bottom:16px}
+.icon svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+h3{font-size:20px;line-height:28px;font-weight:600;letter-spacing:-.015em}
+.card p{margin-top:8px;font-size:15px;line-height:24px;color:var(--muted)}
+
+/* ---------- faq ---------- */
+.faq{margin-top:44px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;
+  font-size:17px;line-height:26px;font-weight:500;letter-spacing:-.015em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:8px;top:28px;width:9px;height:9px;
+  border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);
+  transform:rotate(45deg);transition:transform .16s ease}
+.faq details[open] summary::after{transform:rotate(-135deg);top:31px}
+.faq p{padding:0 40px 20px 0;font-size:15px;line-height:25px;color:var(--muted)}
+
+/* ---------- footer ---------- */
+.foot{background:var(--ink);color:rgb(255 255 255 / .9);padding:48px 0 0}
+.foot__top{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+.foot .mark{color:#fff}
+.foot .mark__glyph{background:#fff}
+.foot .mark__glyph i{background:var(--accent)}
+.foot__blurb{font-size:15px;line-height:24px;color:rgb(255 255 255 / .55);max-width:300px;margin-top:12px}
+.foot__links{margin-left:auto;display:flex;gap:44px;flex-wrap:wrap}
+.foot h4{margin:0 0 12px;font-size:12px;line-height:16px;font-weight:500;letter-spacing:.02em;color:rgb(255 255 255 / .5)}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.foot a{font-size:15px;color:rgb(255 255 255 / .55)}
+.foot a:hover{color:#fff}
+.foot__rule{height:1px;background:rgb(255 255 255 / .12);margin-top:40px}
+.foot__legal{display:flex;flex-wrap:wrap;gap:8px 24px;padding:20px 0 28px;font-size:14px;color:rgb(255 255 255 / .45)}
+.foot__legal span:first-child{margin-right:auto}
+
+@media (max-width:900px){
+  h1{font-size:48px;line-height:50px}
+  .grid3{grid-template-columns:1fr 1fr}
+  .peek{margin-top:56px}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .hero{padding:52px 0 64px}
+  h1{font-size:36px;line-height:39px;letter-spacing:-.03em}
+  h2{font-size:27px;line-height:33px}
+  .lead{font-size:16px;line-height:26px}
+  .capture{flex-wrap:wrap;border-radius:20px;padding:10px;gap:10px}
+  .capture input{flex:1 1 100%;padding:6px 8px}
+  .capture .btn{flex:1 1 100%}
+  .band{padding:56px 0}
+  .grid3{grid-template-columns:1fr;gap:14px;margin-top:32px}
+  .peek{margin-top:44px;border-radius:16px}
+  .week{grid-template-columns:36px repeat(5,1fr)}
+  .week__c{min-height:28px}
+  .ev{font-size:9px;line-height:12px;padding:3px 4px}
+  .foot__links{gap:28px;margin-left:0}
+  .btn{padding:12px 18px;font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="mark" href="#top"><span class="mark__glyph"><i></i></span>Quiet Hours</a>
+    <div class="nav__right">
+      <a class="btn btn--ghost btn--sm" href="#manifesto">Why we built it</a>
+      <a class="btn btn--secondary btn--sm" href="#signin">Sign in</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO + CAPTURE ============ -->
+  <section class="bloom-field hero">
+    <div class="wrap narrow">
+      <span class="chip chip--accent"><i class="dot"></i>Cohort 3 opens 14 September</span>
+      <h1>Your calendar should defend you</h1>
+      <p class="lead">Quiet Hours reads your week, finds the three stretches where real work is still possible, and <b>quietly refuses everything else</b>.</p>
+
+      <form class="capture" id="waitform" novalidate>
+        <label class="sr" for="email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Work email</label>
+        <input id="email" name="email" type="email" inputmode="email" autocomplete="email"
+               placeholder="you@company.com" aria-describedby="hint">
+        <button class="btn btn--accent" type="submit">Request access</button>
+      </form>
+
+      <p class="hint" id="hint">One email when your cohort opens. Nothing else, ever.</p>
+      <p class="hint hint--err" id="err" hidden role="alert">That address does not look right — check it and try again.</p>
+
+      <div class="done" id="done" hidden>
+        <div class="done__tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>You are on the list</h3>
+        <p>We sent a confirmation to <b id="who">you@company.com</b>. Cohort 3 opens on 14 September and we let in 200 people at a time.</p>
+        <div class="done__pos">
+          <div><b>#1,285</b><span>your position</span></div>
+          <div><b>200</b><span>seats per cohort</span></div>
+          <div><b>~3 wks</b><span>estimated wait</span></div>
+        </div>
+      </div>
+
+      <div class="proof">
+        <div class="stack" aria-hidden="true"><span></span><span></span><span></span><span>+1k</span></div>
+        <p>1,284 people already waiting — mostly engineers, writers and one very tired orchestra conductor.</p>
+      </div>
+
+      <!-- product peek -->
+      <div class="peek" role="img" aria-label="A week view where three protected focus blocks are held against a crowded meeting schedule">
+        <div class="peek__bar">
+          <b>This week</b>
+          <span>9 &ndash; 13 September</span>
+          <span class="chip chip--neutral">3 blocks held</span>
+        </div>
+        <div class="week">
+          <div class="week__h"></div>
+          <div class="week__h">Mon</div><div class="week__h">Tue</div><div class="week__h">Wed</div><div class="week__h">Thu</div><div class="week__h">Fri</div>
+
+          <div class="week__t">09</div>
+          <div class="week__c"><div class="ev ev--focus">Deep work</div></div>
+          <div class="week__c"><div class="ev ev--meet">Standup</div></div>
+          <div class="week__c"><div class="ev ev--focus">Deep work</div></div>
+          <div class="week__c"><div class="ev ev--meet">Standup</div></div>
+          <div class="week__c"><div class="ev ev--soft">Open</div></div>
+
+          <div class="week__t">11</div>
+          <div class="week__c"><div class="ev ev--focus">Deep work</div></div>
+          <div class="week__c"><div class="ev ev--soft">Open</div></div>
+          <div class="week__c"><div class="ev ev--focus">Deep work</div></div>
+          <div class="week__c"><div class="ev ev--meet">Design crit</div></div>
+          <div class="week__c"><div class="ev ev--focus">Deep work</div></div>
+
+          <div class="week__t">14</div>
+          <div class="week__c"><div class="ev ev--meet">1:1 Rosa</div></div>
+          <div class="week__c"><div class="ev ev--meet">Roadmap</div></div>
+          <div class="week__c"><div class="ev ev--soft">Open</div></div>
+          <div class="week__c"><div class="ev ev--meet">Vendor call</div></div>
+          <div class="week__c"><div class="ev ev--soft">Open</div></div>
+
+          <div class="week__t">16</div>
+          <div class="week__c"><div class="ev ev--soft">Open</div></div>
+          <div class="week__c"><div class="ev ev--focus">Deep work</div></div>
+          <div class="week__c"><div class="ev ev--meet">Retro</div></div>
+          <div class="week__c"><div class="ev ev--soft">Open</div></div>
+          <div class="week__c"><div class="ev ev--focus">Deep work</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT YOU GET ============ -->
+  <section class="band" id="manifesto">
+    <div class="wrap">
+      <div style="max-width:640px">
+        <span class="chip chip--neutral">What early access includes</span>
+        <h2 style="margin-top:14px">Three things, finished. Nothing half-built.</h2>
+        <p style="margin-top:14px;color:var(--muted)">We would rather ship a small tool that works on your real calendar than a large one that works in a demo.</p>
+      </div>
+
+      <div class="grid3">
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+          <h3>Protected blocks</h3>
+          <p>Two to four hours a day held before anyone else can reach them, rescheduled automatically when your week moves.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 19v1a3 3 0 0 0 6 0v-1"/></svg></div>
+          <h3>The polite refusal</h3>
+          <p>A decline that offers two real alternatives, written in your voice, so declining stops costing you a paragraph each time.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+          <h3>An honest weekly</h3>
+          <p>Friday afternoon: how many hours you actually got, what took them, and which recurring meeting is quietly eating your month.</p>
+        </article>
+      </div>
+
+      <div class="faq">
+        <details open>
+          <summary>How do you decide which hours to protect?</summary>
+          <p>From your last eight weeks: when you accept meetings, when you decline them, when your commits and documents are actually written. The first suggestion arrives within an hour of connecting, and you can move it.</p>
+        </details>
+        <details>
+          <summary>Which calendars work?</summary>
+          <p>Google Workspace and Microsoft 365 at launch. CalDAV is in the second cohort. We do not support standalone Apple Calendar yet and will not pretend otherwise.</p>
+        </details>
+        <details>
+          <summary>What do you do with my calendar data?</summary>
+          <p>We read event times, attendee counts and acceptance state. We do not read event bodies, attachments or documents, and nothing is used to train anything. Disconnect and the copy is deleted within 24 hours.</p>
+        </details>
+        <details>
+          <summary>What will it cost?</summary>
+          <p>Nine dollars a month per person after the trial. Everyone in the first three cohorts keeps that price permanently, including if their team grows.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <div>
+        <span class="mark"><span class="mark__glyph"><i></i></span>Quiet Hours</span>
+        <p class="foot__blurb">A small calendar tool for people whose best work needs a running start.</p>
+      </div>
+      <div class="foot__links">
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#how">How it works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#changelog">Changelog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#story">Our story</a></li>
+            <li><a href="#privacy">Privacy</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="foot__rule"></div>
+    <div class="foot__legal">
+      <span>© 2026 Quiet Hours Ltd.</span>
+      <a href="#terms">Terms</a>
+      <a href="#privacy">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('waitform');
+  var input = document.getElementById('email');
+  var hint = document.getElementById('hint');
+  var err = document.getElementById('err');
+  var done = document.getElementById('done');
+  var who = document.getElementById('who');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var value = input.value.trim();
+    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+
+    if (!ok) {
+      form.classList.add('is-invalid');
+      input.setAttribute('aria-invalid', 'true');
+      hint.hidden = true;
+      err.hidden = false;
+      input.focus();
+      return;
+    }
+
+    form.classList.remove('is-invalid');
+    input.removeAttribute('aria-invalid');
+    err.hidden = true;
+    hint.hidden = true;
+    form.hidden = true;
+    who.textContent = value;
+    done.hidden = false;
+  });
+
+  input.addEventListener('input', function () {
+    if (!form.classList.contains('is-invalid')) return;
+    form.classList.remove('is-invalid');
+    input.removeAttribute('aria-invalid');
+    err.hidden = true;
+    hint.hidden = false;
+  });
+})();
+</script>
+
+</body>
+</html>

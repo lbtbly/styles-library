@@ -1,0 +1,159 @@
+{
+  "id": "aura",
+  "name": "Aura",
+  "collection": "Soft Weather",
+  "pairing": "Sunrise haze × product shot",
+  "concept": "Crisp white cards lifted off a soft coloured bloom — atmosphere with no texture at all.",
+  "keywords": [
+    "soft-bloom",
+    "crisp-white-card",
+    "tight-headline",
+    "no-texture",
+    "pale-wash",
+    "marketing-hero",
+    "single-cool-accent"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#F2F2F3",
+      "surface": "#FFFFFF",
+      "ink": "#0C0C0C",
+      "muted": "#6C6F76",
+      "line": "#E7E8EA",
+      "accent": "#2450E8",
+      "accent_ink": "#FFFFFF",
+      "bloom_a": "rgba(88, 132, 255, 0.28)",
+      "bloom_b": "rgba(255, 176, 140, 0.24)"
+    },
+    "type": {
+      "families": "Neo-grotesque or geometric sans (Inter Display, General Sans, Aeonik). The headline is the whole design.",
+      "hierarchy": "Hero 68/68 semibold at -0.035em · section 36/42 semibold at -0.025em · body 16/26 regular in `--muted` · label 12/16 medium. Enormous tightly-tracked headlines against small grey body is the entire hierarchy.",
+      "usage": "Set headlines as large and as tight as legibility allows. Body copy stays grey and small. Sentence case. Never letterspace the hero."
+    },
+    "texture": "Atmosphere with no material. Behind crisp white cards sit one or two very large soft radial blooms (`radial-gradient(50% 40% at 20% 0%, var(--bloom-a), transparent 70%)`) — pure colour haze, no grain, no glass, no bevel. Cards themselves are flat white with a hairline border and a soft wide shadow (`0 8px 32px -12px rgb(12 12 12 / .12)`). The contrast between hazy ground and razor-sharp card is the effect.",
+    "layout": "Marketing rhythm: full-width sections, centred hero, generous vertical spacing (96-140px between sections). 8px scale, 24px card padding, 16px radius, 999px on the primary pill CTA. Product screenshots bleed in from the bottom edge of the hero rather than sitting in a frame."
+  },
+  "fit": {
+    "best_for": [
+      "SaaS marketing and landing pages",
+      "product launches",
+      "pricing and feature pages",
+      "startup homepages",
+      "waitlist and pre-launch sites"
+    ],
+    "avoid_for": [
+      "dense working dashboards",
+      "data tables",
+      "internal admin tooling",
+      "products needing a dark mode as primary"
+    ],
+    "mood": [
+      "optimistic",
+      "fresh",
+      "clear",
+      "modern",
+      "approachable"
+    ],
+    "artifact_types_proven": [
+      "landing page"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "artifacts": [
+      "landing page"
+    ],
+    "artifact_counts": {
+      "landing page": 8
+    },
+    "device_counts": {
+      "desktop": 7,
+      "mobile": 1
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as soft gradient abstraction or clean product render on a light ground.\n\nSTYLE — apply all of the following, they are not optional:\n- near-white #F2F2F3 ground\n- one or two very large soft colour blooms in cool blue and warm peach, heavily feathered\n- any product surface rendered crisp and sharp against the soft ground\n- even soft lighting, no visible light source\n- no texture, grain or noise anywhere\n\nNEGATIVE SPACE: Keep the centre-top clear for a large headline — at least 35% of the frame.\n\nDO NOT INCLUDE: grain or noise, dark backgrounds, hard shadows, glassmorphism, 3D bevels, busy detail.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "near-white #F2F2F3 ground",
+      "one or two very large soft colour blooms in cool blue and warm peach, heavily feathered",
+      "any product surface rendered crisp and sharp against the soft ground",
+      "even soft lighting, no visible light source",
+      "no texture, grain or noise anywhere",
+      "negative space — Keep the centre-top clear for a large headline — at least 35% of the frame.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "grain or noise",
+      "dark backgrounds",
+      "hard shadows",
+      "glassmorphism",
+      "3D bevels",
+      "busy detail"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/26499828-B2B-SaaS-Startup-Service-Page",
+      "designer": "Ronas IT | UI/UX Team",
+      "local_image": "shots/26499828-b2b-saas-startup-service-page.png",
+      "thumbnail": "thumbs/26499828.jpg",
+      "title": "B2B SaaS Startup Service Page"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25888562-SaaS-landing-page",
+      "designer": "Layo",
+      "local_image": "shots/25888562-saas-landing-page.png",
+      "thumbnail": "thumbs/25888562.jpg",
+      "title": "SaaS landing page"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25267926-Picktime-Smart-Meetings-Platform-SAAS",
+      "designer": "Ofspace UX/UI",
+      "local_image": "shots/25267926-picktime-smart-meetings-platform-saas.png",
+      "thumbnail": "thumbs/25267926.jpg",
+      "title": "Picktime - Smart Meetings Platform SAAS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25974382-Saas-Website-Design",
+      "designer": "Dude Studios",
+      "local_image": "shots/25974382-saas-website-design.png",
+      "thumbnail": "thumbs/25974382.jpg",
+      "title": "Saas - Website Design"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27089353-AI-SaaS-Landing-Page-Web-Design-Concept",
+      "designer": "Perevoz Design",
+      "local_image": "shots/27089353-ai-saas-landing-page-web-design-concept.png",
+      "thumbnail": "thumbs/27089353.jpg",
+      "title": "AI SaaS Landing Page - Web Design Concept"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27145912-Juggernaut-Affiliate-SaaS-Landing-Page",
+      "designer": "One Week Wonders",
+      "local_image": "shots/27145912-juggernaut-affiliate-saas-landing-page.png",
+      "thumbnail": "thumbs/27145912.jpg",
+      "title": "Juggernaut - Affiliate SaaS Landing Page 💶"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26504074-SaaS-Website-Design",
+      "designer": "Awsmd",
+      "local_image": "shots/26504074-saas-website-design.png",
+      "thumbnail": "thumbs/26504074.jpg",
+      "title": "SaaS - Website Design"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27190142-AI-Project-Management-Assistant-SaaS-Landing-Page",
+      "designer": "Orix Creative",
+      "local_image": "shots/27190142-ai-project-management-assistant-saas-landing-pag.png",
+      "thumbnail": "thumbs/27190142.jpg",
+      "title": "AI Project Management Assistant – SaaS Landing Page"
+    }
+  ],
+  "index": 12
+}

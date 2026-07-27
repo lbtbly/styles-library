@@ -1,0 +1,12 @@
+105	25526476	shots/25526476-team-communication-management-saas-dashboard.png	Conceptzilla	Team Communication Management SaaS Dashboard
+106	25961490	shots/25961490-loopai-crm-dashboard-for-b2b-saas.png	Phenomenon Studio	LoopAI – CRM Dashboard for B2B SaaS
+107	26947568	shots/26947568-salse-saas-business-landing-page.png	Odama	Salse - SaaS Business Landing Page
+108	27014638	shots/27014638-modern-saas-landing-page-accounting-analytics-ui.jpg	Convertica Studio	Modern SaaS Landing Page — Accounting & Analytics UI
+109	25679017	shots/25679017-landing-page-saas-digital-marketing.png	Yoga V Wijaya	Landing Page (Saas Digital Marketing)
+110	26049052	shots/26049052-katalyst-investor-dashboard-saas-web-app.png	Virgil Pana	Katalyst - Investor Dashboard Saas web app
+111	26386815	shots/26386815-saas-marketing-dashboard-design-concept.png	Conceptzilla	SaaS Marketing Dashboard Design Concept
+112	25751696	shots/25751696-taskboard-projects-list-task-management-dashboar.jpg	OnPoint Studio	Taskboard - Projects List Task Management Dashboard Webapp SaaS
+113	23038744	shots/23038744-nexus-saas-marketing-dashboard.png	Dipa Inhouse	Nexus - Saas Marketing Dashboard
+114	24828700	shots/24828700-dashboard-for-a-finance-saas-fundflow.png	HALO LAB	Dashboard for a Finance SaaS ✦ FundFlow
+115	25740653	shots/25740653-hriselink-hr-management-webapp-saas.png	OnPoint Studio	HRISELINK - HR Management WebApp SaaS
+116	25678558	shots/25678558-nexus-company-kanban-view-crm-dashboard-webapp-s.jpg	OnPoint Studio	Nexus - Company Kanban View CRM Dashboard Webapp Saas

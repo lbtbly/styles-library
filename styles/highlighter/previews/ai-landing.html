@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Highlighter — Relay automation</title>
+<style>
+:root{
+  --bg:#EDEFEA; --surface:#FFFFFF; --ink:#0B0C08; --muted:#70736A;
+  --line:#DFE2DA; --accent:#C3EC2E; --accent-ink:#141600;
+  --block:#1C1E18; --block-ink:#F2F4EC;
+  --sans:"Space Grotesk","General Sans","Aeonik",ui-sans-serif,-apple-system,"Segoe UI",Inter,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans);
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+
+nav{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5}
+nav .wrap{display:flex;align-items:center;gap:24px;height:64px}
+.brand{font-size:17px;font-weight:700;letter-spacing:-.03em;display:flex;align-items:center;gap:8px}
+.mark{width:20px;height:20px;background:var(--accent);border-radius:5px;display:block}
+nav a.l{font-size:14px;color:var(--muted)}
+nav a.l:hover{color:var(--ink)}
+.grow{flex:1}
+.btn{display:inline-block;border-radius:999px;padding:10px 20px;font-size:14px;font-weight:500;
+  border:1px solid transparent;cursor:pointer}
+.btn.pri{background:var(--accent);color:var(--accent-ink)}
+.btn.dark{background:var(--block);color:var(--block-ink)}
+.btn.ghost{border-color:var(--line);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--ink)}
+
+/* hero — acid used as a marker swipe behind a word, never as type colour */
+.hero{padding:78px 0 60px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+.eyebrow i{width:16px;height:2px;background:var(--accent);display:block}
+h1{font-size:clamp(38px,6.4vw,66px);line-height:1.02;letter-spacing:-.035em;font-weight:600;
+  margin:0 0 22px;max-width:15ch}
+.swipe{position:relative;display:inline-block;z-index:0}
+.swipe::before{content:"";position:absolute;left:-.06em;right:-.06em;bottom:.1em;height:.42em;
+  background:var(--accent);z-index:-1;transform:skewX(-9deg)}
+.lede{font-size:17.5px;color:var(--muted);max-width:54ch;margin:0 0 30px}
+.cta{display:flex;gap:11px;flex-wrap:wrap;align-items:center}
+.note{font-size:13px;color:var(--muted)}
+
+/* stat row — oversized light numerals carry the hierarchy */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  margin-top:60px}
+.stat{background:var(--surface);padding:24px 22px}
+.stat b{display:block;font-size:52px;line-height:1;font-weight:300;letter-spacing:-.04em;
+  margin-bottom:9px;font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--muted);line-height:1.45;display:block}
+
+/* folder-tab navigation attaches to the panel below */
+section{padding:74px 0}
+h2{font-size:clamp(28px,4vw,40px);line-height:1.08;letter-spacing:-.03em;font-weight:600;
+  margin:0 0 12px;max-width:20ch}
+.sub{color:var(--muted);max-width:58ch;margin:0 0 32px;font-size:16px}
+.tabs{display:flex;gap:4px;padding-left:4px}
+.tab{border:1px solid var(--line);border-bottom:0;background:var(--bg);color:var(--muted);
+  border-radius:10px 10px 0 0;padding:10px 18px;font:500 13.5px var(--sans);cursor:pointer;
+  position:relative;top:1px}
+.tab[aria-selected=true]{background:var(--surface);color:var(--ink);border-color:var(--line)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:0 14px 14px 14px;
+  padding:28px}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.step{border:1px solid var(--line);border-radius:12px;padding:18px 16px}
+.step em{font-style:normal;font-size:10px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:10px}
+.step h3{margin:0 0 6px;font-size:15.5px;font-weight:600;letter-spacing:-.015em}
+.step p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
+.step.on{background:var(--block);border-color:var(--block)}
+.step.on h3,.step.on em{color:var(--block-ink)}
+.step.on em{opacity:.6}
+.step.on p{color:rgba(242,244,236,.68)}
+
+/* charcoal counterweight band */
+.dark{background:var(--block);color:var(--block-ink);border-radius:20px;padding:46px 40px;
+  margin:0 0 14px}
+.dark h2{color:var(--block-ink);margin-bottom:10px}
+.dark .sub{color:rgba(242,244,236,.62)}
+.gauges{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;margin-top:30px}
+.g{text-align:center}
+.g svg{width:100%;max-width:118px;height:auto;display:block;margin:0 auto 10px}
+.g b{display:block;font-size:26px;font-weight:300;letter-spacing:-.03em;margin-top:-52px;
+  margin-bottom:22px;font-variant-numeric:tabular-nums}
+.g span{font-size:12px;color:rgba(242,244,236,.6)}
+
+.chip{display:inline-block;font-size:11px;font-weight:600;padding:4px 11px;border-radius:999px;
+  letter-spacing:.02em}
+.chip.acid{background:var(--accent);color:var(--accent-ink)}
+.chip.out{border:1px solid var(--line);color:var(--muted)}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.price{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 22px}
+.price.feature{background:var(--block);border-color:var(--block);color:var(--block-ink)}
+.price h3{margin:0 0 4px;font-size:14px;font-weight:600;letter-spacing:.02em}
+.price .amt{font-size:42px;font-weight:300;letter-spacing:-.035em;line-height:1.1;margin:10px 0 4px}
+.price .per{font-size:12.5px;color:var(--muted)}
+.price.feature .per{color:rgba(242,244,236,.6)}
+.price ul{list-style:none;margin:18px 0 20px;padding:0;font-size:13.5px;color:var(--muted)}
+.price.feature ul{color:rgba(242,244,236,.72)}
+.price li{padding:5px 0 5px 20px;position:relative}
+.price li::before{content:"";position:absolute;left:0;top:12px;width:9px;height:2px;
+  background:var(--accent)}
+
+footer{background:var(--block);color:var(--block-ink);padding:52px 0 40px;margin-top:24px}
+.fcols{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:26px}
+@media(max-width:720px){.fcols{grid-template-columns:1fr 1fr}}
+footer h4{font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px;
+  color:rgba(242,244,236,.5);font-weight:600}
+footer a{display:block;padding:3px 0;font-size:13.5px;color:rgba(242,244,236,.78)}
+footer a:hover{color:var(--block-ink)}
+footer a.under{text-decoration:underline;text-decoration-color:var(--accent);
+  text-decoration-thickness:2px;text-underline-offset:3px;color:var(--block-ink)}
+.fbot{margin-top:36px;padding-top:18px;border-top:1px solid rgba(242,244,236,.14);
+  font-size:12.5px;color:rgba(242,244,236,.5);display:flex;gap:14px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <span class="brand"><span class="mark"></span>Relay</span>
+  <a class="l" href="#">Product</a><a class="l" href="#">Integrations</a>
+  <a class="l" href="#">Pricing</a><a class="l" href="#">Docs</a>
+  <span class="grow"></span>
+  <a class="btn ghost" href="#">Sign in</a>
+  <a class="btn pri" href="#">Start free</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow"><i></i>Workflow automation</span>
+  <h1>Every process you run twice should <span class="swipe">run itself</span></h1>
+  <p class="lede">Relay watches the tools your team already uses, learns the sequence, and
+    proposes the automation. You approve it — or you don't.</p>
+  <div class="cta">
+    <a class="btn dark" href="#">Start free</a>
+    <a class="btn ghost" href="#">Book a walkthrough</a>
+    <span class="note">No card. 200 runs a month, free forever.</span>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>14h</b><span>Median time returned per person, per week</span></div>
+    <div class="stat"><b>2.4M</b><span>Workflow runs executed last quarter</span></div>
+    <div class="stat"><b>340+</b><span>Connectors, all first-party maintained</span></div>
+    <div class="stat"><b>99.9%</b><span>Run success rate across all customers</span></div>
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <h2>It proposes. You decide.</h2>
+  <p class="sub">Relay never ships an automation you haven't seen. Every suggestion arrives as
+    a draft with the trigger, the steps and the blast radius spelled out.</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="false">Observe</button>
+    <button class="tab" role="tab" aria-selected="true">Propose</button>
+    <button class="tab" role="tab" aria-selected="false">Approve</button>
+    <button class="tab" role="tab" aria-selected="false">Run</button>
+  </div>
+  <div class="panel">
+    <div class="flow">
+      <div class="step"><em>Trigger</em><h3>Invoice lands</h3>
+        <p>A supplier PDF arrives in the shared inbox and matches a known sender pattern.</p></div>
+      <div class="step on"><em>Step 01</em><h3>Extract &amp; match</h3>
+        <p>Line items are read, matched against the open purchase order and flagged if the totals disagree.</p></div>
+      <div class="step"><em>Step 02</em><h3>Route for sign-off</h3>
+        <p>Anything above the department threshold goes to the budget owner with the variance attached.</p></div>
+      <div class="step"><em>Outcome</em><h3>Post to ledger</h3>
+        <p>Approved invoices post automatically and the thread is archived with a receipt.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="dark">
+    <span class="chip acid">Live</span>
+    <h2 style="margin-top:16px">Watch it work before you trust it</h2>
+    <p class="sub">Every run is recorded end to end — inputs, decisions, side effects. Replay any
+      of them, or roll one back.</p>
+    <div class="gauges">
+      <div class="g">
+        <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <circle cx="60" cy="60" r="50" stroke="rgba(242,244,236,.16)" stroke-width="7"/>
+          <circle cx="60" cy="60" r="50" stroke="#C3EC2E" stroke-width="7" stroke-linecap="round"
+            stroke-dasharray="314" stroke-dashoffset="47" transform="rotate(-90 60 60)"/>
+        </svg><b>85%</b><span>Approved without edits</span>
+      </div>
+      <div class="g">
+        <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <circle cx="60" cy="60" r="50" stroke="rgba(242,244,236,.16)" stroke-width="7"/>
+          <circle cx="60" cy="60" r="50" stroke="#C3EC2E" stroke-width="7" stroke-linecap="round"
+            stroke-dasharray="314" stroke-dashoffset="132" transform="rotate(-90 60 60)"/>
+        </svg><b>58%</b><span>Fully unattended runs</span>
+      </div>
+      <div class="g">
+        <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <circle cx="60" cy="60" r="50" stroke="rgba(242,244,236,.16)" stroke-width="7"/>
+          <circle cx="60" cy="60" r="50" stroke="#C3EC2E" stroke-width="7" stroke-linecap="round"
+            stroke-dasharray="314" stroke-dashoffset="16" transform="rotate(-90 60 60)"/>
+        </svg><b>95%</b><span>Replayable within 90 days</span>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:20px"><div class="wrap">
+  <h2>Pricing that tracks usage, not seats</h2>
+  <p class="sub">Add the whole team. You pay for runs that actually execute.</p>
+  <div class="prices">
+    <div class="price"><h3>Starter</h3><div class="amt">$0</div>
+      <div class="per">200 runs / month</div>
+      <ul><li>Unlimited members</li><li>60 connectors</li><li>7-day run history</li><li>Community support</li></ul>
+      <a class="btn ghost" href="#" style="width:100%;text-align:center">Start free</a></div>
+    <div class="price feature"><span class="chip acid">Most teams</span>
+      <h3 style="margin-top:14px">Team</h3><div class="amt">$49</div>
+      <div class="per">per month · 10,000 runs</div>
+      <ul><li>All 340 connectors</li><li>90-day replay &amp; rollback</li><li>Approval routing</li><li>Priority support</li></ul>
+      <a class="btn pri" href="#" style="width:100%;text-align:center">Start 14-day trial</a></div>
+    <div class="price"><h3>Enterprise</h3><div class="amt">Talk</div>
+      <div class="per">volume pricing</div>
+      <ul><li>Self-hosted runners</li><li>SSO &amp; SCIM</li><li>Audit export</li><li>Named engineer</li></ul>
+      <a class="btn ghost" href="#" style="width:100%;text-align:center">Contact sales</a></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fcols">
+    <div>
+      <span class="brand" style="color:var(--block-ink)"><span class="mark"></span>Relay</span>
+      <p style="color:rgba(242,244,236,.6);font-size:13.5px;max-width:30ch;margin:12px 0 0">
+        Automation that asks first. Built in Rotterdam.</p>
+    </div>
+    <div><h4>Product</h4><a href="#">Connectors</a><a href="#">Approvals</a><a href="#">Replay</a><a href="#">Changelog</a></div>
+    <div><h4>Resources</h4><a href="#">Documentation</a><a href="#">Templates</a><a href="#">Status</a><a href="#">Security</a></div>
+    <div><h4>Company</h4><a class="under" href="#">We're hiring</a><a href="#">About</a><a href="#">Blog</a><a href="#">Contact</a></div>
+  </div>
+  <div class="fbot"><span>© 2026 Relay BV</span><span>Privacy</span><span>Terms</span><span>DPA</span></div>
+</div></footer>
+
+</body>
+</html>

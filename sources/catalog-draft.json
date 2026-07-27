@@ -1,0 +1,172 @@
+{
+  "naming_voice": "Concrete studio shorthand — a material, place or instrument noun, sometimes paired. Nothing cute, nothing trend-named ('neo-brutalist', 'glassmorphic'). Each name should survive being said out loud in a design review.",
+  "faceting": "Every style carries derived `surfaces.devices` and `surfaces.artifacts` facets, computed from the artifact_type of its own source shots. Styles are split where the visual treatment genuinely differs between a marketing surface and a working UI; where a style transfers cleanly across both, it stays one style and the facets say so.",
+  "collections": [
+    {
+      "name": "Working Surfaces",
+      "note": "Light, dense, tool-like. Built for software people look at all day."
+    },
+    {
+      "name": "Charged Neutral",
+      "note": "Desaturated grounds holding exactly one electric colour."
+    },
+    {
+      "name": "Night Work",
+      "note": "Dark grounds. Light behaves as a material, not a background."
+    },
+    {
+      "name": "Soft Weather",
+      "note": "Atmosphere, translucency and radius. Warmth without noise."
+    },
+    {
+      "name": "Set in Type",
+      "note": "Type and image lead; the interface follows."
+    }
+  ],
+  "styles": [
+    {
+      "id": "hairline-ledger",
+      "name": "Hairline Ledger",
+      "collection": "Working Surfaces",
+      "pairing": "Trading terminal × Swiss timetable",
+      "concept": "Rules, not boxes — density earns trust when every divider is 1px and every figure is tabular.",
+      "shots": [0, 41, 50, 63, 68, 78, 90, 110, 115]
+    },
+    {
+      "id": "panel-stack",
+      "name": "Panel Stack",
+      "collection": "Working Surfaces",
+      "pairing": "Split-pane IDE × filing drawer",
+      "concept": "Work happens in panels — master list, detail drawer, kanban column — layered over a scrim instead of navigated away from.",
+      "shots": [7, 17, 44, 54, 102, 112, 116]
+    },
+    {
+      "id": "canvas-and-window",
+      "name": "Canvas & Window",
+      "collection": "Working Surfaces",
+      "pairing": "App window × photographer's seamless",
+      "concept": "Float the product in a rounded window on a flat neutral stage so the interface is the only subject in frame.",
+      "shots": [6, 8, 12, 14, 22, 24, 25, 31, 42, 43, 47, 86]
+    },
+    {
+      "id": "ember-console",
+      "name": "Ember Console",
+      "collection": "Working Surfaces",
+      "pairing": "Control room × safety orange",
+      "concept": "A single hot orange carries every chart series, CTA and alert across an otherwise white hairline shell.",
+      "shots": [3, 10, 13, 21]
+    },
+    {
+      "id": "grey-room",
+      "name": "Grey Room",
+      "collection": "Working Surfaces",
+      "pairing": "Gallery wall × system font",
+      "concept": "Drain every hue, then let luminance, letter-tracking and one black pill carry the entire hierarchy.",
+      "shots": [19, 38, 72, 81, 83, 105, 107, 111]
+    },
+    {
+      "id": "highlighter",
+      "name": "Highlighter",
+      "collection": "Charged Neutral",
+      "pairing": "Lab notebook × neon marker",
+      "concept": "Keep the page desaturated so a single chartreuse stroke reads as emphasis rather than decoration.",
+      "shots": [27, 40, 46, 74, 75, 82]
+    },
+    {
+      "id": "soft-render",
+      "name": "Soft Render",
+      "collection": "Charged Neutral",
+      "pairing": "Product photography × pale lime",
+      "concept": "Borderless pale fills and oversized light numerals, presented as a soft-focus 3D render in a grey studio.",
+      "shots": [33, 35, 36, 49]
+    },
+    {
+      "id": "paper-noir",
+      "name": "Paper Noir",
+      "collection": "Charged Neutral",
+      "pairing": "Studio still-life × risograph",
+      "concept": "Grained off-white pill geometry and solid black circular controls, photographed on a black set.",
+      "shots": [60, 65, 66, 67, 71]
+    },
+    {
+      "id": "bloom",
+      "name": "Bloom",
+      "collection": "Night Work",
+      "pairing": "Planetarium × keynote stage",
+      "concept": "Colour arrives as light: feathered radial glow behind 1px-stroked cards on near-black.",
+      "shots": [39, 51, 73, 76, 79, 94, 109]
+    },
+    {
+      "id": "dark-bench",
+      "name": "Dark Bench",
+      "collection": "Night Work",
+      "pairing": "Node graph × macro lens",
+      "concept": "Matte graphite tools on an infinite dotted canvas — one node in focus, the rest racked away.",
+      "shots": [5, 77, 93, 95, 98, 100]
+    },
+    {
+      "id": "cinema-glass",
+      "name": "Cinema Glass",
+      "collection": "Night Work",
+      "pairing": "Film still × frosted pane",
+      "concept": "Full-bleed imagery seen through dark blurred glass, with chrome reduced to floating pills.",
+      "shots": [30, 34, 61, 85, 92]
+    },
+    {
+      "id": "frosted-field",
+      "name": "Frosted Field",
+      "collection": "Soft Weather",
+      "pairing": "Sea glass × gradient wash",
+      "concept": "Carve every surface out of one pale gradient using translucency instead of borders or fills.",
+      "shots": [62, 87, 88, 91, 103, 106, 114]
+    },
+    {
+      "id": "aura",
+      "name": "Aura",
+      "collection": "Soft Weather",
+      "pairing": "Sunrise haze × product shot",
+      "concept": "Crisp white cards lifted off a soft coloured bloom — atmosphere with no texture at all.",
+      "shots": [9, 15, 20, 26, 28, 45, 96, 104]
+    },
+    {
+      "id": "soft-body",
+      "name": "Soft Body",
+      "collection": "Soft Weather",
+      "pairing": "Moulded plastic × pastel stationery",
+      "concept": "Large radii, soft shadows and barely-saturated pastels make dense data feel handled, not audited.",
+      "shots": [4, 18, 23, 29, 58, 64, 70, 99, 101, 113]
+    },
+    {
+      "id": "didone-signal",
+      "name": "Didone Signal",
+      "collection": "Set in Type",
+      "pairing": "Fashion masthead × pill button",
+      "concept": "High-contrast serif display against tangerine and black pills — masthead grammar on a product page.",
+      "shots": [16, 84, 89, 108]
+    },
+    {
+      "id": "field-notes",
+      "name": "Field Notes",
+      "collection": "Set in Type",
+      "pairing": "Landscape photograph × monospace caption",
+      "concept": "Analytics dressed as a magazine: full-bleed landscape, serif headline, monospace figures inline in prose.",
+      "shots": [1, 37, 55, 56, 59, 97]
+    },
+    {
+      "id": "poster-block",
+      "name": "Poster Block",
+      "collection": "Set in Type",
+      "pairing": "Silkscreen poster × brand board",
+      "concept": "Edge-to-edge colour bands and display caps — the page behaves like a printed poster, not a screen.",
+      "shots": [2, 11, 52, 53, 80]
+    },
+    {
+      "id": "studio-object",
+      "name": "Studio Object",
+      "collection": "Set in Type",
+      "pairing": "Industrial catalogue × single object",
+      "concept": "A rendered object is the page; the interface shrinks to hairline pills docked around it.",
+      "shots": [32, 48, 57, 69]
+    }
+  ]
+}

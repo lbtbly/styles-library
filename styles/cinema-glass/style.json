@@ -1,0 +1,143 @@
+{
+  "id": "cinema-glass",
+  "name": "Cinema Glass",
+  "collection": "Night Work",
+  "pairing": "Film still × frosted pane",
+  "concept": "Full-bleed imagery seen through dark blurred glass, with chrome reduced to floating pills.",
+  "keywords": [
+    "full-bleed-imagery",
+    "backdrop-blur",
+    "floating-pill",
+    "film-still",
+    "dark-glass",
+    "grain",
+    "single-hot-accent"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#000000",
+      "surface": "rgba(24, 24, 24, 0.55)",
+      "raised": "rgba(255, 255, 255, 0.10)",
+      "ink": "#FFFFFF",
+      "muted": "rgba(255, 255, 255, 0.66)",
+      "line": "rgba(255, 255, 255, 0.14)",
+      "accent": "#D9E82A",
+      "accent_ink": "#171A00"
+    },
+    "type": {
+      "families": "Geometric sans for chrome; a high-contrast display serif or italic didone permitted for one hero line. Monospace acceptable for timecodes and metadata.",
+      "hierarchy": "Hero 52/58 regular, optionally breaking mid-line into italic serif · control label 12/16 medium · metadata 11/14 mono · body 15/23 regular at 66% white.",
+      "usage": "The signature move is a grotesque headline that breaks into italic display serif for one clause. Keep all chrome type small and quiet so the image carries the frame."
+    },
+    "texture": "Glass over film. Panels use `background: rgba(24,24,24,.55); backdrop-filter: blur(28px) saturate(120%);` with a 1px `rgba(255,255,255,.14)` inner stroke. Behind them, full-bleed photography or a defocused macro fills the entire viewport. A 4-6% grain overlay unifies the composite. Never place a solid opaque panel over the image — everything floats translucent.",
+    "layout": "The image is the layout. Chrome reduces to floating pills and small glass cards docked to edges and corners, leaving the centre of the frame to the photograph. 8px scale, 999px radius on controls, 18-24px on glass cards, 16px padding. Content sits in the lower third or along one edge, never centred over the subject."
+  },
+  "fit": {
+    "best_for": [
+      "media and video products",
+      "travel and hospitality",
+      "premium consumer apps",
+      "brand campaign pages",
+      "creative tools with a visual output"
+    ],
+    "avoid_for": [
+      "data-dense dashboards",
+      "enterprise administration",
+      "accessibility-critical services",
+      "products with no imagery budget"
+    ],
+    "mood": [
+      "cinematic",
+      "immersive",
+      "premium",
+      "atmospheric",
+      "sensory"
+    ],
+    "artifact_types_proven": [
+      "landing page",
+      "mobile app",
+      "design tool"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "artifacts": [
+      "landing page",
+      "mobile app",
+      "design tool"
+    ],
+    "artifact_counts": {
+      "landing page": 2,
+      "mobile app": 2,
+      "design tool": 1
+    },
+    "device_counts": {
+      "desktop": 3,
+      "mobile": 2
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as cinematic photograph, shallow depth of field, film grain.\n\nSTYLE — apply all of the following, they are not optional:\n- full-bleed photographic image, dark overall exposure\n- single strong light source with deep shadows retaining detail\n- desaturated except one hot accent note near #D9E82A\n- visible fine film grain\n- wide cinematic framing with the subject off-centre\n\nNEGATIVE SPACE: The lower third must fall dark and uncluttered for glass panels and type.\n\nDO NOT INCLUDE: flat vector, bright even lighting, white backgrounds, stock-photo smiles, HDR over-processing, text or UI in the image.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "full-bleed photographic image, dark overall exposure",
+      "single strong light source with deep shadows retaining detail",
+      "desaturated except one hot accent note near #D9E82A",
+      "visible fine film grain",
+      "wide cinematic framing with the subject off-centre",
+      "negative space — The lower third must fall dark and uncluttered for glass panels and type.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "flat vector",
+      "bright even lighting",
+      "white backgrounds",
+      "stock-photo smiles",
+      "HDR over-processing",
+      "text or UI in the image"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/27274113-SaaS-Landing-Page",
+      "designer": "Oripio",
+      "local_image": "shots/27274113-saas-landing-page.png",
+      "thumbnail": "thumbs/27274113.jpg",
+      "title": "SaaS Landing Page"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/23334877-Aqara-Mobile-App-Smart-Home-SaaS",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/23334877-aqara-mobile-app-smart-home-saas.jpg",
+      "thumbnail": "thumbs/23334877.jpg",
+      "title": "Aqara Mobile App - Smart Home SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26770421-Finance-SaaS-Website",
+      "designer": "Awsmd",
+      "local_image": "shots/26770421-finance-saas-website.png",
+      "thumbnail": "thumbs/26770421.jpg",
+      "title": "Finance SaaS Website"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27400676-Cinemaro-AI-Video-Editor-Dashboard-SaaS",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/27400676-cinemaro-ai-video-editor-dashboard-saas.png",
+      "thumbnail": "thumbs/27400676.jpg",
+      "title": "Cinemaro AI – Video Editor Dashboard SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27206717-Team-Analytics-App-SaaS-Dashboard-UI",
+      "designer": "Nixtio",
+      "local_image": "shots/27206717-team-analytics-app-saas-dashboard-ui.jpg",
+      "thumbnail": "thumbs/27206717.jpg",
+      "title": "Team Analytics App – SaaS Dashboard UI"
+    }
+  ],
+  "index": 10
+}

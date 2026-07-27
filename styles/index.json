@@ -1,0 +1,1511 @@
+{
+  "generated_from": "sources/catalog-draft.json + sources/spec-*.json",
+  "source_collection": {
+    "name": "Styles Moodboard",
+    "url": "https://dribbble.com/lbtbouley/collections/7904481-Styles-Moodboard",
+    "owner": "lbtbouley"
+  },
+  "shot_count": 117,
+  "style_count": 18,
+  "collections": [
+    {
+      "name": "Working Surfaces",
+      "note": "Light, dense, tool-like. Built for software people look at all day.",
+      "count": 5
+    },
+    {
+      "name": "Charged Neutral",
+      "note": "Desaturated grounds holding exactly one electric colour.",
+      "count": 3
+    },
+    {
+      "name": "Night Work",
+      "note": "Dark grounds. Light behaves as a material, not a background.",
+      "count": 3
+    },
+    {
+      "name": "Soft Weather",
+      "note": "Atmosphere, translucency and radius. Warmth without noise.",
+      "count": 3
+    },
+    {
+      "name": "Set in Type",
+      "note": "Type and image lead; the interface follows.",
+      "count": 4
+    }
+  ],
+  "artifact_vocabulary": [
+    "auth & onboarding",
+    "branding board",
+    "component study",
+    "crm",
+    "dashboard",
+    "data table",
+    "design tool",
+    "landing page",
+    "mobile app",
+    "pricing page",
+    "web app"
+  ],
+  "device_vocabulary": [
+    "desktop",
+    "mobile",
+    "tablet"
+  ],
+  "styles": [
+    {
+      "id": "hairline-ledger",
+      "name": "Hairline Ledger",
+      "collection": "Working Surfaces",
+      "pairing": "Trading terminal × Swiss timetable",
+      "concept": "Rules, not boxes — density earns trust when every divider is 1px and every figure is tabular.",
+      "keywords": [
+        "hairline-rules",
+        "tabular-figures",
+        "semantic-chips",
+        "high-density",
+        "near-white",
+        "micro-caps",
+        "no-card-chrome"
+      ],
+      "swatch": [
+        "#F4F5F6",
+        "#FFFFFF",
+        "#0F1419",
+        "#697079",
+        "#E3E5E8",
+        "#0B5FD0"
+      ],
+      "fit": {
+        "best_for": [
+          "analytics and BI tools",
+          "admin consoles",
+          "developer and API dashboards",
+          "financial or trading interfaces",
+          "any screen where scanning many rows is the primary job"
+        ],
+        "avoid_for": [
+          "consumer onboarding",
+          "marketing landing pages",
+          "brand-led or emotional storytelling",
+          "low-information mobile-first products"
+        ],
+        "mood": [
+          "precise",
+          "unemotional",
+          "trustworthy",
+          "dense",
+          "professional"
+        ],
+        "artifact_types_proven": [
+          "data table"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop"
+        ],
+        "artifacts": [
+          "data table"
+        ],
+        "artifact_counts": {
+          "data table": 9
+        },
+        "device_counts": {
+          "desktop": 9
+        }
+      },
+      "source_count": 9,
+      "designers": [
+        "Conceptzilla",
+        "OnPoint Studio",
+        "Virgil Pana"
+      ],
+      "thumbnail": "styles/hairline-ledger/previews/analytics-table.html",
+      "previews": [
+        "analytics-table.html"
+      ],
+      "index": 0
+    },
+    {
+      "id": "panel-stack",
+      "name": "Panel Stack",
+      "collection": "Working Surfaces",
+      "pairing": "Split-pane IDE × filing drawer",
+      "concept": "Work happens in panels — master list, detail drawer, kanban column — layered over a scrim instead of navigated away from.",
+      "keywords": [
+        "master-detail",
+        "overlay-drawer",
+        "scrim",
+        "kanban-column",
+        "hairline-card",
+        "status-capsule",
+        "violet-primary"
+      ],
+      "swatch": [
+        "#F7F8F9",
+        "#FFFFFF",
+        "#EFF1F3",
+        "#0B1220",
+        "#667085",
+        "#E4E7EC"
+      ],
+      "fit": {
+        "best_for": [
+          "project and task management",
+          "CRM and support desks",
+          "content or asset managers",
+          "any app with a list-plus-detail spine",
+          "internal tooling with multi-step workflows"
+        ],
+        "avoid_for": [
+          "marketing sites",
+          "single-purpose landing pages",
+          "data-viz-first analytics",
+          "products whose main object is a canvas rather than a list"
+        ],
+        "mood": [
+          "organised",
+          "calm",
+          "operational",
+          "clear",
+          "workmanlike"
+        ],
+        "artifact_types_proven": [
+          "web app",
+          "dashboard",
+          "design tool",
+          "crm"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop"
+        ],
+        "artifacts": [
+          "web app",
+          "dashboard",
+          "design tool",
+          "crm"
+        ],
+        "artifact_counts": {
+          "design tool": 1,
+          "web app": 3,
+          "dashboard": 2,
+          "crm": 1
+        },
+        "device_counts": {
+          "desktop": 7
+        }
+      },
+      "source_count": 7,
+      "designers": [
+        "Fikri Studio",
+        "Keitoto",
+        "OnPoint Studio",
+        "Virgil Pana"
+      ],
+      "thumbnail": "styles/panel-stack/previews/kanban-drawer.html",
+      "previews": [
+        "kanban-drawer.html"
+      ],
+      "index": 1
+    },
+    {
+      "id": "canvas-and-window",
+      "name": "Canvas & Window",
+      "collection": "Working Surfaces",
+      "pairing": "App window × photographer's seamless",
+      "concept": "Float the product in a rounded window on a flat neutral stage so the interface is the only subject in frame.",
+      "keywords": [
+        "floating-app-window",
+        "flat-stage",
+        "chip-coded-cards",
+        "cool-accent",
+        "browser-chrome",
+        "hairline-card",
+        "product-as-subject"
+      ],
+      "swatch": [
+        "#ECECEC",
+        "#FFFFFF",
+        "#F6F7F8",
+        "#0E1113",
+        "#6A7178",
+        "#E5E7EA"
+      ],
+      "fit": {
+        "best_for": [
+          "SaaS product marketing where the app is the hero",
+          "dashboards and CRM",
+          "feature announcements and changelogs",
+          "documentation screenshots",
+          "investor and sales decks"
+        ],
+        "avoid_for": [
+          "editorial or content-led sites",
+          "brand identity work",
+          "products with no screen to show",
+          "dark-mode-first tools"
+        ],
+        "mood": [
+          "composed",
+          "confident",
+          "product-led",
+          "neutral",
+          "considered"
+        ],
+        "artifact_types_proven": [
+          "dashboard",
+          "crm",
+          "pricing page"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop"
+        ],
+        "artifacts": [
+          "dashboard",
+          "crm",
+          "pricing page"
+        ],
+        "artifact_counts": {
+          "crm": 3,
+          "dashboard": 8,
+          "pricing page": 1
+        },
+        "device_counts": {
+          "desktop": 12
+        }
+      },
+      "source_count": 12,
+      "designers": [
+        "Fikri Studio",
+        "Virgil Pana",
+        "rh.design"
+      ],
+      "thumbnail": "styles/canvas-and-window/previews/product-dashboard.html",
+      "previews": [
+        "product-dashboard.html"
+      ],
+      "index": 2
+    },
+    {
+      "id": "ember-console",
+      "name": "Ember Console",
+      "collection": "Working Surfaces",
+      "pairing": "Control room × safety orange",
+      "concept": "A single hot orange carries every chart series, CTA and alert across an otherwise white hairline shell.",
+      "keywords": [
+        "single-hot-orange",
+        "hairline-modal",
+        "dimmed-parent",
+        "chart-monochrome",
+        "ai-lilac",
+        "white-shell"
+      ],
+      "swatch": [
+        "#FCFCFC",
+        "#FFFFFF",
+        "#F4F5F6",
+        "#15171F",
+        "#6B7280",
+        "#E6E8EB"
+      ],
+      "fit": {
+        "best_for": [
+          "e-commerce and marketplace analytics",
+          "performance and reporting detail views",
+          "operations dashboards",
+          "logistics and order tracking",
+          "any product where one metric family dominates"
+        ],
+        "avoid_for": [
+          "multi-brand or white-label products needing colour flexibility",
+          "dark-mode-first tools",
+          "editorial sites",
+          "calm or clinical medical contexts where orange reads as alarm"
+        ],
+        "mood": [
+          "energetic",
+          "decisive",
+          "commercial",
+          "warm",
+          "focused"
+        ],
+        "artifact_types_proven": [
+          "dashboard",
+          "web app"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop"
+        ],
+        "artifacts": [
+          "dashboard",
+          "web app"
+        ],
+        "artifact_counts": {
+          "dashboard": 3,
+          "web app": 1
+        },
+        "device_counts": {
+          "desktop": 4
+        }
+      },
+      "source_count": 4,
+      "designers": [
+        "Fikri Studio"
+      ],
+      "thumbnail": "styles/ember-console/previews/ops-dashboard.html",
+      "previews": [
+        "ops-dashboard.html",
+        "performance-detail.html"
+      ],
+      "index": 3
+    },
+    {
+      "id": "grey-room",
+      "name": "Grey Room",
+      "collection": "Working Surfaces",
+      "pairing": "Gallery wall × system font",
+      "concept": "Drain every hue, then let luminance, letter-tracking and one black pill carry the entire hierarchy.",
+      "keywords": [
+        "hue-drained",
+        "luminance-only",
+        "black-pill",
+        "tracked-caps",
+        "silver-on-silver",
+        "no-brand-colour"
+      ],
+      "swatch": [
+        "#EFEFEF",
+        "#F8F8F8",
+        "#FFFFFF",
+        "#171717",
+        "#767676",
+        "#E0E0E0"
+      ],
+      "fit": {
+        "best_for": [
+          "design and creative tools",
+          "portfolio and studio sites",
+          "premium or luxury positioning",
+          "products that must not compete with user content",
+          "collaboration tools where avatars supply the only colour"
+        ],
+        "avoid_for": [
+          "status-heavy dashboards needing semantic colour",
+          "safety-critical or alerting interfaces",
+          "playful consumer products",
+          "anything requiring strong brand colour recall"
+        ],
+        "mood": [
+          "restrained",
+          "editorial",
+          "premium",
+          "quiet",
+          "confident"
+        ],
+        "artifact_types_proven": [
+          "dashboard",
+          "component study",
+          "design tool",
+          "landing page"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop"
+        ],
+        "artifacts": [
+          "dashboard",
+          "component study",
+          "design tool",
+          "landing page"
+        ],
+        "artifact_counts": {
+          "design tool": 1,
+          "component study": 2,
+          "dashboard": 4,
+          "landing page": 1
+        },
+        "device_counts": {
+          "desktop": 8
+        }
+      },
+      "source_count": 8,
+      "designers": [
+        "Conceptzilla",
+        "Mateusz Madura",
+        "Odama",
+        "RonDesignLab ⭐️",
+        "Virgil Pana"
+      ],
+      "thumbnail": "styles/grey-room/previews/studio-landing.html",
+      "previews": [
+        "studio-landing.html",
+        "workspace.html"
+      ],
+      "index": 4
+    },
+    {
+      "id": "highlighter",
+      "name": "Highlighter",
+      "collection": "Charged Neutral",
+      "pairing": "Lab notebook × neon marker",
+      "concept": "Keep the page desaturated so a single chartreuse stroke reads as emphasis rather than decoration.",
+      "keywords": [
+        "acid-chartreuse",
+        "desaturated-ground",
+        "marker-emphasis",
+        "oversized-numerals",
+        "black-block",
+        "folder-tab-nav"
+      ],
+      "swatch": [
+        "#EDEFEA",
+        "#FFFFFF",
+        "#0B0C08",
+        "#70736A",
+        "#DFE2DA",
+        "#C3EC2E"
+      ],
+      "fit": {
+        "best_for": [
+          "AI and automation products",
+          "developer tools with personality",
+          "growth and marketing analytics",
+          "fintech challengers",
+          "products targeting a younger technical audience"
+        ],
+        "avoid_for": [
+          "healthcare and clinical software",
+          "government or regulated finance",
+          "luxury or heritage brands",
+          "accessibility-critical products where the accent would be relied on for meaning"
+        ],
+        "mood": [
+          "electric",
+          "current",
+          "confident",
+          "irreverent",
+          "technical"
+        ],
+        "artifact_types_proven": [
+          "landing page",
+          "dashboard",
+          "mobile app",
+          "crm"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop",
+          "mobile"
+        ],
+        "artifacts": [
+          "landing page",
+          "dashboard",
+          "mobile app",
+          "crm"
+        ],
+        "artifact_counts": {
+          "landing page": 3,
+          "dashboard": 1,
+          "mobile app": 1,
+          "crm": 1
+        },
+        "device_counts": {
+          "desktop": 5,
+          "mobile": 1
+        }
+      },
+      "source_count": 6,
+      "designers": [
+        "Awsmd",
+        "Mahid",
+        "Plainthing Studio",
+        "RonDesignLab ⭐️"
+      ],
+      "thumbnail": "styles/highlighter/previews/ai-landing.html",
+      "previews": [
+        "ai-landing.html"
+      ],
+      "index": 5
+    },
+    {
+      "id": "soft-render",
+      "name": "Soft Render",
+      "collection": "Charged Neutral",
+      "pairing": "Product photography × pale lime",
+      "concept": "Borderless pale fills and oversized light numerals, presented as a soft-focus 3D render in a grey studio.",
+      "keywords": [
+        "3d-staged",
+        "borderless-fill",
+        "pale-lime",
+        "soft-focus",
+        "grey-studio",
+        "light-numerals",
+        "frosted-control"
+      ],
+      "swatch": [
+        "#E2E2E2",
+        "#D9DED2",
+        "#101010",
+        "#6E7168",
+        "#DCEE92",
+        "#20260A"
+      ],
+      "fit": {
+        "best_for": [
+          "hardware and IoT companion apps",
+          "wellness and sustainability products",
+          "premium consumer SaaS",
+          "product launch pages",
+          "anything wanting a calm physical presence"
+        ],
+        "avoid_for": [
+          "dense data tools",
+          "developer consoles",
+          "high-urgency operational software",
+          "budget or utilitarian positioning"
+        ],
+        "mood": [
+          "calm",
+          "tactile",
+          "premium",
+          "soft",
+          "modern"
+        ],
+        "artifact_types_proven": [
+          "dashboard",
+          "mobile app"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop",
+          "mobile"
+        ],
+        "artifacts": [
+          "dashboard",
+          "mobile app"
+        ],
+        "artifact_counts": {
+          "dashboard": 2,
+          "mobile app": 2
+        },
+        "device_counts": {
+          "desktop": 2,
+          "mobile": 2
+        }
+      },
+      "source_count": 4,
+      "designers": [
+        "RonDesignLab ⭐️"
+      ],
+      "thumbnail": "styles/soft-render/previews/device-dashboard.html",
+      "previews": [
+        "device-dashboard.html",
+        "launch.html"
+      ],
+      "index": 6
+    },
+    {
+      "id": "paper-noir",
+      "name": "Paper Noir",
+      "collection": "Charged Neutral",
+      "pairing": "Studio still-life × risograph",
+      "concept": "Grained off-white pill geometry and solid black circular controls, photographed on a black set.",
+      "keywords": [
+        "paper-grain",
+        "black-set",
+        "pill-geometry",
+        "black-circular-control",
+        "acid-dot",
+        "laptop-render",
+        "off-white-card"
+      ],
+      "swatch": [
+        "#F3F1EA",
+        "#FFFFFF",
+        "#080808",
+        "#141414",
+        "#71706A",
+        "#E2DFD5"
+      ],
+      "fit": {
+        "best_for": [
+          "design and creative studios",
+          "portfolio and case-study presentation",
+          "premium mobile apps",
+          "brand-led product launches",
+          "agency or boutique positioning"
+        ],
+        "avoid_for": [
+          "dense enterprise dashboards",
+          "data-heavy reporting",
+          "accessibility-critical services",
+          "high-volume transactional interfaces"
+        ],
+        "mood": [
+          "crafted",
+          "editorial",
+          "tactile",
+          "considered",
+          "boutique"
+        ],
+        "artifact_types_proven": [
+          "dashboard",
+          "mobile app"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop",
+          "mobile"
+        ],
+        "artifacts": [
+          "dashboard",
+          "mobile app"
+        ],
+        "artifact_counts": {
+          "dashboard": 3,
+          "mobile app": 2
+        },
+        "device_counts": {
+          "desktop": 3,
+          "mobile": 2
+        }
+      },
+      "source_count": 5,
+      "designers": [
+        "RonDesignLab ⭐️"
+      ],
+      "thumbnail": "styles/paper-noir/previews/case-study.html",
+      "previews": [
+        "case-study.html",
+        "mobile-app.html"
+      ],
+      "index": 7
+    },
+    {
+      "id": "bloom",
+      "name": "Bloom",
+      "collection": "Night Work",
+      "pairing": "Planetarium × keynote stage",
+      "concept": "Colour arrives as light: feathered radial glow behind 1px-stroked cards on near-black.",
+      "keywords": [
+        "radial-glow",
+        "near-black",
+        "hairline-stroked-card",
+        "iridescent-3d",
+        "indigo-bleed",
+        "no-fill-cards"
+      ],
+      "swatch": [
+        "#08080D",
+        "#12121B",
+        "#F4F4F7",
+        "#9A9AAA",
+        "#5B57F0",
+        "#FFFFFF"
+      ],
+      "fit": {
+        "best_for": [
+          "AI and ML platforms",
+          "developer infrastructure",
+          "crypto and fintech",
+          "product launches and keynotes",
+          "premium technical positioning"
+        ],
+        "avoid_for": [
+          "dense working dashboards used all day",
+          "healthcare and accessibility-first services",
+          "children's or education products",
+          "print-first or document-heavy tools"
+        ],
+        "mood": [
+          "cinematic",
+          "advanced",
+          "premium",
+          "atmospheric",
+          "engineered"
+        ],
+        "artifact_types_proven": [
+          "landing page",
+          "dashboard",
+          "auth & onboarding"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop"
+        ],
+        "artifacts": [
+          "landing page",
+          "dashboard",
+          "auth & onboarding"
+        ],
+        "artifact_counts": {
+          "landing page": 5,
+          "dashboard": 1,
+          "auth & onboarding": 1
+        },
+        "device_counts": {
+          "desktop": 7
+        }
+      },
+      "source_count": 7,
+      "designers": [
+        "HALO LAB",
+        "LAIN",
+        "Outcrowd",
+        "Phenomenon Studio",
+        "Yoga V Wijaya",
+        "theosm™"
+      ],
+      "thumbnail": "styles/bloom/previews/platform-landing.html",
+      "previews": [
+        "platform-landing.html"
+      ],
+      "index": 8
+    },
+    {
+      "id": "dark-bench",
+      "name": "Dark Bench",
+      "collection": "Night Work",
+      "pairing": "Node graph × macro lens",
+      "concept": "Matte graphite tools on an infinite dotted canvas — one node in focus, the rest racked away.",
+      "keywords": [
+        "dotted-canvas",
+        "graphite-card",
+        "racked-focus",
+        "bezier-wire",
+        "matte-dark",
+        "port-dot",
+        "no-glow"
+      ],
+      "swatch": [
+        "#0B0B0B",
+        "#1C1C1C",
+        "#262626",
+        "#FAFAFA",
+        "#8C8C8C",
+        "#333333"
+      ],
+      "fit": {
+        "best_for": [
+          "workflow and automation builders",
+          "AI agent and pipeline tooling",
+          "data engineering and ETL",
+          "developer infrastructure consoles",
+          "any product whose object is a graph"
+        ],
+        "avoid_for": [
+          "marketing landing pages",
+          "content and editorial sites",
+          "consumer mobile apps",
+          "form-heavy administrative software"
+        ],
+        "mood": [
+          "technical",
+          "matte",
+          "engineered",
+          "focused",
+          "unglamorous"
+        ],
+        "artifact_types_proven": [
+          "design tool",
+          "dashboard",
+          "mobile app"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop",
+          "mobile"
+        ],
+        "artifacts": [
+          "design tool",
+          "dashboard",
+          "mobile app"
+        ],
+        "artifact_counts": {
+          "dashboard": 2,
+          "mobile app": 1,
+          "design tool": 3
+        },
+        "device_counts": {
+          "desktop": 5,
+          "mobile": 1
+        }
+      },
+      "source_count": 6,
+      "designers": [
+        "Eugene Paryhin",
+        "RonDesignLab ⭐️",
+        "Ronas IT | UI/UX Team"
+      ],
+      "thumbnail": "styles/dark-bench/previews/monitoring.html",
+      "previews": [
+        "monitoring.html",
+        "workflow-canvas.html"
+      ],
+      "index": 9
+    },
+    {
+      "id": "cinema-glass",
+      "name": "Cinema Glass",
+      "collection": "Night Work",
+      "pairing": "Film still × frosted pane",
+      "concept": "Full-bleed imagery seen through dark blurred glass, with chrome reduced to floating pills.",
+      "keywords": [
+        "full-bleed-imagery",
+        "backdrop-blur",
+        "floating-pill",
+        "film-still",
+        "dark-glass",
+        "grain",
+        "single-hot-accent"
+      ],
+      "swatch": [
+        "#000000",
+        "#FFFFFF",
+        "#D9E82A",
+        "#171A00"
+      ],
+      "fit": {
+        "best_for": [
+          "media and video products",
+          "travel and hospitality",
+          "premium consumer apps",
+          "brand campaign pages",
+          "creative tools with a visual output"
+        ],
+        "avoid_for": [
+          "data-dense dashboards",
+          "enterprise administration",
+          "accessibility-critical services",
+          "products with no imagery budget"
+        ],
+        "mood": [
+          "cinematic",
+          "immersive",
+          "premium",
+          "atmospheric",
+          "sensory"
+        ],
+        "artifact_types_proven": [
+          "landing page",
+          "mobile app",
+          "design tool"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop",
+          "mobile"
+        ],
+        "artifacts": [
+          "landing page",
+          "mobile app",
+          "design tool"
+        ],
+        "artifact_counts": {
+          "landing page": 2,
+          "mobile app": 2,
+          "design tool": 1
+        },
+        "device_counts": {
+          "desktop": 3,
+          "mobile": 2
+        }
+      },
+      "source_count": 5,
+      "designers": [
+        "Awsmd",
+        "Nixtio",
+        "Oripio",
+        "RonDesignLab ⭐️"
+      ],
+      "thumbnail": "styles/cinema-glass/previews/media-app.html",
+      "previews": [
+        "media-app.html",
+        "travel-landing.html"
+      ],
+      "index": 10
+    },
+    {
+      "id": "frosted-field",
+      "name": "Frosted Field",
+      "collection": "Soft Weather",
+      "pairing": "Sea glass × gradient wash",
+      "concept": "Carve every surface out of one pale gradient using translucency instead of borders or fills.",
+      "keywords": [
+        "gradient-ground",
+        "translucent-card",
+        "no-borders",
+        "pill-control",
+        "backdrop-blur",
+        "metaball",
+        "pale-wash"
+      ],
+      "swatch": [
+        "#E4E7EF",
+        "#141620",
+        "#5D6273",
+        "#5D51C8",
+        "#FFFFFF",
+        "#69C6AE"
+      ],
+      "fit": {
+        "best_for": [
+          "fintech and personal finance",
+          "wellness and health tracking",
+          "smart home and IoT",
+          "AI assistants and copilots",
+          "consumer dashboards"
+        ],
+        "avoid_for": [
+          "high-density enterprise tables",
+          "developer tools",
+          "accessibility-critical services (translucency hurts legibility)",
+          "print or export-heavy products"
+        ],
+        "mood": [
+          "serene",
+          "contemporary",
+          "soft",
+          "optimistic",
+          "light"
+        ],
+        "artifact_types_proven": [
+          "dashboard",
+          "crm",
+          "mobile app",
+          "design tool"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop",
+          "mobile"
+        ],
+        "artifacts": [
+          "dashboard",
+          "crm",
+          "mobile app",
+          "design tool"
+        ],
+        "artifact_counts": {
+          "crm": 2,
+          "mobile app": 1,
+          "design tool": 1,
+          "dashboard": 3
+        },
+        "device_counts": {
+          "desktop": 6,
+          "mobile": 1
+        }
+      },
+      "source_count": 7,
+      "designers": [
+        "HALO LAB",
+        "Phenomenon Studio",
+        "RonDesignLab ⭐️"
+      ],
+      "thumbnail": "styles/frosted-field/previews/finance-dashboard.html",
+      "previews": [
+        "finance-dashboard.html"
+      ],
+      "index": 11
+    },
+    {
+      "id": "aura",
+      "name": "Aura",
+      "collection": "Soft Weather",
+      "pairing": "Sunrise haze × product shot",
+      "concept": "Crisp white cards lifted off a soft coloured bloom — atmosphere with no texture at all.",
+      "keywords": [
+        "soft-bloom",
+        "crisp-white-card",
+        "tight-headline",
+        "no-texture",
+        "pale-wash",
+        "marketing-hero",
+        "single-cool-accent"
+      ],
+      "swatch": [
+        "#F2F2F3",
+        "#FFFFFF",
+        "#0C0C0C",
+        "#6C6F76",
+        "#E7E8EA",
+        "#2450E8"
+      ],
+      "fit": {
+        "best_for": [
+          "SaaS marketing and landing pages",
+          "product launches",
+          "pricing and feature pages",
+          "startup homepages",
+          "waitlist and pre-launch sites"
+        ],
+        "avoid_for": [
+          "dense working dashboards",
+          "data tables",
+          "internal admin tooling",
+          "products needing a dark mode as primary"
+        ],
+        "mood": [
+          "optimistic",
+          "fresh",
+          "clear",
+          "modern",
+          "approachable"
+        ],
+        "artifact_types_proven": [
+          "landing page"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop",
+          "mobile"
+        ],
+        "artifacts": [
+          "landing page"
+        ],
+        "artifact_counts": {
+          "landing page": 8
+        },
+        "device_counts": {
+          "desktop": 7,
+          "mobile": 1
+        }
+      },
+      "source_count": 8,
+      "designers": [
+        "Awsmd",
+        "Dude Studios",
+        "Layo",
+        "Ofspace UX/UI",
+        "One Week Wonders",
+        "Orix Creative",
+        "Perevoz Design",
+        "Ronas IT | UI/UX Team"
+      ],
+      "thumbnail": "styles/aura/previews/saas-landing.html",
+      "previews": [
+        "saas-landing.html",
+        "waitlist.html"
+      ],
+      "index": 12
+    },
+    {
+      "id": "soft-body",
+      "name": "Soft Body",
+      "collection": "Soft Weather",
+      "pairing": "Moulded plastic × pastel stationery",
+      "concept": "Large radii, soft shadows and barely-saturated pastels make dense data feel handled, not audited.",
+      "keywords": [
+        "large-radius",
+        "pastel-chip",
+        "soft-shadow",
+        "no-hard-border",
+        "friendly-data",
+        "lollipop-chart",
+        "rounded-shell"
+      ],
+      "swatch": [
+        "#E7E8F0",
+        "#FFFFFF",
+        "#F4F5F9",
+        "#131C33",
+        "#6A7288",
+        "#E6E8EF"
+      ],
+      "fit": {
+        "best_for": [
+          "consumer and prosumer dashboards",
+          "freelancer and small-business tools",
+          "HR, scheduling and booking",
+          "health and habit tracking",
+          "products with non-technical users"
+        ],
+        "avoid_for": [
+          "high-density trading or analytics",
+          "developer tooling",
+          "enterprise admin with hundreds of rows",
+          "brands needing a severe or technical tone"
+        ],
+        "mood": [
+          "friendly",
+          "calm",
+          "approachable",
+          "polished",
+          "unintimidating"
+        ],
+        "artifact_types_proven": [
+          "dashboard",
+          "web app"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop"
+        ],
+        "artifacts": [
+          "dashboard",
+          "web app"
+        ],
+        "artifact_counts": {
+          "dashboard": 9,
+          "web app": 1
+        },
+        "device_counts": {
+          "desktop": 10
+        }
+      },
+      "source_count": 10,
+      "designers": [
+        "Digcy",
+        "Dipa Inhouse",
+        "HALO LAB",
+        "Phenomenon Studio",
+        "Ronas IT | UI/UX Team",
+        "Virgil Pana"
+      ],
+      "thumbnail": "styles/soft-body/previews/booking.html",
+      "previews": [
+        "booking.html",
+        "finance-dashboard.html"
+      ],
+      "index": 13
+    },
+    {
+      "id": "didone-signal",
+      "name": "Didone Signal",
+      "collection": "Set in Type",
+      "pairing": "Fashion masthead × pill button",
+      "concept": "High-contrast serif display against tangerine and black pills — masthead grammar on a product page.",
+      "keywords": [
+        "high-contrast-serif",
+        "tangerine",
+        "black-pill",
+        "welded-arrow-chip",
+        "cloud-photograph",
+        "masthead-hero"
+      ],
+      "swatch": [
+        "#FBFBFA",
+        "#FFFFFF",
+        "#080808",
+        "#6A6A68",
+        "#E6E5E1",
+        "#E85A00"
+      ],
+      "fit": {
+        "best_for": [
+          "premium and luxury brands",
+          "property and hospitality",
+          "editorial and publishing products",
+          "professional services",
+          "brand-led launch pages"
+        ],
+        "avoid_for": [
+          "technical developer products",
+          "dense dashboards",
+          "playful consumer apps",
+          "high-density data interfaces"
+        ],
+        "mood": [
+          "elegant",
+          "assured",
+          "editorial",
+          "warm",
+          "considered"
+        ],
+        "artifact_types_proven": [
+          "landing page"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop"
+        ],
+        "artifacts": [
+          "landing page"
+        ],
+        "artifact_counts": {
+          "landing page": 4
+        },
+        "device_counts": {
+          "desktop": 4
+        }
+      },
+      "source_count": 4,
+      "designers": [
+        "Convertica Studio",
+        "Tanbir Ahmed",
+        "tubik"
+      ],
+      "thumbnail": "styles/didone-signal/previews/property-landing.html",
+      "previews": [
+        "property-landing.html"
+      ],
+      "index": 14
+    },
+    {
+      "id": "field-notes",
+      "name": "Field Notes",
+      "collection": "Set in Type",
+      "pairing": "Landscape photograph × monospace caption",
+      "concept": "Analytics dressed as a magazine: full-bleed landscape, serif headline, monospace figures inline in prose.",
+      "keywords": [
+        "full-bleed-landscape",
+        "serif-headline",
+        "monospace-figures",
+        "magazine-grammar",
+        "tracked-caps",
+        "page-sheet"
+      ],
+      "swatch": [
+        "#FAFAF8",
+        "#FFFFFF",
+        "#1C221E",
+        "#6B7169",
+        "#E4E5E0",
+        "#4E6030"
+      ],
+      "fit": {
+        "best_for": [
+          "sustainability and climate products",
+          "outdoor, travel and agriculture",
+          "research and data journalism",
+          "reports and annual reviews",
+          "brands with real photography to spend"
+        ],
+        "avoid_for": [
+          "high-frequency operational tools",
+          "developer consoles",
+          "products with no photographic assets",
+          "dense transactional interfaces"
+        ],
+        "mood": [
+          "considered",
+          "grounded",
+          "editorial",
+          "natural",
+          "literate"
+        ],
+        "artifact_types_proven": [
+          "landing page",
+          "dashboard",
+          "web app"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop",
+          "tablet"
+        ],
+        "artifacts": [
+          "landing page",
+          "dashboard",
+          "web app"
+        ],
+        "artifact_counts": {
+          "landing page": 3,
+          "dashboard": 2,
+          "web app": 1
+        },
+        "device_counts": {
+          "desktop": 5,
+          "tablet": 1
+        }
+      },
+      "source_count": 6,
+      "designers": [
+        "Awsmd",
+        "Erik Padamans",
+        "Paperpillar",
+        "Phenomenon Studio",
+        "RonDesignLab ⭐️",
+        "Wonklab"
+      ],
+      "thumbnail": "styles/field-notes/previews/report-landing.html",
+      "previews": [
+        "report-landing.html"
+      ],
+      "index": 15
+    },
+    {
+      "id": "poster-block",
+      "name": "Poster Block",
+      "collection": "Set in Type",
+      "pairing": "Silkscreen poster × brand board",
+      "concept": "Edge-to-edge colour bands and display caps — the page behaves like a printed poster, not a screen.",
+      "keywords": [
+        "colour-bands",
+        "display-caps",
+        "paper-flat",
+        "cut-out-portrait",
+        "hard-edge",
+        "brand-ink",
+        "no-shadow"
+      ],
+      "swatch": [
+        "#FBFBEF",
+        "#FFFFFF",
+        "#2E2440",
+        "#6E667E",
+        "#DEDACF",
+        "#F5CE3E"
+      ],
+      "fit": {
+        "best_for": [
+          "brand identity and campaign sites",
+          "creative agencies and studios",
+          "events and conferences",
+          "community and marketplace products",
+          "anything wanting personality over polish"
+        ],
+        "avoid_for": [
+          "enterprise software",
+          "dashboards and data tools",
+          "regulated finance or healthcare",
+          "products needing a neutral canvas for user content"
+        ],
+        "mood": [
+          "bold",
+          "playful",
+          "graphic",
+          "characterful",
+          "confident"
+        ],
+        "artifact_types_proven": [
+          "landing page",
+          "dashboard",
+          "branding board"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop"
+        ],
+        "artifacts": [
+          "landing page",
+          "dashboard",
+          "branding board"
+        ],
+        "artifact_counts": {
+          "landing page": 3,
+          "dashboard": 1,
+          "branding board": 1
+        },
+        "device_counts": {
+          "desktop": 5
+        }
+      },
+      "source_count": 5,
+      "designers": [
+        "Fahema Yesmin",
+        "Julien Renvoye",
+        "RonDesignLab ⭐️",
+        "Ronas IT | UI/UX Team",
+        "Voila"
+      ],
+      "thumbnail": "styles/poster-block/previews/event-landing.html",
+      "previews": [
+        "event-landing.html"
+      ],
+      "index": 16
+    },
+    {
+      "id": "studio-object",
+      "name": "Studio Object",
+      "collection": "Set in Type",
+      "pairing": "Industrial catalogue × single object",
+      "concept": "A rendered object is the page; the interface shrinks to hairline pills docked around it.",
+      "keywords": [
+        "render-as-page",
+        "single-object",
+        "hairline-pill",
+        "isometric",
+        "grey-seamless",
+        "docked-micro-ui"
+      ],
+      "swatch": [
+        "#D6D6D6",
+        "#FFFFFF",
+        "#050505",
+        "#6E6E6E",
+        "#DCDCDC",
+        "#0079DE"
+      ],
+      "fit": {
+        "best_for": [
+          "hardware and physical products",
+          "logistics, warehousing and supply chain",
+          "architecture and construction tech",
+          "manufacturing and industrial software",
+          "product launch and concept pages"
+        ],
+        "avoid_for": [
+          "text-heavy applications",
+          "dense dashboards",
+          "products with no renderable object",
+          "fast-iterating marketing needing cheap assets"
+        ],
+        "mood": [
+          "industrial",
+          "precise",
+          "material",
+          "sober",
+          "engineered"
+        ],
+        "artifact_types_proven": [
+          "landing page",
+          "mobile app",
+          "dashboard"
+        ]
+      },
+      "surfaces": {
+        "devices": [
+          "desktop",
+          "mobile"
+        ],
+        "artifacts": [
+          "landing page",
+          "mobile app",
+          "dashboard"
+        ],
+        "artifact_counts": {
+          "landing page": 2,
+          "mobile app": 1,
+          "dashboard": 1
+        },
+        "device_counts": {
+          "desktop": 3,
+          "mobile": 1
+        }
+      },
+      "source_count": 4,
+      "designers": [
+        "Gleb Kuznetsov ✈",
+        "LAIN",
+        "RonDesignLab ⭐️"
+      ],
+      "thumbnail": "styles/studio-object/previews/logistics-landing.html",
+      "previews": [
+        "logistics-landing.html"
+      ],
+      "index": 17
+    }
+  ]
+}

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Atlas Fleet OS · Sprint 24 Board — Fieldnote</title>
+<style>
+  :root{
+    /* palette — verbatim */
+    --bg:       #F7F8F9;
+    --surface:  #FFFFFF;
+    --well:     #EFF1F3;
+    --ink:      #0B1220;
+    --muted:    #667085;
+    --line:     #E4E7EC;
+    --accent:   #5B2FD6;
+    --positive: #0A7C4A;
+    --negative: #B42318;
+    --scrim:    rgba(11, 18, 32, 0.42);
+
+    /* derived */
+    --accent-wash:   rgb(91 47 214 / .10);
+    --accent-select: rgb(91 47 214 / .06);
+    --focus:         rgb(91 47 214 / .18);
+    --positive-wash: rgb(10 124 74 / .10);
+    --negative-wash: rgb(180 35 24 / .10);
+
+    /* two elevations */
+    --e0: none;
+    --e1: 0 12px 32px -8px rgb(11 18 32 / .18);
+
+    /* geometry */
+    --r-card: 10px;
+    --r-ctl:  8px;
+    --r-cap:  6px;
+    --gap:    12px;
+    --pad:    16px;
+    --col:    300px;
+    --drawer: 520px;
+
+    --font: "Inter", "Söhne", -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink); font-family:var(--font);
+    font-size:13px; line-height:1.4; -webkit-font-smoothing:antialiased;
+  }
+  ul{ list-style:none; margin:0; padding:0; }
+  button{ font-family:var(--font); }
+  svg.icon{ display:block; flex:0 0 auto; }
+
+  :where(button, a, input, textarea, select, [tabindex]):focus-visible{
+    outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--focus);
+  }
+
+  /* type roles */
+  .t-title       { font:600 18px/24px var(--font); letter-spacing:-0.01em; color:var(--ink); }
+  .t-panel-head  { font:600 14px/20px var(--font); color:var(--ink); }
+  .t-card-title  { font:500 14px/20px var(--font); color:var(--ink); margin:8px 0 0; }
+  .t-body        { font:400 13px/18px var(--font); color:var(--ink); margin:4px 0 0; }
+  .t-meta        { font:400 12px/16px var(--font); color:var(--muted); }
+  .t-group       { font:600 11px/14px var(--font); letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); }
+  .mono          { font:500 12px/16px var(--font-mono); color:var(--muted); font-variant-numeric:tabular-nums; }
+
+  /* ---------- shell ---------- */
+  .app{ display:flex; height:100vh; background:var(--bg); overflow:hidden; }
+
+  /* icon rail */
+  .rail{
+    width:56px; flex:0 0 56px; background:var(--surface); border-right:1px solid var(--line);
+    display:flex; flex-direction:column; align-items:center; padding:12px 0; gap:4px;
+  }
+  .rail-mark{
+    width:32px; height:32px; border-radius:var(--r-ctl); background:var(--well);
+    display:grid; place-items:center; color:var(--ink); margin-bottom:10px; flex:0 0 auto;
+  }
+  .rail-nav{ display:flex; flex-direction:column; gap:4px; }
+  .rail-item{
+    width:36px; height:36px; border-radius:var(--r-ctl); display:grid; place-items:center;
+    color:var(--muted); background:transparent; border:none; cursor:pointer; text-decoration:none;
+  }
+  .rail-item:hover{ background:var(--well); color:var(--ink); }
+  .rail-item[aria-current]{ background:var(--accent-wash); color:var(--accent); }
+  .rail-spacer{ flex:1 1 auto; }
+  .rail-avatar{
+    width:32px; height:32px; border-radius:50%; background:var(--well); color:var(--ink);
+    display:grid; place-items:center; font:600 12px/1 var(--font); flex:0 0 auto;
+  }
+
+  /* main column */
+  .main{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; overflow:hidden; }
+
+  /* topbar */
+  .topbar{
+    height:64px; flex:0 0 auto; background:var(--surface); border-bottom:1px solid var(--line);
+    display:flex; align-items:center; gap:20px; padding:0 20px; min-width:0;
+  }
+  .topbar-titles{ display:flex; flex-direction:column; justify-content:center; min-width:0; gap:2px; }
+  .breadcrumb{ font:400 12px/16px var(--font); color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .breadcrumb b{ color:var(--muted); font-weight:400; }
+  .board-title{ font:600 18px/22px var(--font); letter-spacing:-0.01em; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+  .view-tabs{ display:flex; align-items:center; gap:4px; flex:0 0 auto; }
+  .view-tab{
+    height:32px; padding:0 12px; border-radius:var(--r-ctl); border:none; background:transparent;
+    color:var(--muted); font:500 13px/1 var(--font); cursor:pointer; position:relative;
+  }
+  .view-tab:hover{ background:var(--well); color:var(--ink); }
+  .view-tab[aria-selected="true"]{ color:var(--ink); }
+  .view-tab[aria-selected="true"]::after{
+    content:""; position:absolute; left:12px; right:12px; bottom:-13px; height:2px; background:var(--accent); border-radius:2px;
+  }
+
+  .topbar-spacer{ flex:1 1 auto; min-width:8px; }
+
+  .field{
+    height:36px; padding:0 12px; background:var(--surface); border:1px solid var(--line);
+    border-radius:var(--r-ctl); font:400 13px/1 var(--font); color:var(--ink);
+  }
+  .field::placeholder{ color:var(--muted); }
+  .field:focus{ border-color:var(--accent); box-shadow:0 0 0 3px var(--focus); outline:none; }
+  .search-field{ position:relative; flex:0 0 auto; width:220px; }
+  .search-field input{
+    width:100%; background:var(--well); border-color:transparent; padding-left:34px;
+    height:36px; border-radius:var(--r-ctl); font:400 13px/1 var(--font); color:var(--ink); border:1px solid transparent;
+  }
+  .search-field input::placeholder{ color:var(--muted); }
+  .search-field input:focus{ border-color:var(--accent); box-shadow:0 0 0 3px var(--focus); outline:none; background:var(--surface); }
+  .search-field svg{ position:absolute; left:11px; top:50%; transform:translateY(-50%); color:var(--muted); pointer-events:none; }
+
+  .avatar{
+    width:28px; height:28px; border-radius:50%; background:var(--well); color:var(--ink);
+    display:grid; place-items:center; font:600 11px/1 var(--font); flex:0 0 auto;
+  }
+  .avatar-stack{ display:flex; align-items:center; flex:0 0 auto; }
+  .avatar-stack .avatar{ box-shadow:0 0 0 2px var(--surface); margin-left:-8px; color:var(--muted); }
+  .avatar-stack .avatar:first-child{ margin-left:0; }
+  .avatar-stack .avatar.more{ color:var(--muted); font-size:10.5px; }
+
+  .btn{
+    height:36px; padding:0 14px; border-radius:var(--r-ctl); border:1px solid transparent;
+    font:500 13px/1 var(--font); display:inline-flex; align-items:center; gap:6px; cursor:pointer; white-space:nowrap;
+  }
+  .btn-primary{ background:var(--accent); color:#FFFFFF; }
+  .btn-primary:hover{ background:#4E27B8; }
+  .btn-secondary{ background:var(--surface); color:var(--ink); border-color:var(--line); }
+  .btn-secondary:hover{ background:var(--bg); }
+  .btn-ghost{ background:transparent; color:var(--muted); border-color:transparent; }
+  .btn-ghost:hover{ background:var(--well); color:var(--ink); }
+  .btn-icon{ width:32px; height:32px; padding:0; justify-content:center; border-radius:var(--r-ctl); }
+
+  /* board */
+  .board{
+    flex:1 1 auto; display:flex; gap:16px; padding:16px; overflow:auto; align-items:flex-start;
+    scrollbar-gutter:stable;
+  }
+  .column{ flex:0 0 var(--col); width:var(--col); background:var(--well); border-radius:var(--r-card); padding:12px; }
+  .column-head{ display:flex; align-items:center; gap:8px; padding:2px 4px 12px; }
+  .column-head .t-panel-head{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .count-pill{
+    display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; padding:0 6px;
+    border-radius:var(--r-cap); background:var(--surface); color:var(--muted); font:500 11px/1 var(--font);
+    font-variant-numeric:tabular-nums; flex:0 0 auto;
+  }
+  .column-head-spacer{ flex:1 1 auto; }
+  .column-actions{ display:flex; align-items:center; gap:2px; }
+  .column-actions .btn-icon{ width:24px; height:24px; color:var(--muted); }
+  .column-cards{ display:flex; flex-direction:column; gap:12px; }
+
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card);
+    padding:14px; box-shadow:none; cursor:pointer; position:relative;
+  }
+  .card:hover{ box-shadow:inset 2px 0 0 var(--accent); }
+  .card.is-selected{ background:var(--accent-select); box-shadow:inset 2px 0 0 var(--accent); }
+  .card:focus-visible{ box-shadow:inset 2px 0 0 var(--accent), 0 0 0 3px var(--focus); }
+
+  .cap{
+    display:inline-flex; align-items:center; gap:5px; height:22px; padding:0 8px;
+    border-radius:var(--r-cap); font:500 11px/1 var(--font); background:var(--well); color:var(--muted);
+  }
+  .cap::before{ content:""; width:6px; height:6px; border-radius:50%; background:currentColor; flex:0 0 auto; }
+  .cap-done{ background:var(--positive-wash); color:var(--positive); }
+  .cap-block{ background:var(--negative-wash); color:var(--negative); }
+  .cap-live{ background:var(--accent-wash); color:var(--accent); }
+
+  .card-foot{ display:flex; align-items:center; gap:10px; margin-top:12px; }
+  .card-foot .avatar-xs{ width:18px; height:18px; font-size:9px; }
+  .card-foot .spacer{ flex:1 1 auto; }
+  .count-icon{ display:inline-flex; align-items:center; gap:4px; color:var(--muted); font:400 12px/1 var(--font); font-variant-numeric:tabular-nums; }
+  .count-icon svg{ width:14px; height:14px; }
+
+  .progress{ display:flex; align-items:center; gap:8px; margin-top:10px; }
+  .progress-track{ flex:1 1 auto; height:6px; background:var(--well); border-radius:999px; overflow:hidden; }
+  .card .progress-track{ background:var(--surface); border:1px solid var(--line); }
+  .progress-fill{ height:100%; background:var(--accent); border-radius:999px; display:block; }
+  .progress-label{ font:500 12px/1 var(--font); color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap; }
+
+  /* ---------- scrim + drawer ---------- */
+  .scrim{
+    position:fixed; inset:0; background:var(--scrim); opacity:0; pointer-events:none;
+    transition:opacity 140ms ease; z-index:40;
+  }
+  .scrim.is-open{ opacity:1; pointer-events:auto; }
+
+  .drawer{
+    position:fixed; inset:0 0 0 auto; width:min(520px, 88vw); background:var(--surface);
+    border-left:1px solid var(--line); box-shadow:var(--e1); display:flex; flex-direction:column;
+    transform:translateX(100%); transition:transform 180ms cubic-bezier(.32,.72,0,1); z-index:41;
+  }
+  .drawer.is-open{ transform:translateX(0); }
+
+  .drawer-head{
+    height:60px; padding:0 16px 0 20px; display:flex; align-items:center; justify-content:space-between;
+    border-bottom:1px solid var(--line); flex:0 0 auto; gap:12px;
+  }
+  .drawer-head-left{ display:flex; align-items:center; gap:10px; min-width:0; }
+  .drawer-body{ padding:20px; overflow:auto; flex:1 1 auto; }
+  .drawer-foot{ padding:12px 20px; border-top:1px solid var(--line); display:flex; justify-content:flex-end; gap:8px; flex:0 0 auto; }
+
+  .drawer-title{ font:600 18px/24px var(--font); letter-spacing:-0.01em; margin:0 0 20px; color:var(--ink); }
+
+  .meta-grid{ display:grid; grid-template-columns:108px 1fr; row-gap:14px; column-gap:12px; }
+  .meta-grid dt{ font:600 11px/20px var(--font); letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); margin:0; }
+  .meta-grid dd{ margin:0; font:400 13px/20px var(--font); color:var(--ink); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .meta-grid .person{ display:inline-flex; align-items:center; gap:8px; }
+
+  .section-label{ font:600 11px/14px var(--font); letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); margin:0 0 12px; }
+  .drawer-section{ margin-top:28px; }
+  .description{ max-width:62ch; font:400 13px/20px var(--font); color:var(--ink); margin:0; }
+
+  .checklist-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px; }
+  .checklist-progress{ display:flex; align-items:center; gap:8px; margin-bottom:14px; }
+  .checklist-progress .progress-track{ background:var(--well); }
+  .checklist{ display:flex; flex-direction:column; gap:10px; }
+  .check-item{ display:flex; align-items:center; gap:10px; }
+  .check-box{
+    width:16px; height:16px; border-radius:4px; border:1px solid var(--line); flex:0 0 auto;
+    display:grid; place-items:center; color:var(--surface);
+  }
+  .check-item.done .check-box{ background:var(--positive); border-color:var(--positive); }
+  .check-item.done span.check-text{ color:var(--muted); text-decoration:line-through; text-decoration-color:var(--line); }
+  .check-text{ font:400 13px/18px var(--font); color:var(--ink); }
+
+  .activity{ display:flex; flex-direction:column; gap:14px; }
+  .activity-item{ display:flex; gap:10px; }
+  .activity-body{ font:400 13px/18px var(--font); color:var(--ink); }
+  .activity-body b{ font-weight:600; }
+  .activity-time{ display:block; font:400 12px/16px var(--font); color:var(--muted); margin-top:2px; }
+
+  .composer{ background:var(--well); border:1px solid transparent; border-radius:var(--r-ctl); padding:12px; }
+  .composer textarea{
+    width:100%; min-height:64px; border:none; background:transparent; resize:vertical; font:400 13px/18px var(--font);
+    color:var(--ink); padding:0; margin:0;
+  }
+  .composer textarea::placeholder{ color:var(--muted); }
+  .composer textarea:focus{ outline:none; }
+  .composer-toolbar{ display:flex; align-items:center; justify-content:space-between; margin-top:10px; }
+  .toolbar-icons{ display:flex; align-items:center; gap:2px; }
+  .toolbar-icons .btn-icon{ width:28px; height:28px; color:var(--muted); }
+
+  dl{ margin:0; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px){
+    .search-field{ display:none; }
+  }
+  @media (max-width: 760px){
+    .avatar-stack{ display:none; }
+  }
+  @media (max-width: 600px){
+    .view-tabs{ display:none; }
+    .breadcrumb{ display:none; }
+    .topbar{ gap:12px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <nav class="rail" aria-label="Primary">
+    <div class="rail-mark" aria-hidden="true">
+      <svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2.5" y="2.5" width="8" height="7.5" rx="1.4"/>
+        <rect x="5.5" y="6" width="8" height="7.5" rx="1.4" fill="var(--well)"/>
+      </svg>
+    </div>
+    <div class="rail-nav">
+      <a class="rail-item" href="#" title="Home" aria-label="Home">
+        <svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 7.2 8 2.5l6 4.7"/>
+          <path d="M3.3 6.3V13a.6.6 0 0 0 .6.6h8.2a.6.6 0 0 0 .6-.6V6.3"/>
+          <path d="M6.4 13.6V9.8h3.2v3.8"/>
+        </svg>
+      </a>
+      <a class="rail-item" href="#" aria-current="page" title="Projects" aria-label="Projects">
+        <svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2.5" width="3.2" height="11" rx="1"/>
+          <rect x="6.4" y="2.5" width="3.2" height="7" rx="1"/>
+          <rect x="10.8" y="2.5" width="3.2" height="9" rx="1"/>
+        </svg>
+      </a>
+      <a class="rail-item" href="#" title="Inbox" aria-label="Inbox">
+        <svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3.5" width="12" height="9" rx="1.5"/>
+          <path d="M2.4 4 8 9l5.6-5"/>
+        </svg>
+      </a>
+      <a class="rail-item" href="#" title="Reports" aria-label="Reports">
+        <svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="2.5" y1="13.5" x2="13.5" y2="13.5"/>
+          <rect x="3.4" y="9" width="2.2" height="4.3" rx="0.6"/>
+          <rect x="6.9" y="6.5" width="2.2" height="6.8" rx="0.6"/>
+          <rect x="10.4" y="3.5" width="2.2" height="9.8" rx="0.6"/>
+        </svg>
+      </a>
+      <a class="rail-item" href="#" title="Settings" aria-label="Settings">
+        <svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="2.5" y1="5.5" x2="13.5" y2="5.5"/>
+          <circle cx="6" cy="5.5" r="1.5"/>
+          <line x1="2.5" y1="10.5" x2="13.5" y2="10.5"/>
+          <circle cx="10" cy="10.5" r="1.5"/>
+        </svg>
+      </a>
+    </div>
+    <div class="rail-spacer"></div>
+    <div class="rail-avatar" title="Jordan Blake">JB</div>
+  </nav>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-titles">
+        <span class="breadcrumb">Halcyon Robotics <b>›</b> Atlas Fleet OS</span>
+        <h1 class="board-title">Sprint 24 board</h1>
+      </div>
+
+      <div class="view-tabs" role="tablist" aria-label="Board views">
+        <button class="view-tab" role="tab" aria-selected="true">Board</button>
+        <button class="view-tab" role="tab" aria-selected="false">List</button>
+        <button class="view-tab" role="tab" aria-selected="false">Timeline</button>
+      </div>
+
+      <div class="topbar-spacer"></div>
+
+      <div class="search-field">
+        <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="7" cy="7" r="4.2"/>
+          <line x1="10.1" y1="10.1" x2="13.5" y2="13.5"/>
+        </svg>
+        <input type="text" placeholder="Search tasks…" aria-label="Search tasks">
+      </div>
+
+      <div class="avatar-stack" aria-label="Board members">
+        <span class="avatar" title="Jordan Blake">JB</span>
+        <span class="avatar" title="Sofia Ramirez">SR</span>
+        <span class="avatar" title="Marcus Chen">MC</span>
+        <span class="avatar more" title="3 more members">+3</span>
+      </div>
+
+      <button class="btn btn-primary">
+        <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="8" y1="3" x2="8" y2="13"/>
+          <line x1="3" y1="8" x2="13" y2="8"/>
+        </svg>
+        New task
+      </button>
+    </header>
+
+    <div class="board" id="board">
+
+      <!-- BACKLOG -->
+      <section class="column" aria-label="Backlog">
+        <div class="column-head">
+          <h2 class="t-panel-head">Backlog</h2>
+          <span class="count-pill">3</span>
+          <div class="column-head-spacer"></div>
+          <div class="column-actions">
+            <button class="btn-icon btn-ghost" title="Add card" aria-label="Add card">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg>
+            </button>
+            <button class="btn-icon btn-ghost" title="More" aria-label="More column actions">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><line x1="3.6" y1="8" x2="3.62" y2="8"/><line x1="8" y1="8" x2="8.02" y2="8"/><line x1="12.4" y1="8" x2="12.42" y2="8"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="column-cards">
+
+          <article class="card" tabindex="0" role="button"
+            data-id="ATL-4188" data-cap-text="Backlog" data-cap-class=""
+            data-title="Add geofence alerts to fleet map">
+            <span class="cap">Backlog</span>
+            <h3 class="t-card-title">Add geofence alerts to fleet map</h3>
+            <p class="t-body">Trigger a push alert the moment a unit exits its assigned zone.</p>
+            <div class="card-foot">
+              <span class="mono">ATL-4188</span>
+              <span class="avatar avatar-xs" title="Priya Nair">PN</span>
+              <span class="t-meta">14 Aug</span>
+              <span class="spacer"></span>
+              <span class="count-icon">
+                <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 4h10.8a1 1 0 0 1 1 1v5.4a1 1 0 0 1-1 1H7.4l-2.8 2.4v-2.4H2.6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/></svg>2
+              </span>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0" role="button"
+            data-id="ATL-4201" data-cap-text="Backlog" data-cap-class=""
+            data-title="Support multi-depot battery scheduling">
+            <span class="cap">Backlog</span>
+            <h3 class="t-card-title">Support multi-depot battery scheduling</h3>
+            <p class="t-body">Let dispatch balance charge cycles across depots overnight.</p>
+            <div class="card-foot">
+              <span class="mono">ATL-4201</span>
+              <span class="avatar avatar-xs" title="Marcus Chen">MC</span>
+              <span class="t-meta">18 Aug</span>
+              <span class="spacer"></span>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0" role="button"
+            data-id="ATL-4212" data-cap-text="Needs spec" data-cap-class=""
+            data-title="Draft OTA rollback runbook">
+            <span class="cap">Needs spec</span>
+            <h3 class="t-card-title">Draft OTA rollback runbook</h3>
+            <p class="t-body">Cover partial rollout failures for firmware v6.2.</p>
+            <div class="card-foot">
+              <span class="mono">ATL-4212</span>
+              <span class="avatar avatar-xs" title="Theo Bergström">TB</span>
+              <span class="t-meta">22 Aug</span>
+              <span class="spacer"></span>
+              <span class="count-icon">
+                <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 4.2 5.5 9.3a2.1 2.1 0 0 0 3 3l4.8-4.8a3.4 3.4 0 1 0-4.8-4.8L3.6 7.6a4.7 4.7 0 1 0 6.7 6.7"/></svg>1
+              </span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- IN PROGRESS -->
+      <section class="column" aria-label="In progress">
+        <div class="column-head">
+          <h2 class="t-panel-head">In progress</h2>
+          <span class="count-pill">3</span>
+          <div class="column-head-spacer"></div>
+          <div class="column-actions">
+            <button class="btn-icon btn-ghost" title="Add card" aria-label="Add card">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg>
+            </button>
+            <button class="btn-icon btn-ghost" title="More" aria-label="More column actions">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><line x1="3.6" y1="8" x2="3.62" y2="8"/><line x1="8" y1="8" x2="8.02" y2="8"/><line x1="12.4" y1="8" x2="12.42" y2="8"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="column-cards">
+
+          <article class="card is-selected" tabindex="0" role="button" aria-selected="true"
+            data-id="ATL-4159" data-cap-text="In progress" data-cap-class="cap-live"
+            data-title="Migrate telemetry ingest to gRPC streaming">
+            <span class="cap cap-live">In progress</span>
+            <h3 class="t-card-title">Migrate telemetry ingest to gRPC streaming</h3>
+            <p class="t-body">Replace polling with a persistent stream per depot gateway.</p>
+            <div class="progress">
+              <span class="progress-track"><span class="progress-fill" style="width:75%"></span></span>
+              <span class="progress-label">3 of 4</span>
+            </div>
+            <div class="card-foot">
+              <span class="mono">ATL-4159</span>
+              <span class="avatar avatar-xs" title="Jordan Blake">JB</span>
+              <span class="t-meta">1 Aug</span>
+              <span class="spacer"></span>
+              <span class="count-icon">
+                <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 4h10.8a1 1 0 0 1 1 1v5.4a1 1 0 0 1-1 1H7.4l-2.8 2.4v-2.4H2.6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/></svg>4
+              </span>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0" role="button"
+            data-id="ATL-4167" data-cap-text="In progress" data-cap-class="cap-live"
+            data-title="Redesign fleet health scorecard">
+            <span class="cap cap-live">In progress</span>
+            <h3 class="t-card-title">Redesign fleet health scorecard</h3>
+            <p class="t-body">Surface battery, uptime and calibration drift in one view.</p>
+            <div class="card-foot">
+              <span class="mono">ATL-4167</span>
+              <span class="avatar avatar-xs" title="Sofia Ramirez">SR</span>
+              <span class="t-meta">5 Aug</span>
+              <span class="spacer"></span>
+              <span class="count-icon">
+                <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 4h10.8a1 1 0 0 1 1 1v5.4a1 1 0 0 1-1 1H7.4l-2.8 2.4v-2.4H2.6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/></svg>6
+              </span>
+              <span class="count-icon">
+                <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 4.2 5.5 9.3a2.1 2.1 0 0 0 3 3l4.8-4.8a3.4 3.4 0 1 0-4.8-4.8L3.6 7.6a4.7 4.7 0 1 0 6.7 6.7"/></svg>2
+              </span>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0" role="button"
+            data-id="ATL-4171" data-cap-text="At risk" data-cap-class="cap-block"
+            data-title="Add offline queue for dispatch actions">
+            <span class="cap cap-block">At risk</span>
+            <h3 class="t-card-title">Add offline queue for dispatch actions</h3>
+            <p class="t-body">Queue commands locally when a depot loses uplink.</p>
+            <div class="card-foot">
+              <span class="mono">ATL-4171</span>
+              <span class="avatar avatar-xs" title="Elliot Wu">EW</span>
+              <span class="t-meta">3 Aug</span>
+              <span class="spacer"></span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- IN REVIEW -->
+      <section class="column" aria-label="In review">
+        <div class="column-head">
+          <h2 class="t-panel-head">In review</h2>
+          <span class="count-pill">2</span>
+          <div class="column-head-spacer"></div>
+          <div class="column-actions">
+            <button class="btn-icon btn-ghost" title="Add card" aria-label="Add card">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg>
+            </button>
+            <button class="btn-icon btn-ghost" title="More" aria-label="More column actions">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><line x1="3.6" y1="8" x2="3.62" y2="8"/><line x1="8" y1="8" x2="8.02" y2="8"/><line x1="12.4" y1="8" x2="12.42" y2="8"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="column-cards">
+
+          <article class="card" tabindex="0" role="button"
+            data-id="ATL-4142" data-cap-text="In review" data-cap-class=""
+            data-title="Fix drift in dock alignment calibration">
+            <span class="cap">In review</span>
+            <h3 class="t-card-title">Fix drift in dock alignment calibration</h3>
+            <p class="t-body">Calibration drifts three degrees after forty charge cycles.</p>
+            <div class="card-foot">
+              <span class="mono">ATL-4142</span>
+              <span class="avatar avatar-xs" title="Marcus Chen">MC</span>
+              <span class="t-meta">29 Jul</span>
+              <span class="spacer"></span>
+              <span class="count-icon">
+                <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 4h10.8a1 1 0 0 1 1 1v5.4a1 1 0 0 1-1 1H7.4l-2.8 2.4v-2.4H2.6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/></svg>6
+              </span>
+              <span class="count-icon">
+                <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 4.2 5.5 9.3a2.1 2.1 0 0 0 3 3l4.8-4.8a3.4 3.4 0 1 0-4.8-4.8L3.6 7.6a4.7 4.7 0 1 0 6.7 6.7"/></svg>3
+              </span>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0" role="button"
+            data-id="ATL-4150" data-cap-text="In review" data-cap-class=""
+            data-title="Ship v2 route optimizer for pickers">
+            <span class="cap">In review</span>
+            <h3 class="t-card-title">Ship v2 route optimizer for pickers</h3>
+            <p class="t-body">Cuts average pick-run time by roughly eighteen percent.</p>
+            <div class="card-foot">
+              <span class="mono">ATL-4150</span>
+              <span class="avatar avatar-xs" title="Nadia Osei">NO</span>
+              <span class="t-meta">30 Jul</span>
+              <span class="spacer"></span>
+              <span class="count-icon">
+                <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 4h10.8a1 1 0 0 1 1 1v5.4a1 1 0 0 1-1 1H7.4l-2.8 2.4v-2.4H2.6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/></svg>3
+              </span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- BLOCKED -->
+      <section class="column" aria-label="Blocked">
+        <div class="column-head">
+          <h2 class="t-panel-head">Blocked</h2>
+          <span class="count-pill">2</span>
+          <div class="column-head-spacer"></div>
+          <div class="column-actions">
+            <button class="btn-icon btn-ghost" title="Add card" aria-label="Add card">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg>
+            </button>
+            <button class="btn-icon btn-ghost" title="More" aria-label="More column actions">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><line x1="3.6" y1="8" x2="3.62" y2="8"/><line x1="8" y1="8" x2="8.02" y2="8"/><line x1="12.4" y1="8" x2="12.42" y2="8"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="column-cards">
+
+          <article class="card" tabindex="0" role="button"
+            data-id="ATL-4098" data-cap-text="Blocked" data-cap-class="cap-block"
+            data-title="Unblock CAN bus firmware signing key">
+            <span class="cap cap-block">Blocked</span>
+            <h3 class="t-card-title">Unblock CAN bus firmware signing key</h3>
+            <p class="t-body">Waiting on hardware security module access from IT.</p>
+            <div class="card-foot">
+              <span class="mono">ATL-4098</span>
+              <span class="avatar avatar-xs" title="Jordan Blake">JB</span>
+              <span class="t-meta" style="color:var(--negative)">19 Jul · overdue</span>
+              <span class="spacer"></span>
+              <span class="count-icon">
+                <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 4h10.8a1 1 0 0 1 1 1v5.4a1 1 0 0 1-1 1H7.4l-2.8 2.4v-2.4H2.6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/></svg>9
+              </span>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0" role="button"
+            data-id="ATL-4205" data-cap-text="Blocked" data-cap-class="cap-block"
+            data-title="Vendor API for cold-chain sensors">
+            <span class="cap cap-block">Blocked</span>
+            <h3 class="t-card-title">Vendor API for cold-chain sensors</h3>
+            <p class="t-body">Spec is waiting on an NDA signature from the sensor vendor.</p>
+            <div class="card-foot">
+              <span class="mono">ATL-4205</span>
+              <span class="avatar avatar-xs" title="Sofia Ramirez">SR</span>
+              <span class="t-meta">12 Aug</span>
+              <span class="spacer"></span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- DONE -->
+      <section class="column" aria-label="Done">
+        <div class="column-head">
+          <h2 class="t-panel-head">Done</h2>
+          <span class="count-pill">3</span>
+          <div class="column-head-spacer"></div>
+          <div class="column-actions">
+            <button class="btn-icon btn-ghost" title="Add card" aria-label="Add card">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg>
+            </button>
+            <button class="btn-icon btn-ghost" title="More" aria-label="More column actions">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><line x1="3.6" y1="8" x2="3.62" y2="8"/><line x1="8" y1="8" x2="8.02" y2="8"/><line x1="12.4" y1="8" x2="12.42" y2="8"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="column-cards">
+
+          <article class="card" tabindex="0" role="button"
+            data-id="ATL-4061" data-cap-text="Done" data-cap-class="cap-done"
+            data-title="Ship robot battery swap scheduler">
+            <span class="cap cap-done">Done</span>
+            <h3 class="t-card-title">Ship robot battery swap scheduler</h3>
+            <p class="t-body">Auto-queues swaps once a unit's charge drops below 20%.</p>
+            <div class="card-foot">
+              <span class="mono">ATL-4061</span>
+              <span class="avatar avatar-xs" title="Elliot Wu">EW</span>
+              <span class="t-meta">22 Jul</span>
+              <span class="spacer"></span>
+              <span class="count-icon">
+                <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.6 4h10.8a1 1 0 0 1 1 1v5.4a1 1 0 0 1-1 1H7.4l-2.8 2.4v-2.4H2.6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/></svg>5
+              </span>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0" role="button"
+            data-id="ATL-4033" data-cap-text="Done" data-cap-class="cap-done"
+            data-title="Close out Q2 fleet uptime audit">
+            <span class="cap cap-done">Done</span>
+            <h3 class="t-card-title">Close out Q2 fleet uptime audit</h3>
+            <p class="t-body">Uptime held at 99.2% across all active depots.</p>
+            <div class="card-foot">
+              <span class="mono">ATL-4033</span>
+              <span class="avatar avatar-xs" title="Theo Bergström">TB</span>
+              <span class="t-meta">15 Jul</span>
+              <span class="spacer"></span>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0" role="button"
+            data-id="ATL-4010" data-cap-text="Done" data-cap-class="cap-done"
+            data-title="Deprecate legacy telemetry v1 endpoint">
+            <span class="cap cap-done">Done</span>
+            <h3 class="t-card-title">Deprecate legacy telemetry v1 endpoint</h3>
+            <p class="t-body">All depots confirmed migrated off the old ingest path.</p>
+            <div class="card-foot">
+              <span class="mono">ATL-4010</span>
+              <span class="avatar avatar-xs" title="Priya Nair">PN</span>
+              <span class="t-meta">8 Jul</span>
+              <span class="spacer"></span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<div class="scrim is-open" id="scrim"></div>
+
+<aside class="drawer is-open" id="drawer" role="dialog" aria-modal="true" aria-label="Task detail">
+  <header class="drawer-head">
+    <div class="drawer-head-left">
+      <span class="mono" id="drawerId">ATL-4159</span>
+      <span class="cap cap-live" id="drawerCap">In progress</span>
+    </div>
+    <button class="btn-icon btn-ghost" id="drawerClose" aria-label="Close task detail">
+      <svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+    </button>
+  </header>
+
+  <div class="drawer-body">
+    <h2 class="drawer-title" id="drawerTitle">Migrate telemetry ingest to gRPC streaming</h2>
+
+    <dl class="meta-grid">
+      <dt>Status</dt><dd>In progress</dd>
+      <dt>Assignee</dt><dd class="person"><span class="avatar avatar-xs" style="width:20px;height:20px;font-size:9.5px;">JB</span>Jordan Blake</dd>
+      <dt>Reporter</dt><dd class="person"><span class="avatar avatar-xs" style="width:20px;height:20px;font-size:9.5px;">PN</span>Priya Nair</dd>
+      <dt>Priority</dt><dd><span class="cap cap-block">High priority</span></dd>
+      <dt>Due</dt><dd>1 Aug 2026</dd>
+      <dt>Estimate</dt><dd>8 pts</dd>
+      <dt>Labels</dt><dd><span class="cap">Telemetry</span><span class="cap">Infra</span></dd>
+    </dl>
+
+    <div class="drawer-section">
+      <p class="section-label">Description</p>
+      <p class="description">Depot gateways currently poll the telemetry API every ten seconds, which adds lag and wastes bandwidth on idle units. This moves ingestion to a persistent gRPC stream per gateway so state changes arrive within a second, and idle depots stop generating empty polling traffic.</p>
+    </div>
+
+    <div class="drawer-section">
+      <div class="checklist-head">
+        <p class="section-label" style="margin:0;">Checklist</p>
+      </div>
+      <div class="checklist-progress">
+        <span class="progress-track"><span class="progress-fill" style="width:75%"></span></span>
+        <span class="progress-label">3 of 4 done</span>
+      </div>
+      <ul class="checklist">
+        <li class="check-item done">
+          <span class="check-box">
+            <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+          </span>
+          <span class="check-text">Stand up gRPC gateway service</span>
+        </li>
+        <li class="check-item done">
+          <span class="check-box">
+            <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+          </span>
+          <span class="check-text">Migrate depot-12 pilot to streaming</span>
+        </li>
+        <li class="check-item done">
+          <span class="check-box">
+            <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+          </span>
+          <span class="check-text">Add backpressure handling for slow consumers</span>
+        </li>
+        <li class="check-item">
+          <span class="check-box"></span>
+          <span class="check-text">Cut remaining depots over from polling</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="drawer-section">
+      <p class="section-label">Activity</p>
+      <div class="activity">
+        <div class="activity-item">
+          <span class="avatar avatar-xs" style="width:24px;height:24px;font-size:10px;">SR</span>
+          <div>
+            <p class="activity-body"><b>Sofia Ramirez</b> left a comment on this task</p>
+            <span class="activity-time">2h ago</span>
+          </div>
+        </div>
+        <div class="activity-item">
+          <span class="avatar avatar-xs" style="width:24px;height:24px;font-size:10px;">JB</span>
+          <div>
+            <p class="activity-body"><b>Jordan Blake</b> checked off "Add backpressure handling for slow consumers"</p>
+            <span class="activity-time">25 Jul, 16:40</span>
+          </div>
+        </div>
+        <div class="activity-item">
+          <span class="avatar avatar-xs" style="width:24px;height:24px;font-size:10px;">PN</span>
+          <div>
+            <p class="activity-body"><b>Priya Nair</b> moved this from Backlog to In progress</p>
+            <span class="activity-time">21 Jul, 09:15</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <p class="section-label">Comment</p>
+      <div class="composer">
+        <textarea placeholder="Add a comment…" rows="3"></textarea>
+        <div class="composer-toolbar">
+          <div class="toolbar-icons">
+            <button class="btn-icon btn-ghost" aria-label="Bold">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h3.6a2.4 2.4 0 0 1 0 4.8H5zM5 8.3h4a2.4 2.4 0 0 1 0 4.8H5z"/></svg>
+            </button>
+            <button class="btn-icon btn-ghost" aria-label="Italic">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="9.4" y1="3.5" x2="6.6" y2="12.5"/><line x1="6.2" y1="3.5" x2="10" y2="3.5"/><line x1="5" y1="12.5" x2="8.8" y2="12.5"/></svg>
+            </button>
+            <button class="btn-icon btn-ghost" aria-label="Attach file">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 4.2 5.5 9.3a2.1 2.1 0 0 0 3 3l4.8-4.8a3.4 3.4 0 1 0-4.8-4.8L3.6 7.6a4.7 4.7 0 1 0 6.7 6.7"/></svg>
+            </button>
+            <button class="btn-icon btn-ghost" aria-label="Mention someone">
+              <svg class="icon" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8.3" r="2.6"/><path d="M10.6 8.3v1a1.8 1.8 0 0 0 3.6 0V8a6.2 6.2 0 1 0-2.6 5.1"/></svg>
+            </button>
+          </div>
+          <button class="btn btn-secondary" style="height:28px; padding:0 10px;">Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="drawer-foot">
+    <button class="btn btn-secondary" id="drawerCancel">Cancel</button>
+    <button class="btn btn-primary">Save changes</button>
+  </footer>
+</aside>
+
+<script>
+(function(){
+  var scrim = document.getElementById('scrim');
+  var drawer = document.getElementById('drawer');
+  var elId = document.getElementById('drawerId');
+  var elCap = document.getElementById('drawerCap');
+  var elTitle = document.getElementById('drawerTitle');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+
+  function selectCard(card){
+    cards.forEach(function(c){
+      c.classList.remove('is-selected');
+      c.removeAttribute('aria-selected');
+    });
+    if (card){
+      card.classList.add('is-selected');
+      card.setAttribute('aria-selected', 'true');
+      elId.textContent = card.getAttribute('data-id');
+      elTitle.textContent = card.getAttribute('data-title');
+      elCap.textContent = card.getAttribute('data-cap-text');
+      var capClass = card.getAttribute('data-cap-class') || '';
+      elCap.className = 'cap ' + capClass;
+    }
+  }
+
+  function openDrawer(card){
+    selectCard(card);
+    scrim.classList.add('is-open');
+    drawer.classList.add('is-open');
+    drawer.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeDrawer(){
+    scrim.classList.remove('is-open');
+    drawer.classList.remove('is-open');
+    drawer.setAttribute('aria-hidden', 'true');
+  }
+
+  cards.forEach(function(card){
+    card.addEventListener('click', function(){ openDrawer(card); });
+    card.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openDrawer(card);
+      }
+    });
+  });
+
+  scrim.addEventListener('click', closeDrawer);
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  document.getElementById('drawerCancel').addEventListener('click', closeDrawer);
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) closeDrawer();
+  });
+})();
+</script>
+</body>
+</html>

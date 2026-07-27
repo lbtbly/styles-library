@@ -1,0 +1,326 @@
+[
+  {
+    "index": 105,
+    "shot_id": "25526476",
+    "title": "Team Communication Management SaaS Dashboard",
+    "designer": "Conceptzilla",
+    "artifact_type": "team chat / collaboration dashboard",
+    "bg_mode": "light",
+    "palette": {"bg": "#F0F0F0", "surface": "#F8F8F8", "ink": "#181818", "accent": "#000000", "secondary": null},
+    "palette_note": "Zero-chroma greyscale — canvas, panels and dividers all sit within an eight-percent luminance band; the only true colour is a pure-black Send pill plus role chips tinted to roughly 3% saturation (mint, blush, ice-blue) and a mint activity heatmap.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "low",
+      "case_usage": "sentence",
+      "note": "One Inter-class UI sans across the whole frame, no display cut; hierarchy is carried by semibold-vs-regular at nearly identical sizes, with sidebar section labels dropped to a grey 11px rather than scaled up. Message body runs at ~1.55 line-height for a document-like reading column."
+    },
+    "texture": ["flat", "soft-shadow"],
+    "imagery": "iconography only",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Four-zone chat shell — icon rail, channel tree, thread column, metadata panel — separated by 1px rules rather than gaps. The shot itself stacks three identical macOS window frames vertically and crops them off the top and bottom edges, so the composition reads as a continuous scroll of the same product rather than a hero."
+    },
+    "mood": ["hushed", "utilitarian", "greyscale", "orderly", "unbranded"],
+    "style_signature": "Drain a collaboration UI of all hue — #F0F0F0 canvas on #F8F8F8 panels, hairline rules instead of gutters, no brand colour anywhere — then let a single pure-black pill button and whisper-tint role chips carry every bit of emphasis, presented as stacked macOS window frames bleeding off the canvas edge.",
+    "provisional_cluster": "mono-grey-spot-accent"
+  },
+  {
+    "index": 106,
+    "shot_id": "25961490",
+    "title": "LoopAI – CRM Dashboard for B2B SaaS",
+    "designer": "Phenomenon Studio",
+    "artifact_type": "CRM dashboard",
+    "bg_mode": "light",
+    "palette": {"bg": "#E0E0F0", "surface": "#F8F8F8", "ink": "#0A0A18", "accent": "#8078D8", "secondary": "#B8E8E0"},
+    "palette_note": "Low-saturation cool palette: a lavender-periwinkle field behind a white card, with a single desaturated violet doing every interactive job and a seafoam mint reserved exclusively for the actual data marks — the chart is the only place a second hue is allowed.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Wide-aperture geometric with near-circular bowls; KPI numerals set two to three steps above their labels and tracked slightly tight, while every label, tab and chip stays at one small size in medium weight. No caps, no letterspacing — softness comes entirely from the letterforms."
+    },
+    "texture": ["gradient-fill", "soft-shadow", "blur", "glow"],
+    "imagery": "iconography only",
+    "layout": {
+      "density": "moderate",
+      "radius": "pill",
+      "borders": "none",
+      "note": "Everything is a pill or a heavily-rounded rectangle — nav tabs, filter chips, status badges, even the AI panel — and separation is done with white fill plus a diffuse shadow rather than any stroke. The whole app floats as one rounded slab on a blurred lavender field, with faint diagonal light streaks bleeding past its corners."
+    },
+    "mood": ["airy", "pastel-tech", "friendly", "AI-forward", "weightless"],
+    "style_signature": "Float a white rounded-slab dashboard on a blurred lavender gradient field, make every control a pill with no borders at all, and restrict colour to one muted violet for interaction plus a seafoam mint used only inside the dot-matrix chart.",
+    "provisional_cluster": "pastel-glass-gradient-fintech"
+  },
+  {
+    "index": 107,
+    "shot_id": "26947568",
+    "title": "Salse - SaaS Business Landing Page",
+    "designer": "Odama",
+    "artifact_type": "landing page",
+    "bg_mode": "light",
+    "palette": {"bg": "#F0F0F0", "surface": "#F8F8F8", "ink": "#181818", "accent": "#F07020", "secondary": null},
+    "palette_note": "Warm-neutral greyscale carrying almost the whole page; a single saturated tangerine appears at postage-stamp scale — logo mark, one app icon, one progress bar — while all CTAs stay pure black, so the orange functions as identity rather than emphasis.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Tightly-tracked grotesque headline at very large scale, split two-tone mid-sentence — the first clause near-black, the trailing clause dropped to mid-grey — so the type itself performs the emphasis a colour accent would normally provide. Body copy is small, grey and set to a narrow measure."
+    },
+    "texture": ["flat", "soft-shadow", "blur"],
+    "imagery": "cut-out photography + product screenshots",
+    "layout": {
+      "density": "sparse",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Full-width page card inset on a grey mat, sections stacked with enormous vertical air and centred headings introduced by a tiny grey capsule label ('Features'). Hero is asymmetric — left-set text against a hand-held phone whose wrist dissolves into a blur — while lower sections snap back to a strict two-column card grid."
+    },
+    "mood": ["restrained", "premium-neutral", "spacious", "photographic", "quietly-warm"],
+    "style_signature": "Build an entirely grey-and-white marketing page with tiny grey capsule section labels and two-tone headlines that fade from black to grey mid-sentence, keep every button pure black, and let one tangerine appear only at logo scale — with a cut-out hand holding the product, blurring away at the wrist.",
+    "provisional_cluster": "mono-grey-spot-accent"
+  },
+  {
+    "index": 108,
+    "shot_id": "27014638",
+    "title": "Modern SaaS Landing Page — Accounting & Analytics UI",
+    "designer": "Convertica Studio",
+    "artifact_type": "landing page",
+    "bg_mode": "mixed",
+    "palette": {"bg": "#F8F8F8", "surface": "#D8F0F8", "ink": "#101010", "accent": "#F8B070", "secondary": "#98B8E0"},
+    "palette_note": "The UI itself is pure black-on-white; all chroma is imported by the artwork — peach sandstone and sage foliage rising out of a white haze — and the shot is framed by a near-black slate-to-cobalt grainy gradient that never touches the page.",
+    "type": {
+      "family_character": "serif",
+      "weight_contrast": "high",
+      "case_usage": "sentence",
+      "note": "A high-contrast display serif with sharp bracketed serifs and a teardrop 'f' carries the headline at enormous size, set against a plain grotesque for body and nav — the single serif/sans pairing is the entire typographic idea. Body copy is centred, grey and generously leaded."
+    },
+    "texture": ["noise-grain", "gradient-mesh", "blur", "soft-shadow", "flat"],
+    "imagery": "illustration",
+    "layout": {
+      "density": "sparse",
+      "radius": "pill",
+      "borders": "hairline",
+      "note": "Rigidly centred single-column hero — badge, headline, paragraph, button pair, logo wall — occupying only the upper half, with the painterly canyon illustration filling the lower half and its two cliff walls acting as a natural frame that funnels the eye to the centre. Buttons are full pills, one solid black and one hairline-outlined."
+    },
+    "mood": ["editorial", "cinematic", "painterly", "hushed-luxury", "expansive"],
+    "style_signature": "Pair a high-contrast display serif headline with a plain grotesque on a stark white centred column, then let a painterly landscape illustration bleed up from the bottom and dissolve into white haze behind the type — the whole page mounted on a heavily grain-textured near-black gradient mat.",
+    "provisional_cluster": "editorial-serif-illustrated"
+  },
+  {
+    "index": 109,
+    "shot_id": "25679017",
+    "title": "Landing Page (Saas Digital Marketing)",
+    "designer": "Yoga V Wijaya",
+    "artifact_type": "marketing site (landing page + embedded dashboard)",
+    "bg_mode": "dark",
+    "palette": {"bg": "#080810", "surface": "#181828", "ink": "#F8F8F8", "accent": "#4098F8", "secondary": "#004850"},
+    "palette_note": "Near-black blue-black base with almost no mid-tones; colour arrives only as light — a deep teal glow bleeding across the hero's top edge, an azure-to-cobalt gradient on the primary CTA, and cobalt/violet fills inside the charts.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Wide geometric headline in medium weight, again split two-tone — white first line, grey second line — with body copy centred at small size in a low-contrast grey. Numeric KPIs are set large and tight; nav and chip text stay tiny and uniform."
+    },
+    "texture": ["glow", "gradient-fill", "blur", "outline-stroke", "flat"],
+    "imagery": "product screenshots",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Two stacked page-width sections shown side by side; the hero panel has a rounded top with the teal glow feathered across its upper edge, and the embedded dashboard mockup is inset with visible hairline strokes on near-black cards. Pricing uses three equal cards where only the middle one gets a blue radial wash to mark it as recommended."
+    },
+    "mood": ["nocturnal", "luminous", "atmospheric", "data-heavy", "cool-tech"],
+    "style_signature": "Set a marketing page on near-black blue-black, define every card with a 1px cool-grey stroke rather than fill, and inject colour purely as feathered radial glows — teal across the hero top edge, cobalt behind the featured pricing tier — with the only solid chroma being an azure-to-blue gradient CTA pill.",
+    "provisional_cluster": "dark-glow-gradient-saas"
+  },
+  {
+    "index": 110,
+    "shot_id": "26049052",
+    "title": "Katalyst - Investor Dashboard Saas web app",
+    "designer": "Virgil Pana",
+    "artifact_type": "data table / investor analytics dashboard",
+    "bg_mode": "light",
+    "palette": {"bg": "#F8F8F8", "surface": "#F0F8F8", "ink": "#181820", "accent": "#E06020", "secondary": "#28A0A8"},
+    "palette_note": "Bright white workbench with a burnt-orange brand hue used structurally — logo, gauge arcs, primary metric — supported by teal and rose gauge states, red/green financial deltas and a set of pale category chips (lavender, mint, butter) that read as taxonomy rather than decoration.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "high",
+      "case_usage": "mixed",
+      "note": "Grotesque UI face used at unusually large optical size because the shot is a deep zoom; company names sit semibold directly under regular grey category strings, and micro-labels like 'SCORE' are set in tracked-out grey ALL-CAPS at a fraction of the body size — a wide gap between the smallest and largest steps."
+    },
+    "texture": ["flat", "soft-shadow"],
+    "imagery": "iconography only",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Master-detail split: a scrolling column of bordered result cards on the left, an expandable financial table on the right, joined by a full-height hairline. Every control is an outlined pill or rounded rect on white; the app is cropped hard at the right edge so the table runs off-canvas, and the whole thing sits on a rounded window corner against pale grey."
+    },
+    "mood": ["analytical", "crisp", "financial", "high-legibility", "chip-coded"],
+    "style_signature": "White master-detail analytics on hairline-outlined cards, with a burnt-orange brand hue driving ring gauges and pale lavender/mint/butter taxonomy chips, tracked-out grey micro-caps labelling every value, and red/green numeric deltas as the only other chroma — shown as an extreme zoom crop that runs off the frame.",
+    "provisional_cluster": "clean-white-data-workbench"
+  },
+  {
+    "index": 111,
+    "shot_id": "26386815",
+    "title": "SaaS Marketing Dashboard Design Concept",
+    "designer": "Conceptzilla",
+    "artifact_type": "marketing analytics dashboard",
+    "bg_mode": "light",
+    "palette": {"bg": "#E0E0E0", "surface": "#F0F0F0", "ink": "#283040", "accent": "#D84828", "secondary": "#70A0C8"},
+    "palette_note": "Deliberately low-contrast grey-on-grey: cards are only a few percent lighter than the canvas they sit on, and a single hot vermilion — chart line, active row outline, primary button, AI score ring — is the one thing allowed to be loud, with a chalky steel blue as its counterpart series.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "medium",
+      "case_usage": "mixed",
+      "note": "Compact grotesque throughout with a distinctive tracked-out ALL-CAPS treatment on table headers and status tags ('NEEDS REVIEW', 'GOOD', 'NEUTRAL') that reads almost monospaced; KPI numerals sit tight and semibold with their percentage deltas inline at half weight."
+    },
+    "texture": ["flat", "soft-shadow", "blur"],
+    "imagery": "iconography only",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Complete Safari window mockup — traffic lights, URL bar and all — floating on a soft grey backdrop with a large diffuse organic shadow smeared behind it. Inside: nav rail, wide chart, an expandable data table whose active row is outlined in vermilion and pushed open inline, and a narrow right column of social stat cards."
+    },
+    "mood": ["muted", "instrument-panel", "low-contrast", "forensic", "matte"],
+    "style_signature": "Grey-on-grey dashboard where surfaces differ by only a few luminance points, tracked-out caps micro-labels do all the wayfinding, and one hot vermilion marks the single active row, active series and primary button — mounted inside a full Safari chrome mockup with a soft organic blur shadow behind it.",
+    "provisional_cluster": "mono-grey-spot-accent"
+  },
+  {
+    "index": 112,
+    "shot_id": "25751696",
+    "title": "Taskboard - Projects List Task Management Dashboard Webapp SaaS",
+    "designer": "OnPoint Studio",
+    "artifact_type": "task management dashboard (list view)",
+    "bg_mode": "light",
+    "palette": {"bg": "#F8F8F8", "surface": "#F0F0F0", "ink": "#202020", "accent": "#7040F8", "secondary": "#F03010"},
+    "palette_note": "White-and-grey chassis with one electric violet reserved strictly for primary actions and current-state indicators; everything else is a semantic tint — grey/amber/mint status capsules, a red count badge and red-or-blue priority flags — so no decorative colour exists.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Single Inter-class family at a short size ladder; page title semibold at ~28px, everything else clustered around 14px with grey column headers as the only de-emphasised tier. Tracking is default, nothing is capped, dates set with tabular consistency."
+    },
+    "texture": ["flat", "soft-shadow"],
+    "imagery": "iconography only",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Fixed left nav plus a task list broken into separately-cased grouping cards — one card per status, each with its own header row and repeated column labels — so the table is chunked rather than continuous. The entire app sits in a large-radius window with a soft drop shadow on a pale grey mat, cropped just past its bottom edge."
+    },
+    "mood": ["brisk", "systematic", "productivity-native", "legible", "colour-disciplined"],
+    "style_signature": "White productivity app in a big-radius floating window on pale grey, where the task table is split into one bordered card per status group with repeated column headers, and a single electric violet marks only primary buttons and the active nav item while pastel capsules encode state.",
+    "provisional_cluster": "floating-window-productivity-saas"
+  },
+  {
+    "index": 113,
+    "shot_id": "23038744",
+    "title": "Nexus - Saas Marketing Dashboard",
+    "designer": "Dipa Inhouse",
+    "artifact_type": "marketing analytics dashboard",
+    "bg_mode": "light",
+    "palette": {"bg": "#F8F8F8", "surface": "#E0E8E8", "ink": "#0A0A0A", "accent": "#5040C8", "secondary": "#10C0C0"},
+    "palette_note": "White base with a saturated indigo/teal duo owning the data visualisation — a five-step ramp from deep indigo through periwinkle, azure and teal to pale mint — while delta chips stay pastel (mint for positive, blush for negative), keeping all intensity inside the charts.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "high",
+      "case_usage": "mixed",
+      "note": "Big semibold numerals with a lighter currency glyph set alongside them, against tiny grey tracked ALL-CAPS sidebar section labels ('GENERAL', 'TOOLS', 'SUPPORT') — a deliberately wide jump from 10px caps to 32px figures with almost nothing in between."
+    },
+    "texture": ["flat", "soft-shadow", "gradient-fill"],
+    "imagery": "iconography only",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Safari chrome mockup on a pale grey mat, cropped off the right edge. Inside, a hairline-bordered nav rail and a masonry of hairline cards. The signature move is the chart form: stacked bars drawn as separated rounded lozenges with pale gradient ribbons connecting each segment across months."
+    },
+    "mood": ["vivid-charted", "buoyant", "modular", "confident", "data-forward"],
+    "style_signature": "White hairline-card dashboard whose charts are built from detached rounded lozenges linked by pale gradient ribbons, coloured on an indigo→periwinkle→azure→teal→mint ramp, with tiny tracked grey caps sidebar labels against oversized semibold figures — all inside Safari chrome on pale grey.",
+    "provisional_cluster": "clean-white-data-workbench"
+  },
+  {
+    "index": 114,
+    "shot_id": "24828700",
+    "title": "Dashboard for a Finance SaaS ✦ FundFlow",
+    "designer": "HALO LAB",
+    "artifact_type": "fintech dashboard",
+    "bg_mode": "light",
+    "palette": {"bg": "#E0E8F0", "surface": "#C8D8E0", "ink": "#101010", "accent": "#7868F8", "secondary": "#6098F8"},
+    "palette_note": "A single periwinkle-to-ice vertical gradient forms the entire app surface; every card is a translucent frost of that same field rather than a separate colour, and saturation appears only where light concentrates — a violet metaball, a cobalt gradient chart bar, an azure health panel.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "medium",
+      "case_usage": "mixed",
+      "note": "Clean geometric sans with a large balance figure whose currency symbol is set small and blue-grey; month axis labels use tracked ALL-CAPS at tiny size. Body and labels sit in a narrow weight band so the type never competes with the glass."
+    },
+    "texture": ["glassmorphism", "blur", "gradient-fill", "glow", "soft-shadow"],
+    "imagery": "iconography only",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "none",
+      "note": "Full-bleed rounded app slab with an icon rail floating directly on the gradient — no sidebar fill, no strokes anywhere. Cards are defined purely by translucency and a lighter frost; the balance widget is three merged circles rendered as a metaball, and the whole panel sits on a pale ice-blue mat with generous margin."
+    },
+    "mood": ["frosted", "serene", "luminous", "tactile-soft", "premium-fintech"],
+    "style_signature": "Lay one periwinkle-to-ice gradient across the whole app and carve every card out of it with frosted translucency instead of borders or fills, then punctuate with a blurred violet metaball, gradient-filled bars and pure-black pill CTAs as the only opaque elements.",
+    "provisional_cluster": "pastel-glass-gradient-fintech"
+  },
+  {
+    "index": 115,
+    "shot_id": "25740653",
+    "title": "HRISELINK - HR Management WebApp SaaS",
+    "designer": "OnPoint Studio",
+    "artifact_type": "data table (HR employee directory)",
+    "bg_mode": "light",
+    "palette": {"bg": "#F8F8F8", "surface": "#E8E8F0", "ink": "#101828", "accent": "#007848", "secondary": "#E03030"},
+    "palette_note": "Effectively a black-and-white application: near-black CTA, grey table header, ink with a faint navy cast. Chroma exists only in the outlined status pills — forest green, red and amber — plus green/red numeric deltas, so hue is purely a state signal.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "medium",
+      "case_usage": "mixed",
+      "note": "Inter-class family, sentence case everywhere except an ALL-CAPS letterspaced wordmark; employee names semibold with their email set beneath in small grey, and employee IDs underlined to read as links — the underline doing the job a link colour usually would."
+    },
+    "texture": ["flat", "soft-shadow", "outline-stroke"],
+    "imagery": "iconography only",
+    "layout": {
+      "density": "dense",
+      "radius": "mixed",
+      "borders": "hairline",
+      "note": "Left nav with an indented two-level tree, then a four-up KPI card row above a full-width sortable table with a grey header band, hairline row rules and a pagination bar pinned to the bottom. Cards are ~10px radius while status pills are full capsules — a deliberate radius split between container and token."
+    },
+    "mood": ["clerical", "monochrome-strict", "enterprise", "scannable", "no-nonsense"],
+    "style_signature": "A near-monochrome enterprise table — black CTA, grey header band, hairline rows — where the only colour on the page is a set of hollow capsule status pills carrying a 1px coloured stroke and matching text on white, and record IDs are underlined instead of tinted.",
+    "provisional_cluster": "floating-window-productivity-saas"
+  },
+  {
+    "index": 116,
+    "shot_id": "25678558",
+    "title": "Nexus - Company Kanban View CRM Dashboard Webapp Saas",
+    "designer": "OnPoint Studio",
+    "artifact_type": "CRM (kanban board)",
+    "bg_mode": "mixed",
+    "palette": {"bg": "#F8F8F8", "surface": "#181830", "ink": "#0A0A0A", "accent": "#58C870", "secondary": "#E8A808"},
+    "palette_note": "Hard two-zone split — a deep desaturated navy nav slab abutting a pure white board — with a single fresh green owning every affordance (button, active tab underline, add icon) and amber/grey column pills plus lavender scale chips as the only supporting tints.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "One grotesque family across both zones; card titles semibold with a grey subtitle directly beneath, and field labels set in small grey above semibold values — a repeated label-over-value stack that gives every card the same vertical rhythm. Nothing is capped or tracked."
+    },
+    "texture": ["flat", "soft-shadow"],
+    "imagery": "iconography only",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Solid navy sidebar running the full window height against white content, with no gradient or transition between them. The board is three columns of hairline-bordered cards where each card is split by an internal rule into an identity header and a four-cell label/value grid; columns are headed by a tinted status pill plus a count."
+    },
+    "mood": ["fresh", "high-contrast-split", "structured", "sales-floor", "app-icon-bright"],
+    "style_signature": "Butt a solid deep-navy nav slab directly against a pure white kanban board with no transition, then run one fresh green through every affordance while each card is a hairline box internally divided into an identity header and a two-by-two label-over-value grid, fronted by a saturated rounded-square app icon.",
+    "provisional_cluster": "floating-window-productivity-saas"
+  }
+]

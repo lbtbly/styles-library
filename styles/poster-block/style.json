@@ -1,0 +1,143 @@
+{
+  "id": "poster-block",
+  "name": "Poster Block",
+  "collection": "Set in Type",
+  "pairing": "Silkscreen poster × brand board",
+  "concept": "Edge-to-edge colour bands and display caps — the page behaves like a printed poster, not a screen.",
+  "keywords": [
+    "colour-bands",
+    "display-caps",
+    "paper-flat",
+    "cut-out-portrait",
+    "hard-edge",
+    "brand-ink",
+    "no-shadow"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#FBFBEF",
+      "surface": "#FFFFFF",
+      "ink": "#2E2440",
+      "muted": "#6E667E",
+      "line": "#DEDACF",
+      "accent": "#F5CE3E",
+      "accent_ink": "#3A2E10",
+      "band_a": "#0F6B4C",
+      "band_b": "#D96A5E",
+      "band_c": "#C9D8B0"
+    },
+    "type": {
+      "families": "A condensed or expressive display face for headlines (Anton, Archivo Expanded, Bricolage Grotesque, PP Right Grotesk) with a plain geometric sans for body. The display face should be strange enough to be memorable.",
+      "hierarchy": "Poster headline 96/88 display, justified to the full column width · section 32/36 display · body 16/25 sans · label 12/15 sans medium ALL-CAPS 0.06em.",
+      "usage": "Set the headline enormous and justify it edge to edge — the type is a graphic element, not a label. Ink is a chosen brand colour (deep aubergine, chocolate, forest), never plain black."
+    },
+    "texture": "Print, not screen. Flat colour bands with hard edges, zero shadows, zero gradients. Optional paper grain at 4%. Shapes are cut with jagged, zigzag or arc section dividers rather than straight rules. Cut-out photography and mascot illustration overlap and interrupt the type.",
+    "layout": "Edge-to-edge horizontal bands, each a different flat colour, stacked down the page. No card floats above another — everything is inline in its band. 8px scale, 0-8px radius (sharp is the default), 64-96px band padding. Elements deliberately break their band's boundary to create energy."
+  },
+  "fit": {
+    "best_for": [
+      "brand identity and campaign sites",
+      "creative agencies and studios",
+      "events and conferences",
+      "community and marketplace products",
+      "anything wanting personality over polish"
+    ],
+    "avoid_for": [
+      "enterprise software",
+      "dashboards and data tools",
+      "regulated finance or healthcare",
+      "products needing a neutral canvas for user content"
+    ],
+    "mood": [
+      "bold",
+      "playful",
+      "graphic",
+      "characterful",
+      "confident"
+    ],
+    "artifact_types_proven": [
+      "landing page",
+      "dashboard",
+      "branding board"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop"
+    ],
+    "artifacts": [
+      "landing page",
+      "dashboard",
+      "branding board"
+    ],
+    "artifact_counts": {
+      "landing page": 3,
+      "dashboard": 1,
+      "branding board": 1
+    },
+    "device_counts": {
+      "desktop": 5
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as flat vector illustration or silkscreen-style poster art.\n\nSTYLE — apply all of the following, they are not optional:\n- flat spot colours with hard edges and no gradients\n- limited palette — cream #FBFBEF, mustard #F5CE3E, forest #0F6B4C, coral #D96A5E\n- cut-out photographic elements at mismatched scales, hard-masked\n- subtle paper grain overlay\n- bold overlapping geometric shapes\n\nNEGATIVE SPACE: One flat band of solid colour must stay empty for the headline.\n\nDO NOT INCLUDE: soft shadows, gradients, 3D rendering, photorealism, glass or blur, muted or corporate palettes.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "flat spot colours with hard edges and no gradients",
+      "limited palette — cream #FBFBEF, mustard #F5CE3E, forest #0F6B4C, coral #D96A5E",
+      "cut-out photographic elements at mismatched scales, hard-masked",
+      "subtle paper grain overlay",
+      "bold overlapping geometric shapes",
+      "negative space — One flat band of solid colour must stay empty for the headline.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "soft shadows",
+      "gradients",
+      "3D rendering",
+      "photorealism",
+      "glass or blur",
+      "muted or corporate palettes"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/23694117-SaaS-Marketplace-Platform-Website-Branding",
+      "designer": "Voila",
+      "local_image": "shots/23694117-saas-marketplace-platform-website-branding.jpg",
+      "thumbnail": "thumbs/23694117.jpg",
+      "title": "SaaS Marketplace Platform Website | Branding"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27239425-Team-Management-Saas-UIUX",
+      "designer": "Fahema Yesmin",
+      "local_image": "shots/27239425-team-management-saas-uiux.png",
+      "thumbnail": "thumbs/27239425.jpg",
+      "title": "Team Management Saas UIUX"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26661002-SaaS-Platform-Landing-Page-for-Startups",
+      "designer": "Ronas IT | UI/UX Team",
+      "local_image": "shots/26661002-saas-platform-landing-page-for-startups.png",
+      "thumbnail": "thumbs/26661002.jpg",
+      "title": "SaaS Platform Landing Page for Startups"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25341116-CyberGuard-Cybersecurity-SaaS-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/25341116-cyberguard-cybersecurity-saas-dashboard.png",
+      "thumbnail": "thumbs/25341116.jpg",
+      "title": "CyberGuard - Cybersecurity SaaS  Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27329813-Saas-Website-Design-Branding",
+      "designer": "Julien Renvoye",
+      "local_image": "shots/27329813-saas-website-design-branding.jpg",
+      "thumbnail": "thumbs/27329813.jpg",
+      "title": "Saas Website Design / Branding"
+    }
+  ],
+  "index": 16
+}

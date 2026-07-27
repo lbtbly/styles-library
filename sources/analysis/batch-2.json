@@ -1,0 +1,497 @@
+[
+  {
+    "index": 15,
+    "shot_id": "25888562",
+    "title": "SaaS landing page",
+    "designer": "Layo",
+    "artifact_type": "marketing landing page (analytics SaaS)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#E4F0F0",
+      "ink": "#0C0C0C",
+      "accent": "#2060F0",
+      "secondary": "#3CB4FC"
+    },
+    "palette_note": "Near-white base with a pale ice-blue hero bloom; a single electric-blue ramp (#3C54FC to #3CC0FC) fills the CTA, the hero stat tile and the open FAQ row, and the page closes on a full-black band.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "high",
+      "case_usage": "sentence",
+      "note": "Bold ~56px geometric display headline with wide round bowls and a distinctive long hyphen in 'real-time'; drops straight to 15px regular grey body with no intermediate scale. Bold inline emphasis is used mid-sentence in body copy. Nav and micro-labels stay small and medium-weight."
+    },
+    "texture": ["flat", "soft-shadow", "gradient-fill", "blur"],
+    "imagery": "product screenshots (embedded dashboard UI, repeated as cropped feature cards) plus one stock office photograph and a monochrome logo wall",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Centred hero over a soft radial wash, then a strict alternating rhythm: logo strip, 50/50 image-text split, three-up feature cards. Cards are white on white separated only by hairlines and micro-shadow; whitespace is generous but never theatrical."
+    },
+    "mood": ["crisp", "data-forward", "corporate-optimistic", "airy", "trustworthy"],
+    "style_signature": "Near-white page with a pale ice-blue radial hero wash, one electric-blue gradient reserved for CTAs and the single hero stat tile, bold geometric-sans headlines over small grey body, and a hard cut to a full-black closing band.",
+    "provisional_cluster": "blue-gradient-saas-marketing"
+  },
+  {
+    "index": 16,
+    "shot_id": "27352367",
+    "title": "PrimeStay - SaaS Landing Page",
+    "designer": "Tanbir Ahmed",
+    "artifact_type": "marketing landing page (property-management CRM)",
+    "bg_mode": "mixed",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#F0F0FC",
+      "ink": "#0C1824",
+      "accent": "#1060F0",
+      "secondary": "#0C3C9C"
+    },
+    "palette_note": "Cool light base with a blue-to-white radial bloom behind the hero; one royal blue does double duty as pill-CTA fill and as a full-bleed deep-navy-to-blue gradient pricing section, with a near-black footer beneath.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "high",
+      "case_usage": "mixed",
+      "note": "The signature move is a two-family headline: geometric sans set against a high-contrast italic didone serif for the second word ('Management', 'Your Plan', 'Asked Questions'). Body is 15px regular grey; feature headings use Title Case; tiny pill chips carry sentence-case micro-labels."
+    },
+    "texture": ["flat", "soft-shadow", "gradient-fill", "glow", "blur"],
+    "imagery": "product screenshots (dashboard with donut and line charts) plus framed lifestyle photography and a monochrome logo wall",
+    "layout": {
+      "density": "moderate",
+      "radius": "pill",
+      "borders": "hairline",
+      "note": "Floating pill nav bar inset from the top edge; centred hero with a two-button CTA pair; the dashboard screenshot enters bottom-third and bleeds off. Pricing switches to dark-on-blue cards. Feature lists use a left vertical rule rather than boxes."
+    },
+    "mood": ["aspirational", "editorial-premium", "glossy", "cool-blue", "assured"],
+    "style_signature": "Royal-blue SaaS marketing page whose whole personality comes from splicing a high-contrast italic serif into geometric-sans headlines, with pill nav and buttons and a full-bleed navy-to-blue gradient pricing block.",
+    "provisional_cluster": "blue-gradient-saas-marketing"
+  },
+  {
+    "index": 17,
+    "shot_id": "25817216",
+    "title": "Task Management Saas Web App - Kanban Board Task Lists",
+    "designer": "Keitoto",
+    "artifact_type": "web app (kanban board)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#F0F0F0",
+      "ink": "#0C0C0C",
+      "accent": "#6040C0",
+      "secondary": "#F0C080"
+    },
+    "palette_note": "Essentially white-and-grey; a single violet carries the primary button and the active tab underline, and every remaining hue arrives only as a small semantic chip (amber, pink, green, periwinkle) never larger than a word.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Inter-like UI grotesque throughout. Oversized ~44px page title drops straight to 15px body with no display tier between. Card titles semibold, metadata regular grey; no tracking manipulation and no caps anywhere."
+    },
+    "texture": ["flat", "soft-shadow", "outline-stroke"],
+    "imagery": "iconography only (thin outline icons) plus small round avatar photos",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Full-bleed browser view with no device frame or drop-shadowed window. Three grey column wells hold white cards; each card is a strict four-row stack (chip, title, description, meta) closed by a hairline rule above the comment/link counters. Alignment is rigidly gridded and the composition is deliberately low-energy."
+    },
+    "mood": ["workmanlike", "legible", "unfussy", "chip-coded", "low-key"],
+    "style_signature": "Full-bleed white-and-grey productivity UI where one violet owns the only filled button and colour otherwise exists only inside word-sized status chips, with grey column wells holding hairline-ruled white cards.",
+    "provisional_cluster": "clean-light-productivity-app"
+  },
+  {
+    "index": 18,
+    "shot_id": "14378025",
+    "title": "Documents Split View - SAAS",
+    "designer": "Virgil Pana",
+    "artifact_type": "dashboard (document manager, split view)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#E4E4F0",
+      "surface": "#FCFCFC",
+      "ink": "#0C2448",
+      "accent": "#5050E0",
+      "secondary": null
+    },
+    "palette_note": "Pale lavender-white ground, deep navy for all type and top chrome, and one fully saturated indigo carrying the logo, active nav pill, selection ring and the oversized diagonal background wedges — no third hue except the crimson figures inside the invoice preview.",
+    "type": {
+      "family_character": "humanist sans",
+      "weight_contrast": "high",
+      "case_usage": "sentence",
+      "note": "Chunky bold navy headings with softly rounded terminals sit over thin light-grey secondary lines; filenames are bold, author and timestamp metadata drop to a much lighter weight and smaller size. The weight gap between the two is the whole hierarchy."
+    },
+    "texture": ["flat", "soft-shadow", "blur"],
+    "imagery": "document thumbnails and outline iconography; no photography beyond tiny avatars",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "none",
+      "note": "A single large rounded app window floats on the page with a wide soft shadow, and huge indigo diagonal wedges bleed off opposite corners behind it. Inside, three panes (nav, file list, preview) are separated by whitespace and elevation rather than rules; the preview card lifts above everything on a heavy shadow."
+    },
+    "mood": ["buoyant", "saturated-indigo", "geometric", "tidy", "late-flat-era"],
+    "style_signature": "Floating rounded app window on pale lavender with oversized indigo diagonal wedges bleeding off-corner behind it, deep-navy rounded-humanist headings, and separation carried entirely by soft shadow instead of borders.",
+    "provisional_cluster": "indigo-floating-card-dashboard"
+  },
+  {
+    "index": 19,
+    "shot_id": "27516487",
+    "title": "Zingflow / AI SaaS UX/UI Details - Workspace",
+    "designer": "Mateusz Madura",
+    "artifact_type": "design tool UI (workspace panel shown in two variants)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#E4F0F0",
+      "surface": "#FCFCFC",
+      "ink": "#0C0C0C",
+      "accent": "#C0F040",
+      "secondary": "#F0B020"
+    },
+    "palette_note": "Cool near-neutral grey-blue field with pure-white panels; a single acid chartreuse fills only the primary button, and all other colour is strictly functional (amber progress bar, green trendline and savings, violet vendor chip) at chip scale.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "low",
+      "case_usage": "sentence",
+      "note": "Compact Inter-like UI face held at 13-15px almost everywhere; only the best-offer price steps up. Numerals are tabular and hard right-aligned against left-aligned labels, so every row reads as a key/value strip."
+    },
+    "texture": ["flat", "soft-shadow"],
+    "imagery": "iconography plus inline data viz — a bar chart in one variant, a filled area chart in the other; no photography",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Single-column stacked panel divided into labelled sections by full-width hairlines; inside each section, grey-filled key/value rows tile with tight gutters. Two near-identical variants are set side by side for A/B comparison, which is itself the composition."
+    },
+    "mood": ["clinical", "precise", "restrained", "procurement-sober", "single-jolt"],
+    "style_signature": "Achromatic grey-and-white key/value panel built from hairline-divided sections and tabular right-aligned numerals, with exactly one acid-chartreuse button as the only saturated mark on screen.",
+    "provisional_cluster": "acid-lime-neutral"
+  },
+  {
+    "index": 20,
+    "shot_id": "25267926",
+    "title": "Picktime - Smart Meetings Platform SAAS",
+    "designer": "Ofspace UX/UI",
+    "artifact_type": "marketing landing page (scheduling SaaS)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#F0F0F0",
+      "surface": "#FCFCFC",
+      "ink": "#101040",
+      "accent": "#6070C0",
+      "secondary": "#D8E4FC"
+    },
+    "palette_note": "Desaturated periwinkle-and-white field; the brand indigo is deliberately muted rather than fully saturated, and pastel peach, mint and lavender gradient tints are used to differentiate feature and pricing cards.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Large friendly geometric display (~64px, single-storey a, wide circular bowls) set semibold rather than black, over 16px grey body. Section headings repeat the same face at the same weight, so scale alone carries hierarchy."
+    },
+    "texture": ["flat", "gradient-fill", "soft-shadow", "blur", "3d-render", "glow"],
+    "imagery": "pseudo-3D floating icon tiles and tilted overlapping UI cards, plus flat product screenshots; no photography beyond tiny avatars",
+    "layout": {
+      "density": "sparse",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Centred hero with dotted connector lines radiating out to orbiting rounded-square icon tiles, and three overlapping tilted screenshot cards stacked at the centre to fake depth. Below, pastel-tinted feature cards sit two-up with lots of air."
+    },
+    "mood": ["floaty", "pastel", "friendly", "soft-focus", "unhurried"],
+    "style_signature": "Pale periwinkle hero with dotted connector lines radiating to soft-shadowed floating icon tiles, overlapping tilted UI cards for depth, and muted-indigo buttons on pastel peach/mint/lavender gradient cards.",
+    "provisional_cluster": "pastel-gradient-atmospheric-marketing"
+  },
+  {
+    "index": 21,
+    "shot_id": "26415975",
+    "title": "Ecomiq: Campaign Creation for SaaS eCommerce",
+    "designer": "Fikri Studio",
+    "artifact_type": "web app modal (campaign creation wizard)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#F0F0F0",
+      "ink": "#0C0C0C",
+      "accent": "#FC6000",
+      "secondary": "#7C18F0"
+    },
+    "palette_note": "White modal over a heavily dimmed grey scrim; a hot orange owns the step badge and the single primary button, while a separate violet is reserved exclusively as the AI affordance colour on 'Generate' and its sparkle glyph.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Inter-like face; 24px semibold dialog title, 16px field labels in medium, 15px body regular. Generated-result blocks prefix their copy with a grey metadata line (character count, word count, tone) in the same size as the body, distinguished only by colour."
+    },
+    "texture": ["flat", "soft-shadow", "blur"],
+    "imagery": "one full-bleed product photograph inside the simulated social ad preview; otherwise iconography and a single emoji-style megaphone",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Two-pane modal: white form left, grey preview rail right, split by a hairline running the full height. A numbered 1-2-3 stepper with connecting rules sits under the title, and the footer is a sticky bar with text-link Cancel left of the filled primary right."
+    },
+    "mood": ["procedural", "orange-punctuated", "workmanlike", "dense-but-calm", "commerce-plain"],
+    "style_signature": "Neutral grey-and-white two-pane modal over a dimmed scrim, with a numbered connector stepper, one hot-orange primary button, and a second violet used only to mark AI-generated affordances.",
+    "provisional_cluster": "neutral-canvas-chip-coded-app"
+  },
+  {
+    "index": 22,
+    "shot_id": "26931909",
+    "title": "Ecomiq — Product Listing Dashboard for SaaS E-commerce",
+    "designer": "Fikri Studio",
+    "artifact_type": "dashboard (product listing / inventory cards)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#E4E4E4",
+      "ink": "#0C0C0C",
+      "accent": "#FC6C00",
+      "secondary": "#009030"
+    },
+    "palette_note": "Almost entirely white and neutral grey; hot orange appears exactly twice (sidebar add button, 'Add Product'), a black pill marks the one applied filter, and green is confined to 'Active' status chips and stock rings.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "medium",
+      "case_usage": "mixed",
+      "note": "Inter-like face at 14-15px throughout with a 24px semibold page title; the only caps is a tiny tracked 'WORKSPACE' section label in the sidebar. Product variant rows use tabular figures so prices and quantities align into implicit columns."
+    },
+    "texture": ["flat", "soft-shadow", "outline-stroke"],
+    "imagery": "small square product thumbnails (cut-out product photography) plus thin outline iconography",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "The whole app sits as a rounded window with a wide soft shadow on a flat light-grey board. Inside: icon rail, text sidebar, then a three-up card grid where each card is a mini table of variants closed by a status-chip footer. Filters read as a horizontal pill row above the grid."
+    },
+    "mood": ["utilitarian", "inventory-dense", "neutral-with-punch", "orderly", "matter-of-fact"],
+    "style_signature": "Rounded app window floating on flat light grey, near-monochrome inside, with product cards that behave like miniature data tables and exactly two hot-orange buttons as the only saturated marks.",
+    "provisional_cluster": "neutral-canvas-chip-coded-app"
+  },
+  {
+    "index": 23,
+    "shot_id": "14370811",
+    "title": "Documents Grid View - SAAS",
+    "designer": "Virgil Pana",
+    "artifact_type": "dashboard (document manager, grid view)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#F0F0FC",
+      "surface": "#FCFCFC",
+      "ink": "#0C2448",
+      "accent": "#5050E0",
+      "secondary": null
+    },
+    "palette_note": "Same system as the split view: lavender-white ground, deep navy chrome and type, one saturated indigo for logo, active nav pill and the thick selection ring — with document tiles softly tinted by category (blue, mint, lilac, cream).",
+    "type": {
+      "family_character": "humanist sans",
+      "weight_contrast": "high",
+      "case_usage": "sentence",
+      "note": "Bold navy headings with rounded terminals against thin light-grey metadata; the 'Documents' title is set very heavy and large relative to everything under it, and category tags shrink to a small medium-weight pill."
+    },
+    "texture": ["flat", "soft-shadow", "blur", "outline-stroke"],
+    "imagery": "document thumbnails rendered as greyed micro-layouts; iconography and small avatars, no photography",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "none",
+      "note": "The rounded app window floats over a hugely enlarged, heavily blurred duplicate of its own content — the depth-of-field backdrop is the composition. Inside, a four-column tile grid where the selected tile is ringed in thick indigo and lifted forward."
+    },
+    "mood": ["buoyant", "saturated-indigo", "depth-staged", "tidy", "geometric"],
+    "style_signature": "The same indigo-and-navy document UI staged over a massively scaled, blurred copy of itself, with tinted document tiles and a thick indigo selection ring pulling one tile above the plane.",
+    "provisional_cluster": "indigo-floating-card-dashboard"
+  },
+  {
+    "index": 24,
+    "shot_id": "26940926",
+    "title": "Bloggo — Dashboard for SaaS AI Blog Automation Platform",
+    "designer": "Fikri Studio",
+    "artifact_type": "dashboard (AI content workspace home)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#E4E4E4",
+      "ink": "#0C0C0C",
+      "accent": "#6060F0",
+      "secondary": "#FCE480"
+    },
+    "palette_note": "White app on a flat grey board with one periwinkle-violet primary; status is carried by a full pastel chip set (lilac 'Being Edited', pink 'Waiting Review', amber 'Revision', mint 'Approved') that also tints each article card's top edge.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "high",
+      "case_usage": "mixed",
+      "note": "Bold ~32px greeting headline with an emoji set inline, then 16px regular body with an underlined inline stat ('30 hours') as emphasis. Sidebar section labels are tiny tracked caps; article titles are semibold and wrap to two lines."
+    },
+    "texture": ["flat", "soft-shadow", "outline-stroke"],
+    "imagery": "illustration — multicolour filled-outline icons and a flat abstract UI illustration in the onboarding banner — plus greyed article thumbnails",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Rounded app window with a wide soft shadow on flat grey. A numbered onboarding checklist sits half-in a grey panel beside an illustrated promo, then a three-up quick-action row, then a three-column article grid whose cards are headed by a coloured status chip on a tinted strip."
+    },
+    "mood": ["friendly", "chip-coded", "encouraging", "orderly", "approachable"],
+    "style_signature": "White dashboard floating on flat grey, one periwinkle-violet primary, and a pastel status-chip system that colours the top strip of every content card so state is readable from the grid alone.",
+    "provisional_cluster": "neutral-canvas-chip-coded-app"
+  },
+  {
+    "index": 25,
+    "shot_id": "27179351",
+    "title": "Schedulo — Notification Drawer in SaaS Booking Management",
+    "designer": "Fikri Studio",
+    "artifact_type": "dashboard with notification drawer overlay",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#F0F0F0",
+      "ink": "#0C0C0C",
+      "accent": "#00A0C0",
+      "secondary": "#E03020"
+    },
+    "palette_note": "White-on-warm-grey with a cyan-teal brand accent that also drives a sequential heatmap ramp for the busy-times chart; red is strictly alarm state (unread dots, 'Overload' bar) and magenta marks appointment status pills.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "medium",
+      "case_usage": "mixed",
+      "note": "Inter-like face; big semibold KPI numerals (~40px) against 14px labels, and notification rows use bold runs inside otherwise-regular sentences to surface the service name, date and time. Sidebar group labels are small tracked caps."
+    },
+    "texture": ["flat", "soft-shadow", "outline-stroke"],
+    "imagery": "iconography only — square outline glyphs in tinted circles — plus one product thumbnail in the low-stock row",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Rounded app window on a flat warm-grey board. An opaque white drawer slides over the left third and simply occludes the dashboard behind it — no dimming, no blur — with a small collapse chevron straddling its edge. Content beneath is a two-column KPI and chart grid."
+    },
+    "mood": ["operational", "notification-dense", "cyan-coded", "brisk", "alert-aware"],
+    "style_signature": "Flat-grey-boarded app window where an opaque white drawer overlays a third of the UI without dimming it, cyan drives both accent and heatmap ramp, and bold text runs inside plain sentences do the work of a data table.",
+    "provisional_cluster": "neutral-canvas-chip-coded-app"
+  },
+  {
+    "index": 26,
+    "shot_id": "25974382",
+    "title": "Saas - Website Design",
+    "designer": "Dude Studios",
+    "artifact_type": "marketing landing page with embedded app UI",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#D8E4FC",
+      "surface": "#FCFCFC",
+      "ink": "#0C0C0C",
+      "accent": "#4890FC",
+      "secondary": "#F02090"
+    },
+    "palette_note": "A pale blue cloud gradient occupies the entire hero with near-black type sitting straight on it; the only high-chroma marks are the blue CTA pill and two isolated brand-icon tiles (magenta, green) floating loose in the whitespace.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "high",
+      "case_usage": "sentence",
+      "note": "Very large, tightly tracked display headline (~90px, Helvetica-Now-ish) dominating the hero, dropping hard to 16px light-grey body. The embedded app below reuses the same face at 13-14px, so the whole shot reads as one family at wildly different scales."
+    },
+    "texture": ["gradient-mesh", "blur", "glow", "soft-shadow", "flat"],
+    "imagery": "abstract gradients as the primary visual, plus an embedded product screenshot and free-floating brand-icon tiles",
+    "layout": {
+      "density": "sparse",
+      "radius": "mixed",
+      "borders": "hairline",
+      "note": "Faint square grid ruled over the gradient hero; floating pill nav inset from the top; oversized centred headline with the CTA pill directly beneath. The product UI enters the bottom third as a rounded panel bleeding off-frame, and its kanban columns are separated by dashed rules rather than fills."
+    },
+    "mood": ["airy", "cloud-soft", "oversized-type", "serene", "assured"],
+    "style_signature": "Pale blue cloud-gradient hero under a faint ruled grid, one enormous tightly-tracked black headline, a glowing blue pill CTA, and loose brand-colour icon tiles floating as the only chroma before the product panel bleeds in from below.",
+    "provisional_cluster": "pastel-gradient-atmospheric-marketing"
+  },
+  {
+    "index": 27,
+    "shot_id": "27584703",
+    "title": "AI SaaS Landing Page Design",
+    "designer": "Mahid",
+    "artifact_type": "marketing landing page (AI workflow SaaS), presented as tiled page panels",
+    "bg_mode": "mixed",
+    "palette": {
+      "bg": "#F0F0F0",
+      "surface": "#FCFCF0",
+      "ink": "#0C0C0C",
+      "accent": "#C0F040",
+      "secondary": null
+    },
+    "palette_note": "Warm off-white pages on a cool grey board, true black for the stat and CTA bands, and one acid chartreuse behaving like a highlighter — on partial numerals, a text underline, chips, sparkline and the single primary button.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "high",
+      "case_usage": "mixed",
+      "note": "Tight geometric-grotesque display at ~72px with noticeably negative tracking, against small tracked ALL-CAPS micro-labels ('TRUSTED BY 12,000+ TEAMS', 'TASKS AUTOMATED', 'ACTIVE FLOWS'). The caps labels are the connective tissue of the entire page."
+    },
+    "texture": ["flat", "glow", "soft-shadow", "gradient-fill"],
+    "imagery": "product screenshots as floating dashboard cards with detached stat tooltips, plus one thin-line orbit diagram and a single small testimonial portrait",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "The page itself is presented as large rounded panels tiled on a grey board. Inside, a bento of white cards alternates with full-black bands; the hero dashboard is composed from a main card plus two small tooltip cards escaping its bounds, and the black CTA carries a soft green radial glow."
+    },
+    "mood": ["high-contrast", "chartreuse-jolt", "editorial-tech", "crisp", "confident"],
+    "style_signature": "Warm-white bento panels on grey cut by full-black bands with a green radial glow, tight negative-tracked geometric display type, tracked all-caps micro-labels, and acid chartreuse used as a highlighter on numerals and underlines rather than as a fill.",
+    "provisional_cluster": "acid-lime-neutral"
+  },
+  {
+    "index": 28,
+    "shot_id": "27089353",
+    "title": "AI SaaS Landing Page - Web Design Concept",
+    "designer": "Perevoz Design",
+    "artifact_type": "marketing landing page concept (desktop + mobile artboards)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#F0F0F0",
+      "surface": "#FCFCFC",
+      "ink": "#00183C",
+      "accent": "#D090F0",
+      "secondary": "#80B0F0"
+    },
+    "palette_note": "Silver-grey board and near-white page with deep navy type; every bit of chroma comes from a blurred pearlescent tile mosaic ramping sky-blue to lilac to magenta to peach, and it is never used as a flat fill anywhere.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "low",
+      "case_usage": "sentence",
+      "note": "One weight across a huge headline; hierarchy is created by colour alternation within a single sentence — 'Your' and 'engine.' in deep navy, 'next-level productivity' in pale slate — and a live toggle-switch glyph is set inline in the text line as if it were a word."
+    },
+    "texture": ["gradient-mesh", "blur", "glassmorphism", "bevel", "soft-shadow"],
+    "imagery": "abstract gradients only — a mosaic of blurred rounded-square tiles; no photography or illustration",
+    "layout": {
+      "density": "sparse",
+      "radius": "pill",
+      "borders": "none",
+      "note": "Desktop and mobile artboards overlapped on a plain grey board with soft shadows. The hero is mostly empty air with the tile mosaic rising from the bottom edge; faint vertical rules hint at a column grid. The CTA is a dark pill with a pronounced bevel and hard drop shadow, reading almost physical against the flat page."
+    },
+    "mood": ["iridescent", "pearlescent", "glassy", "hushed", "soft-tech"],
+    "style_signature": "Silver page with a mosaic of blurred pearlescent rounded-square tiles rising from the bottom edge, a single-weight headline split into navy and pale-slate words, an inline toggle glyph used as typography, and a bevelled dark pill CTA.",
+    "provisional_cluster": "pastel-gradient-atmospheric-marketing"
+  },
+  {
+    "index": 29,
+    "shot_id": "25851852",
+    "title": "Choose Word Count Modal for saas web app dashboard",
+    "designer": "Virgil Pana",
+    "artifact_type": "web app modal (selection dialog)",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#D8D8D8",
+      "surface": "#FCFCFC",
+      "ink": "#0C0C0C",
+      "accent": "#20C060",
+      "secondary": "#E4D8E4"
+    },
+    "palette_note": "White dialog on a heavily blurred grey backdrop; one emerald green marks selection everywhere it appears (card ring, radio, primary button) while a pale lilac tint carries the 'Recommended' badge and the advisory strip.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Bold ~32px dialog title over 16px regular body at a comfortably wide measure; option titles semibold, supporting copy regular grey. No caps, no tracking tricks — the field label 'Enter Word Count:' even keeps its colon, which gives the dialog a plain-spoken, form-like voice."
+    },
+    "texture": ["flat", "soft-shadow", "blur", "3d-render", "bevel"],
+    "imagery": "3D renders — two glossy squircle app-icon illustrations with bevelled edges and inner shadow; no photography",
+    "layout": {
+      "density": "sparse",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "A single centred dialog dominating the frame, with the underlying dashboard blurred almost to abstraction. Two stacked full-width selectable cards, the active one ringed green and tinted; footer is a hairline-topped bar with a ghost Cancel left and the filled primary right."
+    },
+    "mood": ["focused", "reassuring", "decision-framed", "soft-glossy", "unhurried"],
+    "style_signature": "Centred white dialog over a near-abstract blurred dashboard, full-width selectable cards where the chosen one is ringed and tinted in emerald, glossy 3D squircle icons per option, and a lilac 'Recommended' badge as the only competing hue.",
+    "provisional_cluster": "clean-light-productivity-app"
+  }
+]

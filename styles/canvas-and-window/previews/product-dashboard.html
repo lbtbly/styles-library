@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Canvas &amp; Window — Fieldnote dashboard</title>
+<style>
+:root{
+  --bg:#ECECEC; --surface:#FFFFFF; --subtle:#F6F7F8; --ink:#0E1113; --muted:#6A7178;
+  --line:#E5E7EA; --accent:#00849E; --positive:#12805C; --negative:#C0392B;
+  --mint:#E7F5EF; --lilac:#EEEBFB; --butter:#FBF3E0; --blush:#FBECEA;
+  --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.5 var(--sans);
+  -webkit-font-smoothing:antialiased;
+  display:flex;align-items:center;justify-content:center;min-height:100vh;padding:56px 48px}
+
+/* the window is the only elevated object, floating on a flat stage */
+.window{width:100%;max-width:1180px;background:var(--surface);border-radius:15px;
+  box-shadow:0 24px 60px -20px rgb(14 17 19 / .22);overflow:hidden}
+
+/* realistic browser chrome */
+.chrome{background:var(--subtle);border-bottom:1px solid var(--line);
+  padding:9px 13px;display:flex;align-items:center;gap:11px}
+.dots{display:flex;gap:6px}
+.dots i{width:10px;height:10px;border-radius:50%;display:block}
+.url{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:7px;
+  padding:4px 11px;font-size:11.5px;color:var(--muted);text-align:center;max-width:340px;
+  margin:0 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.app{display:flex;min-height:560px}
+.side{width:232px;flex-shrink:0;border-right:1px solid var(--line);padding:16px 0;
+  display:flex;flex-direction:column;background:var(--surface)}
+.brand{display:flex;align-items:center;gap:9px;padding:0 18px 15px}
+.mark{width:22px;height:22px;border-radius:6px;background:var(--accent);flex-shrink:0;
+  display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700}
+.brand b{font-size:14.5px;font-weight:600;letter-spacing:-.012em}
+.nlbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted);padding:12px 18px 5px}
+.side a{display:block;padding:7px 18px;color:var(--muted);text-decoration:none;font-size:13px}
+.side a:hover{color:var(--ink);background:var(--subtle)}
+.side a.on{color:var(--ink);font-weight:500;background:var(--subtle);
+  box-shadow:inset 2px 0 0 var(--accent)}
+.upsell{margin:auto 14px 0;background:var(--subtle);border:1px solid var(--line);
+  border-radius:10px;padding:13px}
+.upsell b{display:block;font-size:12.5px;margin-bottom:3px}
+.upsell p{margin:0 0 9px;font-size:11.5px;color:var(--muted);line-height:1.45}
+
+.content{flex:1;min-width:0;padding:20px 24px 26px;background:var(--surface)}
+.head{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+h1{font-size:16px;line-height:22px;font-weight:600;letter-spacing:-.012em;margin:0}
+.head p{margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+.grow{flex:1}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;
+  padding:6px 12px;font:500 12.5px var(--sans);cursor:pointer}
+.btn:hover{border-color:var(--muted)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:16px}
+/* status colour lives on the card's top strip — state reads from the grid alone */
+.card{border:1px solid var(--line);border-radius:12px;padding:15px 16px 14px;overflow:hidden;
+  position:relative;background:var(--surface)}
+.card::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--strip,transparent)}
+.card span{display:block;font-size:11.5px;color:var(--muted);margin-bottom:6px}
+.card b{font-size:24px;font-weight:600;letter-spacing:-.018em;font-variant-numeric:tabular-nums}
+.card em{font-style:normal;font-size:12px;font-weight:500;margin-left:6px}
+.up{color:var(--positive)} .down{color:var(--negative)}
+
+.two{display:grid;grid-template-columns:1.55fr 1fr;gap:16px}
+@media(max-width:860px){.two{grid-template-columns:1fr}.side{display:none}}
+.panel{border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.ph{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--line)}
+.ph b{font-size:14px;font-weight:600}
+.pb{padding:16px}
+.chip{display:inline-block;font-size:10.5px;font-weight:500;padding:2px 8px;border-radius:999px;
+  line-height:16px}
+.k-ok{background:var(--mint);color:var(--positive)}
+.k-ai{background:var(--lilac);color:#5B2FD6}
+.k-wait{background:var(--butter);color:#8A5A00}
+.k-risk{background:var(--blush);color:var(--negative)}
+.rows{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0;padding-bottom:0}
+.row:first-child{padding-top:0}
+.av{width:26px;height:26px;border-radius:7px;flex-shrink:0;display:grid;place-items:center;
+  font-size:10.5px;font-weight:600;color:#fff}
+.row .t{flex:1;min-width:0}
+.row .t b{display:block;font-size:13px;font-weight:500}
+.row .t span{display:block;font-size:11.5px;color:var(--muted)}
+.row .v{font-size:13px;font-variant-numeric:tabular-nums;font-weight:500}
+.bars{display:flex;align-items:flex-end;gap:9px;height:150px;padding-top:6px}
+.bars div{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px}
+.bars i{display:block;width:100%;border-radius:4px 4px 0 0;background:var(--accent);opacity:.28}
+.bars div.on i{opacity:1}
+.bars span{font-size:10.5px;color:var(--muted)}
+.ai{margin-top:14px;background:var(--mint);border:1px solid #CDE9DD;border-radius:10px;
+  padding:11px 13px;display:flex;gap:10px;align-items:flex-start}
+.ai b{font-size:12.5px;display:block;margin-bottom:2px}
+.ai p{margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+</style>
+</head>
+<body>
+
+<div class="window">
+  <div class="chrome">
+    <span class="dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></span>
+    <span class="url">app.fieldnote.io/workspace/harvest</span>
+  </div>
+
+  <div class="app">
+    <nav class="side">
+      <div class="brand"><span class="mark">F</span><b>Fieldnote</b></div>
+      <div class="nlbl">Workspace</div>
+      <a href="#" class="on">Overview</a>
+      <a href="#">Sites</a>
+      <a href="#">Readings</a>
+      <a href="#">Calibration</a>
+      <div class="nlbl">Team</div>
+      <a href="#">Members</a>
+      <a href="#">Audit log</a>
+      <a href="#">Settings</a>
+      <div class="upsell">
+        <b>3 sites left</b>
+        <p>Your plan covers 12 monitored sites. Add capacity before the March rollout.</p>
+        <button class="btn pri" style="width:100%">Upgrade plan</button>
+      </div>
+    </nav>
+
+    <main class="content">
+      <div class="head">
+        <div>
+          <h1>Harvest — North basin</h1>
+          <p>14 sensors reporting · last sync 3 minutes ago</p>
+        </div>
+        <span class="grow"></span>
+        <button class="btn">Last 30 days</button>
+        <button class="btn pri">New reading</button>
+      </div>
+
+      <div class="grid">
+        <div class="card" style="--strip:#12805C"><span>Yield estimate</span><b>41.8t</b><em class="up">↑ 6.1%</em></div>
+        <div class="card" style="--strip:#00849E"><span>Soil moisture</span><b>62%</b><em class="up">↑ 1.4%</em></div>
+        <div class="card" style="--strip:#E0A32E"><span>Open alerts</span><b>3</b><em class="down">↑ 2</em></div>
+        <div class="card" style="--strip:#5B2FD6"><span>Coverage</span><b>97.4%</b><em class="up">↑ 0.6%</em></div>
+      </div>
+
+      <div class="two">
+        <section class="panel">
+          <div class="ph"><b>Moisture by plot</b><span class="chip k-ok">All in range</span>
+            <span class="grow"></span><button class="btn">Export</button></div>
+          <div class="pb">
+            <div class="bars">
+              <div><i style="height:64px"></i><span>P1</span></div>
+              <div><i style="height:88px"></i><span>P2</span></div>
+              <div><i style="height:52px"></i><span>P3</span></div>
+              <div class="on"><i style="height:118px"></i><span>P4</span></div>
+              <div><i style="height:74px"></i><span>P5</span></div>
+              <div><i style="height:96px"></i><span>P6</span></div>
+              <div><i style="height:60px"></i><span>P7</span></div>
+              <div><i style="height:82px"></i><span>P8</span></div>
+            </div>
+            <div class="ai">
+              <span class="chip k-ai">AI</span>
+              <div><b>Plot 4 is holding water</b>
+                <p>Drainage in P4 has run 18% below the basin median for six days. Worth a manual check before the next irrigation cycle.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="ph"><b>Recent readings</b><span class="grow"></span>
+            <button class="btn">View all</button></div>
+          <div class="pb">
+            <div class="rows">
+              <div class="row"><span class="av" style="background:#00849E">NB</span>
+                <span class="t"><b>North bed</b><span>Moisture · 2m ago</span></span>
+                <span class="v">64%</span></div>
+              <div class="row"><span class="av" style="background:#12805C">EF</span>
+                <span class="t"><b>East field</b><span>Moisture · 11m ago</span></span>
+                <span class="v">58%</span></div>
+              <div class="row"><span class="av" style="background:#C0392B">SR</span>
+                <span class="t"><b>South ridge</b><span>Temperature · 24m ago</span></span>
+                <span class="v">31°C</span></div>
+              <div class="row"><span class="av" style="background:#5B2FD6">WT</span>
+                <span class="t"><b>West terrace</b><span>Salinity · 38m ago</span></span>
+                <span class="v">1.2</span></div>
+              <div class="row"><span class="av" style="background:#8A5A00">GH</span>
+                <span class="t"><b>Glasshouse</b><span>Humidity · 51m ago</span></span>
+                <span class="v">71%</span></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+</body>
+</html>

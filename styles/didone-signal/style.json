@@ -1,0 +1,128 @@
+{
+  "id": "didone-signal",
+  "name": "Didone Signal",
+  "collection": "Set in Type",
+  "pairing": "Fashion masthead × pill button",
+  "concept": "High-contrast serif display against tangerine and black pills — masthead grammar on a product page.",
+  "keywords": [
+    "high-contrast-serif",
+    "tangerine",
+    "black-pill",
+    "welded-arrow-chip",
+    "cloud-photograph",
+    "masthead-hero"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#FBFBFA",
+      "surface": "#FFFFFF",
+      "ink": "#080808",
+      "muted": "#6A6A68",
+      "line": "#E6E5E1",
+      "accent": "#E85A00",
+      "accent_ink": "#FFFFFF",
+      "block": "#0A0A0A",
+      "block_ink": "#FAFAF8"
+    },
+    "type": {
+      "families": "A high-contrast display serif for headlines (Playfair Display, Prata, Bodoni Moda, Instrument Serif) paired with a plain neo-grotesque for everything else. The pairing is the style — never set a headline in the sans.",
+      "hierarchy": "Hero serif 72/74 regular · section serif 44/50 regular · sans body 16/26 regular · sans label 12/16 medium ALL-CAPS 0.08em. The serif appears only at display sizes; below 24px it is always the sans.",
+      "usage": "Centre the hero. Let the serif's thick-thin contrast do the decorating — no italic, no underline, no colour on the headline. Body copy is quiet grey sans."
+    },
+    "texture": "Print-flat. No gradients on surfaces, no glass, no glow. The one material moment is a soft photograph (cloud, sky, landscape) that dissolves into the page background behind the hero type via a mask or a white gradient. The signature component is a black pill button with a circular tangerine arrow chip welded onto its trailing end.",
+    "layout": "Editorial symmetry. Centred hero with a tight measure (max 20 characters per headline line), generous 120px+ section rhythm, 8px scale. Cards are black or white rectangles with 16-20px radius. A flat tangerine field ruled with a faint architectural grid works as a section break."
+  },
+  "fit": {
+    "best_for": [
+      "premium and luxury brands",
+      "property and hospitality",
+      "editorial and publishing products",
+      "professional services",
+      "brand-led launch pages"
+    ],
+    "avoid_for": [
+      "technical developer products",
+      "dense dashboards",
+      "playful consumer apps",
+      "high-density data interfaces"
+    ],
+    "mood": [
+      "elegant",
+      "assured",
+      "editorial",
+      "warm",
+      "considered"
+    ],
+    "artifact_types_proven": [
+      "landing page"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop"
+    ],
+    "artifacts": [
+      "landing page"
+    ],
+    "artifact_counts": {
+      "landing page": 4
+    },
+    "device_counts": {
+      "desktop": 4
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as soft natural photograph, high-key, dissolving into white.\n\nSTYLE — apply all of the following, they are not optional:\n- paper-white ground the image fades into with no hard edge\n- soft natural light — clouds, sky, or diffused landscape\n- muted natural palette with one tangerine #E85A00 note\n- high-key exposure, gentle contrast\n- generous symmetrical composition\n\nNEGATIVE SPACE: The upper half fades to near-white so a serif headline can sit over it.\n\nDO NOT INCLUDE: dark or moody grading, neon, 3D render, vector illustration, harsh shadows, busy compositions.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "paper-white ground the image fades into with no hard edge",
+      "soft natural light — clouds, sky, or diffused landscape",
+      "muted natural palette with one tangerine #E85A00 note",
+      "high-key exposure, gentle contrast",
+      "generous symmetrical composition",
+      "negative space — The upper half fades to near-white so a serif headline can sit over it.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "dark or moody grading",
+      "neon",
+      "3D render",
+      "vector illustration",
+      "harsh shadows",
+      "busy compositions"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/27352367-PrimeStay-SaaS-Landing-Page",
+      "designer": "Tanbir Ahmed",
+      "local_image": "shots/27352367-primestay-saas-landing-page.png",
+      "thumbnail": "thumbs/27352367.jpg",
+      "title": "PrimeStay - SaaS Landing Page"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27029480-Cliento-Client-Portal-SaaS-Landing-Page",
+      "designer": "tubik",
+      "local_image": "shots/27029480-cliento-client-portal-saas-landing-page.png",
+      "thumbnail": "thumbs/27029480.jpg",
+      "title": "Cliento: Client Portal SaaS Landing Page"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27033484-Cliento-SaaS-Landing-Page-Scroll",
+      "designer": "tubik",
+      "local_image": "shots/27033484-cliento-saas-landing-page-scroll.png",
+      "thumbnail": "thumbs/27033484.jpg",
+      "title": "Cliento: SaaS Landing Page Scroll"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27014638-Modern-SaaS-Landing-Page-Accounting-Analytics-UI",
+      "designer": "Convertica Studio",
+      "local_image": "shots/27014638-modern-saas-landing-page-accounting-analytics-ui.jpg",
+      "thumbnail": "thumbs/27014638.jpg",
+      "title": "Modern SaaS Landing Page — Accounting & Analytics UI"
+    }
+  ],
+  "index": 14
+}

@@ -1,0 +1,165 @@
+{
+  "id": "hairline-ledger",
+  "name": "Hairline Ledger",
+  "collection": "Working Surfaces",
+  "pairing": "Trading terminal × Swiss timetable",
+  "concept": "Rules, not boxes — density earns trust when every divider is 1px and every figure is tabular.",
+  "keywords": [
+    "hairline-rules",
+    "tabular-figures",
+    "semantic-chips",
+    "high-density",
+    "near-white",
+    "micro-caps",
+    "no-card-chrome"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#F4F5F6",
+      "surface": "#FFFFFF",
+      "ink": "#0F1419",
+      "muted": "#697079",
+      "line": "#E3E5E8",
+      "accent": "#0B5FD0",
+      "positive": "#0A7C4A",
+      "negative": "#B42318",
+      "warning": "#B54708"
+    },
+    "type": {
+      "families": "Neo-grotesque throughout — Inter, Söhne or -apple-system. One family only; weight and size carry every distinction. Numerals must be tabular: `font-variant-numeric: tabular-nums` on every figure.",
+      "hierarchy": "Page title 20/28 semibold · section 13/18 semibold · body 13/18 regular · column labels 10/12 semibold ALL-CAPS at 0.08em tracking · figures 13-15 semibold tabular. Nothing above 24px — this style has no display tier.",
+      "usage": "Sentence case for content, ALL-CAPS only for column headers and micro-labels. Never letterspace body copy. Right-align every numeric column, left-align text, and keep the decimal points lined up."
+    },
+    "texture": "Effectively none, and that is the point. One flat surface colour, 1px `--line` rules, and a single soft shadow (`0 1px 2px rgb(15 20 25 / .06)`) reserved for elements that genuinely float — menus, popovers, drawers. No gradients, no glass, no glow. Row separation is a border-bottom, never a gap or a card.",
+    "layout": "Rules instead of boxes. Tables run full-bleed to the container edge with no outer card. Cell padding 8px 12px — deliberately starved. 4px base scale. Radius 6px on controls, 8px on floating panels, 0 on table cells. Sidebar 216px fixed. Density is the aesthetic: fit more rows before you add whitespace."
+  },
+  "fit": {
+    "best_for": [
+      "analytics and BI tools",
+      "admin consoles",
+      "developer and API dashboards",
+      "financial or trading interfaces",
+      "any screen where scanning many rows is the primary job"
+    ],
+    "avoid_for": [
+      "consumer onboarding",
+      "marketing landing pages",
+      "brand-led or emotional storytelling",
+      "low-information mobile-first products"
+    ],
+    "mood": [
+      "precise",
+      "unemotional",
+      "trustworthy",
+      "dense",
+      "professional"
+    ],
+    "artifact_types_proven": [
+      "data table"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop"
+    ],
+    "artifacts": [
+      "data table"
+    ],
+    "artifact_counts": {
+      "data table": 9
+    },
+    "device_counts": {
+      "desktop": 9
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as flat vector-style UI illustration, technical-diagram sensibility.\n\nSTYLE — apply all of the following, they are not optional:\n- near-white background #F4F5F6, white surfaces #FFFFFF\n- all linework 1px, colour #E3E5E8 — no heavy strokes anywhere\n- colour restricted to one blue #0B5FD0 plus small semantic marks in green #0A7C4A / red #B42318\n- flat lighting, absolutely no gradients, glows, bevels or drop shadows\n- orthogonal composition on a strict grid; everything aligned to a baseline\n\nNEGATIVE SPACE: Reserve the upper-left third as flat #F4F5F6 with no linework, for headline and subhead.\n\nDO NOT INCLUDE: 3D rendering, glassmorphism, neon or glow, photographic texture, hand-drawn or organic shapes, gradient backgrounds, vignetting.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "near-white background #F4F5F6, white surfaces #FFFFFF",
+      "all linework 1px, colour #E3E5E8 — no heavy strokes anywhere",
+      "colour restricted to one blue #0B5FD0 plus small semantic marks in green #0A7C4A / red #B42318",
+      "flat lighting, absolutely no gradients, glows, bevels or drop shadows",
+      "orthogonal composition on a strict grid; everything aligned to a baseline",
+      "negative space — Reserve the upper-left third as flat #F4F5F6 with no linework, for headline and subhead.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "3D rendering",
+      "glassmorphism",
+      "neon or glow",
+      "photographic texture",
+      "hand-drawn or organic shapes",
+      "gradient backgrounds",
+      "vignetting"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/25878056-Table-datagrid-with-tabs-for-saas-web-app-dashboard",
+      "designer": "Virgil Pana",
+      "local_image": "shots/25878056-table-datagrid-with-tabs-for-saas-web-app-dashbo.png",
+      "thumbnail": "thumbs/25878056.jpg",
+      "title": "Table datagrid with tabs for saas web app dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25906740-DataGrid-Table-Filters-for-Saas-Dashboards-and-web-apps",
+      "designer": "Virgil Pana",
+      "local_image": "shots/25906740-datagrid-table-filters-for-saas-dashboards-and-w.png",
+      "thumbnail": "thumbs/25906740.jpg",
+      "title": "DataGrid Table Filters for Saas Dashboards and web apps"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25902111-React-Datagrid-for-Saas-web-apps-and-dashboards",
+      "designer": "Virgil Pana",
+      "local_image": "shots/25902111-react-datagrid-for-saas-web-apps-and-dashboards.png",
+      "thumbnail": "thumbs/25902111.jpg",
+      "title": "React Datagrid for Saas web apps and dashboards"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26070506-Table-Accordion-for-Investor-Dashboard-Saas",
+      "designer": "Virgil Pana",
+      "local_image": "shots/26070506-table-accordion-for-investor-dashboard-saas.png",
+      "thumbnail": "thumbs/26070506.jpg",
+      "title": "Table Accordion for Investor Dashboard Saas"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25965308-Ai-Agent-Advanced-filters-for-Saas-dashboard-table",
+      "designer": "Virgil Pana",
+      "local_image": "shots/25965308-ai-agent-advanced-filters-for-saas-dashboard-tab.png",
+      "thumbnail": "thumbs/25965308.jpg",
+      "title": "Ai Agent - Advanced filters for Saas dashboard table"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25856247-High-density-DataGrid-Table-for-saas-web-app-dashboard",
+      "designer": "Virgil Pana",
+      "local_image": "shots/25856247-high-density-datagrid-table-for-saas-web-app-das.png",
+      "thumbnail": "thumbs/25856247.jpg",
+      "title": "High-density DataGrid Table for saas web app dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26504537-SaaS-B2B-Marketing-Dashboard-Design",
+      "designer": "Conceptzilla",
+      "local_image": "shots/26504537-saas-b2b-marketing-dashboard-design.png",
+      "thumbnail": "thumbs/26504537.jpg",
+      "title": "SaaS B2B Marketing Dashboard Design"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26049052-Katalyst-Investor-Dashboard-Saas-web-app",
+      "designer": "Virgil Pana",
+      "local_image": "shots/26049052-katalyst-investor-dashboard-saas-web-app.png",
+      "thumbnail": "thumbs/26049052.jpg",
+      "title": "Katalyst - Investor Dashboard Saas web app"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25740653-HRISELINK-HR-Management-WebApp-SaaS",
+      "designer": "OnPoint Studio",
+      "local_image": "shots/25740653-hriselink-hr-management-webapp-saas.png",
+      "thumbnail": "thumbs/25740653.jpg",
+      "title": "HRISELINK - HR Management WebApp SaaS"
+    }
+  ],
+  "index": 0
+}

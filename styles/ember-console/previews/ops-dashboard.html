@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Console — Operations</title>
+<style>
+  :root{
+    --bg:#FCFCFC;
+    --surface:#FFFFFF;
+    --subtle:#F4F5F6;
+    --ink:#15171F;
+    --muted:#6B7280;
+    --line:#E6E8EB;
+    --accent:#D64B00;
+    --accent-soft:#FDEDE3;
+    --ai:#8B5CF6;
+    --positive:#0A7C4A;
+    --negative:#B42318;
+    --scrim:rgba(21, 23, 31, 0.38);
+    --font: Inter, "Söhne", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:var(--font);font-size:13px;line-height:18px;color:var(--ink);
+    background:var(--bg);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;
+  }
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .num{font-variant-numeric:tabular-nums}
+
+  .shell{display:grid;grid-template-columns:60px 220px 1fr;min-height:100vh}
+
+  /* rail */
+  .rail{background:var(--surface);border-right:1px solid var(--line);padding:12px 0;display:flex;flex-direction:column;align-items:center;gap:6px;position:sticky;top:0;height:100vh}
+  .mark{width:32px;height:32px;border-radius:9px;background:var(--accent);display:grid;place-items:center;margin-bottom:10px;color:#FFFFFF;font-weight:700;font-size:14px}
+  .rail-item{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;color:var(--muted)}
+  .rail-item:hover{background:var(--subtle);color:var(--ink)}
+  .rail-item.active{background:var(--accent);color:#FFFFFF}
+  .rail-item svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .rail-sep{width:24px;height:1px;background:var(--line);margin:6px 0}
+  .rail .grow{flex:1}
+
+  /* subnav */
+  .subnav{background:var(--surface);border-right:1px solid var(--line);padding:16px 12px}
+  .subnav h2{font-size:11px;line-height:14px;font-weight:500;letter-spacing:.01em;color:var(--muted);padding:0 8px 10px}
+  .navrow{display:flex;align-items:center;justify-content:space-between;height:32px;padding:0 8px;border-radius:8px;color:var(--muted);font-size:13px;width:100%;text-align:left}
+  .navrow:hover{background:var(--subtle);color:var(--ink)}
+  .navrow.active{background:var(--subtle);color:var(--ink);font-weight:500;box-shadow:inset 2px 0 0 var(--accent)}
+  .navrow em{font-style:normal;font-size:11px;color:var(--muted)}
+  .navrow .pill{font-style:normal;font-size:11px;background:var(--accent-soft);color:var(--accent);border-radius:8px;padding:2px 7px;font-weight:500}
+  .group{margin-top:18px}
+  .helpbox{margin-top:24px;border:1px solid var(--line);border-radius:10px;padding:12px}
+  .helpbox strong{display:block;font-size:13px;font-weight:600;margin-bottom:4px}
+  .helpbox p{font-size:11px;line-height:15px;color:var(--muted)}
+  .helpbox a{display:inline-block;margin-top:8px;color:var(--accent);font-size:11px;font-weight:500;text-decoration:none}
+
+  /* topbar */
+  .main{min-width:0;display:flex;flex-direction:column}
+  .topbar{height:56px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:0 20px;position:sticky;top:0;z-index:5}
+  .crumb{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .crumb b{color:var(--ink);font-weight:600}
+  .search{flex:1;max-width:340px;height:32px;background:var(--subtle);border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;gap:8px;padding:0 10px;color:var(--muted);min-width:0}
+  .search svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.5;fill:none;flex:none}
+  .topbar .spacer{flex:1}
+  .avatar{width:28px;height:28px;border-radius:999px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:11px;font-weight:600;flex:none}
+  .bell{position:relative}
+  .bell::after{content:"";position:absolute;top:4px;right:5px;width:6px;height:6px;border-radius:999px;background:var(--accent);border:1.5px solid var(--surface)}
+
+  /* buttons */
+  .btn{height:36px;padding:0 14px;border-radius:8px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+  .btn.sm{height:32px;padding:0 11px;font-size:12px}
+  .btn-primary{background:var(--accent);color:#FFFFFF;border:1px solid var(--accent)}
+  .btn-primary:hover{background:#C24400}
+  .btn-secondary{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+  .btn-secondary:hover{background:var(--subtle)}
+  .btn-ghost{color:var(--muted);border:1px solid transparent}
+  .btn-ghost:hover{background:var(--subtle);color:var(--ink)}
+  .btn svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .iconbtn{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;color:var(--muted)}
+  .iconbtn:hover{background:var(--subtle);color:var(--ink)}
+  .iconbtn svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  /* page */
+  .page{padding:24px 20px 0;display:flex;flex-direction:column;gap:16px;flex:1}
+  .pagehead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .pagehead h1{font-size:24px;line-height:32px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  .live{display:inline-flex;align-items:center;gap:6px;font-size:11px;line-height:14px;font-weight:500;color:var(--accent);background:var(--accent-soft);border-radius:8px;padding:4px 9px}
+  .live i{width:6px;height:6px;border-radius:999px;background:var(--accent);display:inline-block}
+  .pagehead .meta{font-size:11px;line-height:14px;color:var(--muted);margin-top:6px}
+  .actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .seg{display:inline-flex;background:var(--subtle);border-radius:8px;padding:3px;gap:2px}
+  .seg button{height:28px;padding:0 12px;border-radius:6px;font-size:12px;font-weight:500;color:var(--muted)}
+  .seg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgb(21 23 31 / .06)}
+
+  /* grid */
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
+  .span3{grid-column:span 3}.span4{grid-column:span 4}.span5{grid-column:span 5}
+  .span6{grid-column:span 6}.span7{grid-column:span 7}.span8{grid-column:span 8}.span12{grid-column:span 12}
+  .card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+  .card-head h3{font-size:14px;line-height:20px;font-weight:600;display:flex;align-items:center;gap:8px}
+  .card-head svg.ico{width:15px;height:15px;stroke:var(--muted);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .kpi .fig{font-size:28px;line-height:34px;font-weight:600;letter-spacing:-.01em}
+  .kpi .row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .delta{font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+  .delta.up{color:var(--positive)}
+  .delta.down{color:var(--negative)}
+  .vs{font-size:11px;line-height:14px;color:var(--muted)}
+  .spark{margin-top:12px}
+  .spark svg{display:block;width:100%;height:40px}
+  .series{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+  .series.compare{opacity:.35}
+  .area{fill:var(--accent-soft)}
+  .grid-l{stroke:var(--line);stroke-width:1;stroke-dasharray:3 4;vector-effect:non-scaling-stroke}
+  .xaxis{display:flex;justify-content:space-between;font-size:11px;line-height:14px;color:var(--muted);margin-top:8px}
+  .legend{display:flex;gap:14px;font-size:11px;line-height:14px;color:var(--muted)}
+  .legend i{width:8px;height:8px;border-radius:999px;border:2px solid var(--accent);display:inline-block;margin-right:5px;vertical-align:middle}
+  .legend i.soft{opacity:.35}
+
+  /* region list */
+  .rank{display:flex;flex-direction:column;gap:13px}
+  .rank .r .top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .rank .r em{font-style:normal;color:var(--muted);white-space:nowrap}
+  .track{height:8px;border-radius:999px;background:var(--accent-soft);margin-top:7px;overflow:hidden}
+  .track i{display:block;height:100%;border-radius:999px;background:var(--accent)}
+  .track i.soft{opacity:.35}
+
+  /* donut */
+  .donutwrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .donut{width:120px;height:120px;flex:none}
+  .donut circle{fill:none;stroke-width:14}
+  .keylist{display:flex;flex-direction:column;gap:9px;font-size:13px;min-width:130px;flex:1}
+  .keylist .k{display:flex;align-items:center;gap:8px;justify-content:space-between}
+  .keylist .k span{display:flex;align-items:center;gap:8px;color:var(--muted)}
+  .keylist .k i{width:8px;height:8px;border-radius:2px;background:var(--accent);flex:none}
+  .keylist .k b{font-weight:600}
+
+  /* funnel */
+  .funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .fstep{padding:0 16px;border-left:1px solid var(--line)}
+  .fstep:first-child{border-left:none;padding-left:0}
+  .fstep .lbl{font-size:11px;line-height:14px;font-weight:500;letter-spacing:.01em;color:var(--muted)}
+  .fstep .fig{font-size:24px;line-height:32px;font-weight:600;letter-spacing:-.01em;margin-top:4px}
+  .fbar{height:6px;border-radius:999px;background:var(--accent-soft);margin-top:10px;overflow:hidden}
+  .fbar i{display:block;height:100%;border-radius:999px;background:var(--accent)}
+
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{font-size:11px;line-height:14px;font-weight:500;letter-spacing:.01em;color:var(--muted);text-align:left;padding:10px 12px;background:var(--subtle);white-space:nowrap}
+  th:first-child{border-radius:8px 0 0 8px}
+  th:last-child{border-radius:0 8px 8px 0;text-align:right}
+  td{padding:12px;border-top:1px solid var(--line);white-space:nowrap}
+  td.num{text-align:right}
+  td.wrap{white-space:normal;min-width:150px}
+  tr:hover td{background:var(--bg)}
+  tr.sel td{background:var(--accent-soft)}
+  .chip{display:inline-block;height:24px;padding:0 8px;border-radius:8px;font-size:11px;line-height:22px;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+  .chip-accent{background:var(--accent-soft);border-color:transparent;color:var(--accent)}
+  .chip-pos{color:var(--positive)}
+  .chip-neg{color:var(--negative)}
+  .minibar{display:inline-block;width:64px;height:6px;border-radius:999px;background:var(--accent-soft);vertical-align:middle;margin-right:8px;overflow:hidden}
+  .minibar i{display:block;height:100%;background:var(--accent);border-radius:999px}
+
+  /* AI strip — the one licensed gradient */
+  .ai-strip{
+    display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:10px;
+    background-image:linear-gradient(90deg, rgb(139 92 246 / .16) 0%, rgb(236 72 153 / .14) 55%, rgb(255 255 255 / 0) 100%);
+    border:1px solid rgb(139 92 246 / .22);flex-wrap:wrap;
+  }
+  .ai-badge{display:inline-flex;align-items:center;gap:6px;color:var(--ai);background:var(--surface);border:1px solid rgb(139 92 246 / .28);border-radius:8px;font-size:11px;font-weight:600;line-height:14px;padding:6px 9px;flex:none}
+  .ai-badge svg{width:12px;height:12px;stroke:currentColor;stroke-width:1.6;fill:none}
+  .ai-strip .txt{flex:1;min-width:180px}
+  .ai-strip .txt strong{display:block;font-size:14px;line-height:20px;font-weight:600}
+  .ai-strip .txt span{color:var(--muted)}
+
+  /* footer */
+  footer{margin-top:20px;border-top:1px solid var(--line);height:44px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 20px;font-size:11px;line-height:14px;color:var(--muted);flex-wrap:wrap}
+  footer nav{display:flex;gap:16px}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--ink)}
+
+  @media (max-width:1100px){
+    .span3{grid-column:span 6}.span4{grid-column:span 6}.span5{grid-column:span 12}
+    .span7{grid-column:span 12}.span8{grid-column:span 12}
+  }
+  @media (max-width:900px){
+    .shell{grid-template-columns:60px 1fr}
+    .subnav{display:none}
+  }
+  @media (max-width:700px){
+    .shell{grid-template-columns:1fr}
+    .rail{display:none}
+    .search{display:none}
+    .span3,.span4,.span6{grid-column:span 12}
+    .funnel{grid-template-columns:1fr 1fr;gap:16px}
+    .fstep{border-left:none;padding:0}
+    .page{padding:16px 12px 0}
+    .pagehead h1{font-size:20px;line-height:28px}
+    .kpi .fig{font-size:24px;line-height:30px}
+    .tablescroll{overflow-x:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <nav class="rail">
+    <div class="mark">E</div>
+    <button class="rail-item" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></button>
+    <button class="rail-item active" aria-label="Operations"><svg viewBox="0 0 24 24"><path d="M4 20V9M10 20V4M16 20v-7M22 20H2"/></svg></button>
+    <button class="rail-item" aria-label="Shipments"><svg viewBox="0 0 24 24"><path d="M3 6h13v9H3zM16 9h3.5L22 12v3h-6zM7 18.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M18 18.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/></svg></button>
+    <button class="rail-item" aria-label="Inventory"><svg viewBox="0 0 24 24"><path d="M4 8l8-4 8 4-8 4zM4 8v8l8 4 8-4V8M12 12v8"/></svg></button>
+    <div class="rail-sep"></div>
+    <button class="rail-item" aria-label="Alerts"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button>
+    <div class="grow"></div>
+    <button class="rail-item" aria-label="Settings"><svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6M4 12h1M19 12h1M12 4v1M12 19v1M6.3 6.3l.7.7M17 17l.7.7M17.7 6.3l-.7.7M7 17l-.7.7"/></svg></button>
+  </nav>
+
+  <nav class="subnav">
+    <h2>OPERATIONS</h2>
+    <button class="navrow active"><span>Live board</span><em class="pill">Live</em></button>
+    <button class="navrow"><span>Throughput</span></button>
+    <button class="navrow"><span>Exceptions</span><em>14</em></button>
+    <button class="navrow"><span>Carriers</span><em>9</em></button>
+    <button class="navrow"><span>Warehouses</span><em>6</em></button>
+    <div class="group">
+      <h2>REPORTING</h2>
+      <button class="navrow"><span>Daily summary</span></button>
+      <button class="navrow"><span>SLA breaches</span><em>3</em></button>
+      <button class="navrow"><span>Cost per order</span></button>
+      <button class="navrow"><span>Scheduled exports</span></button>
+    </div>
+    <div class="helpbox">
+      <strong>Peak season mode</strong>
+      <p>Cut-off times move to 15:00 from 3 November across all six sites.</p>
+      <a href="#read-the-plan">Read the plan →</a>
+    </div>
+  </nav>
+
+  <div class="main">
+
+    <header class="topbar">
+      <div class="crumb">Northfield Supply <span>/</span> <b>Operations</b></div>
+      <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span>Search orders, carriers, SKUs</span></div>
+      <div class="spacer"></div>
+      <button class="iconbtn bell" aria-label="Alerts"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button>
+      <div class="avatar">RK</div>
+    </header>
+
+    <div class="page">
+
+      <div class="pagehead">
+        <div>
+          <h1>Live operations <span class="live"><i></i>Streaming</span></h1>
+          <div class="meta">Tuesday, 27 January 2026 · 11:42 GMT · six sites reporting</div>
+        </div>
+        <div class="actions">
+          <div class="seg"><button class="on">Today</button><button>7d</button><button>30d</button><button>QTD</button></div>
+          <button class="btn btn-secondary"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>Set up alert</button>
+          <button class="btn btn-primary"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>Export</button>
+        </div>
+      </div>
+
+      <div class="ai-strip">
+        <span class="ai-badge"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5 13.9 11.4 12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/></svg>Recommended by AI</span>
+        <div class="txt">
+          <strong>Shift 180 parcels from Leeds to Rotherham before 14:00</strong>
+          <span>Leeds is tracking 31 minutes behind its cut-off. Rotherham has spare pick capacity until mid-afternoon and the same carrier collection window.</span>
+        </div>
+        <button class="btn btn-secondary sm">Review plan</button>
+      </div>
+
+      <div class="grid">
+
+        <div class="card span3 kpi">
+          <div class="card-head"><h3><svg class="ico" viewBox="0 0 24 24"><path d="M3 7h18M3 7l1.5 12a2 2 0 0 0 2 1.8h11a2 2 0 0 0 2-1.8L21 7M9 7V5a3 3 0 0 1 6 0v2"/></svg>Orders in</h3></div>
+          <div class="row"><span class="fig num">9,412</span><span class="delta up">↑ 6.20%</span></div>
+          <div class="vs">vs same time yesterday</div>
+          <div class="spark">
+            <svg viewBox="0 0 200 44" preserveAspectRatio="none" role="img" aria-label="Orders received trend">
+              <polyline class="series compare" points="0,34 20,30 40,33 60,26 80,29 100,22 120,25 140,19 160,22 180,16 200,19"/>
+              <polyline class="series" points="0,30 20,24 40,28 60,18 80,22 100,13 120,17 140,9 160,14 180,7 200,4"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="card span3 kpi">
+          <div class="card-head"><h3><svg class="ico" viewBox="0 0 24 24"><path d="M3 6h13v9H3zM16 9h3.5L22 12v3h-6zM7 18.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M18 18.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/></svg>Dispatched</h3></div>
+          <div class="row"><span class="fig num">8,806</span><span class="delta up">↑ 4.10%</span></div>
+          <div class="vs">93.6% of orders received</div>
+          <div class="spark">
+            <svg viewBox="0 0 200 44" preserveAspectRatio="none" role="img" aria-label="Dispatched trend">
+              <polyline class="series compare" points="0,36 20,32 40,34 60,28 80,31 100,25 120,27 140,22 160,25 180,20 200,22"/>
+              <polyline class="series" points="0,32 20,27 40,30 60,21 80,25 100,17 120,20 140,12 160,17 180,10 200,8"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="card span3 kpi">
+          <div class="card-head"><h3><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Avg. pick time</h3></div>
+          <div class="row"><span class="fig num">4m 12s</span><span class="delta down">↓ 9.80%</span></div>
+          <div class="vs">slower than the 3m 50s target</div>
+          <div class="spark">
+            <svg viewBox="0 0 200 44" preserveAspectRatio="none" role="img" aria-label="Average pick time trend">
+              <polyline class="series compare" points="0,22 20,25 40,21 60,26 80,23 100,28 120,24 140,29 160,26 180,30 200,27"/>
+              <polyline class="series" points="0,18 20,22 40,16 60,24 80,19 100,26 120,21 140,29 160,24 180,32 200,34"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="card span3 kpi">
+          <div class="card-head"><h3><svg class="ico" viewBox="0 0 24 24"><path d="M12 3l9 16H3zM12 9v5M12 17h.01"/></svg>Exceptions</h3></div>
+          <div class="row"><span class="fig num">14</span><span class="delta down">↑ 3</span></div>
+          <div class="vs">3 breaching SLA within the hour</div>
+          <div class="spark">
+            <svg viewBox="0 0 200 44" preserveAspectRatio="none" role="img" aria-label="Exception count trend">
+              <polyline class="series compare" points="0,32 20,34 40,31 60,33 80,30 100,32 120,29 140,31 160,28 180,30 200,28"/>
+              <polyline class="series" points="0,34 20,31 40,33 60,28 80,30 100,25 120,28 140,22 160,26 180,18 200,12"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="card span8">
+          <div class="card-head">
+            <h3><svg class="ico" viewBox="0 0 24 24"><path d="M4 20V9M10 20V4M16 20v-7M22 20H2"/></svg>Order throughput</h3>
+            <div class="legend"><span><i></i>Today</span><span><i class="soft"></i>Last Tuesday</span></div>
+          </div>
+          <div class="row" style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+            <span class="fig num" style="font-size:28px;line-height:34px;font-weight:600;letter-spacing:-.01em">742 <span style="font-size:14px;font-weight:500;color:var(--muted)">orders / hour</span></span>
+            <span class="delta up">↑ 12.4%</span><span class="vs">peak 1,104 at 10:00</span>
+          </div>
+          <div class="spark" style="margin-top:14px">
+            <svg viewBox="0 0 800 220" preserveAspectRatio="none" style="height:200px" role="img" aria-label="Order throughput today against last Tuesday">
+              <line class="grid-l" x1="0" y1="40" x2="800" y2="40"/>
+              <line class="grid-l" x1="0" y1="100" x2="800" y2="100"/>
+              <line class="grid-l" x1="0" y1="160" x2="800" y2="160"/>
+              <path class="area" d="M0,172 L32,150 L64,162 L96,128 L128,140 L160,104 L192,118 L224,92 L256,134 L288,110 L320,86 L352,98 L384,72 L416,88 L448,64 L480,96 L512,70 L544,54 L576,76 L608,48 L640,62 L672,40 L704,56 L736,34 L768,46 L800,28 L800,220 L0,220 Z"/>
+              <polyline class="series compare" points="0,188 32,176 64,182 96,160 128,170 160,148 192,158 224,140 256,152 288,136 320,146 352,128 384,138 416,122 448,132 480,116 512,126 544,110 576,120 608,106 640,114 672,100 704,108 736,96 768,102 800,90"/>
+              <polyline class="series" points="0,172 32,150 64,162 96,128 128,140 160,104 192,118 224,92 256,134 288,110 320,86 352,98 384,72 416,88 448,64 480,96 512,70 544,54 576,76 608,48 640,62 672,40 704,56 736,34 768,46 800,28"/>
+            </svg>
+          </div>
+          <div class="xaxis"><span>06:00</span><span>09:00</span><span>12:00</span><span>15:00</span><span>18:00</span></div>
+        </div>
+
+        <div class="card span4">
+          <div class="card-head"><h3>Volume by site</h3><button class="iconbtn" aria-label="Expand"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7"/></svg></button></div>
+          <div class="rank">
+            <div class="r"><div class="top"><span>Rotherham</span><em class="num">2,914</em></div><div class="track"><i style="width:96%"></i></div></div>
+            <div class="r"><div class="top"><span>Leeds</span><em class="num">2,208</em></div><div class="track"><i class="soft" style="width:73%"></i></div></div>
+            <div class="r"><div class="top"><span>Bristol</span><em class="num">1,640</em></div><div class="track"><i class="soft" style="width:54%"></i></div></div>
+            <div class="r"><div class="top"><span>Glasgow</span><em class="num">1,102</em></div><div class="track"><i class="soft" style="width:36%"></i></div></div>
+            <div class="r"><div class="top"><span>Swansea</span><em class="num">908</em></div><div class="track"><i class="soft" style="width:30%"></i></div></div>
+            <div class="r"><div class="top"><span>Belfast</span><em class="num">640</em></div><div class="track"><i class="soft" style="width:21%"></i></div></div>
+          </div>
+        </div>
+
+        <div class="card span4">
+          <div class="card-head"><h3>Carrier mix</h3><button class="btn btn-ghost sm">Today</button></div>
+          <div class="donutwrap">
+            <svg class="donut" viewBox="0 0 42 42" role="img" aria-label="Carrier mix: 54 percent Rowan Freight, 27 percent Kestrel, 19 percent local courier">
+              <circle cx="21" cy="21" r="15.9" stroke="var(--accent-soft)"/>
+              <circle cx="21" cy="21" r="15.9" stroke="var(--accent)" stroke-dasharray="54 46" stroke-dashoffset="25" stroke-linecap="butt"/>
+              <circle cx="21" cy="21" r="15.9" stroke="var(--accent)" stroke-opacity=".55" stroke-dasharray="27 73" stroke-dashoffset="-29" stroke-linecap="butt"/>
+              <circle cx="21" cy="21" r="15.9" stroke="var(--accent)" stroke-opacity=".28" stroke-dasharray="19 81" stroke-dashoffset="-56" stroke-linecap="butt"/>
+            </svg>
+            <div class="keylist">
+              <div class="k"><span><i></i>Rowan Freight</span><b class="num">54%</b></div>
+              <div class="k"><span><i style="opacity:.55"></i>Kestrel Logistics</span><b class="num">27%</b></div>
+              <div class="k"><span><i style="opacity:.28"></i>Local courier</span><b class="num">19%</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span4">
+          <div class="card-head"><h3>SLA health</h3><span class="chip chip-pos">On track</span></div>
+          <div class="rank">
+            <div class="r"><div class="top"><span>Same-day dispatch</span><em class="num">98.2%</em></div><div class="track"><i style="width:98%"></i></div></div>
+            <div class="r"><div class="top"><span>Next-day delivery</span><em class="num">94.7%</em></div><div class="track"><i style="width:95%"></i></div></div>
+            <div class="r"><div class="top"><span>Returns processed &lt;48h</span><em class="num">88.1%</em></div><div class="track"><i class="soft" style="width:88%"></i></div></div>
+            <div class="r"><div class="top"><span>First-scan within 4h</span><em class="num">76.4%</em></div><div class="track"><i class="soft" style="width:76%"></i></div></div>
+          </div>
+        </div>
+
+        <div class="card span12">
+          <div class="card-head"><h3>Fulfilment funnel</h3><span class="vs">9,412 orders received since 00:00</span></div>
+          <div class="funnel">
+            <div class="fstep">
+              <div class="lbl">RECEIVED</div>
+              <div class="fig num">9,412</div>
+              <div><span class="delta up">↑ 6.2%</span> <span class="vs">vs yesterday</span></div>
+              <div class="fbar"><i style="width:100%"></i></div>
+            </div>
+            <div class="fstep">
+              <div class="lbl">PICKED</div>
+              <div class="fig num">9,188</div>
+              <div><span class="delta up">↑ 5.4%</span> <span class="vs">97.6% of received</span></div>
+              <div class="fbar"><i style="width:97%"></i></div>
+            </div>
+            <div class="fstep">
+              <div class="lbl">PACKED</div>
+              <div class="fig num">8,974</div>
+              <div><span class="delta up">↑ 4.9%</span> <span class="vs">95.3% of received</span></div>
+              <div class="fbar"><i style="width:95%"></i></div>
+            </div>
+            <div class="fstep">
+              <div class="lbl">DISPATCHED</div>
+              <div class="fig num">8,806</div>
+              <div><span class="delta down">↓ 1.2%</span> <span class="vs">93.6% of received</span></div>
+              <div class="fbar"><i style="width:93%"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span12" style="padding:16px 0 0">
+          <div class="card-head" style="padding:0 16px">
+            <h3>Exceptions queue</h3>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn btn-ghost sm">Filter</button>
+              <button class="btn btn-secondary sm">Assign selected</button>
+            </div>
+          </div>
+          <div class="tablescroll">
+            <table>
+              <thead>
+                <tr>
+                  <th style="padding-left:16px">ORDER</th><th>SITE</th><th>ISSUE</th><th>CARRIER</th>
+                  <th>SLA CONSUMED</th><th>OWNER</th><th style="padding-right:16px">VALUE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="sel">
+                  <td style="padding-left:16px">#NF-40412</td><td>Leeds</td>
+                  <td class="wrap">Missed carrier collection</td><td>Rowan Freight</td>
+                  <td><span class="minibar"><i style="width:94%"></i></span><span class="chip chip-neg">94%</span></td>
+                  <td>A. Okafor</td><td class="num" style="padding-right:16px">$1,204.00</td>
+                </tr>
+                <tr>
+                  <td style="padding-left:16px">#NF-40397</td><td>Rotherham</td>
+                  <td class="wrap">Short pick — 2 units</td><td>Kestrel Logistics</td>
+                  <td><span class="minibar"><i style="width:71%"></i></span><span class="chip">71%</span></td>
+                  <td>M. Duarte</td><td class="num" style="padding-right:16px">$486.00</td>
+                </tr>
+                <tr>
+                  <td style="padding-left:16px">#NF-40381</td><td>Bristol</td>
+                  <td class="wrap">Address unverified</td><td>Local courier</td>
+                  <td><span class="minibar"><i style="width:58%"></i></span><span class="chip">58%</span></td>
+                  <td>Unassigned</td><td class="num" style="padding-right:16px">$92.50</td>
+                </tr>
+                <tr>
+                  <td style="padding-left:16px">#NF-40366</td><td>Glasgow</td>
+                  <td class="wrap">Oversize — needs pallet</td><td>Rowan Freight</td>
+                  <td><span class="minibar"><i style="width:44%"></i></span><span class="chip">44%</span></td>
+                  <td>S. Halvorsen</td><td class="num" style="padding-right:16px">$3,180.00</td>
+                </tr>
+                <tr>
+                  <td style="padding-left:16px">#NF-40340</td><td>Swansea</td>
+                  <td class="wrap">Damaged in transit</td><td>Kestrel Logistics</td>
+                  <td><span class="minibar"><i style="width:22%"></i></span><span class="chip chip-pos">22%</span></td>
+                  <td>A. Okafor</td><td class="num" style="padding-right:16px">$318.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <footer>
+        <span>Last synced 11:42 · refreshes every 60 seconds</span>
+        <nav>
+          <a href="#status">Status</a>
+          <a href="#data-dictionary">Data dictionary</a>
+          <a href="#keyboard-shortcuts">Keyboard shortcuts</a>
+        </nav>
+      </footer>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

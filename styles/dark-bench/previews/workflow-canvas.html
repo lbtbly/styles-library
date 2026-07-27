@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gantry — Lead routing v4</title>
+<style>
+:root{
+  --bg:#0B0B0B;
+  --surface:#1C1C1C;
+  --raised:#262626;
+  --ink:#FAFAFA;
+  --muted:#8C8C8C;
+  --line:#333333;
+  --accent:#3FBF52;
+  --accent-ink:#052A0C;
+  --dot:rgba(255,255,255,0.10);
+  --warn:#E0A32E;
+  --negative:#E0503F;
+  --font-sans:"Inter","General Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--font-sans);-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+
+/* ---- scale-to-fit shell: the canvas is a fixed composition, never reflowed ---- */
+.fit{width:100%;overflow:hidden;position:relative}
+.stage{width:1320px;height:800px;transform-origin:0 0;position:relative;background:var(--bg);
+       display:grid;grid-template-columns:56px 1fr 360px;grid-template-rows:52px 1fr 32px;
+       grid-template-areas:"rail top top" "rail canvas inspect" "status status status"}
+
+/* ---- left rail ---- */
+.rail{grid-area:rail;background:var(--surface);border-right:1px solid var(--line);
+      display:flex;flex-direction:column;align-items:center;padding:10px 0;gap:4px}
+.rail__mark{width:26px;height:26px;border-radius:7px;background:var(--accent);display:grid;place-items:center;
+            color:var(--accent-ink);font:600 12px/1 var(--font-sans);margin-bottom:12px}
+.rail__btn{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;color:var(--muted);
+           position:relative;border:1px solid transparent;background:none;cursor:pointer}
+.rail__btn:hover{color:var(--ink);background:var(--raised)}
+.rail__btn.is-active{color:var(--ink);background:var(--raised);border-color:var(--line)}
+.rail__btn.is-active::before{content:"";position:absolute;left:-12px;top:6px;bottom:6px;width:2px;background:var(--accent)}
+.rail__sp{flex:1}
+.rail__me{width:26px;height:26px;border-radius:50%;background:var(--raised);border:1px solid var(--line);
+          display:grid;place-items:center;font:500 10px/1 var(--font-mono);color:var(--muted)}
+
+/* ---- top bar ---- */
+.top{grid-area:top;background:var(--bg);border-bottom:1px solid var(--line);
+     display:flex;align-items:center;gap:12px;padding:0 16px}
+.crumb{font:400 12px/16px var(--font-sans);color:var(--muted);display:flex;align-items:center;gap:7px;white-space:nowrap}
+.crumb b{font-weight:500;color:var(--ink)}
+.crumb i{font-style:normal;color:var(--line)}
+.top__sp{flex:1}
+.avatars{display:flex}
+.avatars span{width:24px;height:24px;border-radius:50%;background:var(--raised);border:1px solid var(--bg);
+              display:grid;place-items:center;font:500 9px/1 var(--font-mono);color:var(--muted);margin-left:-6px}
+.avatars span:first-child{margin-left:0}
+
+/* ---- shared atoms ---- */
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:6px;
+      font:500 10px/12px var(--font-sans);letter-spacing:.04em;background:var(--raised);
+      color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+.chip--ok{color:var(--accent);border-color:rgba(63,191,82,.42)}
+.chip--warn{color:var(--warn);border-color:rgba(224,163,46,.42)}
+.chip--bad{color:var(--negative);border-color:rgba(224,80,63,.42)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--muted);flex:none}
+.dot--ok{background:var(--accent)}.dot--warn{background:var(--warn)}.dot--bad{background:var(--negative)}
+.btn{font:500 12px/16px var(--font-sans);padding:7px 13px;border-radius:8px;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+.btn--primary{background:var(--accent);color:var(--accent-ink)}
+.btn--secondary{background:var(--raised);color:var(--ink);border-color:var(--line)}
+.btn--ghost{background:transparent;color:var(--muted)}
+.btn--ghost:hover{color:var(--ink);background:var(--raised)}
+.mono{font-family:var(--font-mono)}
+
+/* ---- canvas ---- */
+.canvas{grid-area:canvas;position:relative;overflow:hidden;
+        background-color:var(--bg);
+        background-image:radial-gradient(var(--dot) 1px,transparent 1px);
+        background-size:24px 24px;background-position:-1px -1px}
+.wires{position:absolute;inset:0;width:100%;height:100%}
+.node{position:absolute;width:240px;background:var(--surface);border:1px solid var(--line);
+      border-radius:10px;box-shadow:0 2px 8px rgb(0 0 0 / .5)}
+.node__head{display:flex;align-items:center;gap:7px;padding:8px 10px;background:var(--raised);
+            border-bottom:1px solid var(--line);border-radius:9px 9px 0 0}
+.node__title{font:500 13px/18px var(--font-sans);color:var(--ink);overflow:hidden;
+             text-overflow:ellipsis;white-space:nowrap;flex:1}
+.node__kind{font:400 10px/13px var(--font-mono);color:var(--muted);letter-spacing:.02em}
+.node__body{padding:10px 10px 12px}
+.node__line{font:400 12px/16px var(--font-mono);color:var(--ink);overflow:hidden;
+            text-overflow:ellipsis;white-space:nowrap}
+.node__meta{font:400 10px/13px var(--font-mono);color:var(--muted);margin-top:5px;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.node__foot{display:flex;align-items:center;gap:6px;margin-top:10px;padding-top:9px;border-top:1px solid var(--line)}
+.node.is-selected{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 2px 8px rgb(0 0 0 / .5)}
+.node.is-failed{border-color:rgba(224,80,63,.55)}
+.port{position:absolute;top:50%;margin-top:-4px;width:8px;height:8px;border-radius:50%;
+      background:var(--raised);border:1px solid var(--line)}
+.port--in{left:-5px}.port--out{right:-5px}
+.port.is-connected{background:var(--accent);border-color:var(--accent)}
+.port.is-idle{background:var(--surface)}
+.rack{filter:blur(4px);opacity:.42}
+.rack--far{filter:blur(8px);opacity:.28}
+
+/* bars inside a node */
+.spark{display:flex;align-items:flex-end;gap:3px;height:22px}
+.spark i{flex:1;background:var(--raised);border-radius:1px;display:block}
+.spark i.hot{background:var(--accent)}
+
+/* ---- floating toolbar pill ---- */
+.pill{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:flex;align-items:center;gap:2px;
+      background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px;
+      box-shadow:0 2px 8px rgb(0 0 0 / .5)}
+.pill button{width:30px;height:30px;border-radius:999px;border:none;background:none;color:var(--muted);
+             display:grid;place-items:center;cursor:pointer}
+.pill button:hover{color:var(--ink);background:var(--raised)}
+.pill button.is-active{color:var(--accent-ink);background:var(--accent)}
+.pill .sep{width:1px;height:18px;background:var(--line);margin:0 5px}
+.pill .zoom{font:400 10px/13px var(--font-mono);color:var(--muted);padding:0 6px;letter-spacing:.02em}
+
+/* ---- minimap ---- */
+.minimap{position:absolute;right:16px;bottom:16px;width:158px;height:98px;background:var(--surface);
+         border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 8px rgb(0 0 0 / .5);overflow:hidden}
+.minimap b{position:absolute;display:block;background:var(--raised);border-radius:2px}
+.minimap b.on{background:var(--accent)}
+.minimap .view{position:absolute;border:1px solid var(--muted);border-radius:3px;background:rgba(255,255,255,.04)}
+
+/* ---- inspector ---- */
+.inspect{grid-area:inspect;background:var(--surface);border-left:1px solid var(--line);
+         display:flex;flex-direction:column;overflow:hidden}
+.inspect__head{padding:13px 16px;border-bottom:1px solid var(--line)}
+.inspect__eyebrow{font:400 10px/13px var(--font-mono);color:var(--muted);letter-spacing:.04em}
+.inspect__title{font:500 15px/20px var(--font-sans);color:var(--ink);margin-top:4px;
+                display:flex;align-items:center;gap:8px}
+.inspect__body{padding:14px 16px;overflow:hidden;flex:1}
+.field{margin-bottom:12px}
+.field>label{display:block;font:400 10px/13px var(--font-mono);color:var(--muted);
+             letter-spacing:.04em;margin-bottom:5px}
+.input,.select{background:var(--raised);color:var(--ink);border:1px solid var(--line);border-radius:8px;
+               padding:7px 10px;font:400 12px/16px var(--font-sans);width:100%;display:block}
+.select{display:flex;align-items:center;justify-content:space-between}
+.select .caret{width:0;height:0;border-left:3.5px solid transparent;border-right:3.5px solid transparent;
+               border-top:4px solid var(--muted)}
+.input--focus{border-color:var(--accent)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hint{font:400 10px/14px var(--font-mono);color:var(--muted);margin-top:5px}
+.payload{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px;
+         font:400 10px/16px var(--font-mono);color:var(--muted);white-space:pre;overflow:hidden}
+.payload .k{color:var(--ink)}
+.payload .v{color:var(--accent)}
+.subhead{font:500 10px/13px var(--font-mono);color:var(--muted);letter-spacing:.06em;
+         margin:16px 0 8px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.runs{width:100%;border-collapse:collapse;font:400 11px/15px var(--font-sans)}
+.runs td{padding:6px 0;border-bottom:1px solid var(--line);color:var(--ink)}
+.runs td.t{font-family:var(--font-mono);color:var(--muted);font-size:10px}
+.runs td.n{font-family:var(--font-mono);text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.inspect__foot{padding:12px 16px;border-top:1px solid var(--line);display:flex;gap:8px}
+.inspect__foot .btn{flex:1;text-align:center}
+
+/* ---- status strip ---- */
+.status{grid-area:status;background:var(--bg);border-top:1px solid var(--line);display:flex;align-items:center;
+        justify-content:space-between;padding:0 16px;font:400 10px/13px var(--font-mono);color:var(--muted);
+        letter-spacing:.02em;gap:12px}
+.status span{display:flex;align-items:center;gap:6px;white-space:nowrap}
+svg.ico{display:block}
+</style>
+</head>
+<body>
+
+<div class="fit" id="fit">
+<div class="stage" id="stage">
+
+  <!-- ================= left rail ================= -->
+  <nav class="rail" aria-label="Primary">
+    <div class="rail__mark">G</div>
+    <button class="rail__btn is-active" title="Flows" aria-label="Flows">
+      <svg class="ico" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="4.5" cy="5" r="2.2"/><circle cx="15.5" cy="10" r="2.2"/><circle cx="4.5" cy="15" r="2.2"/>
+        <path d="M6.7 5.9C10 7 10.5 8.6 13.4 9.6M6.7 14.1C10 13 10.5 11.4 13.4 10.4"/>
+      </svg>
+    </button>
+    <button class="rail__btn" title="Runs" aria-label="Runs">
+      <svg class="ico" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="10" cy="10" r="7"/><path d="M10 6v4.3l2.8 1.7"/>
+      </svg>
+    </button>
+    <button class="rail__btn" title="Data sources" aria-label="Data sources">
+      <svg class="ico" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <ellipse cx="10" cy="5.5" rx="6" ry="2.4"/><path d="M4 5.5v9c0 1.3 2.7 2.4 6 2.4s6-1.1 6-2.4v-9"/><path d="M4 10c0 1.3 2.7 2.4 6 2.4s6-1.1 6-2.4"/>
+      </svg>
+    </button>
+    <button class="rail__btn" title="Credentials" aria-label="Credentials">
+      <svg class="ico" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="7" cy="10" r="3"/><path d="M10 10h7M14.5 10v2.6M17 10v2"/>
+      </svg>
+    </button>
+    <button class="rail__btn" title="Logs" aria-label="Logs">
+      <svg class="ico" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3.5" y="3.5" width="13" height="13" rx="2.5"/><path d="M6.5 8h7M6.5 11h7M6.5 14h4"/>
+      </svg>
+    </button>
+    <div class="rail__sp"></div>
+    <button class="rail__btn" title="Settings" aria-label="Settings">
+      <svg class="ico" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="10" cy="10" r="2.8"/><path d="M10 2.5v2.2M10 15.3v2.2M17.5 10h-2.2M4.7 10H2.5M15.3 4.7l-1.6 1.6M6.3 13.7l-1.6 1.6M15.3 15.3l-1.6-1.6M6.3 6.3L4.7 4.7"/>
+      </svg>
+    </button>
+    <div class="rail__me">LB</div>
+  </nav>
+
+  <!-- ================= top bar ================= -->
+  <header class="top">
+    <div class="crumb">Workspaces <i>/</i> Revenue ops <i>/</i> <b>Lead routing v4</b></div>
+    <span class="chip"><span class="dot dot--warn"></span>Draft · unsaved</span>
+    <span class="chip mono">edited 3m ago</span>
+    <div class="top__sp"></div>
+    <div class="avatars"><span>LB</span><span>AK</span><span>RT</span></div>
+    <button class="btn btn--ghost">History</button>
+    <button class="btn btn--secondary">Test run</button>
+    <button class="btn btn--primary">Deploy</button>
+  </header>
+
+  <!-- ================= canvas ================= -->
+  <main class="canvas">
+    <svg class="wires" viewBox="0 0 904 716" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <marker id="headMuted" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#8C8C8C"/>
+        </marker>
+        <marker id="headLive" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#3FBF52"/>
+        </marker>
+        <marker id="headBad" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#E0503F"/>
+        </marker>
+      </defs>
+      <!-- idle edges -->
+      <path d="M 264 114 C 296 114, 296 108, 328 108" stroke="#8C8C8C" stroke-width="2" fill="none" marker-end="url(#headMuted)"/>
+      <path d="M 264 114 C 302 114, 290 298, 328 298" stroke="#8C8C8C" stroke-width="2" fill="none" marker-end="url(#headMuted)"/>
+      <path d="M 568 108 C 600 108, 600 132, 632 132" stroke="#8C8C8C" stroke-width="2" fill="none" marker-end="url(#headMuted)"/>
+      <path d="M 568 298 C 612 298, 588 470, 632 470" stroke="#8C8C8C" stroke-width="2" fill="none" marker-end="url(#headMuted)"/>
+      <!-- live edges -->
+      <path d="M 264 278 C 296 278, 296 298, 328 298" stroke="#3FBF52" stroke-width="2" fill="none" marker-end="url(#headLive)"/>
+      <path d="M 568 298 C 600 298, 600 320, 632 320" stroke="#3FBF52" stroke-width="2" fill="none" marker-end="url(#headLive)"/>
+      <!-- failed branch -->
+      <path d="M 752 372 C 752 392, 752 396, 752 412" stroke="#E0503F" stroke-width="2" fill="none" stroke-dasharray="4 4" marker-end="url(#headBad)"/>
+    </svg>
+
+    <!-- racked depth: partially cropped nodes, presentation only -->
+    <div class="node rack" style="left:-140px;top:452px" aria-hidden="true">
+      <div class="node__head"><span class="dot"></span><span class="node__title">Archive to lake</span><span class="node__kind">s3</span></div>
+      <div class="node__body"><p class="node__line">parquet · daily</p><p class="node__meta">last write 04:12 UTC</p></div>
+    </div>
+    <div class="node rack--far" style="left:596px;top:-46px" aria-hidden="true">
+      <div class="node__head"><span class="dot"></span><span class="node__title">Dedupe window</span><span class="node__kind">fn</span></div>
+      <div class="node__body"><p class="node__line">key: email + domain</p><p class="node__meta">window 24h</p></div>
+    </div>
+
+    <!-- column A -->
+    <article class="node" style="left:24px;top:64px">
+      <div class="node__head"><span class="dot dot--ok"></span><span class="node__title">Order webhook</span><span class="node__kind">trigger</span></div>
+      <div class="node__body">
+        <p class="node__line">POST /hooks/orders</p>
+        <p class="node__meta">2,418 events today · p95 41ms</p>
+      </div>
+      <span class="port port--out is-connected"></span>
+    </article>
+
+    <article class="node" style="left:24px;top:228px">
+      <div class="node__head"><span class="dot dot--ok"></span><span class="node__title">Nightly backfill</span><span class="node__kind">cron</span></div>
+      <div class="node__body">
+        <p class="node__line">0 3 * * *</p>
+        <p class="node__meta">next run in 6h 12m</p>
+      </div>
+      <span class="port port--out is-connected"></span>
+    </article>
+
+    <!-- column B -->
+    <article class="node" style="left:328px;top:52px">
+      <div class="node__head"><span class="dot"></span><span class="node__title">Normalise payload</span><span class="node__kind">fn</span></div>
+      <div class="node__body">
+        <p class="node__line">map → order.v3</p>
+        <p class="node__meta">14 fields · 2 dropped</p>
+        <div class="node__foot"><span class="chip">idle</span><span class="chip mono">8ms</span></div>
+      </div>
+      <span class="port port--in is-connected"></span><span class="port port--out is-connected"></span>
+    </article>
+
+    <article class="node is-selected" style="left:328px;top:224px">
+      <div class="node__head"><span class="dot dot--ok"></span><span class="node__title">Score with model</span><span class="node__kind">infer</span></div>
+      <div class="node__body">
+        <p class="node__line">propensity-v7 · int8</p>
+        <p class="node__meta">threshold 0.62 · retry 3 · 30s</p>
+        <div class="spark" style="margin-top:10px" aria-hidden="true">
+          <i style="height:38%"></i><i style="height:55%"></i><i style="height:31%"></i><i style="height:72%"></i>
+          <i style="height:48%"></i><i style="height:90%"></i><i class="hot" style="height:64%"></i>
+          <i style="height:44%"></i><i style="height:81%"></i><i style="height:52%"></i>
+        </div>
+        <div class="node__foot"><span class="chip chip--ok"><span class="dot dot--ok"></span>running</span><span class="chip mono">312 / min</span></div>
+      </div>
+      <span class="port port--in is-connected"></span><span class="port port--out is-connected"></span>
+    </article>
+
+    <!-- column C -->
+    <article class="node" style="left:632px;top:76px">
+      <div class="node__head"><span class="dot"></span><span class="node__title">Route by segment</span><span class="node__kind">switch</span></div>
+      <div class="node__body">
+        <p class="node__line">4 branches</p>
+        <p class="node__meta">enterprise · mid · smb · fallback</p>
+        <div class="node__foot"><span class="chip">idle</span></div>
+      </div>
+      <span class="port port--in is-connected"></span><span class="port port--out is-idle"></span>
+    </article>
+
+    <article class="node is-failed" style="left:632px;top:268px">
+      <div class="node__head"><span class="dot dot--bad"></span><span class="node__title">Create deal</span><span class="node__kind">crm</span></div>
+      <div class="node__body">
+        <p class="node__line">POST /crm/v2/deals</p>
+        <p class="node__meta">429 rate_limited · retry in 48s</p>
+      </div>
+      <span class="port port--in is-connected"></span><span class="port port--out"></span>
+    </article>
+
+    <article class="node" style="left:632px;top:420px">
+      <div class="node__head"><span class="dot dot--warn"></span><span class="node__title">Notify #revops</span><span class="node__kind">slack</span></div>
+      <div class="node__body">
+        <p class="node__line">template: deal_failed</p>
+        <p class="node__meta">queued · 3 pending</p>
+      </div>
+      <span class="port port--in is-connected"></span>
+    </article>
+
+    <!-- floating toolbar -->
+    <div class="pill" role="toolbar" aria-label="Canvas tools">
+      <button class="is-active" title="Select" aria-label="Select">
+        <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3.5 2.5l9.5 5.2-4.2 1-1.6 4.2z" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button title="Pan" aria-label="Pan">
+        <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 2v6M5 4.5v4M11 4.5v4M3.5 7.5v2.5A4.5 4.5 0 0 0 8 14.5h.6a4.4 4.4 0 0 0 4.4-4.4V6"/>
+        </svg>
+      </button>
+      <button title="Add node" aria-label="Add node">
+        <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 3.5v9M3.5 8h9"/>
+        </svg>
+      </button>
+      <button title="Comment" aria-label="Comment">
+        <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M13.5 8.5a4.5 4.5 0 0 1-4.5 4.5H6l-3 2v-2.6A4.5 4.5 0 0 1 2.5 8.5v-1A4.5 4.5 0 0 1 7 3h2a4.5 4.5 0 0 1 4.5 4.5z"/>
+        </svg>
+      </button>
+      <span class="sep"></span>
+      <button title="Zoom out" aria-label="Zoom out">
+        <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 8h9"/></svg>
+      </button>
+      <span class="zoom">100%</span>
+      <button title="Zoom in" aria-label="Zoom in">
+        <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3.5v9M3.5 8h9"/></svg>
+      </button>
+      <span class="sep"></span>
+      <button title="Fit to view" aria-label="Fit to view">
+        <svg class="ico" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2.5H2.5V6M10 2.5h3.5V6M6 13.5H2.5V10M10 13.5h3.5V10"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- minimap -->
+    <div class="minimap" aria-hidden="true">
+      <b style="left:10px;top:16px;width:26px;height:11px"></b>
+      <b style="left:10px;top:40px;width:26px;height:11px"></b>
+      <b style="left:52px;top:12px;width:26px;height:12px"></b>
+      <b class="on" style="left:52px;top:38px;width:26px;height:16px"></b>
+      <b style="left:96px;top:16px;width:26px;height:12px"></b>
+      <b style="left:96px;top:42px;width:26px;height:11px"></b>
+      <b style="left:96px;top:64px;width:26px;height:11px"></b>
+      <div class="view" style="left:6px;top:8px;width:120px;height:74px"></div>
+    </div>
+  </main>
+
+  <!-- ================= inspector ================= -->
+  <aside class="inspect" aria-label="Node inspector">
+    <div class="inspect__head">
+      <div class="inspect__eyebrow">NODE · nd_8f21c4</div>
+      <div class="inspect__title">Score with model <span class="chip chip--ok"><span class="dot dot--ok"></span>running</span></div>
+    </div>
+    <div class="inspect__body">
+      <div class="field">
+        <label for="f-model">MODEL</label>
+        <div class="select" id="f-model">propensity-v7 (int8) <span class="caret"></span></div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-thr">THRESHOLD</label>
+          <input class="input input--focus" id="f-thr" value="0.62" readonly>
+        </div>
+        <div class="field">
+          <label for="f-to">TIMEOUT</label>
+          <input class="input" id="f-to" value="30s" readonly>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-retry">RETRY POLICY</label>
+        <div class="select" id="f-retry">exponential · 3 attempts <span class="caret"></span></div>
+        <p class="hint">Backoff 2s → 8s → 32s, then routed to the failure branch.</p>
+      </div>
+      <div class="field">
+        <label>SAMPLE OUTPUT</label>
+        <div class="payload"><span class="k">"lead_id"</span>: <span class="v">"ld_4471"</span>
+<span class="k">"score"</span>:   <span class="v">0.871</span>
+<span class="k">"segment"</span>: <span class="v">"enterprise"</span>
+<span class="k">"latency"</span>: <span class="v">112</span></div>
+      </div>
+
+      <div class="subhead">RECENT RUNS</div>
+      <table class="runs">
+        <tr><td class="t">14:02:11</td><td>succeeded</td><td class="n">112ms</td></tr>
+        <tr><td class="t">14:01:47</td><td>succeeded</td><td class="n">98ms</td></tr>
+        <tr><td class="t">14:01:20</td><td style="color:var(--negative)">downstream 429</td><td class="n">1.4s</td></tr>
+        <tr><td class="t">14:00:55</td><td>succeeded</td><td class="n">104ms</td></tr>
+      </table>
+    </div>
+    <div class="inspect__foot">
+      <button class="btn btn--secondary">Run node</button>
+      <button class="btn btn--primary">Save changes</button>
+    </div>
+  </aside>
+
+  <!-- ================= status strip ================= -->
+  <footer class="status">
+    <span>gantry 4.2.1 · eu-west-1 · workspace revenue-ops</span>
+    <span>7 nodes · 7 edges · autosave 12s ago</span>
+    <span><span class="dot dot--ok"></span>runner connected</span>
+  </footer>
+
+</div>
+</div>
+
+<script>
+(function(){
+  var fit = document.getElementById('fit'), stage = document.getElementById('stage');
+  var W = 1320, H = 800;
+  function apply(){
+    var s = fit.clientWidth / W;
+    stage.style.transform = 'scale(' + s + ')';
+    fit.style.height = (H * s) + 'px';
+  }
+  apply();
+  window.addEventListener('resize', apply);
+})();
+</script>
+</body>
+</html>

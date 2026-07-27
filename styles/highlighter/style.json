@@ -1,0 +1,153 @@
+{
+  "id": "highlighter",
+  "name": "Highlighter",
+  "collection": "Charged Neutral",
+  "pairing": "Lab notebook × neon marker",
+  "concept": "Keep the page desaturated so a single chartreuse stroke reads as emphasis rather than decoration.",
+  "keywords": [
+    "acid-chartreuse",
+    "desaturated-ground",
+    "marker-emphasis",
+    "oversized-numerals",
+    "black-block",
+    "folder-tab-nav"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#EDEFEA",
+      "surface": "#FFFFFF",
+      "ink": "#0B0C08",
+      "muted": "#70736A",
+      "line": "#DFE2DA",
+      "accent": "#C3EC2E",
+      "accent_ink": "#141600",
+      "block": "#1C1E18",
+      "block_ink": "#F2F4EC"
+    },
+    "type": {
+      "families": "Geometric sans with tight tracking (Space Grotesk, General Sans, Aeonik). Headlines set negative at -0.03em.",
+      "hierarchy": "Hero numeral 64/64 light or 72/72 · section 24/30 medium · body 14/21 regular · micro-caps 10/12 medium ALL-CAPS 0.1em. Oversized light-weight numerals are the signature — a metric should be able to fill a third of a card.",
+      "usage": "Let one huge numeral carry the hierarchy per card. Chartreuse never sets type — it sits *behind* type as a highlighter swipe, or fills a pill whose label is `--accent_ink`."
+    },
+    "texture": "Flat, with one behaviour that defines the style: chartreuse is applied like a marker, not a fill. Use it as a short swipe behind a word (a skewed rectangle at 0 opacity change), as an underline 6px thick sitting behind the baseline, or as a solid pill. Solid charcoal `--block` cards provide the counterweight. No gradients, no glow — the acid does all the shouting.",
+    "layout": "Moderate density with strong blocking. 8px scale, 20-24px card padding, 12-16px radius, occasional pill (999px). Cards alternate between white and solid `--block`. Folder-tab navigation — tabs that visually attach to the panel below — is the characteristic nav pattern. Charts render as open thin-arc gauges rather than filled donuts."
+  },
+  "fit": {
+    "best_for": [
+      "AI and automation products",
+      "developer tools with personality",
+      "growth and marketing analytics",
+      "fintech challengers",
+      "products targeting a younger technical audience"
+    ],
+    "avoid_for": [
+      "healthcare and clinical software",
+      "government or regulated finance",
+      "luxury or heritage brands",
+      "accessibility-critical products where the accent would be relied on for meaning"
+    ],
+    "mood": [
+      "electric",
+      "current",
+      "confident",
+      "irreverent",
+      "technical"
+    ],
+    "artifact_types_proven": [
+      "landing page",
+      "dashboard",
+      "mobile app",
+      "crm"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "artifacts": [
+      "landing page",
+      "dashboard",
+      "mobile app",
+      "crm"
+    ],
+    "artifact_counts": {
+      "landing page": 3,
+      "dashboard": 1,
+      "mobile app": 1,
+      "crm": 1
+    },
+    "device_counts": {
+      "desktop": 5,
+      "mobile": 1
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as flat vector illustration or matte 3D render with a single fluorescent accent.\n\nSTYLE — apply all of the following, they are not optional:\n- desaturated warm-grey ground #EDEFEA\n- exactly one fluorescent chartreuse #C3EC2E used on no more than 10% of the frame\n- solid near-black #1C1E18 masses as counterweight\n- matte surfaces, flat or very soft lighting\n- geometric shapes with generous rounding\n\nNEGATIVE SPACE: Keep the right 30% as empty desaturated ground for type.\n\nDO NOT INCLUDE: multiple bright colours, pastel palettes, glossy or metallic surfaces, photographic realism, gradients, neon glow.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "desaturated warm-grey ground #EDEFEA",
+      "exactly one fluorescent chartreuse #C3EC2E used on no more than 10% of the frame",
+      "solid near-black #1C1E18 masses as counterweight",
+      "matte surfaces, flat or very soft lighting",
+      "geometric shapes with generous rounding",
+      "negative space — Keep the right 30% as empty desaturated ground for type.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "multiple bright colours",
+      "pastel palettes",
+      "glossy or metallic surfaces",
+      "photographic realism",
+      "gradients",
+      "neon glow"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/27584703-AI-SaaS-Landing-Page-Design",
+      "designer": "Mahid",
+      "local_image": "shots/27584703-ai-saas-landing-page-design.jpg",
+      "thumbnail": "thumbs/27584703.jpg",
+      "title": "AI SaaS Landing Page Design"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27578441-Case-Study-for-Squadhub-Saas-Team-Management-Website",
+      "designer": "Plainthing Studio",
+      "local_image": "shots/27578441-case-study-for-squadhub-saas-team-management-web.png",
+      "thumbnail": "thumbs/27578441.jpg",
+      "title": "Case Study for Squadhub - Saas Team Management Website"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26440808-AI-SaaS-Landing-Page",
+      "designer": "Awsmd",
+      "local_image": "shots/26440808-ai-saas-landing-page.jpg",
+      "thumbnail": "thumbs/26440808.jpg",
+      "title": "AI SaaS Landing Page"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/24070360-CreditTB-Credit-SaaS-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/24070360-credittb-credit-saas-dashboard.png",
+      "thumbnail": "thumbs/24070360.jpg",
+      "title": "CreditTB - Credit SaaS Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/24028927-SavingPro-Mobile-App-Savings-SaaS-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/24028927-savingpro-mobile-app-savings-saas-dashboard.png",
+      "thumbnail": "thumbs/24028927.jpg",
+      "title": "SavingPro Mobile App - Savings SaaS Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26460868-Synetica-SaaS-CRM-AI-Finance-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/26460868-synetica-saas-crm-ai-finance-dashboard.png",
+      "thumbnail": "thumbs/26460868.jpg",
+      "title": "Synetica SaaS CRM - AI Finance Dashboard"
+    }
+  ],
+  "index": 5
+}

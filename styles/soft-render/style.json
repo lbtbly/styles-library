@@ -1,0 +1,134 @@
+{
+  "id": "soft-render",
+  "name": "Soft Render",
+  "collection": "Charged Neutral",
+  "pairing": "Product photography × pale lime",
+  "concept": "Borderless pale fills and oversized light numerals, presented as a soft-focus 3D render in a grey studio.",
+  "keywords": [
+    "3d-staged",
+    "borderless-fill",
+    "pale-lime",
+    "soft-focus",
+    "grey-studio",
+    "light-numerals",
+    "frosted-control"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#E2E2E2",
+      "surface": "#D9DED2",
+      "raised": "rgba(255, 255, 255, 0.72)",
+      "ink": "#101010",
+      "muted": "#6E7168",
+      "line": "transparent",
+      "accent": "#DCEE92",
+      "accent_ink": "#20260A",
+      "deep": "#1E7C5A"
+    },
+    "type": {
+      "families": "Geometric sans, light to regular weight only (Aeonik, General Sans, Inter Light). This style never uses bold.",
+      "hierarchy": "Numeral 56/56 light · title 20/26 regular · body 14/21 regular · label 11/14 regular in `--muted`. Weight contrast is deliberately low; size does the separating.",
+      "usage": "Set everything a weight lighter than feels safe. Numerals are large and thin. No uppercase except tiny labels. Tracking stays neutral."
+    },
+    "texture": "Borderless fills — cards have no stroke at all, only a subtle fill difference from the ground, plus optional `backdrop-filter: blur(20px)` on translucent controls. The whole composition is presented as a soft-focus 3D render: a matte screen or device sitting in a grey studio with gentle depth-of-field falloff at the frame edges. Shadows are large and very soft (`0 40px 80px -40px rgb(0 0 0 / .35)`).",
+    "layout": "Calm, wide and airy. 8px scale, 24px padding, 16-20px radius on every surface, controls fully rounded. Because there are no borders, spacing is the only separator — use 20-24px gaps, never 8px. Content sits in wide low cards rather than tall dense ones."
+  },
+  "fit": {
+    "best_for": [
+      "hardware and IoT companion apps",
+      "wellness and sustainability products",
+      "premium consumer SaaS",
+      "product launch pages",
+      "anything wanting a calm physical presence"
+    ],
+    "avoid_for": [
+      "dense data tools",
+      "developer consoles",
+      "high-urgency operational software",
+      "budget or utilitarian positioning"
+    ],
+    "mood": [
+      "calm",
+      "tactile",
+      "premium",
+      "soft",
+      "modern"
+    ],
+    "artifact_types_proven": [
+      "dashboard",
+      "mobile app"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "artifacts": [
+      "dashboard",
+      "mobile app"
+    ],
+    "artifact_counts": {
+      "dashboard": 2,
+      "mobile app": 2
+    },
+    "device_counts": {
+      "desktop": 2,
+      "mobile": 2
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as soft-focus 3D product render, studio lighting.\n\nSTYLE — apply all of the following, they are not optional:\n- matte grey studio environment #E2E2E2 with soft gradient falloff\n- shallow depth of field — subject sharp, background falling gently out of focus\n- one pale lime accent #DCEE92 on a small element only\n- soft diffused key light from upper left, no hard shadows\n- rounded matte geometry, no sharp edges\n\nNEGATIVE SPACE: The defocused background should occupy at least a third of the frame.\n\nDO NOT INCLUDE: hard specular highlights, saturated colour, busy environments, sharp corners, flat vector look, text in the image.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "matte grey studio environment #E2E2E2 with soft gradient falloff",
+      "shallow depth of field — subject sharp, background falling gently out of focus",
+      "one pale lime accent #DCEE92 on a small element only",
+      "soft diffused key light from upper left, no hard shadows",
+      "rounded matte geometry, no sharp edges",
+      "negative space — The defocused background should occupy at least a third of the frame.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "hard specular highlights",
+      "saturated colour",
+      "busy environments",
+      "sharp corners",
+      "flat vector look",
+      "text in the image"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/26435991-Convox-SaaS-Call-Center-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/26435991-convox-saas-call-center-dashboard.png",
+      "thumbnail": "thumbs/26435991.jpg",
+      "title": "Convox SaaS - Call Center Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25478062-Convox-SaaS-Call-Center-Solution",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/25478062-convox-saas-call-center-solution.jpg",
+      "thumbnail": "thumbs/25478062.jpg",
+      "title": "Convox SaaS - Call Center Solution"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25188771-Farm-Management-SaaS-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/25188771-farm-management-saas-dashboard.png",
+      "thumbnail": "thumbs/25188771.jpg",
+      "title": "Farm Management SaaS Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/24347345-UPS-Platform-SaaS-Airfreight-Delivery-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/24347345-ups-platform-saas-airfreight-delivery-dashboard.png",
+      "thumbnail": "thumbs/24347345.jpg",
+      "title": "UPS Platform - SaaS Airfreight Delivery Dashboard"
+    }
+  ],
+  "index": 6
+}

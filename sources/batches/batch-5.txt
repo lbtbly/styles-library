@@ -1,0 +1,15 @@
+60	25251171	shots/25251171-ai-car-inspection-saas-dashboard.png	RonDesignLab ⭐️	AI Car Inspection SaaS Dashboard
+61	26770421	shots/26770421-finance-saas-website.png	Awsmd	Finance SaaS Website
+62	26629031	shots/26629031-sugar-crm-saas-dashboard-ux-ui-design.png	RonDesignLab ⭐️	Sugar CRM - SaaS Dashboard & UX UI Design
+63	26070506	shots/26070506-table-accordion-for-investor-dashboard-saas.png	Virgil Pana	Table Accordion for Investor Dashboard Saas
+64	27351461	shots/27351461-aoscan-ai-powered-saas-hr-recruitment-dashboard.png	Dipa Inhouse	Aoscan – AI-Powered SaaS HR Recruitment Dashboard
+65	24399713	shots/24399713-recruittrack-ai-recruit-management-saas.jpg	RonDesignLab ⭐️	RecruitTrack - AI Recruit Management SaaS
+66	23992301	shots/23992301-rentease-mobile-app-property-management-saas.jpg	RonDesignLab ⭐️	RentEase Mobile App - Property Management SaaS
+67	23992108	shots/23992108-aella-credit-dashboard-credit-score-saas.png	RonDesignLab ⭐️	Aella Credit Dashboard - Credit Score SaaS
+68	25965308	shots/25965308-ai-agent-advanced-filters-for-saas-dashboard-tab.png	Virgil Pana	Ai Agent - Advanced filters for Saas dashboard table
+69	26530776	shots/26530776-optispace-saas-office-operating-dashboard.png	RonDesignLab ⭐️	OptiSpace SaaS - Office Operating Dashboard
+70	27366631	shots/27366631-zolatto-saas-marketing-analytics-dashboard.png	Dipa Inhouse	Zolatto – SaaS Marketing Analytics Dashboard
+71	24571754	shots/24571754-airfreight-saas-aircraft-freight-dashboard.png	RonDesignLab ⭐️	AirFreight SaaS - Aircraft Freight Dashboard
+72	25848153	shots/25848153-lingaro-co2-emissions-distribution-saas.jpg	RonDesignLab ⭐️	Lingaro - CO2 Emissions Distribution SaaS
+73	25686392	shots/25686392-dashboard-for-a-management-saas-mytasky.png	HALO LAB	Dashboard for a Management SaaS ✦ Mytasky
+74	24070360	shots/24070360-credittb-credit-saas-dashboard.png	RonDesignLab ⭐️	CreditTB - Credit SaaS Dashboard

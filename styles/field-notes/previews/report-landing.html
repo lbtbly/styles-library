@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ardgour Commons — The Ground Report, Issue 04</title>
+<style>
+/* ── Field Notes tokens ─────────────────────────────────────────── */
+:root{
+  --bg:#FAFAF8;
+  --surface:#FFFFFF;
+  --sheet:rgba(255,255,255,0.86);
+  --ink:#1C221E;
+  --muted:#6B7169;
+  --line:#E4E5E0;
+  --accent:#4E6030;
+  --accent-ink:#FFFFFF;
+
+  --accent-wash:rgba(78,96,48,.10);
+  --accent-hover:#3E4D26;
+  --ink-wash:rgba(28,34,30,.06);
+  --sheet-edge:rgba(255,255,255,.60);
+
+  --serif:"Instrument Serif","Fraunces","Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:24px;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%}
+
+/* ── The photograph ─────────────────────────────────────────────── */
+.backdrop{position:fixed;inset:0;z-index:0;overflow:hidden;background:var(--bg)}
+.backdrop>svg{width:100%;height:100%;display:block}
+.backdrop::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:160px 160px;mix-blend-mode:multiply;
+}
+.page{position:relative;z-index:1}
+
+/* ── Type primitives ────────────────────────────────────────────── */
+.label{font-family:var(--mono);font-size:10px;line-height:12px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+.fig{font-family:var(--mono);font-weight:500;font-size:.95em;font-variant-numeric:tabular-nums}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0}
+h1{font-size:clamp(32px,5.4vw,48px);line-height:1.12;letter-spacing:-.01em}
+h2{font-size:clamp(24px,3.4vw,30px);line-height:1.2}
+h3{font-size:19px;line-height:26px}
+p{margin:0 0 16px}
+.deck{font-size:clamp(16px,2.2vw,18px);line-height:28px;color:var(--muted);max-width:56ch}
+.prose{max-width:66ch}
+.caption{font-family:var(--mono);font-size:11px;line-height:16px;letter-spacing:.02em;color:var(--muted)}
+
+/* ── Nav pill ───────────────────────────────────────────────────── */
+.topbar{position:sticky;top:0;z-index:5;padding:16px 20px;display:flex;justify-content:center;
+  pointer-events:none}
+.nav{pointer-events:auto;display:flex;gap:4px;align-items:center;padding:6px 6px 6px 14px;
+  background:rgba(255,255,255,.86);
+  -webkit-backdrop-filter:blur(8px) saturate(1.02);backdrop-filter:blur(8px) saturate(1.02);
+  border:1px solid var(--sheet-edge);border-radius:999px;max-width:100%;
+  box-shadow:0 1px 2px rgba(28,34,30,.04),0 10px 30px -18px rgba(28,34,30,.4)}
+.brand{display:flex;align-items:center;gap:8px;margin-right:12px;white-space:nowrap}
+.brand b{font-family:var(--serif);font-weight:400;font-size:16px;letter-spacing:-.01em}
+.brand .mark{width:16px;height:16px;flex:0 0 16px}
+.nav-links{display:flex;gap:2px}
+.nav-links a{font-size:13px;color:var(--muted);padding:8px 13px;border-radius:999px;text-decoration:none;white-space:nowrap}
+.nav-links a:hover{color:var(--ink);background:var(--ink-wash)}
+.nav-links a[aria-current]{color:var(--ink);background:#fff}
+
+/* ── Buttons ────────────────────────────────────────────────────── */
+.btn{font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:.01em;
+  padding:11px 20px;border-radius:999px;border:1px solid transparent;cursor:pointer;
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.15s ease;white-space:nowrap}
+.btn--primary{background:var(--accent);color:var(--accent-ink)}
+.btn--primary:hover{background:var(--accent-hover)}
+.btn--secondary{background:var(--surface);color:var(--ink);border-color:var(--line)}
+.btn--secondary:hover{border-color:var(--muted)}
+.btn--ghost{background:transparent;color:var(--ink);padding-inline:12px}
+.btn--ghost:hover{background:var(--ink-wash)}
+.btn--sm{font-size:13px;padding:8px 15px}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ── Sheet ──────────────────────────────────────────────────────── */
+.wrap{padding:0 24px 72px}
+.sheet{
+  max-width:940px;margin:0 auto 28px;padding:clamp(20px,4vw,44px);
+  background:var(--sheet);
+  -webkit-backdrop-filter:blur(8px) saturate(1.02);backdrop-filter:blur(8px) saturate(1.02);
+  border:1px solid var(--sheet-edge);border-radius:20px;
+  box-shadow:0 1px 2px rgba(28,34,30,.04),0 24px 60px -30px rgba(28,34,30,.28);
+}
+@supports not ((backdrop-filter:blur(8px)) or (-webkit-backdrop-filter:blur(8px))){
+  .sheet,.nav{background:rgba(255,255,255,.95)}
+}
+.hero{margin-top:clamp(40px,9vh,96px)}
+.section{border-top:1px solid var(--line);padding-top:24px;margin-top:40px}
+.rule{border:0;border-top:1px solid var(--line);margin:32px 0}
+
+/* ── Stat row ───────────────────────────────────────────────────── */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px;margin-top:36px}
+.stat .num{font-family:var(--mono);font-weight:500;font-size:clamp(26px,3.6vw,34px);
+  line-height:38px;letter-spacing:-.01em;font-variant-numeric:tabular-nums;display:block}
+.stat .num small{font-size:.5em;color:var(--muted);margin-left:4px;letter-spacing:0}
+.stat p{margin:6px 0 0;font-size:13px;line-height:19px;color:var(--muted)}
+
+/* ── Table ──────────────────────────────────────────────────────── */
+.table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px;
+  font-variant-numeric:tabular-nums}
+.table th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  font-weight:500;text-align:left;padding:0 0 8px;border-bottom:1px solid var(--ink)}
+.table td{padding:11px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+.table td:first-child{font-family:var(--sans);font-size:14px}
+.table td:not(:first-child),.table th:not(:first-child){text-align:right;padding-left:12px}
+.table tfoot td{border-bottom:0;border-top:1px solid var(--ink);font-weight:500}
+.table tbody tr:hover td{background:var(--accent-wash)}
+
+/* ── Chips ──────────────────────────────────────────────────────── */
+.chip{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);
+  background:transparent;display:inline-block;line-height:1.2}
+.chip--on{background:var(--accent-wash);border-color:transparent;color:var(--accent)}
+.chip--solid{background:var(--accent);border-color:transparent;color:var(--accent-ink)}
+
+/* ── Blocks / grid ──────────────────────────────────────────────── */
+.cols{display:grid;gap:clamp(20px,3vw,40px)}
+.cols--84{grid-template-columns:minmax(0,1.9fr) minmax(0,1fr)}
+.cols--66{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cols--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.block{border-top:1px solid var(--line);padding:16px 0 4px}
+.block h3{margin:8px 0 6px}
+.block p{font-size:14px;line-height:22px;color:var(--muted);margin:0}
+.marginalia{font-family:var(--mono);font-size:11px;line-height:18px;color:var(--muted);
+  border-left:2px solid var(--accent);padding-left:12px}
+
+/* ── Plate ──────────────────────────────────────────────────────── */
+.plate{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:8px}
+.plate>svg{display:block;border-radius:2px;width:100%;height:auto}
+.plate-cap{margin-top:8px}
+
+/* ── Chart ──────────────────────────────────────────────────────── */
+.chart{width:100%;height:auto;display:block}
+.axis{display:flex;justify-content:space-between;margin-top:8px}
+.axis span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+
+/* ── Form ───────────────────────────────────────────────────────── */
+.field{font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--surface);
+  border:1px solid var(--line);border-radius:4px;padding:10px 12px;width:100%}
+.field::placeholder{color:var(--muted)}
+.field:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-wash)}
+select.field{appearance:none;-webkit-appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),
+                   linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+  background-position:right 16px center,right 11px center;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.form-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:12px;align-items:end}
+.form-row .btn{height:42px}
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.foot{max-width:940px;margin:0 auto;padding:0 clamp(4px,2vw,16px)}
+.foot-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:24px;
+  padding-top:24px;border-top:1px solid var(--line)}
+.foot a{display:block;color:var(--ink);text-decoration:none;font-size:14px;line-height:26px}
+.foot a:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent)}
+.foot-meta{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;
+  margin-top:32px;padding-top:16px;border-top:1px solid var(--line)}
+
+/* ── Narrow ─────────────────────────────────────────────────────── */
+@media (max-width:820px){
+  .cols--84,.cols--66,.cols--3{grid-template-columns:minmax(0,1fr)}
+  .form-row{grid-template-columns:minmax(0,1fr)}
+  .form-row .btn{width:100%;justify-content:center}
+}
+@media (max-width:720px){ .nav-links{display:none} }
+@media (max-width:620px){
+  .wrap{padding:0 12px 48px}
+  .col-hide{display:none}
+  .table{font-size:12px}
+  .table td:first-child{font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ The photograph: full-bleed, defocused, built from gradients + turbulence ══ -->
+<div class="backdrop" aria-hidden="true">
+<svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8DA5AC"/>
+      <stop offset=".26" stop-color="#AEBFBE"/>
+      <stop offset=".54" stop-color="#D2D9CF"/>
+      <stop offset=".80" stop-color="#EBEADC"/>
+      <stop offset="1" stop-color="#F3EFE1"/>
+    </linearGradient>
+    <radialGradient id="sun" cx=".28" cy=".06" r=".72">
+      <stop offset="0" stop-color="#FFF9EC" stop-opacity=".9"/>
+      <stop offset=".34" stop-color="#F9F1DE" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#F9F1DE" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ridgeFar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#B9C3BA"/><stop offset="1" stop-color="#9EAE9D"/>
+    </linearGradient>
+    <linearGradient id="ridgeMid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#97A98A"/><stop offset="1" stop-color="#7A8F67"/>
+    </linearGradient>
+    <linearGradient id="field" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#A2B37E"/>
+      <stop offset=".16" stop-color="#88A05B"/>
+      <stop offset=".42" stop-color="#67813C"/>
+      <stop offset=".72" stop-color="#496029"/>
+      <stop offset="1"   stop-color="#2D3F17"/>
+    </linearGradient>
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#F7F3E4" stop-opacity="0"/>
+      <stop offset=".40" stop-color="#F7F3E4" stop-opacity=".80"/>
+      <stop offset=".58" stop-color="#F1EEDF" stop-opacity=".50"/>
+      <stop offset="1"   stop-color="#ECEBDA" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fadeUp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000000"/>
+      <stop offset=".22" stop-color="#4A4A4A"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <mask id="rowMask"><rect y="330" width="1600" height="670" fill="url(#fadeUp)"/></mask>
+    <radialGradient id="warm" cx=".26" cy=".12" r=".9">
+      <stop offset="0" stop-color="#FFE9BC" stop-opacity=".34"/>
+      <stop offset=".55" stop-color="#FFE3B4" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#FFE3B4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vig" cx=".5" cy=".44" r=".82">
+      <stop offset=".48" stop-color="#1C221E" stop-opacity="0"/>
+      <stop offset="1" stop-color="#1C221E" stop-opacity=".26"/>
+    </radialGradient>
+
+    <filter id="s6"  x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter>
+    <filter id="s10" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="s16" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="16"/></filter>
+    <filter id="s30" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="30"/></filter>
+
+    <filter id="mottle" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".013 .022" numOctaves="5" seed="5"/>
+      <feColorMatrix type="matrix"
+        values="0 0 0 0 .19  0 0 0 0 .27  0 0 0 0 .11  .62 .42 0 0 -.40"/>
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="mottleLight" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".009 .017" numOctaves="4" seed="21"/>
+      <feColorMatrix type="matrix"
+        values="0 0 0 0 .78  0 0 0 0 .82  0 0 0 0 .58  .55 .30 0 0 -.38"/>
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <filter id="grass" x="-12%" y="-12%" width="124%" height="124%">
+      <feTurbulence type="fractalNoise" baseFrequency=".005 .026" numOctaves="4" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="110" xChannelSelector="R" yChannelSelector="G"/>
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+
+  <!-- sky -->
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <rect width="1600" height="700" fill="url(#sun)"/>
+  <g filter="url(#s30)" opacity=".5">
+    <ellipse cx="1180" cy="118" rx="440" ry="64" fill="#FCFBF2"/>
+    <ellipse cx="430"  cy="186" rx="390" ry="44" fill="#FBFAF0"/>
+    <ellipse cx="880"  cy="48"  rx="330" ry="40" fill="#BDCBC8"/>
+    <ellipse cx="230"  cy="88"  rx="270" ry="36" fill="#FFFDF5"/>
+    <ellipse cx="1460" cy="228" rx="300" ry="30" fill="#F6F4E8"/>
+  </g>
+
+  <!-- ridges -->
+  <path filter="url(#s16)" opacity=".8" fill="url(#ridgeFar)"
+        d="M0 296 C 190 254 320 288 480 268 C 660 246 780 288 950 270 C 1140 250 1320 288 1600 260 L1600 400 L0 400 Z"/>
+  <path filter="url(#s10)" opacity=".85" fill="url(#ridgeMid)"
+        d="M0 316 C 230 298 370 326 570 310 C 780 292 910 326 1130 314 C 1330 303 1460 322 1600 308 L1600 430 L0 430 Z"/>
+
+  <!-- field, tucked behind the treeline so the join never shows -->
+  <rect y="322" width="1600" height="678" fill="url(#field)"/>
+
+  <!-- treeline clumps sitting on the join -->
+  <g filter="url(#s6)" fill="#5E7355" opacity=".85">
+    <ellipse cx="60"   cy="330" rx="72" ry="14"/><ellipse cx="152" cy="323" rx="46" ry="18"/>
+    <ellipse cx="258"  cy="332" rx="84" ry="12"/><ellipse cx="362" cy="324" rx="52" ry="17"/>
+    <ellipse cx="472"  cy="333" rx="76" ry="11"/><ellipse cx="588" cy="326" rx="60" ry="16"/>
+    <ellipse cx="704"  cy="334" rx="88" ry="11"/><ellipse cx="816" cy="327" rx="48" ry="15"/>
+    <ellipse cx="934"  cy="333" rx="80" ry="12"/><ellipse cx="1052" cy="325" rx="58" ry="17"/>
+    <ellipse cx="1174" cy="332" rx="86" ry="11"/><ellipse cx="1290" cy="326" rx="54" ry="16"/>
+    <ellipse cx="1404" cy="333" rx="78" ry="12"/><ellipse cx="1524" cy="327" rx="62" ry="16"/>
+  </g>
+
+  <!-- warm haze across the horizon, fading in both directions -->
+  <rect y="230" width="1600" height="260" fill="url(#haze)"/>
+
+  <!-- mown rows running to a vanishing point right of centre -->
+  <g mask="url(#rowMask)" filter="url(#s16)">
+    <path d="M-980 1000 L-560 1000 L1114 344 L1106 344 Z" fill="#33441F" opacity=".40"/>
+    <path d="M-420 1000 L-120 1000 L1121 344 L1114 344 Z" fill="#A7B884" opacity=".30"/>
+    <path d="M  10 1000 L 240 1000 L1128 344 L1122 344 Z" fill="#33441F" opacity=".36"/>
+    <path d="M 420 1000 L 620 1000 L1135 344 L1130 344 Z" fill="#A7B884" opacity=".26"/>
+    <path d="M 790 1000 L 970 1000 L1142 344 L1137 344 Z" fill="#33441F" opacity=".34"/>
+    <path d="M1130 1000 L1300 1000 L1149 344 L1144 344 Z" fill="#A7B884" opacity=".24"/>
+    <path d="M1460 1000 L1660 1000 L1157 344 L1151 344 Z" fill="#2E3F1C" opacity=".36"/>
+    <path d="M1880 1000 L2260 1000 L1166 344 L1159 344 Z" fill="#A7B884" opacity=".26"/>
+  </g>
+
+  <!-- organic patchiness -->
+  <rect y="330" width="1600" height="670" filter="url(#mottle)" opacity=".78"/>
+  <rect y="330" width="1600" height="670" filter="url(#mottleLight)" opacity=".3"/>
+  <g filter="url(#grass)" opacity=".45">
+    <rect x="-160" y="690" width="1920" height="76" fill="#2F3F1D"/>
+    <rect x="-160" y="880" width="1920" height="130" fill="#28361A"/>
+    <rect x="-160" y="520" width="1920" height="38" fill="#A6B77F"/>
+    <rect x="-160" y="428" width="1920" height="20" fill="#B0C089"/>
+  </g>
+
+  <!-- hedgerows with tree clumps, receding -->
+  <path filter="url(#s6)" fill="none" stroke="#3C4F26" stroke-width="8" opacity=".5"
+        d="M-40 424 C 260 416 520 434 760 422 C 940 413 1040 404 1132 356"/>
+  <g filter="url(#s6)" fill="#3C4F26" opacity=".55">
+    <ellipse cx="146" cy="416" rx="30" ry="12"/><ellipse cx="428" cy="424" rx="24" ry="10"/>
+    <ellipse cx="702" cy="420" rx="34" ry="13"/><ellipse cx="962" cy="404" rx="22" ry="9"/>
+  </g>
+  <path filter="url(#s16)" fill="none" stroke="#2E3F1C" stroke-width="18" opacity=".45"
+        d="M-60 622 C 300 598 660 646 980 608 C 1110 592 1200 452 1146 352"/>
+  <g filter="url(#s16)" fill="#2E3F1C" opacity=".5">
+    <ellipse cx="112" cy="608" rx="56" ry="24"/><ellipse cx="516" cy="624" rx="42" ry="19"/>
+    <ellipse cx="884" cy="614" rx="64" ry="26"/>
+  </g>
+
+  <!-- raking light -->
+  <g filter="url(#s30)" opacity=".14">
+    <path fill="#FFF6E0" d="M-200 360 L520 340 L980 1000 L120 1000 Z"/>
+    <path fill="#FFF6E0" d="M980 344 L1260 340 L1600 700 L1600 1000 L1360 1000 Z"/>
+  </g>
+  <rect width="1600" height="1000" fill="url(#warm)"/>
+
+  <!-- out-of-focus foreground -->
+  <g filter="url(#s30)" opacity=".9" fill="#212D14">
+    <path d="M-60 1000 C -30 866 74 820 116 730 C 138 846 186 912 218 1000 Z"/>
+    <path d="M160 1000 C 180 892 264 846 290 766 C 316 862 358 938 392 1000 Z"/>
+    <path d="M1350 1000 C 1338 872 1436 828 1480 744 C 1500 858 1558 926 1600 956 L1600 1000 Z"/>
+    <path d="M1186 1000 C 1206 918 1280 874 1304 810 C 1330 894 1368 948 1400 1000 Z"/>
+  </g>
+  <g filter="url(#s30)" opacity=".45" fill="#28361A">
+    <ellipse cx="640" cy="1010" rx="230" ry="86"/>
+    <ellipse cx="960" cy="1024" rx="190" ry="70"/>
+  </g>
+  <rect width="1600" height="1000" fill="url(#vig)"/>
+</svg>
+</div>
+
+<div class="page">
+
+  <!-- ══ Nav ══ -->
+  <div class="topbar">
+    <nav class="nav" aria-label="Primary">
+      <span class="brand">
+        <svg class="mark" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M8 1.4c2.6 2 3.9 4.2 3.9 6.6 0 2.5-1.7 4.4-3.9 4.4S4.1 10.5 4.1 8c0-2.4 1.3-4.6 3.9-6.6Z"
+                fill="none" stroke="#1C221E" stroke-width="1.25"/>
+          <path d="M8 14.6V5.2" stroke="#4E6030" stroke-width="1.25" stroke-linecap="round"/>
+        </svg>
+        <b>Ardgour Commons</b>
+      </span>
+      <span class="nav-links">
+        <a href="#report" aria-current="page">Report</a>
+        <a href="#ledger">Ledger</a>
+        <a href="#method">Method</a>
+        <a href="#archive">Archive</a>
+      </span>
+      <a class="btn btn--primary btn--sm" href="#download">Download the report</a>
+    </nav>
+  </div>
+
+  <div class="wrap">
+
+    <!-- ══ Hero sheet ══ -->
+    <section class="sheet hero" id="report">
+      <p class="label">Issue 04 · Spring 2026 · Ardgour Commons, Lochaber</p>
+      <h1 style="margin-top:14px;max-width:16ch">Ninety-one hectares, measured and given back.</h1>
+      <p class="deck" style="margin-top:18px">
+        The fourth Ground Report sets out what we restored, what it cost, and what we
+        got wrong — site by site, with the raw measurements attached.
+      </p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
+        <a class="btn btn--primary" href="#download">Read the full report</a>
+        <a class="btn btn--secondary" href="#ledger">Open the data ledger</a>
+        <span class="btn btn--ghost" style="color:var(--muted)">
+          <span class="fig">4.2&nbsp;MB</span>&nbsp;· PDF &amp; CSV
+        </span>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="num">91.4<small>ha</small></span>
+          <p>Restored and under a 30-year covenant</p>
+        </div>
+        <div class="stat">
+          <span class="num">1,284</span>
+          <p>Credits retired, none resold</p>
+        </div>
+        <div class="stat">
+          <span class="num">17</span>
+          <p>Sites surveyed on foot, twice yearly</p>
+        </div>
+        <div class="stat">
+          <span class="num">−6.1<small>%</small></span>
+          <p>Against our own 2025 sequestration forecast</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ Opening essay ══ -->
+    <section class="sheet">
+      <div class="cols cols--84">
+        <div>
+          <p class="label">Letter from the land manager</p>
+          <h2 style="margin-top:12px">We measured less than we hoped, and published it anyway.</h2>
+          <div class="prose" style="margin-top:18px">
+            <p>
+              The peat at Corrie Dubh took <span class="fig">14</span> months longer to wet up than the
+              model said it would. That single delay accounts for most of the
+              <span class="fig">−6.1%</span> gap between what we forecast in
+              <span class="fig">2025</span> and what we can defend today. We have left the original
+              forecast in the archive rather than quietly restating it.
+            </p>
+            <p>
+              Across the seventeen sites we planted <span class="fig">38,900</span> broadleaves,
+              blocked <span class="fig">11.2&nbsp;km</span> of drainage grip, and removed
+              <span class="fig">2.4&nbsp;km</span> of deer fence that had outlived its purpose. Every
+              figure in this report is traceable to a survey line you can walk yourself; the
+              coordinates are in appendix&nbsp;<span class="fig">C</span>.
+            </p>
+            <p style="margin-bottom:0">
+              Nothing here is offset accounting. We do not sell the carbon we retire, and we do not
+              count a hectare twice.
+            </p>
+          </div>
+        </div>
+        <aside>
+          <p class="marginalia">
+            Survey window<br>
+            <span style="color:var(--ink)">03 Apr — 28 Oct 2025</span><br><br>
+            Method<br>
+            <span style="color:var(--ink)">Fixed-point transect, 20&nbsp;m grid</span><br><br>
+            Verified by<br>
+            <span style="color:var(--ink)">Kerr &amp; Faulds, independent</span>
+          </p>
+          <div class="plate" style="margin-top:24px">
+            <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-label="Corrie Dubh at first light">
+              <defs>
+                <linearGradient id="p-sky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#A9B9BC"/><stop offset=".7" stop-color="#E3E4D8"/>
+                  <stop offset="1" stop-color="#F0EADC"/>
+                </linearGradient>
+                <linearGradient id="p-field" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#7E9160"/><stop offset="1" stop-color="#40522A"/>
+                </linearGradient>
+                <filter id="p-b6"><feGaussianBlur stdDeviation="6"/></filter>
+                <filter id="p-b3"><feGaussianBlur stdDeviation="3"/></filter>
+                <filter id="p-m"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="4" seed="9"/>
+                  <feColorMatrix type="matrix" values="0 0 0 0 .18 0 0 0 0 .26 0 0 0 0 .11 .6 .3 0 0 -.3"/>
+                  <feGaussianBlur stdDeviation="1.2"/></filter>
+              </defs>
+              <rect width="400" height="260" fill="url(#p-sky)"/>
+              <ellipse cx="120" cy="46" rx="130" ry="28" fill="#FDFBF2" opacity=".7" filter="url(#p-b6)"/>
+              <path d="M0 176 C 70 154 130 176 200 162 C 270 148 330 172 400 156 L400 260 L0 260Z"
+                    fill="#9DAC9A" filter="url(#p-b6)" opacity=".9"/>
+              <rect y="180" width="400" height="80" fill="url(#p-field)"/>
+              <rect y="180" width="400" height="80" filter="url(#p-m)" style="mix-blend-mode:multiply"/>
+              <path d="M-10 208 C 90 200 180 216 260 206 C 320 199 370 210 410 204" stroke="#39492A"
+                    stroke-width="7" fill="none" opacity=".5" filter="url(#p-b3)"/>
+              <path d="M0 260 C 12 224 44 210 56 186 C 66 216 84 236 96 260Z" fill="#2C3A1C"
+                    opacity=".75" filter="url(#p-b6)"/>
+            </svg>
+            <p class="caption plate-cap">Fig. 2 — Corrie Dubh, grip-blocked terrace, 06:40, 22 Oct 2025.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ══ Ledger table + chart ══ -->
+    <section class="sheet" id="ledger">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end">
+        <div>
+          <p class="label">Table 1 — Restoration ledger</p>
+          <h2 style="margin-top:12px">Seventeen sites, audited line by line.</h2>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="chip chip--on">2025 season</span>
+          <span class="chip">2024</span>
+          <span class="chip">2023</span>
+        </div>
+      </div>
+
+      <div style="margin-top:28px">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Site</th>
+              <th scope="col">Hectares</th>
+              <th scope="col" class="col-hide">Grip blocked</th>
+              <th scope="col">tCO₂e</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Corrie Dubh</td><td>24.8</td><td class="col-hide">3.90 km</td><td>412</td>
+                <td><span class="chip chip--on">Wetting</span></td></tr>
+            <tr><td>Allt na Craoibhe</td><td>18.2</td><td class="col-hide">2.10 km</td><td>337</td>
+                <td><span class="chip chip--solid">Verified</span></td></tr>
+            <tr><td>Sgurr Beag south</td><td>15.6</td><td class="col-hide">1.44 km</td><td>268</td>
+                <td><span class="chip chip--solid">Verified</span></td></tr>
+            <tr><td>Druim Fada</td><td>12.1</td><td class="col-hide">1.80 km</td><td>151</td>
+                <td><span class="chip">Survey due</span></td></tr>
+            <tr><td>Inverscaddle flats</td><td>11.9</td><td class="col-hide">1.06 km</td><td>96</td>
+                <td><span class="chip chip--on">Wetting</span></td></tr>
+            <tr><td>Glen Tarbert edge</td><td>8.8</td><td class="col-hide">0.90 km</td><td>20</td>
+                <td><span class="chip">Planting</span></td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td>Total, all 17 sites</td><td>91.4</td><td class="col-hide">11.20 km</td><td>1,284</td><td></td></tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <hr class="rule">
+
+      <div class="cols cols--84">
+        <div>
+          <p class="label">Figure 3 — Measured vs. forecast sequestration, tCO₂e</p>
+          <svg class="chart" viewBox="0 0 640 220" role="img"
+               aria-label="Measured sequestration tracking below forecast from 2021 to 2025">
+            <g stroke="#E4E5E0" stroke-width="1">
+              <line x1="0" y1="20"  x2="640" y2="20"/>
+              <line x1="0" y1="70"  x2="640" y2="70"/>
+              <line x1="0" y1="120" x2="640" y2="120"/>
+              <line x1="0" y1="170" x2="640" y2="170"/>
+            </g>
+            <line x1="0" y1="196" x2="640" y2="196" stroke="#1C221E" stroke-width="1"/>
+            <path d="M20 176 L150 150 L280 116 L410 76 L540 34 L620 22 L620 196 L20 196 Z"
+                  fill="rgba(78,96,48,.10)"/>
+            <polyline points="20,176 150,150 280,116 410,76 540,34 620,22"
+                      fill="none" stroke="#4E6030" stroke-width="2"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+            <polyline points="20,180 150,158 280,134 410,104 540,64 620,50"
+                      fill="none" stroke="#6B7169" stroke-width="1.25"
+                      stroke-dasharray="4 4" stroke-linecap="round"/>
+            <circle cx="620" cy="22" r="3.5" fill="#4E6030"/>
+            <circle cx="620" cy="50" r="3"   fill="#FFFFFF" stroke="#6B7169" stroke-width="1.25"/>
+          </svg>
+          <div class="axis">
+            <span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span>
+          </div>
+        </div>
+        <aside>
+          <div class="block" style="border-top-color:var(--ink)">
+            <p class="label">Reading the figure</p>
+            <h3>Solid line is measured.</h3>
+            <p>
+              The dashed line is the <span class="fig">2021</span> forecast, left in place.
+              Measured output overtook forecast in <span class="fig">2023</span> and has stayed
+              ahead since — the shortfall this year is against the revised
+              <span class="fig">2025</span> model, not against this line.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ══ Method ══ -->
+    <section class="sheet" id="method">
+      <p class="label">Method</p>
+      <h2 style="margin-top:12px;max-width:20ch">How a hectare gets counted.</h2>
+      <div class="cols cols--3" style="margin-top:28px">
+        <div class="block">
+          <p class="label">01 — Walked</p>
+          <h3>Fixed-point transects</h3>
+          <p>Every site is walked on a <span class="fig">20&nbsp;m</span> grid twice a year, in
+             April and October, by two surveyors working independently.</p>
+        </div>
+        <div class="block">
+          <p class="label">02 — Sampled</p>
+          <h3>Cores, not estimates</h3>
+          <p>Peat depth comes from physical cores at <span class="fig">1</span> in
+             <span class="fig">40</span> grid points. Nothing is inferred from satellite alone.</p>
+        </div>
+        <div class="block">
+          <p class="label">03 — Published</p>
+          <h3>Raw before rounded</h3>
+          <p>The unrounded survey file ships with the report. Where the two surveyors disagree by
+             more than <span class="fig">5%</span>, both numbers stay in.</p>
+        </div>
+      </div>
+
+      <hr class="rule">
+
+      <div class="cols cols--66">
+        <div>
+          <h3 style="margin-bottom:8px">Request the raw survey file</h3>
+          <p style="color:var(--muted);font-size:14px;line-height:22px;max-width:44ch">
+            The full transect data is released under CC&nbsp;BY&nbsp;4.0. Tell us which season you
+            need and we will send the CSV bundle within two working days.
+          </p>
+        </div>
+        <form class="form-row" onsubmit="return false">
+          <div>
+            <label class="label" for="email">Email</label>
+            <input class="field" id="email" type="email" placeholder="you@organisation.org"
+                   style="margin-top:8px">
+          </div>
+          <div>
+            <label class="label" for="season">Season</label>
+            <select class="field" id="season" style="margin-top:8px">
+              <option>2025 — full year</option>
+              <option>2024 — full year</option>
+              <option>All seasons, 2021–2025</option>
+            </select>
+          </div>
+          <button class="btn btn--primary" type="submit">Send it</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ══ Footer ══ -->
+    <footer class="sheet" id="archive">
+      <div class="foot">
+        <div class="cols cols--84" style="align-items:end">
+          <h2 style="max-width:18ch">Every issue since 2021 is still online, unedited.</h2>
+          <a class="btn btn--secondary" href="#archive" style="justify-self:start">Browse the archive</a>
+        </div>
+        <div class="foot-cols" style="margin-top:36px">
+          <div>
+            <p class="label" style="margin-bottom:10px">Report</p>
+            <a href="#report">Summary</a><a href="#ledger">Ledger</a>
+            <a href="#method">Method</a><a href="#download">Appendices</a>
+          </div>
+          <div>
+            <p class="label" style="margin-bottom:10px">Data</p>
+            <a href="#ledger">Transect CSV</a><a href="#ledger">Core samples</a>
+            <a href="#ledger">Coordinates</a><a href="#method">Licence</a>
+          </div>
+          <div>
+            <p class="label" style="margin-bottom:10px">Trust</p>
+            <a href="#archive">Who we are</a><a href="#archive">Covenants</a>
+            <a href="#archive">Accounts</a><a href="#archive">Contact</a>
+          </div>
+          <div>
+            <p class="label" style="margin-bottom:10px">Archive</p>
+            <a href="#archive">Issue 03 — 2025</a><a href="#archive">Issue 02 — 2023</a>
+            <a href="#archive">Issue 01 — 2021</a>
+          </div>
+        </div>
+        <div class="foot-meta">
+          <p class="label">Ardgour Commons · SC-registered charity 049-118 · Lochaber</p>
+          <p class="label">Issue 04 · Compiled 12 March 2026 · Set in three voices</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</div>
+</body>
+</html>

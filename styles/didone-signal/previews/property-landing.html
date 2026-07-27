@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Didone Signal — Marchmont</title>
+<style>
+:root{
+  --bg:#FBFBFA; --surface:#FFFFFF; --ink:#080808; --muted:#6A6A68;
+  --line:#E6E5E1; --accent:#E85A00; --block:#0A0A0A; --block-ink:#FAFAF8;
+  --serif:"Instrument Serif","Playfair Display","Bodoni Moda",Didot,"Didot LT STD",
+          "Hoefler Text",Garamond,"Times New Roman",serif;
+  --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 var(--sans);
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+
+nav{border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
+nav .wrap{display:flex;align-items:center;gap:26px;height:70px}
+.brand{font-family:var(--serif);font-size:23px;letter-spacing:.01em}
+nav a.l{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:500}
+nav a.l:hover{color:var(--ink)}
+.grow{flex:1}
+
+/* signature: black pill with a welded circular tangerine arrow chip */
+.pill{display:inline-flex;align-items:center;gap:0;background:var(--block);color:var(--block-ink);
+  border-radius:999px;padding:5px 5px 5px 20px;font-size:14px;font-weight:500;border:0;
+  font-family:inherit;cursor:pointer}
+.pill i{width:30px;height:30px;border-radius:50%;background:var(--accent);margin-left:14px;
+  display:grid;place-items:center;flex-shrink:0}
+.pill i svg{display:block}
+.pill.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);
+  padding:9px 20px}
+.pill.ghost:hover{border-color:var(--ink)}
+
+/* hero — photograph dissolves into the page, no hard edge */
+.hero{position:relative;text-align:center;padding:74px 0 0;overflow:hidden}
+.sky{position:absolute;inset:0 0 auto;height:520px;z-index:0;
+  background:
+    radial-gradient(120% 80% at 50% 0%,#FFF 0%,rgba(255,255,255,0) 62%),
+    linear-gradient(180deg,rgba(251,251,250,0) 42%,#FBFBFA 96%),
+    radial-gradient(52% 40% at 22% 26%,rgba(255,255,255,.95),rgba(255,255,255,0) 62%),
+    radial-gradient(44% 34% at 74% 18%,rgba(255,255,255,.92),rgba(255,255,255,0) 60%),
+    radial-gradient(60% 46% at 50% 44%,rgba(255,245,236,.9),rgba(255,255,255,0) 66%),
+    linear-gradient(180deg,#CFDCE8 0%,#E3E9EC 38%,#F3EFE9 72%,#FBFBFA 100%)}
+.hero > *{position:relative;z-index:1}
+.eyebrow{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:26px;font-weight:500}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(46px,8vw,86px);line-height:1.02;
+  letter-spacing:-.01em;margin:0 auto 22px;max-width:15ch}
+.lede{color:var(--muted);max-width:50ch;margin:0 auto 32px;font-size:17px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;padding-bottom:78px}
+
+/* tangerine field ruled with a faint architectural grid */
+.field{background:var(--accent);color:#fff;padding:64px 0;position:relative;overflow:hidden}
+.field::before{content:"";position:absolute;inset:0;opacity:.16;
+  background-image:linear-gradient(rgba(255,255,255,.9) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.9) 1px,transparent 1px);
+  background-size:56px 56px}
+.field .wrap{position:relative}
+.field h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.6vw,46px);
+  line-height:1.1;margin:0 0 14px;max-width:19ch}
+.field p{max-width:52ch;margin:0;opacity:.9;font-size:16.5px}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:26px;margin-top:44px}
+.fig b{font-family:var(--serif);font-size:46px;font-weight:400;line-height:1;display:block;
+  margin-bottom:7px}
+.fig span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.82}
+
+section{padding:88px 0}
+h2.s{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.4vw,44px);
+  line-height:1.1;margin:0 0 14px;max-width:20ch}
+.sub{color:var(--muted);max-width:56ch;margin:0 0 44px;font-size:16.5px}
+.lbl{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:16px;font-weight:500}
+
+.props{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.prop{background:var(--block);color:var(--block-ink);border-radius:18px;overflow:hidden}
+.prop.light{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.shot{height:186px;position:relative}
+.s1{background:linear-gradient(170deg,#B9C7D4 0%,#D8DBD6 45%,#C6B9A6 100%)}
+.s2{background:linear-gradient(170deg,#D9CFC0 0%,#C9B49C 52%,#8E7C68 100%)}
+.s3{background:linear-gradient(170deg,#C3CFC6 0%,#A9B9A6 50%,#7C8A78 100%)}
+.shot::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(70% 55% at 50% 20%,rgba(255,255,255,.5),transparent 70%)}
+.pbody{padding:20px 22px 22px}
+.pbody h3{font-family:var(--serif);font-weight:400;font-size:24px;margin:0 0 5px;line-height:1.2}
+.pbody .meta{font-size:13px;opacity:.62;margin:0 0 14px}
+.pbody .price{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.divider{height:1px;background:var(--line);margin:0}
+
+.quote{text-align:center;max-width:56ch;margin:0 auto}
+.quote p{font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);line-height:1.3;
+  font-weight:400;margin:0 0 20px}
+.quote cite{font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding:56px 0 40px}
+.fcols{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:28px;margin-bottom:40px}
+@media(max-width:720px){.fcols{grid-template-columns:1fr 1fr}}
+footer h4{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 13px;font-weight:600}
+footer a.f{display:block;padding:3px 0;font-size:14px;color:var(--muted)}
+footer a.f:hover{color:var(--ink)}
+.fbot{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);
+  border-top:1px solid var(--line);padding-top:20px}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <span class="brand">Marchmont</span>
+  <a class="l" href="#">Residences</a><a class="l" href="#">Locations</a>
+  <a class="l" href="#">Ownership</a><a class="l" href="#">Journal</a>
+  <span class="grow"></span>
+  <a class="pill ghost" href="#">Arrange a viewing</a>
+</div></nav>
+
+<header class="hero">
+  <div class="sky" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow">Managed residences · Est. 1974</p>
+    <h1>A house that keeps itself while you are away</h1>
+    <p class="lede">Fifty-one residences across the coast and the highlands, each with a
+      resident keeper, a maintained garden and a key waiting at the door.</p>
+    <div class="cta">
+      <button class="pill">Browse residences
+        <i><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 3l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></i>
+      </button>
+      <a class="pill ghost" href="#">Download the portfolio</a>
+    </div>
+  </div>
+</header>
+
+<div class="field">
+  <div class="wrap">
+    <h2>Ownership without the upkeep</h2>
+    <p>Every Marchmont residence is held in a single management structure. One agreement,
+      one keeper, one invoice a quarter — and no conversations with contractors.</p>
+    <div class="figs">
+      <div class="fig"><b>51</b><span>Residences</span></div>
+      <div class="fig"><b>9</b><span>Regions</span></div>
+      <div class="fig"><b>48h</b><span>Response standard</span></div>
+      <div class="fig"><b>1974</b><span>Founded</span></div>
+    </div>
+  </div>
+</div>
+
+<section><div class="wrap">
+  <p class="lbl">Currently available</p>
+  <h2 class="s">Three that came back this month</h2>
+  <p class="sub">Residences return to the portfolio as owners rotate. These are ready for
+    handover before the autumn season.</p>
+  <div class="props">
+    <article class="prop">
+      <div class="shot s1"></div>
+      <div class="pbody"><h3>Ardvreck House</h3>
+        <p class="meta">Assynt, Sutherland · 6 bedrooms · 14 acres</p>
+        <p class="price">From £2,180,000</p></div>
+    </article>
+    <article class="prop light">
+      <div class="shot s2"></div>
+      <div class="pbody"><h3>The Old Customs</h3>
+        <p class="meta">Crail, Fife · 4 bedrooms · harbour frontage</p>
+        <p class="price">From £1,340,000</p></div>
+    </article>
+    <article class="prop light">
+      <div class="shot s3"></div>
+      <div class="pbody"><h3>Glenmoriston Lodge</h3>
+        <p class="meta">Inverness-shire · 8 bedrooms · 40 acres</p>
+        <p class="price">From £3,600,000</p></div>
+    </article>
+  </div>
+</div></section>
+
+<hr class="divider">
+
+<section><div class="wrap">
+  <div class="quote">
+    <p>“We arrived on a Friday in February to a lit fire and a full larder. In four years
+      we have never once had to find a plumber.”</p>
+    <cite>Helena Roscoe · Owner, Ardvreck House</cite>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fcols">
+    <div>
+      <span class="brand">Marchmont</span>
+      <p style="color:var(--muted);font-size:14px;max-width:32ch;margin:12px 0 0">
+        Managed residences across Scotland and the north coast. Members since 1974.</p>
+    </div>
+    <div><h4>Portfolio</h4><a class="f" href="#">All residences</a><a class="f" href="#">Coast</a>
+      <a class="f" href="#">Highland</a><a class="f" href="#">Islands</a></div>
+    <div><h4>Ownership</h4><a class="f" href="#">How it works</a><a class="f" href="#">Keepers</a>
+      <a class="f" href="#">Fees</a><a class="f" href="#">Rotation</a></div>
+    <div><h4>Marchmont</h4><a class="f" href="#">Our history</a><a class="f" href="#">Journal</a>
+      <a class="f" href="#">Press</a><a class="f" href="#">Contact</a></div>
+  </div>
+  <div class="fbot"><span>© 2026 Marchmont Estates Ltd</span><span>Privacy</span>
+    <span>Terms</span><span>Registered in Scotland SC104882</span></div>
+</div></footer>
+
+</body>
+</html>

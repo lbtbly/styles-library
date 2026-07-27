@@ -1,0 +1,371 @@
+{
+  "dark-bench": {
+    "keywords": ["dotted-canvas", "graphite-card", "racked-focus", "bezier-wire", "matte-dark", "port-dot", "no-glow"],
+    "tokens": {
+      "palette": {
+        "bg": "#0B0B0B",
+        "surface": "#1C1C1C",
+        "raised": "#262626",
+        "ink": "#FAFAFA",
+        "muted": "#8C8C8C",
+        "line": "#333333",
+        "accent": "#3FBF52",
+        "accent_ink": "#052A0C",
+        "dot": "rgba(255, 255, 255, 0.10)",
+        "warn": "#E0A32E",
+        "negative": "#E0503F"
+      },
+      "type": {
+        "families": "Geometric or humanist sans at small sizes (Inter, General Sans). Monospace for identifiers, ports and payload snippets.",
+        "hierarchy": "Node title 13/18 medium · node body 12/16 regular · port label 10/13 mono · canvas heading 20/26 medium. Everything is small — the canvas is the subject, not the type.",
+        "usage": "Sentence case. Monospace for any machine-facing string. Truncate aggressively inside nodes; the node is a summary, not a document."
+      },
+      "texture": "Matte and flat — this is the dark style with no glow. Cards are solid `--surface` with a 1px `--line` border and no shadow beyond a tight `0 2px 8px rgb(0 0 0 / .5)`. The ground is a dotted canvas: `radial-gradient(var(--dot) 1px, transparent 1px)` at a 24px grid. Connections are 2px bezier curves in `--muted` that turn `--accent` when active, ending in solid triangular arrowheads or small port dots.",
+      "layout": "An infinite canvas, not a page. Nodes are 240-320px wide cards placed freely and wired together; a floating toolbar pill and a minimap dock over the canvas. 4px scale inside nodes, 12px node padding, 10px radius. Presentation trick: photograph the canvas at a slight tilt with everything but one node racked out of focus, so a single node reads as the subject."
+    },
+    "fit": {
+      "best_for": ["workflow and automation builders", "AI agent and pipeline tooling", "data engineering and ETL", "developer infrastructure consoles", "any product whose object is a graph"],
+      "avoid_for": ["marketing landing pages", "content and editorial sites", "consumer mobile apps", "form-heavy administrative software"],
+      "mood": ["technical", "matte", "engineered", "focused", "unglamorous"]
+    },
+    "recipe": {
+      "medium": "macro photograph of a dark screen at a slight tilt, shallow depth of field",
+      "constraints": [
+        "near-black #0B0B0B ground with a faint regular dot grid",
+        "matte graphite panels, absolutely no glow or bloom",
+        "one green #3FBF52 as the only saturated colour, on connector lines only",
+        "shallow depth of field — one element sharp, the rest falling off",
+        "slight perspective tilt, cool neutral colour temperature"
+      ],
+      "negative": ["neon glow", "iridescence", "warm colour casts", "flat orthographic vector", "light backgrounds", "lens flare"],
+      "negative_space": "The out-of-focus region should occupy the outer half of the frame."
+    }
+  },
+
+  "cinema-glass": {
+    "keywords": ["full-bleed-imagery", "backdrop-blur", "floating-pill", "film-still", "dark-glass", "grain", "single-hot-accent"],
+    "tokens": {
+      "palette": {
+        "bg": "#000000",
+        "surface": "rgba(24, 24, 24, 0.55)",
+        "raised": "rgba(255, 255, 255, 0.10)",
+        "ink": "#FFFFFF",
+        "muted": "rgba(255, 255, 255, 0.66)",
+        "line": "rgba(255, 255, 255, 0.14)",
+        "accent": "#D9E82A",
+        "accent_ink": "#171A00"
+      },
+      "type": {
+        "families": "Geometric sans for chrome; a high-contrast display serif or italic didone permitted for one hero line. Monospace acceptable for timecodes and metadata.",
+        "hierarchy": "Hero 52/58 regular, optionally breaking mid-line into italic serif · control label 12/16 medium · metadata 11/14 mono · body 15/23 regular at 66% white.",
+        "usage": "The signature move is a grotesque headline that breaks into italic display serif for one clause. Keep all chrome type small and quiet so the image carries the frame."
+      },
+      "texture": "Glass over film. Panels use `background: rgba(24,24,24,.55); backdrop-filter: blur(28px) saturate(120%);` with a 1px `rgba(255,255,255,.14)` inner stroke. Behind them, full-bleed photography or a defocused macro fills the entire viewport. A 4-6% grain overlay unifies the composite. Never place a solid opaque panel over the image — everything floats translucent.",
+      "layout": "The image is the layout. Chrome reduces to floating pills and small glass cards docked to edges and corners, leaving the centre of the frame to the photograph. 8px scale, 999px radius on controls, 18-24px on glass cards, 16px padding. Content sits in the lower third or along one edge, never centred over the subject."
+    },
+    "fit": {
+      "best_for": ["media and video products", "travel and hospitality", "premium consumer apps", "brand campaign pages", "creative tools with a visual output"],
+      "avoid_for": ["data-dense dashboards", "enterprise administration", "accessibility-critical services", "products with no imagery budget"],
+      "mood": ["cinematic", "immersive", "premium", "atmospheric", "sensory"]
+    },
+    "recipe": {
+      "medium": "cinematic photograph, shallow depth of field, film grain",
+      "constraints": [
+        "full-bleed photographic image, dark overall exposure",
+        "single strong light source with deep shadows retaining detail",
+        "desaturated except one hot accent note near #D9E82A",
+        "visible fine film grain",
+        "wide cinematic framing with the subject off-centre"
+      ],
+      "negative": ["flat vector", "bright even lighting", "white backgrounds", "stock-photo smiles", "HDR over-processing", "text or UI in the image"],
+      "negative_space": "The lower third must fall dark and uncluttered for glass panels and type."
+    }
+  },
+
+  "frosted-field": {
+    "keywords": ["gradient-ground", "translucent-card", "no-borders", "pill-control", "backdrop-blur", "metaball", "pale-wash"],
+    "tokens": {
+      "palette": {
+        "bg": "linear-gradient(155deg, #E8EAF8 0%, #DCE8EC 48%, #E9E4F2 100%)",
+        "bg_solid": "#E4E7EF",
+        "surface": "rgba(255, 255, 255, 0.55)",
+        "raised": "rgba(255, 255, 255, 0.78)",
+        "ink": "#141620",
+        "muted": "#5D6273",
+        "line": "rgba(255, 255, 255, 0.60)",
+        "accent": "#5D51C8",
+        "accent_ink": "#FFFFFF",
+        "mint": "#69C6AE"
+      },
+      "type": {
+        "families": "Geometric sans, light to regular (Aeonik, General Sans, Outfit). Low weight contrast.",
+        "hierarchy": "Title 22/28 regular · figure 34/38 light · body 14/21 regular · label 11/14 regular in `--muted`. Thin, wide-set type suits the soft ground.",
+        "usage": "Keep weights light — bold type fights the translucency. Sentence case. Labels sit above values, not beside them."
+      },
+      "texture": "Every surface is carved out of the gradient rather than drawn on top of it: `background: rgba(255,255,255,.55); backdrop-filter: blur(24px);` with a 1px inner highlight `rgba(255,255,255,.6)` and no outer border. One blurred colour metaball (a 320px circle of `--accent` at 30% opacity, `filter: blur(80px)`) drifts behind the content to give the field variation. Shadows are wide and faint.",
+      "layout": "Soft and generous. 8px scale, 24px padding, 20-24px radius on cards, 999px on every control. Because nothing has a border, rely on 20px+ gaps for separation. Charts render as translucent gradient-filled bars or dot matrices, never as hard strokes."
+    },
+    "fit": {
+      "best_for": ["fintech and personal finance", "wellness and health tracking", "smart home and IoT", "AI assistants and copilots", "consumer dashboards"],
+      "avoid_for": ["high-density enterprise tables", "developer tools", "accessibility-critical services (translucency hurts legibility)", "print or export-heavy products"],
+      "mood": ["serene", "contemporary", "soft", "optimistic", "light"]
+    },
+    "recipe": {
+      "medium": "soft 3D render or gradient abstraction with frosted glass elements",
+      "constraints": [
+        "pale periwinkle-to-ice gradient ground",
+        "translucent frosted panels with visible blur of what sits behind them",
+        "one muted violet #5D51C8 and one seafoam #69C6AE as the only hues",
+        "soft omnidirectional lighting, no hard shadows",
+        "rounded organic forms, generous corner radii"
+      ],
+      "negative": ["hard edges", "high contrast", "dark backgrounds", "neon", "sharp specular highlights", "dense detail"],
+      "negative_space": "The upper half stays a clean uninterrupted gradient."
+    }
+  },
+
+  "aura": {
+    "keywords": ["soft-bloom", "crisp-white-card", "tight-headline", "no-texture", "pale-wash", "marketing-hero", "single-cool-accent"],
+    "tokens": {
+      "palette": {
+        "bg": "#F2F2F3",
+        "surface": "#FFFFFF",
+        "ink": "#0C0C0C",
+        "muted": "#6C6F76",
+        "line": "#E7E8EA",
+        "accent": "#2450E8",
+        "accent_ink": "#FFFFFF",
+        "bloom_a": "rgba(88, 132, 255, 0.28)",
+        "bloom_b": "rgba(255, 176, 140, 0.24)"
+      },
+      "type": {
+        "families": "Neo-grotesque or geometric sans (Inter Display, General Sans, Aeonik). The headline is the whole design.",
+        "hierarchy": "Hero 68/68 semibold at -0.035em · section 36/42 semibold at -0.025em · body 16/26 regular in `--muted` · label 12/16 medium. Enormous tightly-tracked headlines against small grey body is the entire hierarchy.",
+        "usage": "Set headlines as large and as tight as legibility allows. Body copy stays grey and small. Sentence case. Never letterspace the hero."
+      },
+      "texture": "Atmosphere with no material. Behind crisp white cards sit one or two very large soft radial blooms (`radial-gradient(50% 40% at 20% 0%, var(--bloom-a), transparent 70%)`) — pure colour haze, no grain, no glass, no bevel. Cards themselves are flat white with a hairline border and a soft wide shadow (`0 8px 32px -12px rgb(12 12 12 / .12)`). The contrast between hazy ground and razor-sharp card is the effect.",
+      "layout": "Marketing rhythm: full-width sections, centred hero, generous vertical spacing (96-140px between sections). 8px scale, 24px card padding, 16px radius, 999px on the primary pill CTA. Product screenshots bleed in from the bottom edge of the hero rather than sitting in a frame."
+    },
+    "fit": {
+      "best_for": ["SaaS marketing and landing pages", "product launches", "pricing and feature pages", "startup homepages", "waitlist and pre-launch sites"],
+      "avoid_for": ["dense working dashboards", "data tables", "internal admin tooling", "products needing a dark mode as primary"],
+      "mood": ["optimistic", "fresh", "clear", "modern", "approachable"]
+    },
+    "recipe": {
+      "medium": "soft gradient abstraction or clean product render on a light ground",
+      "constraints": [
+        "near-white #F2F2F3 ground",
+        "one or two very large soft colour blooms in cool blue and warm peach, heavily feathered",
+        "any product surface rendered crisp and sharp against the soft ground",
+        "even soft lighting, no visible light source",
+        "no texture, grain or noise anywhere"
+      ],
+      "negative": ["grain or noise", "dark backgrounds", "hard shadows", "glassmorphism", "3D bevels", "busy detail"],
+      "negative_space": "Keep the centre-top clear for a large headline — at least 35% of the frame."
+    }
+  },
+
+  "soft-body": {
+    "keywords": ["large-radius", "pastel-chip", "soft-shadow", "no-hard-border", "friendly-data", "lollipop-chart", "rounded-shell"],
+    "tokens": {
+      "palette": {
+        "bg": "#E7E8F0",
+        "surface": "#FFFFFF",
+        "subtle": "#F4F5F9",
+        "ink": "#131C33",
+        "muted": "#6A7288",
+        "line": "#E6E8EF",
+        "accent": "#4A46D8",
+        "accent_ink": "#FFFFFF",
+        "pastels": "mint #DFF3E9, lilac #E9E6FA, peach #FCEBE4, butter #FBF4DC, sky #E2EEFB"
+      },
+      "type": {
+        "families": "Neo-grotesque or rounded humanist (Inter, Plus Jakarta Sans, Nunito Sans). Slight roundness in the letterforms helps.",
+        "hierarchy": "Page title 26/32 semibold · card title 16/22 semibold · figure 30/36 semibold · body 14/21 regular · chip 11/15 medium. Comfortable, never cramped.",
+        "usage": "Sentence case throughout. Pastel chips carry dark ink of their own hue family, never white. Numbers get room to breathe — this style never crams a table."
+      },
+      "texture": "Depth comes from shadow, not borders. Cards are white with a 20-24px radius and `0 2px 8px rgb(19 28 51 / .06)`, optionally a hairline. The whole app often sits in a rounded shell (28px radius) inset in a tinted `--bg` field with 24-40px of margin. Charts are friendly: lollipop bars with circular caps, capsule-tracked bars, soft gradient fills.",
+      "layout": "Roomy. 8px scale, 24px card padding, 20px gaps, 16-24px radius everywhere, 999px on pills and avatars. Nothing touches anything. Where Hairline Ledger fits 24 rows, this fits 8 — that is the trade and the point."
+    },
+    "fit": {
+      "best_for": ["consumer and prosumer dashboards", "freelancer and small-business tools", "HR, scheduling and booking", "health and habit tracking", "products with non-technical users"],
+      "avoid_for": ["high-density trading or analytics", "developer tooling", "enterprise admin with hundreds of rows", "brands needing a severe or technical tone"],
+      "mood": ["friendly", "calm", "approachable", "polished", "unintimidating"]
+    },
+    "recipe": {
+      "medium": "soft 3D render or rounded flat illustration",
+      "constraints": [
+        "pale lavender-grey ground #E7E8F0",
+        "rounded matte forms with large corner radii and no sharp edges",
+        "pastel accent palette — mint, lilac, peach — plus one indigo #4A46D8",
+        "soft diffused lighting with gentle contact shadows",
+        "friendly geometric shapes, generous spacing between elements"
+      ],
+      "negative": ["sharp corners", "high contrast", "dark backgrounds", "neon", "technical or industrial imagery", "dense detail"],
+      "negative_space": "Keep at least a third of the frame as empty tinted ground."
+    }
+  },
+
+  "didone-signal": {
+    "keywords": ["high-contrast-serif", "tangerine", "black-pill", "welded-arrow-chip", "cloud-photograph", "masthead-hero"],
+    "tokens": {
+      "palette": {
+        "bg": "#FBFBFA",
+        "surface": "#FFFFFF",
+        "ink": "#080808",
+        "muted": "#6A6A68",
+        "line": "#E6E5E1",
+        "accent": "#E85A00",
+        "accent_ink": "#FFFFFF",
+        "block": "#0A0A0A",
+        "block_ink": "#FAFAF8"
+      },
+      "type": {
+        "families": "A high-contrast display serif for headlines (Playfair Display, Prata, Bodoni Moda, Instrument Serif) paired with a plain neo-grotesque for everything else. The pairing is the style — never set a headline in the sans.",
+        "hierarchy": "Hero serif 72/74 regular · section serif 44/50 regular · sans body 16/26 regular · sans label 12/16 medium ALL-CAPS 0.08em. The serif appears only at display sizes; below 24px it is always the sans.",
+        "usage": "Centre the hero. Let the serif's thick-thin contrast do the decorating — no italic, no underline, no colour on the headline. Body copy is quiet grey sans."
+      },
+      "texture": "Print-flat. No gradients on surfaces, no glass, no glow. The one material moment is a soft photograph (cloud, sky, landscape) that dissolves into the page background behind the hero type via a mask or a white gradient. The signature component is a black pill button with a circular tangerine arrow chip welded onto its trailing end.",
+      "layout": "Editorial symmetry. Centred hero with a tight measure (max 20 characters per headline line), generous 120px+ section rhythm, 8px scale. Cards are black or white rectangles with 16-20px radius. A flat tangerine field ruled with a faint architectural grid works as a section break."
+    },
+    "fit": {
+      "best_for": ["premium and luxury brands", "property and hospitality", "editorial and publishing products", "professional services", "brand-led launch pages"],
+      "avoid_for": ["technical developer products", "dense dashboards", "playful consumer apps", "high-density data interfaces"],
+      "mood": ["elegant", "assured", "editorial", "warm", "considered"]
+    },
+    "recipe": {
+      "medium": "soft natural photograph, high-key, dissolving into white",
+      "constraints": [
+        "paper-white ground the image fades into with no hard edge",
+        "soft natural light — clouds, sky, or diffused landscape",
+        "muted natural palette with one tangerine #E85A00 note",
+        "high-key exposure, gentle contrast",
+        "generous symmetrical composition"
+      ],
+      "negative": ["dark or moody grading", "neon", "3D render", "vector illustration", "harsh shadows", "busy compositions"],
+      "negative_space": "The upper half fades to near-white so a serif headline can sit over it."
+    }
+  },
+
+  "field-notes": {
+    "keywords": ["full-bleed-landscape", "serif-headline", "monospace-figures", "magazine-grammar", "tracked-caps", "page-sheet"],
+    "tokens": {
+      "palette": {
+        "bg": "#FAFAF8",
+        "surface": "#FFFFFF",
+        "sheet": "rgba(255, 255, 255, 0.86)",
+        "ink": "#1C221E",
+        "muted": "#6B7169",
+        "line": "#E4E5E0",
+        "accent": "#4E6030",
+        "accent_ink": "#FFFFFF"
+      },
+      "type": {
+        "families": "Three voices, deliberately. A serif for headlines (Instrument Serif, Fraunces, Source Serif), a neo-grotesque for UI and body, and a monospace (JetBrains Mono, IBM Plex Mono) for every figure, date and code.",
+        "hierarchy": "Headline serif 48/54 regular, ending in a full stop · deck 18/28 sans regular · body 15/24 sans · figures mono 14/20 · issue labels 10/12 mono ALL-CAPS 0.14em.",
+        "usage": "Headlines end with a period — magazine grammar. Monospace figures appear *inline in running prose*, not just in tables. Letterspaced ALL-CAPS mono for section and issue labels."
+      },
+      "texture": "A translucent white page sheet (`rgba(255,255,255,.86)`, optional `backdrop-filter: blur(8px)`) floats over a full-bleed defocused landscape photograph. Surfaces are otherwise print-flat. Corners are softly rounded (16-20px) on the sheet, square on internal rules. A faint grain is acceptable over the photograph only.",
+      "layout": "A page, not a screen. One centred column (max 720px) of content sitting on the sheet, with the photograph bleeding to all four edges behind it. 8px scale, 32-40px sheet padding, hairline rules between sections instead of cards. Data, when present, is set as a magazine table — ruled, mono, right-aligned."
+    },
+    "fit": {
+      "best_for": ["sustainability and climate products", "outdoor, travel and agriculture", "research and data journalism", "reports and annual reviews", "brands with real photography to spend"],
+      "avoid_for": ["high-frequency operational tools", "developer consoles", "products with no photographic assets", "dense transactional interfaces"],
+      "mood": ["considered", "grounded", "editorial", "natural", "literate"]
+    },
+    "recipe": {
+      "medium": "landscape photograph, natural light, slightly defocused",
+      "constraints": [
+        "full-bleed natural landscape — hills, field, forest, sky",
+        "soft overcast or golden-hour light, no harsh sun",
+        "muted natural greens and earth tones, low saturation",
+        "slight defocus so the image reads as a backdrop, not a subject",
+        "horizon placed low or high, never centred"
+      ],
+      "negative": ["people looking at camera", "urban or industrial scenes", "high saturation", "HDR processing", "vector or 3D rendering", "text in the image"],
+      "negative_space": "The centre must be quiet and low-contrast so a white sheet of type can sit on it."
+    }
+  },
+
+  "poster-block": {
+    "keywords": ["colour-bands", "display-caps", "paper-flat", "cut-out-portrait", "hard-edge", "brand-ink", "no-shadow"],
+    "tokens": {
+      "palette": {
+        "bg": "#FBFBEF",
+        "surface": "#FFFFFF",
+        "ink": "#2E2440",
+        "muted": "#6E667E",
+        "line": "#DEDACF",
+        "accent": "#F5CE3E",
+        "accent_ink": "#3A2E10",
+        "band_a": "#0F6B4C",
+        "band_b": "#D96A5E",
+        "band_c": "#C9D8B0"
+      },
+      "type": {
+        "families": "A condensed or expressive display face for headlines (Anton, Archivo Expanded, Bricolage Grotesque, PP Right Grotesk) with a plain geometric sans for body. The display face should be strange enough to be memorable.",
+        "hierarchy": "Poster headline 96/88 display, justified to the full column width · section 32/36 display · body 16/25 sans · label 12/15 sans medium ALL-CAPS 0.06em.",
+        "usage": "Set the headline enormous and justify it edge to edge — the type is a graphic element, not a label. Ink is a chosen brand colour (deep aubergine, chocolate, forest), never plain black."
+      },
+      "texture": "Print, not screen. Flat colour bands with hard edges, zero shadows, zero gradients. Optional paper grain at 4%. Shapes are cut with jagged, zigzag or arc section dividers rather than straight rules. Cut-out photography and mascot illustration overlap and interrupt the type.",
+      "layout": "Edge-to-edge horizontal bands, each a different flat colour, stacked down the page. No card floats above another — everything is inline in its band. 8px scale, 0-8px radius (sharp is the default), 64-96px band padding. Elements deliberately break their band's boundary to create energy."
+    },
+    "fit": {
+      "best_for": ["brand identity and campaign sites", "creative agencies and studios", "events and conferences", "community and marketplace products", "anything wanting personality over polish"],
+      "avoid_for": ["enterprise software", "dashboards and data tools", "regulated finance or healthcare", "products needing a neutral canvas for user content"],
+      "mood": ["bold", "playful", "graphic", "characterful", "confident"]
+    },
+    "recipe": {
+      "medium": "flat vector illustration or silkscreen-style poster art",
+      "constraints": [
+        "flat spot colours with hard edges and no gradients",
+        "limited palette — cream #FBFBEF, mustard #F5CE3E, forest #0F6B4C, coral #D96A5E",
+        "cut-out photographic elements at mismatched scales, hard-masked",
+        "subtle paper grain overlay",
+        "bold overlapping geometric shapes"
+      ],
+      "negative": ["soft shadows", "gradients", "3D rendering", "photorealism", "glass or blur", "muted or corporate palettes"],
+      "negative_space": "One flat band of solid colour must stay empty for the headline."
+    }
+  },
+
+  "studio-object": {
+    "keywords": ["render-as-page", "single-object", "hairline-pill", "isometric", "grey-seamless", "docked-micro-ui"],
+    "tokens": {
+      "palette": {
+        "bg": "#D6D6D6",
+        "surface": "#FFFFFF",
+        "ink": "#050505",
+        "muted": "#6E6E6E",
+        "line": "#DCDCDC",
+        "accent": "#0079DE",
+        "accent_ink": "#FFFFFF",
+        "warm": "#E09400"
+      },
+      "type": {
+        "families": "Neo-grotesque or geometric sans, weight-alternating within a single headline (one clause light, the next semibold).",
+        "hierarchy": "Headline 44/48 with mixed weights · body 15/23 regular · label 11/14 medium ALL-CAPS 0.1em · single display numeral up to 120px when the object is a metric.",
+        "usage": "Alternate weight inside one headline rather than using colour or size for emphasis. Keep all UI type small — the render should dominate."
+      },
+      "texture": "The object is the page. A single matte 3D render — a sphere in liquid, an isometric building, a device — fills most of the frame, lit softly in a grey studio. UI reduces to hairline pill buttons and small floating micro-panels docked to the render, often with thin leader lines connecting a label to a point on the object. Surfaces are matte; no gloss, no neon.",
+      "layout": "Composition over structure. The render occupies 60-75% of the viewport; content is docked to one edge or floats over a quiet area of the image. 8px scale, 999px radius on pills, 12px on micro-panels, 16px padding. Hairline leader lines (1px, `--line`) tie annotations to the object."
+    },
+    "fit": {
+      "best_for": ["hardware and physical products", "logistics, warehousing and supply chain", "architecture and construction tech", "manufacturing and industrial software", "product launch and concept pages"],
+      "avoid_for": ["text-heavy applications", "dense dashboards", "products with no renderable object", "fast-iterating marketing needing cheap assets"],
+      "mood": ["industrial", "precise", "material", "sober", "engineered"]
+    },
+    "recipe": {
+      "medium": "matte 3D product render, grey seamless studio",
+      "constraints": [
+        "flat mid-grey #D6D6D6 seamless background with soft falloff",
+        "one object centred, matte finish, no gloss or chrome",
+        "soft large key light from above-left, gentle contact shadow",
+        "near-monochrome with at most one small colour note",
+        "orthographic or mild isometric projection"
+      ],
+      "negative": ["glossy or reflective materials", "coloured lighting", "busy scenes", "photographic backgrounds", "neon", "dramatic contrast"],
+      "negative_space": "At least 30% flat grey ground on one side for docked UI and type."
+    }
+  }
+}

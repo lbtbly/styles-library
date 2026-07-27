@@ -1,0 +1,192 @@
+{
+  "id": "canvas-and-window",
+  "name": "Canvas & Window",
+  "collection": "Working Surfaces",
+  "pairing": "App window × photographer's seamless",
+  "concept": "Float the product in a rounded window on a flat neutral stage so the interface is the only subject in frame.",
+  "keywords": [
+    "floating-app-window",
+    "flat-stage",
+    "chip-coded-cards",
+    "cool-accent",
+    "browser-chrome",
+    "hairline-card",
+    "product-as-subject"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#ECECEC",
+      "surface": "#FFFFFF",
+      "subtle": "#F6F7F8",
+      "ink": "#0E1113",
+      "muted": "#6A7178",
+      "line": "#E5E7EA",
+      "accent": "#00849E",
+      "positive": "#12805C",
+      "negative": "#C0392B",
+      "chip_tints": "10% tint of the semantic hue on white — mint #E7F5EF, lilac #EEEBFB, butter #FBF3E0, blush #FBECEA"
+    },
+    "type": {
+      "families": "Neo-grotesque or geometric sans (Inter, General Sans, Plus Jakarta). One family; the window chrome is the only place a second is allowed.",
+      "hierarchy": "Window title 16/22 semibold · card title 14/20 semibold · body 13/18 regular · chip 11/14 medium · figure 22/28 semibold. Hero figures may reach 32px inside cards.",
+      "usage": "Sentence case throughout. Status chips carry a 11px medium label on a 10% tint with the full-strength hue as text colour. Never uppercase card titles."
+    },
+    "texture": "The window itself is the only elevated object: `0 24px 60px -20px rgb(14 17 19 / .22)` lifting it off the flat stage. Inside, everything is flat with 1px `--line` borders. Optional realistic browser chrome (traffic-light dots, a rounded URL field) frames the app. No gradients inside the UI; the stage stays a single flat grey.",
+    "layout": "Compose the shot, not just the screen. A rounded app window (radius 14-16px) floats centred on a flat `--bg` stage with 48-80px of breathing room on every side. Inside: sidebar 232px, content padded 24px, cards 16px padding with 12px radius, 16px gutters. Status colour lives on a card's top strip or left rule so state reads from the grid alone."
+  },
+  "fit": {
+    "best_for": [
+      "SaaS product marketing where the app is the hero",
+      "dashboards and CRM",
+      "feature announcements and changelogs",
+      "documentation screenshots",
+      "investor and sales decks"
+    ],
+    "avoid_for": [
+      "editorial or content-led sites",
+      "brand identity work",
+      "products with no screen to show",
+      "dark-mode-first tools"
+    ],
+    "mood": [
+      "composed",
+      "confident",
+      "product-led",
+      "neutral",
+      "considered"
+    ],
+    "artifact_types_proven": [
+      "dashboard",
+      "crm",
+      "pricing page"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop"
+    ],
+    "artifacts": [
+      "dashboard",
+      "crm",
+      "pricing page"
+    ],
+    "artifact_counts": {
+      "crm": 3,
+      "dashboard": 8,
+      "pricing page": 1
+    },
+    "device_counts": {
+      "desktop": 12
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as flat vector UI illustration staged as a product shot.\n\nSTYLE — apply all of the following, they are not optional:\n- a single rounded rectangular window floating centred on a flat #ECECEC field\n- generous empty margin on all four sides of the window\n- one teal-cyan accent #00849E; everything else white, grey and near-black\n- one soft wide drop shadow beneath the window, no other shadows\n- straight-on orthographic view — no perspective tilt\n\nNEGATIVE SPACE: The flat grey margin around the window is the negative space — keep at least 15% of the frame empty on the left.\n\nDO NOT INCLUDE: perspective distortion, 3D bevels, gradient backgrounds, neon glow, photographic desks or hands, cluttered edges.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "a single rounded rectangular window floating centred on a flat #ECECEC field",
+      "generous empty margin on all four sides of the window",
+      "one teal-cyan accent #00849E; everything else white, grey and near-black",
+      "one soft wide drop shadow beneath the window, no other shadows",
+      "straight-on orthographic view — no perspective tilt",
+      "negative space — The flat grey margin around the window is the negative space — keep at least 15% of the frame empty on the left.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "perspective distortion",
+      "3D bevels",
+      "gradient backgrounds",
+      "neon glow",
+      "photographic desks or hands",
+      "cluttered edges"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/27436632-KirriDesk-Replying-with-AI-in-SaaS-Customer-Service",
+      "designer": "Fikri Studio",
+      "local_image": "shots/27436632-kirridesk-replying-with-ai-in-saas-customer-serv.png",
+      "thumbnail": "thumbs/27436632.jpg",
+      "title": "KirriDesk - Replying with AI in SaaS Customer Service"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26534216-Notification-dropdown-for-dashboard-saas-CRM",
+      "designer": "Virgil Pana",
+      "local_image": "shots/26534216-notification-dropdown-for-dashboard-saas-crm.png",
+      "thumbnail": "thumbs/26534216.jpg",
+      "title": "Notification dropdown for dashboard saas CRM"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27150570-Schedulo-Appointment-Creation-in-SaaS-Booking-Management",
+      "designer": "Fikri Studio",
+      "local_image": "shots/27150570-schedulo-appointment-creation-in-saas-booking-ma.png",
+      "thumbnail": "thumbs/27150570.jpg",
+      "title": "Schedulo — Appointment Creation in SaaS Booking Management"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25821100-Order-SEO-content-optimization-form-for-saas-web-app-dashboard",
+      "designer": "Virgil Pana",
+      "local_image": "shots/25821100-order-seo-content-optimization-form-for-saas-web.png",
+      "thumbnail": "thumbs/25821100.jpg",
+      "title": "Order SEO content optimization form for saas web app dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26931909-Ecomiq-Product-Listing-Dashboard-for-SaaS-E-commerce",
+      "designer": "Fikri Studio",
+      "local_image": "shots/26931909-ecomiq-product-listing-dashboard-for-saas-e-comm.png",
+      "thumbnail": "thumbs/26931909.jpg",
+      "title": "Ecomiq — Product Listing Dashboard for SaaS E-commerce"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26940926-Bloggo-Dashboard-for-SaaS-AI-Blog-Automation-Platform",
+      "designer": "Fikri Studio",
+      "local_image": "shots/26940926-bloggo-dashboard-for-saas-ai-blog-automation-pla.png",
+      "thumbnail": "thumbs/26940926.jpg",
+      "title": "Bloggo — Dashboard for SaaS AI Blog Automation Platform"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27179351-Schedulo-Notification-Drawer-in-SaaS-Booking-Management",
+      "designer": "Fikri Studio",
+      "local_image": "shots/27179351-schedulo-notification-drawer-in-saas-booking-man.png",
+      "thumbnail": "thumbs/27179351.jpg",
+      "title": "Schedulo — Notification Drawer in SaaS Booking Management"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27378070-Schedulo-Online-Booking-Request-in-SaaS-Booking-App",
+      "designer": "Fikri Studio",
+      "local_image": "shots/27378070-schedulo-online-booking-request-in-saas-booking.png",
+      "thumbnail": "thumbs/27378070.jpg",
+      "title": "Schedulo — Online Booking Request in SaaS Booking App"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27458403-KirriDesk-AI-Reply-Draft-Suggestion-in-SaaS-CSM",
+      "designer": "Fikri Studio",
+      "local_image": "shots/27458403-kirridesk-ai-reply-draft-suggestion-in-saas-csm.png",
+      "thumbnail": "thumbs/27458403.jpg",
+      "title": "KirriDesk - AI Reply Draft Suggestion in SaaS CSM"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26996553-DevTools-Flow-Details-Node-in-SaaS-API-Testing",
+      "designer": "Fikri Studio",
+      "local_image": "shots/26996553-devtools-flow-details-node-in-saas-api-testing.png",
+      "thumbnail": "thumbs/26996553.jpg",
+      "title": "DevTools — Flow Details (Node) in SaaS API Testing"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27220893-Schedulo-AI-Shift-Management-Drawer-in-SaaS-Booking-Management",
+      "designer": "Fikri Studio",
+      "local_image": "shots/27220893-schedulo-ai-shift-management-drawer-in-saas-book.png",
+      "thumbnail": "thumbs/27220893.jpg",
+      "title": "Schedulo — AI Shift Management Drawer in SaaS Booking Management"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27021117-SaaS-Analytics-Admin-Dashboard-Management",
+      "designer": "rh.design",
+      "local_image": "shots/27021117-saas-analytics-admin-dashboard-management.png",
+      "thumbnail": "thumbs/27021117.jpg",
+      "title": "SaaS Analytics & Admin Dashboard Management"
+    }
+  ],
+  "index": 2
+}

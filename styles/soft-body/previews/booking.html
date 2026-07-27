@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roster — book an appointment</title>
+<style>
+:root{
+  /* ---- Soft Body tokens (styles/soft-body/style.json) ---- */
+  --bg:#E7E8F0;
+  --surface:#FFFFFF;
+  --subtle:#F4F5F9;
+  --ink:#131C33;
+  --muted:#6A7288;
+  --line:#E6E8EF;
+  --accent:#4A46D8;
+  --accent-ink:#FFFFFF;
+  --pastel-mint:#DFF3E9;
+  --pastel-lilac:#E9E6FA;
+  --pastel-peach:#FCEBE4;
+  --pastel-butter:#FBF4DC;
+  --pastel-sky:#E2EEFB;
+  /* derived: matching ink per pastel */
+  --on-mint:#1F6B4C;
+  --on-lilac:#4A3FA8;
+  --on-peach:#A2542F;
+  --on-butter:#7A6320;
+  --on-sky:#2A5E96;
+  --accent-wash:rgba(74,70,216,.10);
+  --shadow-card:0 2px 8px rgb(19 28 51 / .06);
+  --shadow-raise:0 8px 24px -8px rgb(19 28 51 / .14);
+  --shadow-shell:0 24px 60px -24px rgb(19 28 51 / .22);
+  --font-sans:"Plus Jakarta Sans","Nunito Sans","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font-sans);font-size:14px;line-height:21px;
+  -webkit-font-smoothing:antialiased;padding:28px}
+svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4,p{margin:0}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:12px}
+.num{font-variant-numeric:tabular-nums}
+
+.shell{background:var(--subtle);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-shell);
+  display:grid;grid-template-columns:236px 1fr;min-height:calc(100vh - 56px)}
+
+/* ---------- sidebar ---------- */
+.side{background:var(--bg);padding:24px 16px;display:flex;flex-direction:column;gap:26px}
+.brand{display:flex;align-items:center;gap:10px;padding:0 6px}
+.brand__g{width:34px;height:34px;border-radius:12px;background:var(--accent);flex:none;
+  display:grid;place-items:center;box-shadow:0 8px 18px -8px rgb(74 70 216 / .7)}
+.brand__g i{display:block;width:13px;height:13px;border-radius:999px 999px 999px 3px;background:#fff}
+.brand div{font-weight:600;font-size:16px;letter-spacing:-.02em;line-height:19px}
+.brand span{display:block;font-size:11px;font-weight:500;color:var(--muted);line-height:15px}
+.navlist{display:flex;flex-direction:column;gap:4px}
+.navlist h4{font-size:11px;line-height:15px;font-weight:500;color:var(--muted);padding:0 14px;margin-bottom:6px}
+.nav-item{display:flex;align-items:center;gap:12px;height:44px;padding:0 14px;border-radius:16px;
+  font-weight:500;color:var(--muted);transition:background-color .18s ease,color .18s ease,box-shadow .18s ease}
+.nav-item svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.nav-item:hover{background:var(--subtle);color:var(--ink)}
+.nav-item[aria-current="page"]{background:var(--accent);color:#fff;box-shadow:0 8px 20px -10px rgb(74 70 216 / .7)}
+.nav-item .count{margin-left:auto;font-size:11px;font-weight:600;background:var(--surface);color:var(--muted);padding:3px 8px;border-radius:999px}
+.side__foot{margin-top:auto;background:var(--pastel-mint);color:var(--on-mint);border-radius:20px;padding:18px}
+.side__foot h4{font-size:14px;line-height:20px;font-weight:600;margin-bottom:6px}
+.side__foot p{font-size:12px;line-height:18px;opacity:.85}
+
+/* ---------- main ---------- */
+.main{background:var(--surface);display:flex;flex-direction:column;min-width:0}
+.top{height:68px;flex:none;display:flex;align-items:center;gap:14px;padding:0 24px}
+.crumb{font-size:13px;color:var(--muted)}
+.crumb b{color:var(--ink);font-weight:600}
+.top__right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.ibtn{width:40px;height:40px;border:0;border-radius:50%;background:var(--subtle);display:grid;place-items:center;cursor:pointer;
+  transition:background-color .18s ease,transform .18s ease}
+.ibtn:hover{background:var(--bg);transform:translateY(-1px)}
+.ibtn svg{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.av{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:12px;font-weight:600}
+
+.content{padding:8px 24px 24px;display:grid;grid-template-columns:1fr 336px;gap:20px;align-items:start}
+h1{font-size:26px;line-height:32px;font-weight:600;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:13px;margin-top:2px}
+
+.card{background:var(--surface);border-radius:22px;padding:24px;box-shadow:var(--shadow-card)}
+.stack{display:flex;flex-direction:column;gap:20px}
+.cardhead{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+h2{font-size:16px;line-height:22px;font-weight:600;letter-spacing:-.01em}
+.cardhead .step{width:26px;height:26px;border-radius:999px;background:var(--subtle);color:var(--muted);
+  font-size:12px;font-weight:600;display:grid;place-items:center;flex:none}
+.cardhead p{font-size:12px;color:var(--muted);margin-left:auto}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-weight:600;font-size:14px;line-height:1;letter-spacing:-.01em;
+  padding:12px 20px;border-radius:999px;border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  transition:background-color .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease}
+.btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.btn--primary{background:var(--accent);color:var(--accent-ink)}
+.btn--primary:hover{background:#3F3BC4;transform:translateY(-1px);box-shadow:0 8px 20px -8px rgb(74 70 216 / .5)}
+.btn--secondary{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-card)}
+.btn--secondary:hover{transform:translateY(-1px);box-shadow:var(--shadow-raise)}
+.btn--ghost{background:transparent;color:var(--muted)}
+.btn--ghost:hover{background:var(--subtle);color:var(--ink)}
+.btn--sm{padding:9px 15px;font-size:13px}
+.btn--block{width:100%}
+
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;line-height:15px;font-weight:500;
+  padding:6px 11px;border-radius:999px}
+.chip .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.chip--mint{background:var(--pastel-mint);color:var(--on-mint)}
+.chip--lilac{background:var(--pastel-lilac);color:var(--on-lilac)}
+.chip--peach{background:var(--pastel-peach);color:var(--on-peach)}
+.chip--butter{background:var(--pastel-butter);color:var(--on-butter)}
+.chip--sky{background:var(--pastel-sky);color:var(--on-sky)}
+
+/* ---- service picker ---- */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.svc{border:0;text-align:left;cursor:pointer;border-radius:18px;padding:16px;background:var(--subtle);
+  display:flex;flex-direction:column;gap:8px;position:relative;
+  transition:background-color .18s ease,box-shadow .18s ease,transform .18s ease}
+.svc:hover{transform:translateY(-2px);box-shadow:var(--shadow-raise)}
+.svc__ic{width:38px;height:38px;border-radius:14px;display:grid;place-items:center}
+.svc__ic svg{width:19px;height:19px;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.svc b{font-size:14px;line-height:20px;font-weight:600}
+.svc span{font-size:12px;line-height:17px;color:var(--muted)}
+.svc[aria-pressed="true"]{background:var(--surface);box-shadow:0 0 0 2px var(--accent),var(--shadow-card)}
+.svc[aria-pressed="true"]::after{content:"";position:absolute;top:14px;right:14px;width:18px;height:18px;border-radius:50%;
+  background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11'%3E%3Cpath d='M1.5 5.6 4.2 8.3 9.5 3' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center no-repeat}
+
+/* ---- practitioner ---- */
+.people{display:flex;gap:12px;flex-wrap:wrap}
+.person{border:0;cursor:pointer;background:var(--subtle);border-radius:999px;padding:8px 16px 8px 8px;
+  display:flex;align-items:center;gap:10px;transition:background-color .18s ease,box-shadow .18s ease,transform .18s ease}
+.person:hover{transform:translateY(-1px);box-shadow:var(--shadow-raise)}
+.person b{font-size:13px;font-weight:600;display:block;line-height:17px}
+.person span{font-size:11px;color:var(--muted);line-height:15px}
+.person div{text-align:left}
+.person[aria-pressed="true"]{background:var(--surface);box-shadow:0 0 0 2px var(--accent),var(--shadow-card)}
+
+/* ---- date strip ---- */
+.dates{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.day{border:0;cursor:pointer;background:var(--subtle);border-radius:18px;padding:12px 4px;text-align:center;
+  transition:background-color .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease}
+.day em{display:block;font-style:normal;font-size:11px;line-height:15px;color:var(--muted);font-weight:500}
+.day b{display:block;font-size:17px;line-height:24px;font-weight:600;margin-top:2px}
+.day i{display:block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin:4px auto 0}
+.day:hover{transform:translateY(-2px);box-shadow:var(--shadow-raise)}
+.day[aria-pressed="true"]{background:var(--ink);color:#fff}
+.day[aria-pressed="true"] em{color:rgb(255 255 255 / .6)}
+.day[aria-pressed="true"] i{background:#fff}
+.day[disabled]{opacity:.4;cursor:not-allowed}
+.day[disabled]:hover{transform:none;box-shadow:none}
+
+/* ---- slots ---- */
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+.slot{border:0;cursor:pointer;background:var(--subtle);border-radius:999px;padding:12px 8px;
+  font-size:13px;font-weight:600;color:var(--ink);
+  transition:background-color .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease}
+.slot:hover{transform:translateY(-2px);box-shadow:var(--shadow-raise)}
+.slot[aria-pressed="true"]{background:var(--accent);color:#fff;box-shadow:0 8px 20px -10px rgb(74 70 216 / .8)}
+.slot[disabled]{background:transparent;color:var(--muted);opacity:.5;text-decoration:line-through;cursor:not-allowed}
+.slot[disabled]:hover{transform:none;box-shadow:none}
+.slotgroup + .slotgroup{margin-top:18px}
+.slotgroup h3{font-size:12px;line-height:18px;font-weight:500;color:var(--muted);margin-bottom:10px}
+
+/* ---- notes ---- */
+.field{width:100%;font:400 14px/1.5 var(--font-sans);color:var(--ink);background:var(--subtle);
+  border:1px solid transparent;border-radius:16px;padding:12px 16px;resize:vertical}
+.field::placeholder{color:var(--muted)}
+.field:focus{outline:none;background:var(--surface);border-color:var(--accent);box-shadow:0 0 0 3px rgba(74,70,216,.14)}
+.check{display:flex;align-items:flex-start;gap:12px;margin-top:14px;font-size:13px;line-height:20px;color:var(--muted)}
+.check input{appearance:none;width:22px;height:22px;flex:none;border-radius:8px;background:var(--subtle);
+  cursor:pointer;margin:0;transition:background-color .18s ease}
+.check input:checked{background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13'%3E%3Cpath d='M2 6.6 5.2 9.8 11 3.6' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center no-repeat}
+
+/* ---- summary rail ---- */
+.rail{display:flex;flex-direction:column;gap:20px;position:sticky;top:8px}
+.summary__head{background:var(--pastel-lilac);color:var(--on-lilac);border-radius:18px;padding:16px;margin-bottom:18px}
+.summary__head b{display:block;font-size:15px;line-height:21px;font-weight:600}
+.summary__head span{font-size:12px;line-height:18px;opacity:.85}
+.srow{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.srow:last-of-type{border-bottom:0}
+.srow em{font-style:normal;color:var(--muted)}
+.srow b{margin-left:auto;font-weight:600;text-align:right}
+.total{display:flex;align-items:baseline;gap:10px;margin-top:14px;padding-top:16px;border-top:1px solid var(--line)}
+.total span{font-size:13px;color:var(--muted)}
+.total b{margin-left:auto;font-size:30px;line-height:36px;font-weight:600;letter-spacing:-.02em}
+.summary .btn{margin-top:18px}
+.fineprint{margin-top:12px;font-size:11px;line-height:17px;color:var(--muted);text-align:center}
+
+.today{display:flex;flex-direction:column;gap:10px}
+.appt{background:var(--subtle);border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:12px}
+.appt time{font-size:12px;font-weight:600;color:var(--muted);flex:none;width:44px}
+.appt b{font-size:13px;font-weight:600;display:block;line-height:18px}
+.appt span{font-size:11px;color:var(--muted);line-height:15px}
+.appt .bar{width:4px;align-self:stretch;border-radius:999px;flex:none}
+
+.appfoot{margin-top:auto;background:var(--subtle);height:56px;display:flex;align-items:center;gap:16px;
+  padding:0 24px;font-size:12px;color:var(--muted)}
+.appfoot .r{margin-left:auto;display:flex;gap:6px}
+
+@media (max-width:1100px){
+  .content{grid-template-columns:1fr}
+  .rail{position:static}
+}
+@media (max-width:900px){
+  body{padding:0}
+  .shell{grid-template-columns:1fr;border-radius:0;min-height:100vh}
+  .side{flex-direction:row;align-items:center;gap:14px;padding:14px 16px;overflow-x:auto;flex:none}
+  .side__foot,.brand span{display:none}
+  .navlist{flex-direction:row;gap:6px}
+  .navlist h4{display:none}
+  .nav-item{height:38px;padding:0 12px;font-size:13px;white-space:nowrap}
+  .nav-item .count{display:none}
+  .top{padding:0 16px}
+  .content{padding:8px 16px 16px;gap:14px}
+}
+@media (max-width:640px){
+  .top{height:60px}
+  .crumb{font-size:12px}
+  h1{font-size:22px;line-height:28px}
+  .card{padding:18px;border-radius:20px}
+  .services{grid-template-columns:1fr}
+  .svc{flex-direction:row;align-items:center;gap:12px}
+  .svc__ic{flex:none}
+  .svc div{min-width:0}
+  .dates{gap:5px}
+  .day{padding:9px 2px;border-radius:14px}
+  .day b{font-size:15px;line-height:20px}
+  .day em{font-size:10px}
+  .slots{grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px}
+  .slot{padding:10px 4px;font-size:12px}
+  .total b{font-size:24px;line-height:30px}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="side">
+    <div class="brand">
+      <span class="brand__g"><i></i></span>
+      <div>Roster<span>Meadow Lane Physio</span></div>
+    </div>
+
+    <nav class="navlist">
+      <h4>Schedule</h4>
+      <a class="nav-item" href="#today">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.4V12l3.2 2"/></svg>
+        Today <span class="count">9</span>
+      </a>
+      <a class="nav-item" aria-current="page" href="#book">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="16" rx="4"/><path d="M3.5 9.5h17M8.5 2.5v4M15.5 2.5v4"/></svg>
+        New booking
+      </a>
+      <a class="nav-item" href="#waitlist">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"/></svg>
+        Waiting list <span class="count">3</span>
+      </a>
+    </nav>
+
+    <nav class="navlist">
+      <h4>Practice</h4>
+      <a class="nav-item" href="#clients">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3.4"/><path d="M3 19a6 6 0 0 1 12 0"/><path d="M16 7.2a3.2 3.2 0 0 1 0 6.1M17.5 19a5.6 5.6 0 0 0-2-4"/></svg>
+        Clients
+      </a>
+      <a class="nav-item" href="#services">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="2.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="2.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="2.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="2.5"/></svg>
+        Services
+      </a>
+      <a class="nav-item" href="#settings">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="side__foot">
+      <h4>Quiet Thursday</h4>
+      <p>Four open slots this afternoon. The waiting list has three people who would take one.</p>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <div class="main">
+
+    <header class="top">
+      <p class="crumb">Schedule &nbsp;/&nbsp; <b>New booking</b></p>
+      <div class="top__right">
+        <button class="btn btn--ghost btn--sm" type="button">Save as draft</button>
+        <button class="ibtn" aria-label="Notifications">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11a7 7 0 0 1 14 0v5l1.5 2.5h-17L5 16z"/><path d="M10 21h4"/></svg>
+        </button>
+        <span class="av" style="background:var(--pastel-sky);color:var(--on-sky)">TM</span>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- ---------- composer ---------- -->
+      <div class="stack">
+        <div>
+          <h1>Book an appointment</h1>
+          <p class="sub">Thursday 30 October &mdash; four slots free with Priya, six with Callum.</p>
+        </div>
+
+        <!-- step 1: service -->
+        <section class="card">
+          <div class="cardhead"><span class="step">1</span><h2>Choose a service</h2><p>Prices include VAT</p></div>
+          <div class="services">
+            <button class="svc" type="button" aria-pressed="true"
+                    data-svc="Initial assessment" data-dur="50 min" data-price="72">
+              <span class="svc__ic" style="background:var(--pastel-mint)">
+                <svg viewBox="0 0 24 24" style="stroke:var(--on-mint)" aria-hidden="true"><path d="M12 21s-7-4.6-7-9.6A4.4 4.4 0 0 1 12 8a4.4 4.4 0 0 1 7 3.4C19 16.4 12 21 12 21z"/></svg>
+              </span>
+              <div><b>Initial assessment</b><br><span>50 min &middot; first visit</span></div>
+              <span class="chip chip--mint" style="align-self:flex-start">£72</span>
+            </button>
+
+            <button class="svc" type="button" aria-pressed="false"
+                    data-svc="Follow-up session" data-dur="30 min" data-price="48">
+              <span class="svc__ic" style="background:var(--pastel-sky)">
+                <svg viewBox="0 0 24 24" style="stroke:var(--on-sky)" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4.4h-4.4"/></svg>
+              </span>
+              <div><b>Follow-up</b><br><span>30 min &middot; existing plan</span></div>
+              <span class="chip chip--sky" style="align-self:flex-start">£48</span>
+            </button>
+
+            <button class="svc" type="button" aria-pressed="false"
+                    data-svc="Rehab class" data-dur="45 min" data-price="26">
+              <span class="svc__ic" style="background:var(--pastel-butter)">
+                <svg viewBox="0 0 24 24" style="stroke:var(--on-butter)" aria-hidden="true"><circle cx="8" cy="8" r="2.6"/><circle cx="16.5" cy="8" r="2.6"/><path d="M3.5 19a4.5 4.5 0 0 1 9 0M12.5 19a4.5 4.5 0 0 1 8 0"/></svg>
+              </span>
+              <div><b>Rehab class</b><br><span>45 min &middot; up to 6 people</span></div>
+              <span class="chip chip--butter" style="align-self:flex-start">£26</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- step 2: practitioner -->
+        <section class="card">
+          <div class="cardhead"><span class="step">2</span><h2>Who is seeing them?</h2></div>
+          <div class="people">
+            <button class="person" type="button" aria-pressed="true" data-who="Priya Nandakumar">
+              <span class="av" style="background:var(--pastel-lilac);color:var(--on-lilac)">PN</span>
+              <div><b>Priya Nandakumar</b><span>Musculoskeletal &middot; 4 slots</span></div>
+            </button>
+            <button class="person" type="button" aria-pressed="false" data-who="Callum Hearne">
+              <span class="av" style="background:var(--pastel-peach);color:var(--on-peach)">CH</span>
+              <div><b>Callum Hearne</b><span>Sports rehab &middot; 6 slots</span></div>
+            </button>
+            <button class="person" type="button" aria-pressed="false" data-who="Anyone available">
+              <span class="av" style="background:var(--subtle);color:var(--muted)">Any</span>
+              <div><b>Anyone available</b><span>Earliest slot &middot; 10 slots</span></div>
+            </button>
+          </div>
+        </section>
+
+        <!-- step 3: date & time -->
+        <section class="card">
+          <div class="cardhead"><span class="step">3</span><h2>Pick a date and time</h2>
+            <p>October 2026</p>
+          </div>
+
+          <div class="dates">
+            <button class="day" type="button" disabled><em>Mon</em><b>27</b></button>
+            <button class="day" type="button" data-date="Tue 28 Oct"><em>Tue</em><b>28</b><i></i></button>
+            <button class="day" type="button" data-date="Wed 29 Oct"><em>Wed</em><b>29</b><i></i></button>
+            <button class="day" type="button" aria-pressed="true" data-date="Thu 30 Oct"><em>Thu</em><b>30</b><i></i></button>
+            <button class="day" type="button" data-date="Fri 31 Oct"><em>Fri</em><b>31</b><i></i></button>
+            <button class="day" type="button" disabled><em>Sat</em><b>1</b></button>
+            <button class="day" type="button" data-date="Mon 3 Nov"><em>Mon</em><b>3</b><i></i></button>
+          </div>
+
+          <div class="slotgroup" style="margin-top:22px">
+            <h3>Morning</h3>
+            <div class="slots">
+              <button class="slot" type="button" disabled>08:30</button>
+              <button class="slot" type="button" data-time="09:15">09:15</button>
+              <button class="slot" type="button" disabled>10:00</button>
+              <button class="slot" type="button" data-time="10:45">10:45</button>
+              <button class="slot" type="button" data-time="11:30">11:30</button>
+            </div>
+          </div>
+
+          <div class="slotgroup">
+            <h3>Afternoon</h3>
+            <div class="slots">
+              <button class="slot" type="button" data-time="13:00">13:00</button>
+              <button class="slot" type="button" aria-pressed="true" data-time="14:15">14:15</button>
+              <button class="slot" type="button" disabled>15:00</button>
+              <button class="slot" type="button" data-time="15:45">15:45</button>
+              <button class="slot" type="button" data-time="16:30">16:30</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- step 4: details -->
+        <section class="card">
+          <div class="cardhead"><span class="step">4</span><h2>Anything we should know?</h2></div>
+          <textarea class="field" rows="3" placeholder="Referral notes, access needs, or what brought them in.">Referred by Dr Aitken. Right shoulder, six weeks. Prefers a ground-floor room.</textarea>
+          <label class="check"><input type="checkbox" checked> Send a confirmation and a reminder 24 hours before.</label>
+          <label class="check"><input type="checkbox"> Add to the waiting list for anything earlier that opens up.</label>
+        </section>
+      </div>
+
+      <!-- ---------- summary rail ---------- -->
+      <aside class="rail">
+        <section class="card summary">
+          <div class="summary__head">
+            <b>Wren Abbott</b>
+            <span>New client &middot; 07700 900412</span>
+          </div>
+
+          <div class="srow"><em>Service</em><b id="s-svc">Initial assessment</b></div>
+          <div class="srow"><em>With</em><b id="s-who">Priya Nandakumar</b></div>
+          <div class="srow"><em>When</em><b id="s-when">Thu 30 Oct, 14:15</b></div>
+          <div class="srow"><em>Length</em><b id="s-dur">50 min</b></div>
+          <div class="srow"><em>Room</em><b>Ground floor, room 2</b></div>
+
+          <div class="total"><span>Total due on the day</span><b class="num" id="s-price">£72</b></div>
+
+          <button class="btn btn--primary btn--block" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Confirm booking
+          </button>
+          <button class="btn btn--ghost btn--block" type="button" style="margin-top:8px">Hold this slot for 30 minutes</button>
+          <p class="fineprint">Free to move or cancel up to 12 hours before.</p>
+        </section>
+
+        <section class="card">
+          <div class="cardhead"><h2>Rest of Thursday</h2><p>9 booked</p></div>
+          <div class="today">
+            <div class="appt"><span class="bar" style="background:var(--on-mint)"></span><time>09:00</time><div><b>Marta Idowu</b><span>Follow-up &middot; Priya</span></div></div>
+            <div class="appt"><span class="bar" style="background:var(--on-sky)"></span><time>11:30</time><div><b>Ben Oyelaran</b><span>Rehab class &middot; studio</span></div></div>
+            <div class="appt"><span class="bar" style="background:var(--on-peach)"></span><time>13:00</time><div><b>Nora Quilty</b><span>Initial assessment &middot; Callum</span></div></div>
+            <div class="appt"><span class="bar" style="background:var(--on-lilac)"></span><time>16:30</time><div><b>Ade Fenwick</b><span>Follow-up &middot; Callum</span></div></div>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <div class="appfoot">
+      <span>Calendar synced with the practice diary a moment ago</span>
+      <span class="r"><a href="#help">Help</a> · <a href="#policies">Cancellation policy</a></span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var state = {
+    svc: 'Initial assessment', dur: '50 min', price: 72,
+    who: 'Priya Nandakumar', date: 'Thu 30 Oct', time: '14:15'
+  };
+
+  function render() {
+    document.getElementById('s-svc').textContent = state.svc;
+    document.getElementById('s-who').textContent = state.who;
+    document.getElementById('s-dur').textContent = state.dur;
+    document.getElementById('s-when').textContent = state.date + ', ' + state.time;
+    document.getElementById('s-price').textContent = '£' + state.price;
+  }
+
+  function pickOne(selector, node) {
+    Array.prototype.forEach.call(document.querySelectorAll(selector), function (b) {
+      b.setAttribute('aria-pressed', String(b === node));
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    var svc = e.target.closest ? e.target.closest('.svc') : null;
+    var who = e.target.closest ? e.target.closest('.person') : null;
+    var day = e.target.closest ? e.target.closest('.day') : null;
+    var slot = e.target.closest ? e.target.closest('.slot') : null;
+
+    if (svc) {
+      pickOne('.svc', svc);
+      state.svc = svc.dataset.svc;
+      state.dur = svc.dataset.dur;
+      state.price = Number(svc.dataset.price);
+    } else if (who) {
+      pickOne('.person', who);
+      state.who = who.dataset.who;
+    } else if (day && !day.disabled) {
+      pickOne('.day', day);
+      state.date = day.dataset.date;
+    } else if (slot && !slot.disabled) {
+      pickOne('.slot', slot);
+      state.time = slot.dataset.time;
+    } else {
+      return;
+    }
+    render();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>

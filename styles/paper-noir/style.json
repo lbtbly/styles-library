@@ -1,0 +1,142 @@
+{
+  "id": "paper-noir",
+  "name": "Paper Noir",
+  "collection": "Charged Neutral",
+  "pairing": "Studio still-life × risograph",
+  "concept": "Grained off-white pill geometry and solid black circular controls, photographed on a black set.",
+  "keywords": [
+    "paper-grain",
+    "black-set",
+    "pill-geometry",
+    "black-circular-control",
+    "acid-dot",
+    "laptop-render",
+    "off-white-card"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#F3F1EA",
+      "surface": "#FFFFFF",
+      "stage": "#080808",
+      "ink": "#141414",
+      "muted": "#71706A",
+      "line": "#E2DFD5",
+      "accent": "#C9F500",
+      "accent_ink": "#1A2000",
+      "control": "#0D0D0D",
+      "control_ink": "#FFFFFF"
+    },
+    "type": {
+      "families": "Geometric sans, light and regular (Aeonik, General Sans, Poppins Light). Small sizes, wide spacing.",
+      "hierarchy": "Title 22/28 regular · body 13/20 regular · label 11/15 regular · numeral 32/36 light. Type stays small and calm against the strong geometry.",
+      "usage": "Sentence case, generous letter-spacing on small labels (0.02em). The type never shouts — the black circular controls and pill shapes carry the visual force."
+    },
+    "texture": "A fine paper grain over the off-white surfaces is the defining material — a subtle SVG `feTurbulence` at 3-5% opacity, or a repeating noise data-URI. Solid black circular buttons (40-48px) punctuate the layout. The whole UI is presented as a laptop or device render floating in a pure black void, which is why `--bg` is black while every surface is warm off-white.",
+    "layout": "Pill-everything. Radius is 999px on inputs, chips, and buttons; 20-24px on cards. 8px scale, 20px card padding. Cards overlap and fan rather than sitting in a strict grid. Colour appears only as tiny status dots or a single hairline highlight — never as a fill larger than a chip."
+  },
+  "fit": {
+    "best_for": [
+      "design and creative studios",
+      "portfolio and case-study presentation",
+      "premium mobile apps",
+      "brand-led product launches",
+      "agency or boutique positioning"
+    ],
+    "avoid_for": [
+      "dense enterprise dashboards",
+      "data-heavy reporting",
+      "accessibility-critical services",
+      "high-volume transactional interfaces"
+    ],
+    "mood": [
+      "crafted",
+      "editorial",
+      "tactile",
+      "considered",
+      "boutique"
+    ],
+    "artifact_types_proven": [
+      "dashboard",
+      "mobile app"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "artifacts": [
+      "dashboard",
+      "mobile app"
+    ],
+    "artifact_counts": {
+      "dashboard": 3,
+      "mobile app": 2
+    },
+    "device_counts": {
+      "desktop": 3,
+      "mobile": 2
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as studio product photograph on a black set, fine paper grain.\n\nSTYLE — apply all of the following, they are not optional:\n- pure black seamless background\n- warm off-white #F3F1EA subject surfaces with visible fine paper grain\n- single soft key light from above, gentle falloff into the black\n- rounded pill and circle geometry\n- one small fluorescent chartreuse #C9F500 detail, no larger than a coin in frame\n\nNEGATIVE SPACE: At least half the frame is unlit black.\n\nDO NOT INCLUDE: coloured backgrounds, glossy plastic, neon glow, multiple accent colours, cluttered props, flat vector rendering.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "pure black seamless background",
+      "warm off-white #F3F1EA subject surfaces with visible fine paper grain",
+      "single soft key light from above, gentle falloff into the black",
+      "rounded pill and circle geometry",
+      "one small fluorescent chartreuse #C9F500 detail, no larger than a coin in frame",
+      "negative space — At least half the frame is unlit black.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "coloured backgrounds",
+      "glossy plastic",
+      "neon glow",
+      "multiple accent colours",
+      "cluttered props",
+      "flat vector rendering"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/25251171-AI-Car-Inspection-SaaS-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/25251171-ai-car-inspection-saas-dashboard.png",
+      "thumbnail": "thumbs/25251171.jpg",
+      "title": "AI Car Inspection SaaS Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/24399713-RecruitTrack-AI-Recruit-Management-SaaS",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/24399713-recruittrack-ai-recruit-management-saas.jpg",
+      "thumbnail": "thumbs/24399713.jpg",
+      "title": "RecruitTrack - AI Recruit Management SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/23992301-RentEase-Mobile-App-Property-Management-SaaS",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/23992301-rentease-mobile-app-property-management-saas.jpg",
+      "thumbnail": "thumbs/23992301.jpg",
+      "title": "RentEase Mobile App - Property Management SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/23992108-Aella-Credit-Dashboard-Credit-Score-SaaS",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/23992108-aella-credit-dashboard-credit-score-saas.png",
+      "thumbnail": "thumbs/23992108.jpg",
+      "title": "Aella Credit Dashboard - Credit Score SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/24571754-AirFreight-SaaS-Aircraft-Freight-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/24571754-airfreight-saas-aircraft-freight-dashboard.png",
+      "thumbnail": "thumbs/24571754.jpg",
+      "title": "AirFreight SaaS - Aircraft Freight Dashboard"
+    }
+  ],
+  "index": 7
+}

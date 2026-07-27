@@ -1,0 +1,174 @@
+{
+  "id": "soft-body",
+  "name": "Soft Body",
+  "collection": "Soft Weather",
+  "pairing": "Moulded plastic × pastel stationery",
+  "concept": "Large radii, soft shadows and barely-saturated pastels make dense data feel handled, not audited.",
+  "keywords": [
+    "large-radius",
+    "pastel-chip",
+    "soft-shadow",
+    "no-hard-border",
+    "friendly-data",
+    "lollipop-chart",
+    "rounded-shell"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#E7E8F0",
+      "surface": "#FFFFFF",
+      "subtle": "#F4F5F9",
+      "ink": "#131C33",
+      "muted": "#6A7288",
+      "line": "#E6E8EF",
+      "accent": "#4A46D8",
+      "accent_ink": "#FFFFFF",
+      "pastels": "mint #DFF3E9, lilac #E9E6FA, peach #FCEBE4, butter #FBF4DC, sky #E2EEFB"
+    },
+    "type": {
+      "families": "Neo-grotesque or rounded humanist (Inter, Plus Jakarta Sans, Nunito Sans). Slight roundness in the letterforms helps.",
+      "hierarchy": "Page title 26/32 semibold · card title 16/22 semibold · figure 30/36 semibold · body 14/21 regular · chip 11/15 medium. Comfortable, never cramped.",
+      "usage": "Sentence case throughout. Pastel chips carry dark ink of their own hue family, never white. Numbers get room to breathe — this style never crams a table."
+    },
+    "texture": "Depth comes from shadow, not borders. Cards are white with a 20-24px radius and `0 2px 8px rgb(19 28 51 / .06)`, optionally a hairline. The whole app often sits in a rounded shell (28px radius) inset in a tinted `--bg` field with 24-40px of margin. Charts are friendly: lollipop bars with circular caps, capsule-tracked bars, soft gradient fills.",
+    "layout": "Roomy. 8px scale, 24px card padding, 20px gaps, 16-24px radius everywhere, 999px on pills and avatars. Nothing touches anything. Where Hairline Ledger fits 24 rows, this fits 8 — that is the trade and the point."
+  },
+  "fit": {
+    "best_for": [
+      "consumer and prosumer dashboards",
+      "freelancer and small-business tools",
+      "HR, scheduling and booking",
+      "health and habit tracking",
+      "products with non-technical users"
+    ],
+    "avoid_for": [
+      "high-density trading or analytics",
+      "developer tooling",
+      "enterprise admin with hundreds of rows",
+      "brands needing a severe or technical tone"
+    ],
+    "mood": [
+      "friendly",
+      "calm",
+      "approachable",
+      "polished",
+      "unintimidating"
+    ],
+    "artifact_types_proven": [
+      "dashboard",
+      "web app"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop"
+    ],
+    "artifacts": [
+      "dashboard",
+      "web app"
+    ],
+    "artifact_counts": {
+      "dashboard": 9,
+      "web app": 1
+    },
+    "device_counts": {
+      "desktop": 10
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as soft 3D render or rounded flat illustration.\n\nSTYLE — apply all of the following, they are not optional:\n- pale lavender-grey ground #E7E8F0\n- rounded matte forms with large corner radii and no sharp edges\n- pastel accent palette — mint, lilac, peach — plus one indigo #4A46D8\n- soft diffused lighting with gentle contact shadows\n- friendly geometric shapes, generous spacing between elements\n\nNEGATIVE SPACE: Keep at least a third of the frame as empty tinted ground.\n\nDO NOT INCLUDE: sharp corners, high contrast, dark backgrounds, neon, technical or industrial imagery, dense detail.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "pale lavender-grey ground #E7E8F0",
+      "rounded matte forms with large corner radii and no sharp edges",
+      "pastel accent palette — mint, lilac, peach — plus one indigo #4A46D8",
+      "soft diffused lighting with gentle contact shadows",
+      "friendly geometric shapes, generous spacing between elements",
+      "negative space — Keep at least a third of the frame as empty tinted ground.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "sharp corners",
+      "high contrast",
+      "dark backgrounds",
+      "neon",
+      "technical or industrial imagery",
+      "dense detail"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/27237292-E-Commerce-Dashboard-SaaS-Analytics-Sales-Management",
+      "designer": "Digcy",
+      "local_image": "shots/27237292-e-commerce-dashboard-saas-analytics-sales-manage.png",
+      "thumbnail": "thumbs/27237292.jpg",
+      "title": "E-Commerce Dashboard — SaaS Analytics & Sales Management"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/14378025-Documents-Split-View-SAAS",
+      "designer": "Virgil Pana",
+      "local_image": "shots/14378025-documents-split-view-saas.jpg",
+      "thumbnail": "thumbs/14378025.jpg",
+      "title": "Documents Split View - SAAS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/14370811-Documents-Grid-View-SAAS",
+      "designer": "Virgil Pana",
+      "local_image": "shots/14370811-documents-grid-view-saas.jpg",
+      "thumbnail": "thumbs/14370811.jpg",
+      "title": "Documents Grid View - SAAS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25851852-Choose-Word-Count-Modal-for-saas-web-app-dashboard",
+      "designer": "Virgil Pana",
+      "local_image": "shots/25851852-choose-word-count-modal-for-saas-web-app-dashboa.png",
+      "thumbnail": "thumbs/25851852.jpg",
+      "title": "Choose Word Count Modal for saas web app dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27539034-SaaS-Web-Dashboard",
+      "designer": "Ronas IT | UI/UX Team",
+      "local_image": "shots/27539034-saas-web-dashboard.png",
+      "thumbnail": "thumbs/27539034.jpg",
+      "title": "SaaS Web Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27351461-Aoscan-AI-Powered-SaaS-HR-Recruitment-Dashboard",
+      "designer": "Dipa Inhouse",
+      "local_image": "shots/27351461-aoscan-ai-powered-saas-hr-recruitment-dashboard.png",
+      "thumbnail": "thumbs/27351461.jpg",
+      "title": "Aoscan – AI-Powered SaaS HR Recruitment Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27366631-Zolatto-SaaS-Marketing-Analytics-Dashboard",
+      "designer": "Dipa Inhouse",
+      "local_image": "shots/27366631-zolatto-saas-marketing-analytics-dashboard.png",
+      "thumbnail": "thumbs/27366631.jpg",
+      "title": "Zolatto – SaaS Marketing Analytics Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25284960-Integrate-Client-Dashboard-UI-Design-for-SaaS",
+      "designer": "Phenomenon Studio",
+      "local_image": "shots/25284960-integrate-client-dashboard-ui-design-for-saas.png",
+      "thumbnail": "thumbs/25284960.jpg",
+      "title": "Integrate – Client Dashboard UI Design for SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/24190386-Dashboard-for-a-Finance-SaaS-Twisty",
+      "designer": "HALO LAB",
+      "local_image": "shots/24190386-dashboard-for-a-finance-saas-twisty.png",
+      "thumbnail": "thumbs/24190386.jpg",
+      "title": "Dashboard for a Finance SaaS ✦ Twisty"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/23038744-Nexus-Saas-Marketing-Dashboard",
+      "designer": "Dipa Inhouse",
+      "local_image": "shots/23038744-nexus-saas-marketing-dashboard.png",
+      "thumbnail": "thumbs/23038744.jpg",
+      "title": "Nexus - Saas Marketing Dashboard"
+    }
+  ],
+  "index": 13
+}

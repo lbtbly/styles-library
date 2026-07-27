@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cairn — nights at the edge of the map</title>
+<style>
+:root{
+  --bg:#000000;
+  --surface:rgba(24,24,24,0.55);
+  --raised:rgba(255,255,255,0.10);
+  --ink:#FFFFFF;
+  --muted:rgba(255,255,255,0.66);
+  --line:rgba(255,255,255,0.14);
+  --accent:#D9E82A;
+  --accent-ink:#171A00;
+  --font-sans:"Inter","Neue Haas Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-serif:"Playfair Display",Didot,"Bodoni MT","Times New Roman",Georgia,serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-sans);
+     -webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ================= the film still (fixed — the picture runs the whole document) ============= */
+.still{position:fixed;inset:0;overflow:hidden;z-index:0}
+.still__sky{position:absolute;inset:0;
+  background:linear-gradient(179deg,#03060b 0%,#071019 22%,#0c1a24 42%,#152530 56%,#1d2a2c 66%,#0b1114 82%,#030506 100%)}
+.still__key{position:absolute;inset:0;
+  background:
+    radial-gradient(circle 30vw at 26% 58%, rgba(217,232,42,.20), rgba(196,172,70,.10) 32%, rgba(60,86,86,.05) 58%, transparent 74%),
+    radial-gradient(circle 9vw at 26% 58%, rgba(217,232,42,.34), transparent 66%)}
+.still__mist{position:absolute;inset:0;z-index:2;
+  background:
+    radial-gradient(ellipse 78% 7% at 40% 66%, rgba(206,222,224,.20), transparent 74%),
+    radial-gradient(ellipse 64% 5% at 72% 72%, rgba(196,214,218,.15), transparent 76%),
+    radial-gradient(ellipse 96% 9% at 30% 79%, rgba(180,200,206,.11), transparent 78%)}
+.still__shaft{position:absolute;inset:-20% -10%;z-index:3;opacity:.45;
+  background:
+    linear-gradient(79deg, transparent 22%, rgba(232,240,214,.06) 25%, transparent 29%),
+    linear-gradient(83deg, transparent 32%, rgba(232,240,214,.04) 35%, transparent 40%)}
+.still svg{position:absolute;left:0;right:0;bottom:0;width:100%;height:72%;display:block}
+.still .layerA{z-index:1}
+.still .layerB{z-index:4}
+.still__floor{position:absolute;left:0;right:0;bottom:0;height:26%;z-index:5;
+  background:linear-gradient(to top,#000 0%,#010203 46%,rgba(2,4,5,.6) 78%,transparent 100%)}
+.vignette{position:absolute;inset:0;z-index:6;pointer-events:none;
+  background:radial-gradient(ellipse 118% 94% at 50% 46%,rgba(0,0,0,0) 34%,rgba(0,0,0,.52) 76%,rgba(0,0,0,.88) 100%)}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size:160px 160px}
+
+/* content sits over the picture; below the fold the scrim deepens to near-black */
+.page{position:relative;z-index:10}
+.page::before{content:"";position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;z-index:-1;
+  background:linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,.30) 78vh,rgba(0,0,0,.88) 128vh,rgba(0,0,0,.93) 100%)}
+
+/* ================= glass ================= */
+.glass{background:var(--surface);backdrop-filter:blur(28px) saturate(120%);
+  -webkit-backdrop-filter:blur(28px) saturate(120%);border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 18px 50px rgba(0,0,0,.45)}
+.glass--light{background:var(--raised);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--line)}
+
+/* ================= atoms ================= */
+.eyebrow{font:500 11px/14px var(--font-sans);letter-spacing:.10em;text-transform:uppercase;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;
+      font:500 11px/14px var(--font-sans);letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+.chip--on{background:var(--accent);border:1px solid var(--accent);color:var(--accent-ink);
+          backdrop-filter:none;-webkit-backdrop-filter:none}
+.dot{width:6px;height:6px;border-radius:999px;background:var(--accent);flex:none}
+.mono{font-family:var(--font-mono);letter-spacing:.06em}
+.btn{font:500 12px/16px var(--font-sans);border-radius:999px;padding:11px 20px;border:1px solid transparent;
+     cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none}
+.btn--primary{background:var(--accent);color:var(--accent-ink)}
+.btn--secondary{background:var(--raised);color:var(--ink);border-color:var(--line);
+                backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.btn--ghost{background:transparent;color:var(--muted)}
+.btn--ghost:hover{color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+svg.ico{display:block}
+
+/* ================= nav ================= */
+.nav{position:sticky;top:0;z-index:40;padding:18px 24px}
+.nav__inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:12px;
+            border-radius:999px;padding:8px 8px 8px 20px}
+.wordmark{font:500 15px/1 var(--font-sans);letter-spacing:.22em;color:var(--ink)}
+.nav__links{display:flex;gap:2px;flex:1;justify-content:center}
+.nav__links a{font:500 12px/16px var(--font-sans);color:var(--muted);text-decoration:none;
+              padding:8px 14px;border-radius:999px}
+.nav__links a.is-on{color:var(--ink);background:var(--raised)}
+
+/* ================= hero ================= */
+.hero{min-height:calc(100vh - 74px);display:flex;flex-direction:column;justify-content:flex-end;
+      padding:0 24px 40px;position:relative}
+.hero__inner{max-width:1180px;margin:0 auto;width:100%;display:flex;gap:24px;align-items:flex-end;flex-wrap:wrap}
+.hero__copy{max-width:620px;flex:1;min-width:280px}
+.hero h1{font:400 52px/58px var(--font-sans);letter-spacing:-.025em;color:var(--ink);margin:14px 0 16px}
+.hero h1 em{font-family:var(--font-serif);font-style:italic;font-size:1.06em;letter-spacing:0}
+.hero p{font:400 15px/23px var(--font-sans);color:var(--muted);max-width:470px}
+.hero__meta{width:236px;flex:none;border-radius:22px;padding:16px}
+.hero__meta dl{display:grid;grid-template-columns:auto 1fr;gap:8px 12px;margin-top:12px}
+.hero__meta dt{font:500 11px/15px var(--font-sans);letter-spacing:.10em;text-transform:uppercase;color:var(--muted)}
+.hero__meta dd{font:400 12px/15px var(--font-mono);letter-spacing:.04em;color:var(--ink);text-align:right}
+
+/* search pill */
+.search{margin-top:26px;border-radius:999px;padding:6px 6px 6px 8px;display:flex;align-items:center;gap:0}
+.search__f{padding:8px 16px;flex:1;min-width:0;border-right:1px solid var(--line)}
+.search__f:last-of-type{border-right:none}
+.search__f label{display:block;font:500 10px/13px var(--font-sans);letter-spacing:.10em;
+                 text-transform:uppercase;color:var(--muted)}
+.search__f p{font:400 13px/18px var(--font-sans);color:var(--ink);margin-top:3px;
+             overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.search__go{width:44px;height:44px;border-radius:999px;background:var(--accent);color:var(--accent-ink);
+            border:none;display:grid;place-items:center;flex:none;cursor:pointer}
+.scrollcue{display:flex;align-items:center;gap:9px;margin-top:24px;font:400 11px/14px var(--font-mono);
+           letter-spacing:.10em;color:var(--muted)}
+
+/* ================= sections ================= */
+.sec{padding:96px 0 0}
+.sec__head{display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.sec h2{font:400 32px/38px var(--font-sans);letter-spacing:-.02em;color:var(--ink);max-width:560px}
+.sec h2 em{font-family:var(--font-serif);font-style:italic}
+.sec__head p{font:400 15px/23px var(--font-sans);color:var(--muted);max-width:360px;flex:1;min-width:220px}
+
+.houses{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.house{border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
+.house__img{height:186px;position:relative;border-bottom:1px solid var(--line)}
+.house__img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.86),rgba(0,0,0,.10) 62%,transparent)}
+.house__img .tag{position:absolute;left:14px;bottom:12px;z-index:2}
+.img--a{background:
+  radial-gradient(circle 90px at 74% 30%,rgba(217,232,42,.30),transparent 70%),
+  linear-gradient(168deg,#0a1620 0%,#12242c 46%,#050a0c 100%)}
+.img--b{background:
+  radial-gradient(circle 74px at 26% 34%,rgba(217,232,42,.24),transparent 72%),
+  linear-gradient(150deg,#0d1214 0%,#1b2422 52%,#040606 100%)}
+.img--c{background:
+  radial-gradient(circle 100px at 52% 24%,rgba(217,232,42,.22),transparent 74%),
+  linear-gradient(190deg,#060c14 0%,#101d2a 44%,#03060a 100%)}
+.house__img i{position:absolute;left:0;right:0;bottom:0;height:56%;display:block;
+  background:linear-gradient(to top,#000 8%,rgba(0,0,0,.55) 44%,transparent 100%)}
+.house__b{padding:16px;flex:1;display:flex;flex-direction:column;gap:8px}
+.house__b h3{font:500 17px/23px var(--font-sans);color:var(--ink)}
+.house__b p{font:400 14px/21px var(--font-sans);color:var(--muted);flex:1}
+.house__f{display:flex;align-items:center;justify-content:space-between;gap:10px;
+          padding-top:12px;border-top:1px solid var(--line)}
+.house__f .price{font:400 13px/17px var(--font-mono);letter-spacing:.04em;color:var(--ink)}
+.house__f .price span{color:var(--muted)}
+
+/* rates panel */
+.panel{border-radius:24px;padding:20px;margin-top:18px}
+.tablewrap{overflow-x:auto}
+.table{width:100%;border-collapse:collapse}
+.table th{padding:10px 12px;border-bottom:1px solid var(--line);font:500 11px/14px var(--font-sans);
+          letter-spacing:.10em;text-transform:uppercase;color:var(--muted);text-align:left;white-space:nowrap}
+.table td{padding:14px 12px;border-bottom:1px solid var(--line);color:var(--ink);
+          font:400 14px/20px var(--font-sans);white-space:nowrap}
+.table tr:last-child td{border-bottom:none}
+.table td.num{font-family:var(--font-mono);letter-spacing:.04em;text-align:right;font-size:13px}
+.table td.dim{color:var(--muted)}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+       margin-top:18px;border-radius:24px;overflow:hidden}
+.stat{padding:20px 18px}
+.stat b{display:block;font:400 34px/38px var(--font-sans);letter-spacing:-.02em;color:var(--ink)}
+.stat span{display:block;font:400 13px/19px var(--font-sans);color:var(--muted);margin-top:5px}
+
+/* quote */
+.quote{border-radius:24px;padding:34px;margin-top:18px;text-align:center}
+.quote blockquote{font:400 26px/34px var(--font-sans);letter-spacing:-.015em;color:var(--ink);max-width:720px;margin:0 auto}
+.quote blockquote em{font-family:var(--font-serif);font-style:italic;font-size:1.05em}
+.quote figcaption{font:400 11px/14px var(--font-mono);letter-spacing:.10em;color:var(--muted);margin-top:18px;
+                  text-transform:uppercase}
+
+/* cta */
+.cta{border-radius:26px;padding:36px;margin-top:18px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.cta h3{font:400 28px/34px var(--font-sans);letter-spacing:-.02em;color:var(--ink);flex:1;min-width:240px}
+.cta h3 em{font-family:var(--font-serif);font-style:italic}
+.cta p{font:400 14px/21px var(--font-sans);color:var(--muted);max-width:300px}
+
+/* footer */
+.foot{margin-top:88px;border-top:1px solid var(--line);padding:40px 0 30px}
+.foot__cols{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:28px}
+.foot h4{font:500 11px/14px var(--font-sans);letter-spacing:.10em;text-transform:uppercase;
+         color:var(--muted);margin-bottom:14px}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.foot a{font:400 13px/18px var(--font-sans);color:var(--muted);text-decoration:none}
+.foot a:hover{color:var(--ink)}
+.foot__brand p{font:400 13px/20px var(--font-sans);color:var(--muted);margin-top:12px;max-width:280px}
+.foot__legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+             margin-top:36px;padding-top:20px;border-top:1px solid var(--line);
+             font:400 11px/16px var(--font-mono);letter-spacing:.06em;color:var(--muted)}
+
+/* ================= responsive ================= */
+@media(max-width:900px){
+  .nav__links{display:none}
+  .hero__meta{width:100%}
+  .foot__cols{grid-template-columns:1fr 1fr;gap:24px}
+}
+@media(max-width:640px){
+  .wrap,.nav,.hero{padding-left:16px;padding-right:16px}
+  .nav{padding-top:12px;padding-bottom:12px}
+  .nav__inner{padding:6px 6px 6px 14px}
+  .wordmark{font-size:13px;letter-spacing:.18em}
+  .hero{padding-bottom:28px;min-height:calc(100vh - 62px)}
+  .hero h1{font:400 30px/34px var(--font-sans);margin:10px 0 12px}
+  .hero p{font-size:14px;line-height:21px}
+  .search{flex-wrap:wrap;border-radius:26px;padding:8px;gap:2px}
+  .search__f{border-right:none;border-bottom:1px solid var(--line);flex:1 1 100%;padding:9px 10px}
+  .search__f:last-of-type{border-bottom:none}
+  .search__go{width:100%;height:40px;border-radius:999px;margin-top:6px}
+  .sec{padding-top:56px}
+  .sec h2{font-size:24px;line-height:29px}
+  .quote{padding:22px}
+  .quote blockquote{font-size:19px;line-height:26px}
+  .cta{padding:22px}
+  .cta h3{font-size:22px;line-height:27px}
+  .stat b{font-size:27px;line-height:31px}
+  .foot__cols{grid-template-columns:1fr}
+  .hide-sm{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== the still ===================== -->
+<div class="still" aria-hidden="true">
+  <div class="still__sky"></div>
+  <div class="still__key"></div>
+  <svg class="layerA" viewBox="0 0 1440 620" preserveAspectRatio="xMidYMax slice">
+    <path id="r1" fill="#16242e" opacity=".50"/>
+    <path id="r2" fill="#0c161d" opacity=".72"/>
+  </svg>
+  <div class="still__mist"></div>
+  <svg class="layerB" viewBox="0 0 1440 620" preserveAspectRatio="xMidYMax slice">
+    <path id="r3" fill="#050a0e" opacity=".92"/>
+    <path id="r4" fill="#000000"/>
+  </svg>
+  <div class="still__shaft"></div>
+  <div class="still__floor"></div>
+  <div class="vignette"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="page">
+
+  <!-- ===================== nav ===================== -->
+  <header class="nav">
+    <div class="nav__inner glass">
+      <span class="wordmark">CAIRN</span>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#houses" class="is-on">Houses</a>
+        <a href="#rates">Seasons</a>
+        <a href="#voices">Journal</a>
+        <a href="#book">Contact</a>
+      </nav>
+      <a href="#book" class="btn btn--ghost hide-sm">Sign in</a>
+      <a href="#book" class="btn btn--primary">Book a stay</a>
+    </div>
+  </header>
+
+  <!-- ===================== hero ===================== -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <span class="eyebrow">The Cairn Collection · fourteen houses</span>
+        <h1>Nights you will <em>never quite</em> describe.</h1>
+        <p>Fourteen houses on coastlines nobody advertises. No lobby, no reception, no neighbours
+           — a key in a stone wall and a fire already lit when you arrive.</p>
+
+        <form class="search glass" onsubmit="return false">
+          <div class="search__f">
+            <label for="s-where">Where</label>
+            <p id="s-where">Outer Hebrides</p>
+          </div>
+          <div class="search__f">
+            <label for="s-when">Nights</label>
+            <p id="s-when">14 – 19 Nov</p>
+          </div>
+          <div class="search__f hide-sm">
+            <label for="s-who">Guests</label>
+            <p id="s-who">2 adults</p>
+          </div>
+          <button class="search__go" aria-label="Search houses">
+            <svg class="ico" width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7">
+              <circle cx="8" cy="8" r="5.2"/><path d="M11.9 11.9 15.5 15.5"/>
+            </svg>
+          </button>
+        </form>
+
+        <div class="scrollcue"><span>SCROLL</span>
+          <svg class="ico" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M7 2v10M3.4 8.6 7 12.2l3.6-3.6"/>
+          </svg>
+        </div>
+      </div>
+
+      <aside class="hero__meta glass hide-sm">
+        <span class="chip glass--light"><span class="dot"></span>Live at Ardnave</span>
+        <dl>
+          <dt>Local</dt><dd>16:42 GMT</dd>
+          <dt>Sky</dt><dd>Clear, −2°C</dd>
+          <dt>Sunset</dt><dd>16:08</dd>
+          <dt>Swell</dt><dd>2.4m NW</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================== houses ===================== -->
+  <section class="sec wrap" id="houses">
+    <div class="sec__head">
+      <h2>Three houses with <em>no neighbours</em> at all.</h2>
+      <p>Each one sleeps between two and eight. Stocked larder, peat delivered weekly, and a
+         phone number you will almost certainly never use.</p>
+    </div>
+
+    <div class="houses">
+      <article class="house glass">
+        <div class="house__img img--a"><i></i><span class="chip glass--light tag mono">ISLAY · 2 BEDS</span></div>
+        <div class="house__b">
+          <h3>Ardnave Longhouse</h3>
+          <p>A low stone house facing north-west across the strand. The nearest light after
+             dark is a buoy eleven miles out.</p>
+          <div class="house__f">
+            <span class="price">£340 <span>/ night</span></span>
+            <span class="chip glass--light">4 nights min</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="house glass">
+        <div class="house__img img--b"><i></i><span class="chip glass--light tag mono">HARRIS · 4 BEDS</span></div>
+        <div class="house__b">
+          <h3>Bothy at Scarista</h3>
+          <p>Rebuilt from a ruin in 2019 with a single long window. Sea on three sides and a
+             bath that looks straight into the weather.</p>
+          <div class="house__f">
+            <span class="price">£495 <span>/ night</span></span>
+            <span class="chip chip--on">2 dates left</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="house glass">
+        <div class="house__img img--c"><i></i><span class="chip glass--light tag mono">JURA · 8 BEDS</span></div>
+        <div class="house__b">
+          <h3>Corryvreckan House</h3>
+          <p>The largest in the collection, and the hardest to reach — a boat, then a track,
+             then forty minutes on foot with your bags.</p>
+          <div class="house__f">
+            <span class="price">£820 <span>/ night</span></span>
+            <span class="chip glass--light">Whole house</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== rates ===================== -->
+  <section class="sec wrap" id="rates">
+    <div class="sec__head">
+      <h2>Seasons, plainly stated.</h2>
+      <p>One rate per season, no dynamic pricing, no resort fee. Cancel up to fourteen days
+         out and we return everything.</p>
+    </div>
+
+    <div class="panel glass">
+      <div class="tablewrap">
+        <table class="table">
+          <thead>
+            <tr><th>Season</th><th>Dates</th><th class="hide-sm">Minimum</th><th style="text-align:right">From</th><th style="text-align:right">Availability</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Deep winter</td><td class="dim">Nov 01 – Feb 14</td><td class="dim hide-sm">4 nights</td><td class="num">£340</td><td class="num">Open</td></tr>
+            <tr><td>Late winter</td><td class="dim">Feb 15 – Mar 31</td><td class="dim hide-sm">3 nights</td><td class="num">£395</td><td class="num">Open</td></tr>
+            <tr><td>Long light</td><td class="dim">Apr 01 – Jun 20</td><td class="dim hide-sm">3 nights</td><td class="num">£520</td><td class="num">2 houses</td></tr>
+            <tr><td>Midsummer</td><td class="dim">Jun 21 – Aug 31</td><td class="dim hide-sm">7 nights</td><td class="num">£680</td><td class="num">Waitlist</td></tr>
+            <tr><td>Storm season</td><td class="dim">Sep 01 – Oct 31</td><td class="dim hide-sm">2 nights</td><td class="num">£410</td><td class="num">Open</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="stats glass">
+      <div class="stat"><b>14</b><span>Houses, all of them coastal</span></div>
+      <div class="stat"><b>11 mi</b><span>Median distance to the next building</span></div>
+      <div class="stat"><b>0</b><span>Reception desks in the collection</span></div>
+      <div class="stat"><b>9 yrs</b><span>Since the first key was cut</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== quote ===================== -->
+  <section class="sec wrap" id="voices">
+    <figure class="quote glass">
+      <blockquote>We went for four nights and spoke to nobody. It was the <em>first quiet</em>
+        either of us had heard in a decade.</blockquote>
+      <figcaption>Ines &amp; Tomas H. · Scarista · February</figcaption>
+    </figure>
+
+    <div class="cta glass" id="book">
+      <h3>The winter list opens on <em>the first of October</em>.</h3>
+      <p>Fourteen houses, released in one batch at 09:00 GMT. Join the list and we will write
+         to you the night before.</p>
+      <a href="#book" class="btn btn--primary">Join the winter list</a>
+      <a href="#houses" class="btn btn--secondary">See all houses</a>
+    </div>
+  </section>
+
+  <!-- ===================== footer ===================== -->
+  <footer class="foot wrap">
+    <div class="foot__cols">
+      <div class="foot__brand">
+        <span class="wordmark">CAIRN</span>
+        <p>A small collection of remote houses on the Scottish west coast and islands.
+           Run by seven people, none of whom work in an office.</p>
+      </div>
+      <div>
+        <h4>Houses</h4>
+        <ul><li><a href="#houses">Islay</a></li><li><a href="#houses">Harris</a></li>
+            <li><a href="#houses">Jura</a></li><li><a href="#houses">Assynt</a></li></ul>
+      </div>
+      <div>
+        <h4>Stay</h4>
+        <ul><li><a href="#rates">Seasons &amp; rates</a></li><li><a href="#rates">Getting there</a></li>
+            <li><a href="#rates">What is stocked</a></li><li><a href="#rates">Cancellation</a></li></ul>
+      </div>
+      <div>
+        <h4>Cairn</h4>
+        <ul><li><a href="#voices">Journal</a></li><li><a href="#voices">Land &amp; repair</a></li>
+            <li><a href="#book">Contact</a></li><li><a href="#book">Press</a></li></ul>
+      </div>
+    </div>
+    <div class="foot__legal">
+      <span>© 2026 CAIRN HOUSES LTD · SC 448120</span>
+      <span class="hide-sm">REGISTERED IN SCOTLAND · PORTNAHAVEN, ISLAY</span>
+      <span>PRIVACY · TERMS</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+/* Deterministic ridge silhouettes — the "photograph" is generated, never fetched. */
+(function(){
+  function prng(seed){var s=seed>>>0;return function(){s=(s*1664525+1013904223)>>>0;return s/4294967296;};}
+  function ridge(w,h,base,amp,wave,seed){
+    var r=prng(seed), d='M0,'+h+' L0,'+base, x;
+    for(x=0;x<=w;x+=24){
+      var y=base
+        - (Math.sin(x/wave)*0.5+0.5)*amp
+        - (Math.sin(x/(wave*0.37)+2.1)*0.5+0.5)*amp*0.30
+        - (Math.sin(x/(wave*0.13)+0.6)*0.5+0.5)*amp*0.10
+        - r()*amp*0.05;
+      d+=' L'+x+','+y.toFixed(1);
+    }
+    return d+' L'+w+','+base+' L'+w+','+h+' Z';
+  }
+  var W=1440,H=620;
+  document.getElementById('r1').setAttribute('d', ridge(W,H,330,120,430,11));
+  document.getElementById('r2').setAttribute('d', ridge(W,H,398,104,310,29));
+  document.getElementById('r3').setAttribute('d', ridge(W,H,470,92,228,53));
+  document.getElementById('r4').setAttribute('d', ridge(W,H,556,78,164,71));
+})();
+</script>
+</body>
+</html>

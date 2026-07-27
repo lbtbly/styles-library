@@ -1,0 +1,497 @@
+[
+  {
+    "index": 30,
+    "shot_id": "27274113",
+    "title": "SaaS Landing Page",
+    "designer": "Oripio",
+    "artifact_type": "landing page",
+    "bg_mode": "dark",
+    "palette": {
+      "bg": "#000000",
+      "surface": "#181818",
+      "ink": "#E4E4F0",
+      "accent": "#E8F830",
+      "secondary": "#C8D858"
+    },
+    "palette_note": "Pure-black base with one acid lime-yellow used only on icons, the balance card gradient and the chart bar; every other hue is borrowed from the desaturated grass photography.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Hero switches mid-sentence from a wide grotesque into a high-contrast italic display serif ('financial life'); ~90px hero over ~15px body, tiny pill eyebrows at ~11px, and running body copy that fades from white to mid-grey as emphasis."
+    },
+    "texture": ["blur", "glassmorphism", "gradient-fill", "soft-shadow", "duotone-photo"],
+    "imagery": "blurred macro nature photography with product screenshots composited on top",
+    "layout": {
+      "density": "moderate",
+      "radius": "mixed",
+      "borders": "hairline",
+      "note": "Centred hero over a full-bleed photo, then a hard switch to a left-aligned editorial paragraph and a three-up stat row split by hairline verticals; second panel is a card grid where photo tiles show through frosted overlays."
+    },
+    "mood": ["cinematic", "nocturnal", "editorial", "high-contrast", "organic"],
+    "style_signature": "Full-bleed blurred nature macro behind a centred grotesque headline that breaks mid-line into italic display serif, all on pure black, with a single acid lime-yellow reserved for icons and data marks.",
+    "provisional_cluster": "cinematic-photo-hero-serif-mix"
+  },
+  {
+    "index": 31,
+    "shot_id": "27378070",
+    "title": "Schedulo — Online Booking Request in SaaS Booking App",
+    "designer": "Fikri Studio",
+    "artifact_type": "dashboard",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#F0F0F0",
+      "ink": "#000000",
+      "accent": "#0098C0",
+      "secondary": "#B8F8D0"
+    },
+    "palette_note": "Neutral-cool whites with one cyan-teal ramp carrying all the data; the mint AI strip is the only saturated block, and the whole app floats on a warm grey #D0D0D0 presentation canvas.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "medium",
+      "case_usage": "mixed",
+      "note": "Rounded geometric with a large semibold greeting (~30px) against 13px UI text; sidebar groups labelled in 10px tracked ALL-CAPS grey; KPI numerals set very large and light with tiny tinted delta pills beside them."
+    },
+    "texture": ["flat", "soft-shadow"],
+    "imagery": "iconography only, plus circular avatar photos",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Fixed icon+label rail against a fluid card grid; ~14px card radius with generous internal padding; a heatmap grid of tinted cells is used as much for texture as for data."
+    },
+    "mood": ["operational", "brisk", "cool-mint", "information-rich"],
+    "style_signature": "White hairline cards floating on a warm grey studio canvas, a single cyan-teal value ramp doing all the data work, and a full-width mint-tinted AI suggestion strip as the only saturated surface.",
+    "provisional_cluster": "light-canvas-app-window"
+  },
+  {
+    "index": 32,
+    "shot_id": "21344417",
+    "title": "Imagica clean SAAS design tool",
+    "designer": "Gleb Kuznetsov ✈",
+    "artifact_type": "landing page",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#CCCCCC",
+      "surface": "#D0D0D0",
+      "ink": "#000000",
+      "accent": "#F8F8F8",
+      "secondary": null
+    },
+    "palette_note": "Completely achromatic — a narrow band of mid-greys with zero brand hue; white is used as the accent, appearing only in the Login pill and the lit face of the sphere.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "high",
+      "case_usage": "mixed",
+      "note": "One hero line alternates Light and Bold weights word by word ('A new way to think and create'); eyebrow is 13px ALL-CAPS with wide tracking; nav is uniform 14px regular with no hierarchy."
+    },
+    "texture": ["3d-render", "gradient-fill", "soft-shadow", "blur"],
+    "imagery": "3D renders",
+    "layout": {
+      "density": "sparse",
+      "radius": "pill",
+      "borders": "hairline",
+      "note": "Single centred axis running through the sphere; enormous vertical air above and below the headline; the CTA sits inside the render rather than beside it, and the nav runs edge to edge."
+    },
+    "mood": ["hushed", "monolithic", "weightless", "ceremonial", "airless"],
+    "style_signature": "A matte 3D sphere resting in rippling greyscale liquid carries the entire page — no colour whatsoever, a weight-alternating neo-grotesque headline, and a hairline pill CTA floated on top of the render itself.",
+    "provisional_cluster": "monochrome-studio-object"
+  },
+  {
+    "index": 33,
+    "shot_id": "26435991",
+    "title": "Convox SaaS - Call Center Dashboard",
+    "designer": "RonDesignLab ⭐️",
+    "artifact_type": "dashboard",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#E4E4E4",
+      "surface": "#D8E0E0",
+      "ink": "#000000",
+      "accent": "#F0F8A8",
+      "secondary": null
+    },
+    "palette_note": "Desaturated cool greys with a faint green cast; a single pale chartreuse does every highlight — buttons, sparkline strokes, gauge tips, bar fills — and no second hue appears anywhere.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Rounded geometric; metric numerals set enormous and light (2.270, 00:07) with unit suffixes dropped to small grey subscripts, while all labels sit at a flat 13px."
+    },
+    "texture": ["soft-shadow", "blur", "gradient-fill", "glassmorphism", "3d-render"],
+    "imagery": "product screenshot rendered onto a 3D monitor, plus cut-out portrait photography inside the hero card",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "none",
+      "note": "Card separation is done entirely with tinted fills and whitespace — not a single stroke; a 3-up metric row sits over a 2-column split, and the icon rail is a stack of detached rounded squares."
+    },
+    "mood": ["hazy", "acid-soft", "clinically-optimistic", "weightless"],
+    "style_signature": "Borderless pale-grey card fills with no strokes at all, oversized light-weight numerals, one pale chartreuse handling every highlight, presented as a soft-focus 3D monitor render in a grey studio.",
+    "provisional_cluster": "acid-lime-soft-glass-render"
+  },
+  {
+    "index": 34,
+    "shot_id": "23334877",
+    "title": "Aqara Mobile App - Smart Home SaaS",
+    "designer": "RonDesignLab ⭐️",
+    "artifact_type": "mobile app",
+    "bg_mode": "dark",
+    "palette": {
+      "bg": "#000000",
+      "surface": "#181820",
+      "ink": "#FFFFFF",
+      "accent": "#0060F8",
+      "secondary": "#F8F870"
+    },
+    "palette_note": "Near-black chrome over a desaturated slate-blue studio backdrop; one saturated electric blue tile and one lemon-yellow confirmation dot are the only chroma in the whole frame.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "low",
+      "case_usage": "sentence",
+      "note": "Two-line 'Work Room' hero at large size with very tight leading; sensor readouts pair a bold figure with a small lowercase unit set on the baseline (12 dB, 400 lx); all chip labels a uniform small weight."
+    },
+    "texture": ["glassmorphism", "blur", "3d-render", "soft-shadow", "gradient-fill"],
+    "imagery": "3D product render of the phone on a concrete plinth, with interior photography showing through the app",
+    "layout": {
+      "density": "sparse",
+      "radius": "pill",
+      "borders": "none",
+      "note": "Overlapping squircle tiles deliberately collide and break the grid; day chips fan out on a diagonal; the tab bar is a chain of interlocking circles rather than a bar."
+    },
+    "mood": ["nocturnal", "frosted", "engineered", "gallery-lit", "tactile"],
+    "style_signature": "Blurred-glass squircle tiles overlapping each other above a dimmed room photo, near-black chrome punctured by one electric blue block, staged as a tilted phone floating off a concrete plinth in slate-blue studio light.",
+    "provisional_cluster": "monochrome-studio-object"
+  },
+  {
+    "index": 35,
+    "shot_id": "25478062",
+    "title": "Convox SaaS - Call Center Solution",
+    "designer": "RonDesignLab ⭐️",
+    "artifact_type": "mobile app",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#D8E0C8",
+      "surface": "#D8E4CC",
+      "ink": "#101010",
+      "accent": "#F0F8A8",
+      "secondary": null
+    },
+    "palette_note": "A single top-to-bottom chartreuse-into-cool-grey gradient is the entire background; controls are frosted tints of it, so the screen has effectively one hue at varying saturation.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "low",
+      "case_usage": "sentence",
+      "note": "Labels and headings set in an oblique/italic cut of the geometric sans — the italic is the identity move; two-line name heading at ~34px against 12px grey metadata and small-caps-feeling timecodes."
+    },
+    "texture": ["gradient-fill", "blur", "glassmorphism", "soft-shadow", "3d-render"],
+    "imagery": "cut-out portrait photography dissolving into the gradient, on a 3D-rendered phone held in hand",
+    "layout": {
+      "density": "sparse",
+      "radius": "soft",
+      "borders": "none",
+      "note": "Single scroll column with huge breathing room; playback controls are a row of detached frosted squares; the timeline ruler with tick labels is the only linework on screen."
+    },
+    "mood": ["hazy", "acid-soft", "airy", "dreamlike"],
+    "style_signature": "A chartreuse-to-grey vertical gradient used as the whole background, cut-out portraiture bleeding into it with no edge, borderless frosted control squares, and an oblique geometric sans for every label.",
+    "provisional_cluster": "acid-lime-soft-glass-render"
+  },
+  {
+    "index": 36,
+    "shot_id": "25188771",
+    "title": "Farm Management SaaS Dashboard",
+    "designer": "RonDesignLab ⭐️",
+    "artifact_type": "dashboard",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#E4E4E4",
+      "surface": "#B8B8B8",
+      "ink": "#000000",
+      "accent": "#C0F800",
+      "secondary": "#F84848"
+    },
+    "palette_note": "Neutral grey chassis deliberately drained so the imagery carries all colour; status uses a hot acid lime, and every quantitative element is a green-to-red heat ramp rather than a brand hue.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Enormous scale jump — 'My Farm' at ~64px light against 11px labels; big numerals (28, 500, 850, 45.4) dominate every tile while their captions shrink to near-illegible grey."
+    },
+    "texture": ["glassmorphism", "blur", "soft-shadow", "gradient-fill", "3d-render"],
+    "imagery": "aerial drone photography plus close-up produce photography inside tiles",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "none",
+      "note": "Translucent grey bento tiles layered over a full-bleed aerial photo panel that owns the right half; icon-only left rail; no strokes anywhere, only frosted fills against imagery."
+    },
+    "mood": ["frosted", "agronomic", "data-saturated", "overcast", "instrumented"],
+    "style_signature": "Translucent grey frosted bento tiles floating over full-bleed drone photography, green-to-red heat ramps used as the entire data language, and hot acid-lime chips as the only flat colour.",
+    "provisional_cluster": "acid-lime-soft-glass-render"
+  },
+  {
+    "index": 37,
+    "shot_id": "26513509",
+    "title": "AI SaaS Web Platform",
+    "designer": "Awsmd",
+    "artifact_type": "landing page",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#E8E8E8",
+      "surface": "#CCA890",
+      "ink": "#F8F8F8",
+      "accent": "#604030",
+      "secondary": "#544824"
+    },
+    "palette_note": "No brand hue at all — the palette is sampled straight out of the render: warm sand and umber concrete with one olive green from the grass; all type is white knocked out of the image.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Three-line centred hero whose middle line swaps to a high-contrast italic didone ('Redefine space'); nav 14px regular inside a glass pill; a three-line 13px paragraph anchored bottom-left as a caption."
+    },
+    "texture": ["3d-render", "blur", "glassmorphism", "gradient-fill", "soft-shadow"],
+    "imagery": "3D renders (brutalist concrete interior with grass growing through it)",
+    "layout": {
+      "density": "sparse",
+      "radius": "mixed",
+      "borders": "hairline",
+      "note": "One full-bleed rounded hero card inset from an off-white page with equal margins on all sides; content pinned to the four corners of that frame with the centre reserved for the headline; outline pill tags bottom-right."
+    },
+    "mood": ["sun-warmed", "brutalist", "serene", "architectural", "luxe"],
+    "style_signature": "A single rounded full-bleed 3D render of warm concrete and grass becomes the whole page, its own sand-and-umber tones taken as the palette, with a grotesque headline interrupted by one line of high-contrast italic serif.",
+    "provisional_cluster": "cinematic-photo-hero-serif-mix"
+  },
+  {
+    "index": 38,
+    "shot_id": "25887194",
+    "title": "Contextual delete confirmation for SaaS",
+    "designer": "Virgil Pana",
+    "artifact_type": "UI component study",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#F0F0F0",
+      "ink": "#101010",
+      "accent": "#109050",
+      "secondary": "#9C9C9C"
+    },
+    "palette_note": "Effectively achromatic — near-white ground, black ink, grey secondary text; the only chroma in the frame lives inside two glossy app-icon thumbnails.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "high",
+      "case_usage": "sentence",
+      "note": "Bold ~28px section title beside a light-grey one-line description; prices use an inline two-tone weight trick — bold black figure, grey regular unit ('$40 /blog post')."
+    },
+    "texture": ["flat", "soft-shadow", "outline-stroke", "gradient-fill"],
+    "imagery": "iconography only",
+    "layout": {
+      "density": "sparse",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Two stacked full-width rows plus a dashed-outline 'add' slot, isolated with acres of margin on every side; row actions reduced to two outline glyphs at the far right; a drawn mouse cursor is the only prop."
+    },
+    "mood": ["clinical", "hushed", "affordance-first", "documentary"],
+    "style_signature": "A single UI fragment isolated on pure white with enormous margins, hairline rounded rows, a dashed-outline add slot as the empty state, and a rendered cursor as the only storytelling device.",
+    "provisional_cluster": "clinical-white-component-study"
+  },
+  {
+    "index": 39,
+    "shot_id": "26435909",
+    "title": "Constellation - AI SaaS Startup Platform Landing Page Website",
+    "designer": "LAIN",
+    "artifact_type": "landing page",
+    "bg_mode": "dark",
+    "palette": {
+      "bg": "#0C0C0C",
+      "surface": "#181824",
+      "ink": "#F8F8F8",
+      "accent": "#182070",
+      "secondary": "#E0F888"
+    },
+    "palette_note": "Near-black with a cold indigo cast; saturation arrives only as glow — a bruise-coloured indigo-to-violet bloom from the crystal and footer — with tiny pale-lime dots as the one warm signal.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "low",
+      "case_usage": "mixed",
+      "note": "Headlines stay at regular weight and never bold, ~40px over 12px 60%-grey body; nav and eyebrows in small tracked ALL-CAPS; the footer wordmark is blown up until it bleeds off both edges."
+    },
+    "texture": ["glow", "gradient-mesh", "3d-render", "noise-grain", "outline-stroke", "flat"],
+    "imagery": "3D renders (faceted iridescent crystal) plus product screenshots and floating notification cards",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Sections are hairline-bordered rectangles butted directly against each other with no gutters — a continuous framed grid; a scrolling logo marquee cuts across; three-up pricing with the middle plan lifted by a lighter fill."
+    },
+    "mood": ["nocturnal", "crystalline", "corporate-cosmic", "restrained", "glowing"],
+    "style_signature": "Hairline-bordered black panels butted edge to edge with zero gutters, lit only by an indigo-to-violet glow bleeding out of a faceted crystal render, tiny lime bullet dots, and a wordmark scaled until it runs off the page.",
+    "provisional_cluster": "dark-indigo-glow-grid"
+  },
+  {
+    "index": 40,
+    "shot_id": "27578441",
+    "title": "Case Study for Squadhub - Saas Team Management Website",
+    "designer": "Plainthing Studio",
+    "artifact_type": "marketing site case study",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#F0F0F0",
+      "ink": "#080808",
+      "accent": "#D0F048",
+      "secondary": "#A080F0"
+    },
+    "palette_note": "High-key white and pure black doing all the work, with acid lime as the single loud signal and one periwinkle card as a deliberate off-note; the ghosted wordmark is barely-there #F0F0F0.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "high",
+      "case_usage": "sentence",
+      "note": "Ultra-bold display grotesque set huge with very tight tracking and negative leading, punctuation kept in (apostrophes, exclamation mark) as part of the voice; avatar stack inlined mid-headline; small 14px pill labels as the only other type size."
+    },
+    "texture": ["flat", "soft-shadow", "3d-render", "outline-stroke"],
+    "imagery": "product screenshots rendered on a display, plus avatar photography",
+    "layout": {
+      "density": "moderate",
+      "radius": "mixed",
+      "borders": "hairline",
+      "note": "Composition cropped hard so the monitor bleeds off two edges; thin right-angle connector lines with dot terminals tether floating UI fragments back to the copy; a heavy left-aligned type block owns the empty half."
+    },
+    "mood": ["assertive", "poster-loud", "agency-slick", "graphic"],
+    "style_signature": "Black ultra-bold grotesque set huge and tight on white, punched with acid-lime pill chips and one periwinkle card, laid over a ghosted oversized wordmark with hairline right-angle connector lines linking cropped UI fragments.",
+    "provisional_cluster": "acid-lime-poster-editorial"
+  },
+  {
+    "index": 41,
+    "shot_id": "25906740",
+    "title": "DataGrid Table Filters for Saas Dashboards and web apps",
+    "designer": "Virgil Pana",
+    "artifact_type": "data table",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#F0F0F0",
+      "surface": "#FCFCFC",
+      "ink": "#101010",
+      "accent": "#1068F8",
+      "secondary": "#109868"
+    },
+    "palette_note": "Cool near-white throughout with a single saturated blue reserved for selection, checkboxes and link actions; mint and rose tints appear only as trend pills — colour is strictly semantic, never decorative.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "low",
+      "case_usage": "sentence",
+      "note": "One size, one weight across the whole grid — hierarchy comes only from grey column headers against near-black cell values; numerals tabular; field labels above the filter columns in small grey regular."
+    },
+    "texture": ["flat", "soft-shadow"],
+    "imagery": "iconography only",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "A real six-column grid with full-bleed hairline row rules and alternating selected-row tint; a modal and a floating date picker stack over the live table with layered soft shadows; L-shaped indent brackets express nested condition groups."
+    },
+    "mood": ["clinical", "enterprise", "legible", "dispassionate"],
+    "style_signature": "Full-bleed hairline-ruled data grid in cool near-white, one saturated blue for selection and links, mint/rose semantic pills, and layered soft-shadow modals floated directly over the still-visible table.",
+    "provisional_cluster": "clinical-white-component-study"
+  },
+  {
+    "index": 42,
+    "shot_id": "27458403",
+    "title": "KirriDesk - AI Reply Draft Suggestion in SaaS CSM",
+    "designer": "Fikri Studio",
+    "artifact_type": "CRM / support desk app",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#F0F0F0",
+      "ink": "#101010",
+      "accent": "#20B070",
+      "secondary": "#E0F0E8"
+    },
+    "palette_note": "Neutral whites and greys with a single emerald doing the primary action, the active tab and the status dots; a pale mint fill ring-fences AI-generated content as its own colour category.",
+    "type": {
+      "family_character": "geometric sans",
+      "weight_contrast": "medium",
+      "case_usage": "mixed",
+      "note": "Uniform 14–15px body with medium-weight names; sidebar sections labelled in 10px tracked ALL-CAPS grey; machine-translated lines set smaller and lighter beneath the original, separated by dashed rules."
+    },
+    "texture": ["flat", "soft-shadow"],
+    "imagery": "iconography only, plus initial-based avatar chips",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Real Safari chrome wraps the app; three zones — nav rail, thread column, right icon strip; the AI draft is a tinted card nested inside a white card, with its own header, feedback controls and footer toolbar."
+    },
+    "mood": ["operational", "calm-green", "conversational", "information-dense"],
+    "style_signature": "A real browser chrome wrapping a three-column support desk, emerald as the single accent, and AI output quarantined inside a nested mint-tinted card carrying its own header, thinking-time label and thumbs controls.",
+    "provisional_cluster": "light-canvas-app-window"
+  },
+  {
+    "index": 43,
+    "shot_id": "26996553",
+    "title": "DevTools — Flow Details (Node) in SaaS API Testing",
+    "designer": "Fikri Studio",
+    "artifact_type": "developer tool UI",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#F0F0FC",
+      "ink": "#00000C",
+      "accent": "#7838E8",
+      "secondary": "#000010"
+    },
+    "palette_note": "Cool near-white with a faint blue cast; colour is used purely as syntax — per-verb tinted chips (green GET, amber POST, red DEL, blue PUT) — plus one violet for the single destructive-ish action, Run.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "low",
+      "case_usage": "mixed",
+      "note": "Everything sits at 13–14px regular with almost no scale variation; the only display gesture is the HTTP verbs in tiny bold ALL-CAPS on tinted grounds; URLs run inline in the same face rather than a mono."
+    },
+    "texture": ["flat", "soft-shadow", "outline-stroke"],
+    "imagery": "iconography only",
+    "layout": {
+      "density": "dense",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Rounded floating app window on a light grey canvas with a near-black top bar; a dotted-grid node canvas with orthogonal elbow connectors sits above a params table, and a floating black toolbar pill hovers over the graph."
+    },
+    "mood": ["technical", "syntax-coded", "tool-like", "legible"],
+    "style_signature": "Colour deployed strictly as syntax — tiny tinted HTTP-verb chips and one violet Run button — over a dotted-grid node canvas of hairline cards, with a floating black toolbar pill and a near-black workspace bar as the only heavy values.",
+    "provisional_cluster": "light-canvas-app-window"
+  },
+  {
+    "index": 44,
+    "shot_id": "26558620",
+    "title": "Notification center for dashboard saas real estate web app ui/ux",
+    "designer": "Virgil Pana",
+    "artifact_type": "dashboard",
+    "bg_mode": "light",
+    "palette": {
+      "bg": "#E8E8F0",
+      "surface": "#FCFCFC",
+      "ink": "#101020",
+      "accent": "#30A8F0",
+      "secondary": "#20C8A8"
+    },
+    "palette_note": "White panels on a pale blue-grey canvas; a sky blue marks selection and role-change links while a teal marks the second role — colour is used as inline semantics inside running sentences, not as branding.",
+    "type": {
+      "family_character": "neo-grotesque",
+      "weight_contrast": "medium",
+      "case_usage": "sentence",
+      "note": "Inter-like grotesque at a single body size; emphasis is done inline by switching weight and colour mid-sentence ('role was changed from Lead to Buyer'), with bold near-black for old state and coloured medium for new."
+    },
+    "texture": ["flat", "soft-shadow", "gradient-fill"],
+    "imagery": "iconography only, plus avatar photos and one glossy 3D-styled section icon",
+    "layout": {
+      "density": "moderate",
+      "radius": "soft",
+      "borders": "hairline",
+      "note": "Master/detail split — a bordered list panel with hairline row dividers beside a scrolling grouped feed; the selected row takes a pale blue fill plus a blue left-edge marker; counts sit in grey pill badges right-aligned."
+    },
+    "mood": ["clinical", "polite", "sky-cool", "product-realistic"],
+    "style_signature": "Master/detail white panels with hairline borders on a pale blue-grey canvas, a selected row marked by pale blue fill plus a blue left-edge bar, grey pill counters, and running sentences where state words switch to blue and teal.",
+    "provisional_cluster": "clinical-white-component-study"
+  }
+]

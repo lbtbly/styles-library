@@ -1,0 +1,160 @@
+{
+  "id": "panel-stack",
+  "name": "Panel Stack",
+  "collection": "Working Surfaces",
+  "pairing": "Split-pane IDE × filing drawer",
+  "concept": "Work happens in panels — master list, detail drawer, kanban column — layered over a scrim instead of navigated away from.",
+  "keywords": [
+    "master-detail",
+    "overlay-drawer",
+    "scrim",
+    "kanban-column",
+    "hairline-card",
+    "status-capsule",
+    "violet-primary"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#F7F8F9",
+      "surface": "#FFFFFF",
+      "well": "#EFF1F3",
+      "ink": "#0B1220",
+      "muted": "#667085",
+      "line": "#E4E7EC",
+      "accent": "#5B2FD6",
+      "positive": "#0A7C4A",
+      "negative": "#B42318",
+      "scrim": "rgba(11, 18, 32, 0.42)"
+    },
+    "type": {
+      "families": "Neo-grotesque single family (Inter / Söhne / system). Same face at every level.",
+      "hierarchy": "Drawer title 18/24 semibold · card title 14/20 medium · body 13/18 regular · meta 12/16 regular in `--muted` · group headers 11/14 semibold ALL-CAPS 0.06em.",
+      "usage": "Sentence case everywhere except group headers. Capsule labels 11px medium, never uppercase. Keep line length in the detail pane under 68 characters."
+    },
+    "texture": "Flat fills with hairline borders. Exactly two elevations: resting cards sit flat with a 1px `--line` border and no shadow; floating layers (drawer, popover, dialog) get `0 12px 32px -8px rgb(11 18 32 / .18)` and sit above a `--scrim` backdrop. Never blur the backdrop — dim it. Column wells use `--well` as a recessed fill, not a border.",
+    "layout": "The screen is panels, not pages. Master list left (min 320px), detail right or as a right-docked drawer at 480-560px. Kanban columns are `--well` wells 300px wide holding white cards. 8px base scale, 16px card padding, 12px gap between cards, 10px radius on cards and 8px on controls. The drawer overlays; it never pushes content."
+  },
+  "fit": {
+    "best_for": [
+      "project and task management",
+      "CRM and support desks",
+      "content or asset managers",
+      "any app with a list-plus-detail spine",
+      "internal tooling with multi-step workflows"
+    ],
+    "avoid_for": [
+      "marketing sites",
+      "single-purpose landing pages",
+      "data-viz-first analytics",
+      "products whose main object is a canvas rather than a list"
+    ],
+    "mood": [
+      "organised",
+      "calm",
+      "operational",
+      "clear",
+      "workmanlike"
+    ],
+    "artifact_types_proven": [
+      "web app",
+      "dashboard",
+      "design tool",
+      "crm"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop"
+    ],
+    "artifacts": [
+      "web app",
+      "dashboard",
+      "design tool",
+      "crm"
+    ],
+    "artifact_counts": {
+      "design tool": 1,
+      "web app": 3,
+      "dashboard": 2,
+      "crm": 1
+    },
+    "device_counts": {
+      "desktop": 7
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as flat vector UI illustration with soft depth.\n\nSTYLE — apply all of the following, they are not optional:\n- off-white ground #F7F8F9 with white panels #FFFFFF\n- one violet #5B2FD6 as the only saturated colour\n- overlapping rectangular panels with 10px rounded corners and 1px #E4E7EC borders\n- a single soft drop shadow under the frontmost panel only\n- flat even lighting, no gradients inside panels\n\nNEGATIVE SPACE: Keep the lower third an unbroken #F7F8F9 field for supporting copy.\n\nDO NOT INCLUDE: neon, 3D extrusion, glass blur, photographic backgrounds, heavy outlines, skeuomorphic texture.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "off-white ground #F7F8F9 with white panels #FFFFFF",
+      "one violet #5B2FD6 as the only saturated colour",
+      "overlapping rectangular panels with 10px rounded corners and 1px #E4E7EC borders",
+      "a single soft drop shadow under the frontmost panel only",
+      "flat even lighting, no gradients inside panels",
+      "negative space — Keep the lower third an unbroken #F7F8F9 field for supporting copy.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "neon",
+      "3D extrusion",
+      "glass blur",
+      "photographic backgrounds",
+      "heavy outlines",
+      "skeuomorphic texture"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/26956203-DevTools-Test-Factory-Detailed-View-for-SaaS-API-Testing",
+      "designer": "Fikri Studio",
+      "local_image": "shots/26956203-devtools-test-factory-detailed-view-for-saas-api.png",
+      "thumbnail": "thumbs/26956203.jpg",
+      "title": "DevTools — Test Factory Detailed View for SaaS API Testing"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25817216-Task-Management-Saas-Web-App-Kanban-Board-Task-Lists",
+      "designer": "Keitoto",
+      "local_image": "shots/25817216-task-management-saas-web-app-kanban-board-task-l.png",
+      "thumbnail": "thumbs/25817216.jpg",
+      "title": "Task Management Saas Web App - Kanban Board Task Lists"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26558620-Notification-center-for-dashboard-saas-real-estate-web-app-ui-ux",
+      "designer": "Virgil Pana",
+      "local_image": "shots/26558620-notification-center-for-dashboard-saas-real-esta.png",
+      "thumbnail": "thumbs/26558620.jpg",
+      "title": "Notification center for dashboard saas real estate web app ui/ux"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25856366-Service-selection-Modal-Flow-for-saas-web-app-dashboard",
+      "designer": "Virgil Pana",
+      "local_image": "shots/25856366-service-selection-modal-flow-for-saas-web-app-da.png",
+      "thumbnail": "thumbs/25856366.jpg",
+      "title": "Service selection Modal Flow for saas web app dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25142812-Task-Management-Saas-Web-App-Detail-Task-Activity",
+      "designer": "Keitoto",
+      "local_image": "shots/25142812-task-management-saas-web-app-detail-task-activit.png",
+      "thumbnail": "thumbs/25142812.jpg",
+      "title": "Task Management Saas Web App - Detail Task Activity"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25751696-Taskboard-Projects-List-Task-Management-Dashboard-Webapp-SaaS",
+      "designer": "OnPoint Studio",
+      "local_image": "shots/25751696-taskboard-projects-list-task-management-dashboar.jpg",
+      "thumbnail": "thumbs/25751696.jpg",
+      "title": "Taskboard - Projects List Task Management Dashboard Webapp SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25678558-Nexus-Company-Kanban-View-CRM-Dashboard-Webapp-Saas",
+      "designer": "OnPoint Studio",
+      "local_image": "shots/25678558-nexus-company-kanban-view-crm-dashboard-webapp-s.jpg",
+      "thumbnail": "thumbs/25678558.jpg",
+      "title": "Nexus - Company Kanban View CRM Dashboard Webapp Saas"
+    }
+  ],
+  "index": 1
+}

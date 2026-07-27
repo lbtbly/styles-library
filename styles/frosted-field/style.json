@@ -1,0 +1,162 @@
+{
+  "id": "frosted-field",
+  "name": "Frosted Field",
+  "collection": "Soft Weather",
+  "pairing": "Sea glass × gradient wash",
+  "concept": "Carve every surface out of one pale gradient using translucency instead of borders or fills.",
+  "keywords": [
+    "gradient-ground",
+    "translucent-card",
+    "no-borders",
+    "pill-control",
+    "backdrop-blur",
+    "metaball",
+    "pale-wash"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "linear-gradient(155deg, #E8EAF8 0%, #DCE8EC 48%, #E9E4F2 100%)",
+      "bg_solid": "#E4E7EF",
+      "surface": "rgba(255, 255, 255, 0.55)",
+      "raised": "rgba(255, 255, 255, 0.78)",
+      "ink": "#141620",
+      "muted": "#5D6273",
+      "line": "rgba(255, 255, 255, 0.60)",
+      "accent": "#5D51C8",
+      "accent_ink": "#FFFFFF",
+      "mint": "#69C6AE"
+    },
+    "type": {
+      "families": "Geometric sans, light to regular (Aeonik, General Sans, Outfit). Low weight contrast.",
+      "hierarchy": "Title 22/28 regular · figure 34/38 light · body 14/21 regular · label 11/14 regular in `--muted`. Thin, wide-set type suits the soft ground.",
+      "usage": "Keep weights light — bold type fights the translucency. Sentence case. Labels sit above values, not beside them."
+    },
+    "texture": "Every surface is carved out of the gradient rather than drawn on top of it: `background: rgba(255,255,255,.55); backdrop-filter: blur(24px);` with a 1px inner highlight `rgba(255,255,255,.6)` and no outer border. One blurred colour metaball (a 320px circle of `--accent` at 30% opacity, `filter: blur(80px)`) drifts behind the content to give the field variation. Shadows are wide and faint.",
+    "layout": "Soft and generous. 8px scale, 24px padding, 20-24px radius on cards, 999px on every control. Because nothing has a border, rely on 20px+ gaps for separation. Charts render as translucent gradient-filled bars or dot matrices, never as hard strokes."
+  },
+  "fit": {
+    "best_for": [
+      "fintech and personal finance",
+      "wellness and health tracking",
+      "smart home and IoT",
+      "AI assistants and copilots",
+      "consumer dashboards"
+    ],
+    "avoid_for": [
+      "high-density enterprise tables",
+      "developer tools",
+      "accessibility-critical services (translucency hurts legibility)",
+      "print or export-heavy products"
+    ],
+    "mood": [
+      "serene",
+      "contemporary",
+      "soft",
+      "optimistic",
+      "light"
+    ],
+    "artifact_types_proven": [
+      "dashboard",
+      "crm",
+      "mobile app",
+      "design tool"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "artifacts": [
+      "dashboard",
+      "crm",
+      "mobile app",
+      "design tool"
+    ],
+    "artifact_counts": {
+      "crm": 2,
+      "mobile app": 1,
+      "design tool": 1,
+      "dashboard": 3
+    },
+    "device_counts": {
+      "desktop": 6,
+      "mobile": 1
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as soft 3D render or gradient abstraction with frosted glass elements.\n\nSTYLE — apply all of the following, they are not optional:\n- pale periwinkle-to-ice gradient ground\n- translucent frosted panels with visible blur of what sits behind them\n- one muted violet #5D51C8 and one seafoam #69C6AE as the only hues\n- soft omnidirectional lighting, no hard shadows\n- rounded organic forms, generous corner radii\n\nNEGATIVE SPACE: The upper half stays a clean uninterrupted gradient.\n\nDO NOT INCLUDE: hard edges, high contrast, dark backgrounds, neon, sharp specular highlights, dense detail.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "pale periwinkle-to-ice gradient ground",
+      "translucent frosted panels with visible blur of what sits behind them",
+      "one muted violet #5D51C8 and one seafoam #69C6AE as the only hues",
+      "soft omnidirectional lighting, no hard shadows",
+      "rounded organic forms, generous corner radii",
+      "negative space — The upper half stays a clean uninterrupted gradient.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "hard edges",
+      "high contrast",
+      "dark backgrounds",
+      "neon",
+      "sharp specular highlights",
+      "dense detail"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/26629031-Sugar-CRM-SaaS-Dashboard-UX-UI-Design",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/26629031-sugar-crm-saas-dashboard-ux-ui-design.png",
+      "thumbnail": "thumbs/26629031.jpg",
+      "title": "Sugar CRM - SaaS Dashboard & UX UI Design"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27136565-ShipLens-SaaS-AI-Shipment-Management-Platform",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/27136565-shiplens-saas-ai-shipment-management-platform.png",
+      "thumbnail": "thumbs/27136565.jpg",
+      "title": "ShipLens SaaS – AI Shipment Management Platform"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26702934-Orriso-Dashboard-AI-Workspace-SaaS",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/26702934-orriso-dashboard-ai-workspace-saas.png",
+      "thumbnail": "thumbs/26702934.jpg",
+      "title": "Orriso Dashboard – AI Workspace SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25432271-WindFarm-SaaS-Renewable-Energy-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/25432271-windfarm-saas-renewable-energy-dashboard.png",
+      "thumbnail": "thumbs/25432271.jpg",
+      "title": "WindFarm SaaS - Renewable Energy Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27131881-Synthex-UI-Analytics-SaaS-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/27131881-synthex-ui-analytics-saas-dashboard.png",
+      "thumbnail": "thumbs/27131881.jpg",
+      "title": "Synthex UI – Analytics SaaS Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25961490-LoopAI-CRM-Dashboard-for-B2B-SaaS",
+      "designer": "Phenomenon Studio",
+      "local_image": "shots/25961490-loopai-crm-dashboard-for-b2b-saas.png",
+      "thumbnail": "thumbs/25961490.jpg",
+      "title": "LoopAI – CRM Dashboard for B2B SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/24828700-Dashboard-for-a-Finance-SaaS-FundFlow",
+      "designer": "HALO LAB",
+      "local_image": "shots/24828700-dashboard-for-a-finance-saas-fundflow.png",
+      "thumbnail": "thumbs/24828700.jpg",
+      "title": "Dashboard for a Finance SaaS ✦ FundFlow"
+    }
+  ],
+  "index": 11
+}

@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Styles Library</title>
+<style>
+/* The gallery hosts 18 opinionated styles, so it holds none of its own:
+   no accent hue, hairline rules, tracked micro-caps. Colour comes only from
+   the swatches and the live previews. */
+:root{
+  --bg:#FAFAF9; --panel:#FFFFFF; --ink:#131313; --mut:#71716C;
+  --line:#E4E4DF; --line-2:#EFEFEA; --shadow:0 1px 2px rgb(0 0 0/.04);
+  --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#111110;--panel:#191918;--ink:#EDEDE9;--mut:#96968F;
+        --line:#2B2B29;--line-2:#232322;--shadow:0 1px 2px rgb(0 0 0/.3)}
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);
+  -webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1340px;margin:0 auto;padding:0 24px}
+
+/* ---------- masthead ---------- */
+header{border-bottom:1px solid var(--line);padding:44px 0 0;background:var(--bg)}
+.mast{display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:30px}
+h1{font-size:26px;font-weight:600;letter-spacing:-.02em;margin:0}
+.tag{color:var(--mut);font-size:13.5px;margin:5px 0 0;max-width:60ch}
+.stats{margin-left:auto;display:flex;gap:26px;text-align:right}
+.stat b{display:block;font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.stat span{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--mut)}
+
+/* ---------- filters ---------- */
+.filters{display:flex;flex-direction:column;gap:11px;padding-bottom:18px}
+.frow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.flabel{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--mut);
+  min-width:74px;flex-shrink:0}
+.chip{border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:12.5px;
+  color:var(--mut);white-space:nowrap;transition:.12s}
+.chip:hover{border-color:var(--mut);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);
+  color:var(--bg);font-weight:500}
+.chip i{font-style:normal;opacity:.55;margin-left:5px;font-variant-numeric:tabular-nums}
+.searchwrap{margin-left:auto;position:relative}
+#q{border:1px solid var(--line);border-radius:999px;padding:6px 13px;width:210px;
+  background:var(--panel);color:var(--ink);font-size:13px;outline:none}
+#q:focus{border-color:var(--mut)}
+.count{padding:14px 0 22px;font-size:12.5px;color:var(--mut);
+  border-top:1px solid var(--line-2);margin-top:4px}
+
+/* ---------- grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(316px,1fr));
+  gap:22px;padding:26px 0 80px}
+.card{border:1px solid var(--line);border-radius:12px;background:var(--panel);
+  overflow:hidden;text-align:left;display:flex;flex-direction:column;
+  box-shadow:var(--shadow);transition:.15s}
+.card:hover{border-color:var(--mut)}
+.shot{position:relative;height:206px;border-bottom:1px solid var(--line);
+  overflow:hidden;background:var(--line-2)}
+.shot iframe{position:absolute;top:0;left:0;width:1280px;height:900px;border:0;
+  transform:scale(.335);transform-origin:0 0;pointer-events:none}
+.shot .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--mut);
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.cbody{padding:15px 16px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
+.ctop{display:flex;align-items:baseline;gap:9px}
+.cname{font-size:16.5px;font-weight:600;letter-spacing:-.012em}
+.ccoll{margin-left:auto;font-size:10px;text-transform:uppercase;letter-spacing:.11em;
+  color:var(--mut);white-space:nowrap}
+.cpair{font-size:12.5px;color:var(--mut)}
+.cconcept{font-size:13px;line-height:1.5;opacity:.86;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sw{display:flex;gap:4px;margin-top:auto;padding-top:4px}
+.sw i{width:19px;height:19px;border-radius:5px;border:1px solid rgb(128 128 128/.26);display:block}
+.facets{display:flex;flex-wrap:wrap;gap:4px}
+.facet{font-size:10.5px;color:var(--mut);border:1px solid var(--line);
+  border-radius:999px;padding:3px 8px;white-space:nowrap}
+.facet.dev{border-color:currentColor;opacity:.8}
+
+/* ---------- detail ---------- */
+.scrim{position:fixed;inset:0;background:rgb(10 10 10/.42);backdrop-filter:blur(2px);
+  display:none;z-index:40}
+.scrim.open{display:block}
+.sheet{position:fixed;top:0;right:0;bottom:0;width:min(920px,100%);background:var(--bg);
+  border-left:1px solid var(--line);z-index:50;overflow-y:auto;
+  transform:translateX(100%);transition:transform .22s ease;visibility:hidden}
+.sheet.open{transform:none;visibility:visible}
+.shead{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);
+  padding:22px 28px 16px;z-index:2}
+.shead .row{display:flex;align-items:flex-start;gap:14px}
+.shead h2{margin:0;font-size:23px;font-weight:600;letter-spacing:-.018em}
+.close{margin-left:auto;border:1px solid var(--line);border-radius:999px;
+  width:30px;height:30px;line-height:1;font-size:17px;color:var(--mut);flex-shrink:0}
+.close:hover{color:var(--ink);border-color:var(--mut)}
+.sbody{padding:24px 28px 90px;display:flex;flex-direction:column;gap:28px}
+.sec > h3{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--mut);
+  margin:0 0 11px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
+.btn{border:1px solid var(--ink);background:var(--ink);color:var(--bg);border-radius:999px;
+  padding:8px 15px;font-size:13px;font-weight:500}
+.btn.ghost{background:none;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--mut)}
+.btn[disabled]{opacity:.45;cursor:default}
+.kv{display:grid;grid-template-columns:132px 1fr;gap:7px 16px;font-size:13.5px}
+.kv dt{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.09em;
+  padding-top:3px}
+.kv dd{margin:0}
+.pal{display:grid;grid-template-columns:repeat(auto-fill,minmax(146px,1fr));gap:8px}
+.pal div{display:flex;align-items:center;gap:9px;border:1px solid var(--line);
+  border-radius:8px;padding:7px 9px;font-size:11.5px}
+.pal em{width:22px;height:22px;border-radius:5px;flex-shrink:0;
+  border:1px solid rgb(128 128 128/.26)}
+.pal b{font-weight:500;display:block}
+.pal code{font-family:var(--mono);font-size:10.5px;color:var(--mut)}
+.tok{font-size:13.5px;line-height:1.6}
+.tok p{margin:0 0 9px}
+.tok b{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--mut);
+  display:block;margin-bottom:2px}
+.prevlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.prevlist a{border:1px solid var(--line);border-radius:9px;overflow:hidden;
+  text-decoration:none;display:block;background:var(--line-2)}
+.prevlist .fr{position:relative;height:150px;overflow:hidden}
+.prevlist iframe{position:absolute;top:0;left:0;width:1280px;height:860px;border:0;
+  transform:scale(.24);transform-origin:0 0;pointer-events:none}
+.prevlist span{display:block;padding:8px 10px;font-size:11.5px;color:var(--mut);
+  background:var(--panel);border-top:1px solid var(--line)}
+.srcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px}
+.srcs a{text-decoration:none;border:1px solid var(--line);border-radius:8px;overflow:hidden;
+  display:block;background:var(--panel)}
+.srcs img{width:100%;height:96px;object-fit:cover;display:block}
+.srcs span{display:block;padding:6px 8px;font-size:10.5px;color:var(--mut);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+pre.recipe{background:var(--panel);border:1px solid var(--line);border-radius:9px;
+  padding:14px;font-family:var(--mono);font-size:11.5px;line-height:1.6;
+  white-space:pre-wrap;overflow-x:auto;margin:0;max-height:340px;overflow-y:auto}
+ul.plain{margin:0;padding-left:17px;font-size:13.5px;line-height:1.65}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:720px){.two{grid-template-columns:1fr}.stats{margin-left:0}
+  .sbody{padding:20px 18px 80px}.shead{padding:18px 18px 14px}}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--ink);color:var(--bg);padding:9px 17px;border-radius:999px;
+  font-size:13px;z-index:60;transition:transform .2s;pointer-events:none}
+.toast.show{transform:translateX(-50%)}
+.empty{padding:60px 0;text-align:center;color:var(--mut);font-size:14px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="mast">
+      <div>
+        <h1>Styles Library</h1>
+        <p class="tag" id="tagline"></p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="nStyles">—</b><span>Styles</span></div>
+        <div class="stat"><b id="nColls">—</b><span>Collections</span></div>
+        <div class="stat"><b id="nShots">—</b><span>Source shots</span></div>
+      </div>
+    </div>
+    <div class="filters">
+      <div class="frow"><span class="flabel">Collection</span><span id="fColl"></span>
+        <span class="searchwrap"><input id="q" type="search" placeholder="Search styles…" autocomplete="off"></span>
+      </div>
+      <div class="frow"><span class="flabel">Artifact</span><span id="fArt"></span></div>
+      <div class="frow"><span class="flabel">Device</span><span id="fDev"></span></div>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+</header>
+
+<main class="wrap"><div class="grid" id="grid"></div></main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" aria-hidden="true"></aside>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = (s, r = document) => r.querySelector(s);
+const el = (t, c, x) => { const n = document.createElement(t); if (c) n.className = c;
+  if (x != null) n.textContent = x; return n; };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+let DATA = null;
+const state = { coll: null, art: null, dev: null, q: '' };
+
+/* ---------------- boot ---------------- */
+fetch('../styles/index.json')
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(d => { DATA = d; render(); })
+  .catch(e => {
+    $('#grid').innerHTML = '<p class="empty">Could not load <code>styles/index.json</code> (' + esc(e.message) +
+      ').<br>Serve the library over HTTP — from the project root run<br>' +
+      '<code style="user-select:all">python3 -m http.server 8000</code> then open ' +
+      '<code>localhost:8000/gallery/</code>.</p>';
+  });
+
+/* ---------------- filters ---------------- */
+// Every count here is computed from the data — nothing about the catalog is hardcoded.
+function countBy(styles, pick) {
+  const m = new Map();
+  styles.forEach(s => [].concat(pick(s)).forEach(v => m.set(v, (m.get(v) || 0) + 1)));
+  return m;
+}
+
+function buildFilters() {
+  const S = DATA.styles;
+  mkChips($('#fColl'), 'coll',
+    DATA.collections.map(c => [c.name, c.count]), 'All collections', S.length);
+  mkChips($('#fArt'), 'art',
+    [...countBy(S, s => s.surfaces.artifacts)].sort((a, b) => b[1] - a[1]), 'Any', S.length);
+  mkChips($('#fDev'), 'dev',
+    [...countBy(S, s => s.surfaces.devices)].sort((a, b) => b[1] - a[1]), 'Any', S.length);
+}
+
+function mkChips(host, key, pairs, allLabel, allCount) {
+  host.innerHTML = '';
+  const all = el('button', 'chip', allLabel);
+  all.innerHTML = esc(allLabel) + '<i>' + allCount + '</i>';
+  all.setAttribute('aria-pressed', String(state[key] === null));
+  all.onclick = () => { state[key] = null; render(); };
+  host.appendChild(all);
+  pairs.forEach(([name, n]) => {
+    const b = el('button', 'chip');
+    b.innerHTML = esc(name) + '<i>' + n + '</i>';
+    b.setAttribute('aria-pressed', String(state[key] === name));
+    b.onclick = () => { state[key] = state[key] === name ? null : name; render(); };
+    host.appendChild(b);
+  });
+}
+
+function visible() {
+  const q = state.q.trim().toLowerCase();
+  return DATA.styles.filter(s =>
+    (!state.coll || s.collection === state.coll) &&
+    (!state.art || s.surfaces.artifacts.includes(state.art)) &&
+    (!state.dev || s.surfaces.devices.includes(state.dev)) &&
+    (!q || [s.name, s.pairing, s.concept, s.collection, ...s.keywords,
+            ...s.fit.best_for, ...s.fit.mood].join(' ').toLowerCase().includes(q))
+  );
+}
+
+/* ---------------- render ---------------- */
+function render() {
+  $('#tagline').textContent =
+    'Reusable design DNA synthesised from ' + DATA.shot_count + ' shots bookmarked in ' +
+    DATA.source_collection.name + '. Every style is traceable to its sources.';
+  $('#nStyles').textContent = DATA.style_count;
+  $('#nColls').textContent = DATA.collections.length;
+  $('#nShots').textContent = DATA.shot_count;
+  buildFilters();
+
+  const list = visible();
+  const active = [state.coll, state.art, state.dev].filter(Boolean);
+  $('#count').textContent = list.length + (list.length === 1 ? ' style' : ' styles') +
+    (active.length ? ' · ' + active.join(' · ') : '') +
+    (state.q ? ' · matching “' + state.q + '”' : '');
+
+  const g = $('#grid');
+  g.innerHTML = '';
+  if (!list.length) { g.innerHTML = '<p class="empty">No styles match those filters.</p>'; return; }
+  list.forEach(s => g.appendChild(card(s)));
+}
+
+function card(s) {
+  const c = el('button', 'card');
+  c.onclick = () => openSheet(s);
+
+  const shot = el('div', 'shot');
+  if (s.thumbnail && /\.html$/.test(s.thumbnail)) {
+    const f = document.createElement('iframe');
+    f.src = '../' + s.thumbnail; f.loading = 'lazy'; f.setAttribute('scrolling', 'no');
+    f.setAttribute('tabindex', '-1'); f.setAttribute('aria-hidden', 'true');
+    shot.appendChild(f);
+  } else {
+    shot.appendChild(el('div', 'ph', 'preview pending'));
+  }
+  c.appendChild(shot);
+
+  const b = el('div', 'cbody');
+  const top = el('div', 'ctop');
+  top.appendChild(el('span', 'cname', s.name));
+  top.appendChild(el('span', 'ccoll', s.collection));
+  b.appendChild(top);
+  b.appendChild(el('div', 'cpair', s.pairing));
+  b.appendChild(el('div', 'cconcept', s.concept));
+
+  const fc = el('div', 'facets');
+  s.surfaces.devices.forEach(d => fc.appendChild(el('span', 'facet dev', d)));
+  s.surfaces.artifacts.slice(0, 3).forEach(a => fc.appendChild(el('span', 'facet', a)));
+  b.appendChild(fc);
+
+  const sw = el('div', 'sw');
+  (s.swatch || []).forEach(h => { const i = el('i'); i.style.background = h; sw.appendChild(i); });
+  b.appendChild(sw);
+
+  c.appendChild(b);
+  return c;
+}
+
+/* ---------------- detail sheet ---------------- */
+function sec(title, node) {
+  const d = el('section', 'sec');
+  d.appendChild(el('h3', null, title));
+  d.appendChild(node);
+  return d;
+}
+
+async function openSheet(s) {
+  const sh = $('#sheet');
+  sh.innerHTML = '';
+  sh.setAttribute('aria-hidden', 'false');
+
+  const head = el('div', 'shead');
+  const row = el('div', 'row');
+  const h = el('div');
+  h.appendChild(el('h2', null, s.name));
+  h.appendChild(el('div', 'cpair', s.pairing + ' · ' + s.collection));
+  row.appendChild(h);
+  const x = el('button', 'close', '×');
+  x.onclick = closeSheet; x.title = 'Close';
+  row.appendChild(x);
+  head.appendChild(row);
+
+  const act = el('div', 'actions');
+  const bBrief = el('button', 'btn', 'Copy brief');
+  bBrief.onclick = e => { e.stopPropagation(); copyFile('../styles/' + s.id + '/brief.md', 'Brief', bBrief); };
+  const bImg = el('button', 'btn ghost', 'Copy image prompt');
+  bImg.onclick = e => { e.stopPropagation(); copyText(s.id, bImg); };
+  const bJson = el('a', 'btn ghost');
+  bJson.textContent = 'Open style.json'; bJson.href = '../styles/' + s.id + '/style.json';
+  bJson.target = '_blank'; bJson.style.textDecoration = 'none';
+  act.append(bBrief, bImg, bJson);
+  head.appendChild(act);
+  sh.appendChild(head);
+
+  const body = el('div', 'sbody');
+
+  body.appendChild(sec('Concept', el('p', 'tok', s.concept)));
+
+  // fit
+  const two = el('div', 'two');
+  const bf = el('div');
+  bf.appendChild(el('b', null, 'Best for'));
+  const ul1 = el('ul', 'plain'); s.fit.best_for.forEach(t => ul1.appendChild(el('li', null, t)));
+  bf.appendChild(ul1);
+  const af = el('div');
+  af.appendChild(el('b', null, 'Avoid for'));
+  const ul2 = el('ul', 'plain'); s.fit.avoid_for.forEach(t => ul2.appendChild(el('li', null, t)));
+  af.appendChild(ul2);
+  bf.className = af.className = 'tok';
+  two.append(bf, af);
+  body.appendChild(sec('Fit', two));
+
+  // meta
+  const dl = el('dl', 'kv');
+  const add = (k, v) => { dl.appendChild(el('dt', null, k)); dl.appendChild(el('dd', null, v)); };
+  add('Mood', s.fit.mood.join(' · '));
+  add('Keywords', s.keywords.join(' · '));
+  add('Devices', s.surfaces.devices.join(' · '));
+  add('Artifacts', s.surfaces.artifacts.map(a =>
+    a + ' (' + s.surfaces.artifact_counts[a] + ')').join(' · '));
+  add('Sources', s.source_count + ' shots · ' + s.designers.length + ' designers');
+  body.appendChild(sec('Metadata', dl));
+
+  // full tokens from style.json
+  const tokHost = el('div');
+  tokHost.appendChild(el('p', 'tok', 'Loading tokens…'));
+  body.appendChild(sec('Design tokens', tokHost));
+
+  // previews
+  if (s.previews && s.previews.length) {
+    const pl = el('div', 'prevlist');
+    s.previews.forEach(p => {
+      const a = el('a'); a.href = '../styles/' + s.id + '/previews/' + p; a.target = '_blank';
+      const fr = el('div', 'fr');
+      const f = document.createElement('iframe');
+      f.src = a.href; f.loading = 'lazy'; f.setAttribute('scrolling', 'no');
+      f.setAttribute('tabindex', '-1'); fr.appendChild(f);
+      a.appendChild(fr);
+      a.appendChild(el('span', null, p.replace(/\.html$/, '').replace(/-/g, ' ')));
+      pl.appendChild(a);
+    });
+    body.appendChild(sec('Live previews — click to open full size', pl));
+  }
+
+  // sources
+  const sr = el('div', 'srcs');
+  body.appendChild(sec('Source shots — all credit to the original designers', sr));
+
+  // recipe
+  const pre = el('pre', 'recipe', 'Loading image recipe…');
+  body.appendChild(sec('Image recipe', pre));
+
+  sh.appendChild(body);
+  sh.classList.add('open');
+  $('#scrim').classList.add('open');
+  sh.scrollTop = 0;
+
+  // hydrate from style.json — index stays small, detail loads on demand
+  try {
+    const full = await (await fetch('../styles/' + s.id + '/style.json')).json();
+    tokHost.innerHTML = '';
+    const pal = el('div', 'pal');
+    Object.entries(full.tokens.palette).forEach(([k, v]) => {
+      const d = el('div');
+      const sw = el('em');
+      sw.style.background = /^#|rgba?\(|gradient/.test(v) ? v : 'transparent';
+      const t = el('div');
+      t.appendChild(el('b', null, k));
+      t.appendChild(el('code', null, v.length > 30 ? v.slice(0, 30) + '…' : v));
+      d.append(sw, t); pal.appendChild(d);
+    });
+    tokHost.appendChild(pal);
+    const t = el('div', 'tok');
+    t.style.marginTop = '14px';
+    [['Type — families', full.tokens.type.families],
+     ['Type — hierarchy', full.tokens.type.hierarchy],
+     ['Type — usage', full.tokens.type.usage],
+     ['Texture', full.tokens.texture],
+     ['Layout', full.tokens.layout]].forEach(([k, v]) => {
+      t.appendChild(el('b', null, k)); t.appendChild(el('p', null, v));
+    });
+    tokHost.appendChild(t);
+
+    pre.textContent = full.image_recipe.template +
+      '\n\n— target —\nprovider: ' + full.image_recipe.provider +
+      '\nmodel: ' + full.image_recipe.model +
+      '\nresolution: ' + full.image_recipe.resolution;
+    pre.dataset.text = pre.textContent;
+
+    full.sources.forEach(src => {
+      const a = el('a'); a.href = src.shot_url; a.target = '_blank'; a.rel = 'noopener';
+      const img = document.createElement('img');
+      img.src = '../sources/' + src.thumbnail; img.loading = 'lazy'; img.alt = '';
+      a.appendChild(img);
+      a.appendChild(el('span', null, src.designer));
+      sr.appendChild(a);
+    });
+  } catch (e) {
+    tokHost.innerHTML = '<p class="tok">Could not load style.json — serve over HTTP.</p>';
+    pre.textContent = 'Unavailable offline. Open styles/' + s.id + '/image-recipe.md';
+  }
+}
+
+function closeSheet() {
+  $('#sheet').classList.remove('open');
+  $('#sheet').setAttribute('aria-hidden', 'true');
+  $('#scrim').classList.remove('open');
+}
+$('#scrim').onclick = closeSheet;
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+
+/* ---------------- copy ---------------- */
+function toast(msg) {
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 1900);
+}
+async function write(text, label) {
+  try { await navigator.clipboard.writeText(text); toast(label + ' copied'); }
+  catch { // clipboard API needs a secure context; fall back to a selection copy
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); toast(label + ' copied'); }
+    catch { toast('Copy failed — select manually'); }
+    ta.remove();
+  }
+}
+async function copyFile(path, label, btn) {
+  btn.disabled = true;
+  try {
+    const r = await fetch(path);
+    if (!r.ok) throw new Error(r.status);
+    await write(await r.text(), label);
+  } catch { toast('Serve over HTTP to copy — see README'); }
+  btn.disabled = false;
+}
+function copyText(id, btn) {
+  const pre = $('#sheet .recipe');
+  if (pre && pre.dataset.text) write(pre.dataset.text, 'Image prompt');
+  else copyFile('../styles/' + id + '/image-recipe.md', 'Image prompt', btn);
+}
+
+$('#q').addEventListener('input', e => { state.q = e.target.value; render(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+{
+  "id": "grey-room",
+  "name": "Grey Room",
+  "collection": "Working Surfaces",
+  "pairing": "Gallery wall × system font",
+  "concept": "Drain every hue, then let luminance, letter-tracking and one black pill carry the entire hierarchy.",
+  "keywords": [
+    "hue-drained",
+    "luminance-only",
+    "black-pill",
+    "tracked-caps",
+    "silver-on-silver",
+    "no-brand-colour"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#EFEFEF",
+      "surface": "#F8F8F8",
+      "raised": "#FFFFFF",
+      "ink": "#171717",
+      "muted": "#767676",
+      "line": "#E0E0E0",
+      "accent": "#000000",
+      "accent_ink": "#FFFFFF",
+      "tint": "rgba(23, 23, 23, 0.06)"
+    },
+    "type": {
+      "families": "Neo-grotesque, tightly set (Inter, Helvetica Now, Söhne). Typography does all the work colour normally would, so the family must be good at small sizes.",
+      "hierarchy": "Display 40/44 semibold at -0.03em · section 22/28 medium · body 14/21 regular · micro-caps 10/12 semibold ALL-CAPS at 0.14em tracking. The gap between display and body is deliberately extreme.",
+      "usage": "Tracked-out ALL-CAPS micro-labels are the primary wayfinding device — use them for every section, column and group. Two-tone headlines (first clause in `--ink`, second fading to `--muted`) are the signature move. Never introduce a coloured word."
+    },
+    "texture": "Surfaces differ by only a few luminance points — `--bg` against `--surface` is a 3% step, and that step *is* the border. Use shadow sparingly (`0 1px 2px rgb(0 0 0 / .05)`) and hairlines only where a luminance step would be ambiguous. Absolutely no hue: if a value has saturation, it does not belong.",
+    "layout": "Generous and quiet, or dense and quiet — never loud. 8px scale, 24-32px section padding, 12px radius on panels, 999px on pills. The single black pill button is the only high-contrast object on the page and should appear at most twice per screen. Role and status chips are whisper-tints of ink, never colour."
+  },
+  "fit": {
+    "best_for": [
+      "design and creative tools",
+      "portfolio and studio sites",
+      "premium or luxury positioning",
+      "products that must not compete with user content",
+      "collaboration tools where avatars supply the only colour"
+    ],
+    "avoid_for": [
+      "status-heavy dashboards needing semantic colour",
+      "safety-critical or alerting interfaces",
+      "playful consumer products",
+      "anything requiring strong brand colour recall"
+    ],
+    "mood": [
+      "restrained",
+      "editorial",
+      "premium",
+      "quiet",
+      "confident"
+    ],
+    "artifact_types_proven": [
+      "dashboard",
+      "component study",
+      "design tool",
+      "landing page"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop"
+    ],
+    "artifacts": [
+      "dashboard",
+      "component study",
+      "design tool",
+      "landing page"
+    ],
+    "artifact_counts": {
+      "design tool": 1,
+      "component study": 2,
+      "dashboard": 4,
+      "landing page": 1
+    },
+    "device_counts": {
+      "desktop": 8
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as monochrome studio photography or greyscale 3D render.\n\nSTYLE — apply all of the following, they are not optional:\n- strictly greyscale — zero saturation anywhere in the frame\n- soft even studio lighting with gentle falloff, light grey seamless background\n- matte surfaces, no gloss or specular hotspots\n- one subject centred with generous empty space\n- subtle luminance separation between subject and ground rather than hard edges\n\nNEGATIVE SPACE: At least 40% of the frame must be empty light-grey ground.\n\nDO NOT INCLUDE: any colour or colour cast, neon, harsh shadows, busy backgrounds, text or logos in the image, high contrast blacks.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "strictly greyscale — zero saturation anywhere in the frame",
+      "soft even studio lighting with gentle falloff, light grey seamless background",
+      "matte surfaces, no gloss or specular hotspots",
+      "one subject centred with generous empty space",
+      "subtle luminance separation between subject and ground rather than hard edges",
+      "negative space — At least 40% of the frame must be empty light-grey ground.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "any colour or colour cast",
+      "neon",
+      "harsh shadows",
+      "busy backgrounds",
+      "text or logos in the image",
+      "high contrast blacks"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/27516487-Zingflow-AI-SaaS-UX-UI-Details-Workspace",
+      "designer": "Mateusz Madura",
+      "local_image": "shots/27516487-zingflow-ai-saas-ux-ui-details-workspace.png",
+      "thumbnail": "thumbs/27516487.jpg",
+      "title": "Zingflow / AI SaaS UX/UI Details - Workspace"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25887194-Contextual-delete-confirmation-for-SaaS",
+      "designer": "Virgil Pana",
+      "local_image": "shots/25887194-contextual-delete-confirmation-for-saas.png",
+      "thumbnail": "thumbs/25887194.jpg",
+      "title": "Contextual delete confirmation for SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25848153-Lingaro-CO2-Emissions-Distribution-SaaS",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/25848153-lingaro-co2-emissions-distribution-saas.jpg",
+      "thumbnail": "thumbs/25848153.jpg",
+      "title": "Lingaro - CO2 Emissions Distribution SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25882999-Expandable-Notification-Toast-with-timer-for-Saas-App-Dashboard",
+      "designer": "Virgil Pana",
+      "local_image": "shots/25882999-expandable-notification-toast-with-timer-for-saa.png",
+      "thumbnail": "thumbs/25882999.jpg",
+      "title": "Expandable Notification Toast with timer for Saas App Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26413174-Nodus-Admin-SaaS-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/26413174-nodus-admin-saas-dashboard.png",
+      "thumbnail": "thumbs/26413174.jpg",
+      "title": "Nodus - Admin SaaS Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25526476-Team-Communication-Management-SaaS-Dashboard",
+      "designer": "Conceptzilla",
+      "local_image": "shots/25526476-team-communication-management-saas-dashboard.png",
+      "thumbnail": "thumbs/25526476.jpg",
+      "title": "Team Communication Management SaaS Dashboard"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26947568-Salse-SaaS-Business-Landing-Page",
+      "designer": "Odama",
+      "local_image": "shots/26947568-salse-saas-business-landing-page.png",
+      "thumbnail": "thumbs/26947568.jpg",
+      "title": "Salse - SaaS Business Landing Page"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26386815-SaaS-Marketing-Dashboard-Design-Concept",
+      "designer": "Conceptzilla",
+      "local_image": "shots/26386815-saas-marketing-dashboard-design-concept.png",
+      "thumbnail": "thumbs/26386815.jpg",
+      "title": "SaaS Marketing Dashboard Design Concept"
+    }
+  ],
+  "index": 4
+}

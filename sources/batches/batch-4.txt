@@ -1,0 +1,15 @@
+45	27145912	shots/27145912-juggernaut-affiliate-saas-landing-page.png	One Week Wonders	Juggernaut - Affiliate SaaS Landing Page 💶
+46	26440808	shots/26440808-ai-saas-landing-page.jpg	Awsmd	AI SaaS Landing Page
+47	27220893	shots/27220893-schedulo-ai-shift-management-drawer-in-saas-book.png	Fikri Studio	Schedulo — AI Shift Management Drawer in SaaS Booking Management
+48	27246128	shots/27246128-floware-warehouse-saas-platform-dashboard-websit.jpeg	LAIN	Floware — Warehouse SaaS Platform Dashboard Website Landing Page
+49	24347345	shots/24347345-ups-platform-saas-airfreight-delivery-dashboard.png	RonDesignLab ⭐️	UPS Platform - SaaS Airfreight Delivery Dashboard
+50	25902111	shots/25902111-react-datagrid-for-saas-web-apps-and-dashboards.png	Virgil Pana	React Datagrid for Saas web apps and dashboards
+51	27540722	shots/27540722-saas-landing-page-design.jpg	theosm™	Saas Landing  page design
+52	26661002	shots/26661002-saas-platform-landing-page-for-startups.png	Ronas IT | UI/UX Team	SaaS Platform Landing Page for Startups
+53	25341116	shots/25341116-cyberguard-cybersecurity-saas-dashboard.png	RonDesignLab ⭐️	CyberGuard - Cybersecurity SaaS  Dashboard
+54	25856366	shots/25856366-service-selection-modal-flow-for-saas-web-app-da.png	Virgil Pana	Service selection Modal Flow for saas web app dashboard
+55	27237804	shots/27237804-saas-landing-page-design-product-analytics-platf.png	Erik Padamans	SaaS Landing Page Design | Product Analytics Platform (UI/UX)
+56	27322689	shots/27322689-leonand-minimal-saas-analytics-dashboard.png	Paperpillar	LeonAnd — Minimal SaaS Analytics Dashboard
+57	25614261	shots/25614261-property-management-mobile-saas.png	RonDesignLab ⭐️	Property Management Mobile SaaS
+58	27539034	shots/27539034-saas-web-dashboard.png	Ronas IT | UI/UX Team	SaaS Web Dashboard
+59	25578130	shots/25578130-costar-real-estate-saas-dashboard.png	RonDesignLab ⭐️	Costar - Real Estate SaaS Dashboard

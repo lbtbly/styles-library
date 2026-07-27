@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hairline Ledger — Referring domains</title>
+<style>
+:root{
+  --bg:#F4F5F6; --surface:#FFFFFF; --ink:#0F1419; --muted:#697079;
+  --line:#E3E5E8; --accent:#0B5FD0; --positive:#0A7C4A; --negative:#B42318; --warning:#B54708;
+  --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.45 var(--sans);
+  -webkit-font-smoothing:antialiased}
+.app{display:flex;min-height:100vh}
+
+/* sidebar — fixed 216px per the brief */
+.side{width:216px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--line);
+  display:flex;flex-direction:column}
+.brand{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px}
+.brand b{font-size:13.5px;font-weight:600;letter-spacing:-.01em}
+.mark{width:18px;height:18px;border-radius:4px;background:var(--ink);flex-shrink:0}
+.navlbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted);padding:16px 16px 6px}
+.side a{display:flex;align-items:center;gap:8px;padding:6px 16px;color:var(--muted);
+  text-decoration:none;font-size:13px}
+.side a:hover{color:var(--ink)}
+.side a.on{color:var(--ink);font-weight:500;box-shadow:inset 2px 0 0 var(--accent)}
+.side a i{width:5px;height:5px;border-radius:1px;background:currentColor;opacity:.5;flex-shrink:0}
+.side .foot{margin-top:auto;padding:12px 16px;border-top:1px solid var(--line);
+  font-size:11px;color:var(--muted)}
+
+/* main */
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{background:var(--surface);border-bottom:1px solid var(--line);padding:12px 20px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+h1{font-size:20px;line-height:28px;font-weight:600;letter-spacing:-.015em;margin:0}
+.crumb{font-size:11px;color:var(--muted);width:100%;margin-bottom:1px}
+.grow{flex:1}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;
+  padding:5px 11px;font:500 12.5px var(--sans);cursor:pointer}
+.btn:hover{border-color:var(--muted)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:5px 10px;font:12.5px var(--sans);
+  color:var(--muted);cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--surface);font-weight:500}
+
+/* KPI strip — hairline dividers, no cards */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+  background:var(--surface);border-bottom:1px solid var(--line)}
+.kpi{padding:13px 20px;border-right:1px solid var(--line)}
+.kpi:last-child{border-right:0}
+.kpi span{display:block;font-size:10px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--muted);margin-bottom:5px}
+.kpi b{font-size:22px;font-weight:600;letter-spacing:-.015em;font-variant-numeric:tabular-nums}
+.kpi em{font-style:normal;font-size:12px;font-weight:500;margin-left:7px;
+  font-variant-numeric:tabular-nums}
+.up{color:var(--positive)} .down{color:var(--negative)}
+
+/* table — full bleed, rules not boxes, starved padding */
+.tablewrap{background:var(--surface);flex:1;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+thead th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted);text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);
+  white-space:nowrap;background:var(--surface);position:sticky;top:0}
+thead th.n{text-align:right}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody td.n{text-align:right}
+tbody tr:hover{background:#FAFBFC}
+.dom{display:flex;align-items:center;gap:8px}
+.fav{width:15px;height:15px;border-radius:3px;flex-shrink:0}
+.sub{color:var(--muted);font-size:11.5px}
+.chip{display:inline-block;font-size:10.5px;font-weight:500;padding:1px 7px;border-radius:999px;
+  line-height:16px}
+.c-live{background:#E7F3EC;color:var(--positive)}
+.c-spon{background:#FCF1E4;color:var(--warning)}
+.c-fail{background:#FBEBEA;color:var(--negative)}
+.c-idle{background:#EEF0F2;color:var(--muted)}
+.spark{display:block;width:62px;height:16px;margin-left:auto}
+a.link{color:var(--accent);text-decoration:none}
+a.link:hover{text-decoration:underline}
+.bar{height:4px;border-radius:2px;background:#EDEFF1;width:70px;margin-left:auto;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:2px}
+.tfoot{display:flex;align-items:center;gap:12px;padding:9px 20px;border-top:1px solid var(--line);
+  background:var(--surface);font-size:12px;color:var(--muted);flex-wrap:wrap}
+.pg{display:flex;gap:4px;margin-left:auto}
+.pg button{border:1px solid var(--line);background:var(--surface);color:var(--muted);
+  border-radius:6px;min-width:26px;height:26px;font:12px var(--sans);cursor:pointer}
+.pg button[aria-current=true]{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+@media(max-width:820px){.side{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <nav class="side">
+    <div class="brand"><span class="mark"></span><b>Verity</b></div>
+    <div class="navlbl">Analyse</div>
+    <a href="#"><i></i>Overview</a>
+    <a href="#" class="on"><i></i>Referring domains</a>
+    <a href="#"><i></i>Backlinks</a>
+    <a href="#"><i></i>Anchors</a>
+    <a href="#"><i></i>Broken links</a>
+    <div class="navlbl">Monitor</div>
+    <a href="#"><i></i>Alerts</a>
+    <a href="#"><i></i>Scheduled reports</a>
+    <a href="#"><i></i>Exports</a>
+    <div class="foot">Crawl completed 04:12 UTC<br>Next run in 7h 48m</div>
+  </nav>
+
+  <div class="main">
+    <header class="top">
+      <div class="crumb">Projects / northwind.io / Referring domains</div>
+      <h1>Referring domains</h1>
+      <span class="grow"></span>
+      <div class="seg">
+        <button>7d</button><button aria-pressed="true">30d</button><button>90d</button><button>12m</button>
+      </div>
+      <button class="btn">Add filter</button>
+      <button class="btn pri">Export CSV</button>
+    </header>
+
+    <section class="kpis">
+      <div class="kpi"><span>Referring domains</span><b>12,804</b><em class="up">↑ 4.2%</em></div>
+      <div class="kpi"><span>Dofollow</span><b>8,317</b><em class="up">↑ 2.9%</em></div>
+      <div class="kpi"><span>Lost this period</span><b>431</b><em class="down">↓ 11.4%</em></div>
+      <div class="kpi"><span>Median authority</span><b>38.6</b><em class="up">↑ 0.8</em></div>
+      <div class="kpi"><span>Crawl coverage</span><b>97.2%</b><em class="up">↑ 0.4%</em></div>
+    </section>
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Domain</th><th>Status</th><th class="n">Authority</th><th class="n">Links</th>
+            <th class="n">First seen</th><th class="n">Traffic</th><th class="n">Trend</th>
+            <th class="n">Share</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+
+    <div class="tfoot">
+      <span>Showing <b>1–12</b> of <b>12,804</b> domains</span>
+      <span>·</span><span>Sorted by authority, descending</span>
+      <div class="pg">
+        <button>‹</button><button aria-current="true">1</button><button>2</button>
+        <button>3</button><button>…</button><button>1067</button><button>›</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA=[
+ ["devops.co","#0B5FD0","live",92,1738,"Mar 2023","151.2K",[6,9,7,12,11,15,14,18],96],
+ ["thelaravel.io","#0A7C4A","live",88,1204,"Jan 2023","98.4K",[8,7,9,8,11,10,13,15],81],
+ ["dzone.com","#B54708","spon",84,1102,"Nov 2022","88.1K",[12,11,9,10,8,9,7,8],74],
+ ["hashnode.dev","#5B2FD6","live",81,974,"Jun 2023","76.9K",[4,6,7,9,10,12,13,16],69],
+ ["news.ycombinator.com","#B42318","live",79,912,"Feb 2023","71.4K",[18,14,11,9,12,10,11,13],64],
+ ["stackshare.io","#0B5FD0","idle",76,844,"Sep 2022","62.0K",[9,9,8,8,7,7,6,6],58],
+ ["smashingmagazine.com","#0A7C4A","live",74,801,"Apr 2023","58.7K",[5,7,8,9,11,12,12,14],54],
+ ["css-tricks.com","#B54708","spon",71,766,"Dec 2022","51.3K",[10,9,11,10,12,11,13,12],49],
+ ["indiehackers.com","#5B2FD6","live",68,712,"Aug 2023","44.8K",[3,5,6,8,9,11,12,14],43],
+ ["producthunt.com","#B42318","fail",64,655,"Oct 2022","39.2K",[14,12,10,8,7,6,5,4],38],
+ ["logrocket.com","#0B5FD0","live",61,598,"May 2023","33.6K",[6,7,7,9,9,10,11,12],32],
+ ["baeldung.com","#0A7C4A","idle",58,540,"Jul 2022","28.9K",[8,8,7,7,7,6,6,6],27]
+];
+const LABEL={live:["Live","c-live"],spon:["Sponsored","c-spon"],fail:["Lost","c-fail"],idle:["Idle","c-idle"]};
+
+function spark(v,colour){
+  const w=62,h=16,max=Math.max(...v),min=Math.min(...v),r=(max-min)||1;
+  const pts=v.map((n,i)=>`${(i/(v.length-1)*w).toFixed(1)},${(h-2-((n-min)/r)*(h-4)).toFixed(1)}`).join(' ');
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" fill="none" aria-hidden="true">
+    <polyline points="${pts}" stroke="${colour}" stroke-width="1.25"
+      stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
+document.getElementById('rows').innerHTML = DATA.map(d=>{
+  const [dom,col,st,auth,links,seen,traffic,trend,share]=d;
+  const [txt,cls]=LABEL[st];
+  const rising = trend[trend.length-1] >= trend[0];
+  return `<tr>
+    <td><span class="dom"><span class="fav" style="background:${col}"></span>
+      <a class="link" href="#">${dom}</a></span></td>
+    <td><span class="chip ${cls}">${txt}</span></td>
+    <td class="n"><b>${auth}</b></td>
+    <td class="n">${links.toLocaleString()}</td>
+    <td class="n sub">${seen}</td>
+    <td class="n">${traffic}</td>
+    <td class="n">${spark(trend, rising?'#0A7C4A':'#B42318')}</td>
+    <td class="n"><span class="bar"><i style="width:${share}%"></i></span></td>
+  </tr>`;
+}).join('');
+</script>
+</body>
+</html>

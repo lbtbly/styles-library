@@ -1,0 +1,135 @@
+{
+  "id": "studio-object",
+  "name": "Studio Object",
+  "collection": "Set in Type",
+  "pairing": "Industrial catalogue × single object",
+  "concept": "A rendered object is the page; the interface shrinks to hairline pills docked around it.",
+  "keywords": [
+    "render-as-page",
+    "single-object",
+    "hairline-pill",
+    "isometric",
+    "grey-seamless",
+    "docked-micro-ui"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#D6D6D6",
+      "surface": "#FFFFFF",
+      "ink": "#050505",
+      "muted": "#6E6E6E",
+      "line": "#DCDCDC",
+      "accent": "#0079DE",
+      "accent_ink": "#FFFFFF",
+      "warm": "#E09400"
+    },
+    "type": {
+      "families": "Neo-grotesque or geometric sans, weight-alternating within a single headline (one clause light, the next semibold).",
+      "hierarchy": "Headline 44/48 with mixed weights · body 15/23 regular · label 11/14 medium ALL-CAPS 0.1em · single display numeral up to 120px when the object is a metric.",
+      "usage": "Alternate weight inside one headline rather than using colour or size for emphasis. Keep all UI type small — the render should dominate."
+    },
+    "texture": "The object is the page. A single matte 3D render — a sphere in liquid, an isometric building, a device — fills most of the frame, lit softly in a grey studio. UI reduces to hairline pill buttons and small floating micro-panels docked to the render, often with thin leader lines connecting a label to a point on the object. Surfaces are matte; no gloss, no neon.",
+    "layout": "Composition over structure. The render occupies 60-75% of the viewport; content is docked to one edge or floats over a quiet area of the image. 8px scale, 999px radius on pills, 12px on micro-panels, 16px padding. Hairline leader lines (1px, `--line`) tie annotations to the object."
+  },
+  "fit": {
+    "best_for": [
+      "hardware and physical products",
+      "logistics, warehousing and supply chain",
+      "architecture and construction tech",
+      "manufacturing and industrial software",
+      "product launch and concept pages"
+    ],
+    "avoid_for": [
+      "text-heavy applications",
+      "dense dashboards",
+      "products with no renderable object",
+      "fast-iterating marketing needing cheap assets"
+    ],
+    "mood": [
+      "industrial",
+      "precise",
+      "material",
+      "sober",
+      "engineered"
+    ],
+    "artifact_types_proven": [
+      "landing page",
+      "mobile app",
+      "dashboard"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop",
+      "mobile"
+    ],
+    "artifacts": [
+      "landing page",
+      "mobile app",
+      "dashboard"
+    ],
+    "artifact_counts": {
+      "landing page": 2,
+      "mobile app": 1,
+      "dashboard": 1
+    },
+    "device_counts": {
+      "desktop": 3,
+      "mobile": 1
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as matte 3D product render, grey seamless studio.\n\nSTYLE — apply all of the following, they are not optional:\n- flat mid-grey #D6D6D6 seamless background with soft falloff\n- one object centred, matte finish, no gloss or chrome\n- soft large key light from above-left, gentle contact shadow\n- near-monochrome with at most one small colour note\n- orthographic or mild isometric projection\n\nNEGATIVE SPACE: At least 30% flat grey ground on one side for docked UI and type.\n\nDO NOT INCLUDE: glossy or reflective materials, coloured lighting, busy scenes, photographic backgrounds, neon, dramatic contrast.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "flat mid-grey #D6D6D6 seamless background with soft falloff",
+      "one object centred, matte finish, no gloss or chrome",
+      "soft large key light from above-left, gentle contact shadow",
+      "near-monochrome with at most one small colour note",
+      "orthographic or mild isometric projection",
+      "negative space — At least 30% flat grey ground on one side for docked UI and type.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "glossy or reflective materials",
+      "coloured lighting",
+      "busy scenes",
+      "photographic backgrounds",
+      "neon",
+      "dramatic contrast"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/21344417-Imagica-clean-SAAS-design-tool",
+      "designer": "Gleb Kuznetsov ✈",
+      "local_image": "shots/21344417-imagica-clean-saas-design-tool.png",
+      "thumbnail": "thumbs/21344417.jpg",
+      "title": "Imagica clean SAAS design tool"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27246128-Floware-Warehouse-SaaS-Platform-Dashboard-Website-Landing-Page",
+      "designer": "LAIN",
+      "local_image": "shots/27246128-floware-warehouse-saas-platform-dashboard-websit.jpeg",
+      "thumbnail": "thumbs/27246128.jpg",
+      "title": "Floware — Warehouse SaaS Platform Dashboard Website Landing Page"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25614261-Property-Management-Mobile-SaaS",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/25614261-property-management-mobile-saas.png",
+      "thumbnail": "thumbs/25614261.jpg",
+      "title": "Property Management Mobile SaaS"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26530776-OptiSpace-SaaS-Office-Operating-Dashboard",
+      "designer": "RonDesignLab ⭐️",
+      "local_image": "shots/26530776-optispace-saas-office-operating-dashboard.png",
+      "thumbnail": "thumbs/26530776.jpg",
+      "title": "OptiSpace SaaS - Office Operating Dashboard"
+    }
+  ],
+  "index": 17
+}

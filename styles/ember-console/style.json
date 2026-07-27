@@ -1,0 +1,134 @@
+{
+  "id": "ember-console",
+  "name": "Ember Console",
+  "collection": "Working Surfaces",
+  "pairing": "Control room × safety orange",
+  "concept": "A single hot orange carries every chart series, CTA and alert across an otherwise white hairline shell.",
+  "keywords": [
+    "single-hot-orange",
+    "hairline-modal",
+    "dimmed-parent",
+    "chart-monochrome",
+    "ai-lilac",
+    "white-shell"
+  ],
+  "tokens": {
+    "palette": {
+      "bg": "#FCFCFC",
+      "surface": "#FFFFFF",
+      "subtle": "#F4F5F6",
+      "ink": "#15171F",
+      "muted": "#6B7280",
+      "line": "#E6E8EB",
+      "accent": "#D64B00",
+      "accent_soft": "#FDEDE3",
+      "ai": "#8B5CF6",
+      "positive": "#0A7C4A",
+      "negative": "#B42318",
+      "scrim": "rgba(21, 23, 31, 0.38)"
+    },
+    "type": {
+      "families": "Neo-grotesque single family (Inter / Söhne). Numerals tabular in every metric.",
+      "hierarchy": "Modal title 20/28 semibold · metric 28/34 semibold tabular · card title 14/20 semibold · body 13/18 regular · label 11/14 medium in `--muted`.",
+      "usage": "Sentence case. Metrics get the largest optical weight on the screen. Deltas are 12px medium with a directional arrow glyph, coloured `--positive` / `--negative` — these are the only colours allowed to compete with the orange."
+    },
+    "texture": "Flat white on flat white, separated by hairlines. Charts are drawn in `--accent` alone: one solid line for the current series, the same hue at 35% opacity for the comparison series. The one licensed exception is a lilac-to-pink gradient strip used exclusively to mark AI-generated content — nothing else in the system may use a gradient. Modals cast `0 20px 48px -12px rgb(21 23 31 / .24)` over a dimmed (never blurred) parent.",
+    "layout": "Detail sheets over context. A modal or side sheet at 720-880px floats over the visibly dimmed parent screen, which stays legible so the user keeps their place. 4px scale, 20px sheet padding, 16px card padding, 10px radius. Two-column metric grids inside the sheet; charts get a full-width row of their own."
+  },
+  "fit": {
+    "best_for": [
+      "e-commerce and marketplace analytics",
+      "performance and reporting detail views",
+      "operations dashboards",
+      "logistics and order tracking",
+      "any product where one metric family dominates"
+    ],
+    "avoid_for": [
+      "multi-brand or white-label products needing colour flexibility",
+      "dark-mode-first tools",
+      "editorial sites",
+      "calm or clinical medical contexts where orange reads as alarm"
+    ],
+    "mood": [
+      "energetic",
+      "decisive",
+      "commercial",
+      "warm",
+      "focused"
+    ],
+    "artifact_types_proven": [
+      "dashboard",
+      "web app"
+    ]
+  },
+  "surfaces": {
+    "devices": [
+      "desktop"
+    ],
+    "artifacts": [
+      "dashboard",
+      "web app"
+    ],
+    "artifact_counts": {
+      "dashboard": 3,
+      "web app": 1
+    },
+    "device_counts": {
+      "desktop": 4
+    }
+  },
+  "image_recipe": {
+    "template": "[SUBJECT: describe the subject in one clause — e.g. \"a stack of shipping containers\", \"a single ceramic cup\", \"an abstract network of nodes\"]\n\nRendered as flat vector UI illustration, analytics subject matter.\n\nSTYLE — apply all of the following, they are not optional:\n- white ground #FCFCFC with white cards separated by 1px #E6E8EB rules\n- exactly one saturated hue — burnt orange #D64B00 — carrying every data series and call to action\n- all other elements in near-black #15171F and greys\n- flat lighting, no gradients except one optional lilac-pink band\n- charts rendered as clean 2px strokes, no fills or textures\n\nNEGATIVE SPACE: Leave the top 25% as clean white for a headline; keep charts in the lower two-thirds.\n\nDO NOT INCLUDE: multiple competing accent colours, 3D charts, neon, glassmorphism, photographic elements, dark backgrounds.",
+    "provider": "configurable — set to your image provider",
+    "model": "configurable — set to your image model",
+    "resolution": "1536x1024 (3:2 landscape); use 1024x1536 for portrait, 1024x1024 for square",
+    "hard_constraints": [
+      "white ground #FCFCFC with white cards separated by 1px #E6E8EB rules",
+      "exactly one saturated hue — burnt orange #D64B00 — carrying every data series and call to action",
+      "all other elements in near-black #15171F and greys",
+      "flat lighting, no gradients except one optional lilac-pink band",
+      "charts rendered as clean 2px strokes, no fills or textures",
+      "negative space — Leave the top 25% as clean white for a headline; keep charts in the lower two-thirds.",
+      "never include legible text, logos or UI chrome in the generated image"
+    ],
+    "negative_prompt": [
+      "multiple competing accent colours",
+      "3D charts",
+      "neon",
+      "glassmorphism",
+      "photographic elements",
+      "dark backgrounds"
+    ]
+  },
+  "sources": [
+    {
+      "shot_url": "https://dribbble.com/shots/25819666-Ecomiq-SaaS-E-commerce-Product-Performance-Details",
+      "designer": "Fikri Studio",
+      "local_image": "shots/25819666-ecomiq-saas-e-commerce-product-performance-detai.jpg",
+      "thumbnail": "thumbs/25819666.jpg",
+      "title": "Ecomiq – SaaS E-commerce Product Performance Details"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/27068278-Ecomiq-Live-Visitor-Analytics-Report-for-SaaS-Ecommerce",
+      "designer": "Fikri Studio",
+      "local_image": "shots/27068278-ecomiq-live-visitor-analytics-report-for-saas-ec.png",
+      "thumbnail": "thumbs/27068278.jpg",
+      "title": "Ecomiq – Live Visitor Analytics Report for SaaS Ecommerce"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/25661841-Ecomiq-Order-Shipment-Tracking-Details-for-SaaS-E-commerce",
+      "designer": "Fikri Studio",
+      "local_image": "shots/25661841-ecomiq-order-shipment-tracking-details-for-saas.png",
+      "thumbnail": "thumbs/25661841.jpg",
+      "title": "Ecomiq - Order Shipment Tracking & Details for SaaS E-commerce"
+    },
+    {
+      "shot_url": "https://dribbble.com/shots/26415975-Ecomiq-Campaign-Creation-for-SaaS-eCommerce",
+      "designer": "Fikri Studio",
+      "local_image": "shots/26415975-ecomiq-campaign-creation-for-saas-ecommerce.png",
+      "thumbnail": "thumbs/26415975.jpg",
+      "title": "Ecomiq: Campaign Creation for SaaS eCommerce"
+    }
+  ],
+  "index": 3
+}

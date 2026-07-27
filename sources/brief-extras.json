@@ -1,0 +1,152 @@
+{
+  "bloom": {
+    "font_stack": "\"Aeonik\", \"General Sans\", \"Satoshi\", ui-sans-serif, -apple-system, \"Segoe UI\", Inter, sans-serif",
+    "for": "Reach for Bloom when the product is technically ambitious and the page has to feel like a keynote. It suits AI platforms, infrastructure and anything where you want the visitor to feel they are looking at something engineered rather than assembled. It is a marketing register first — it will exhaust people who have to work in it all day.",
+    "components": {
+      "Buttons": "Primary is a solid `--accent` pill, 999px radius, 11px 22px padding, white label, with a soft `0 8px 24px -8px rgb(91 87 240 / .55)` bloom underneath. Secondary is transparent with a 1px `--line` stroke and `--ink` label — it must never gain a fill. Ghost is label-only in `--muted` with an arrow glyph.",
+      "Inputs & selects": "Transparent field with a 1px `--line` border, 10px radius, 10px 14px padding, `--ink` text and `--muted` placeholder. On focus the border becomes `--accent` and gains `box-shadow: 0 0 0 3px rgb(91 87 240 / .18)`. Never fill an input with a solid colour.",
+      "Nav / sidebar": "A transparent bar over the page with only a hairline bottom rule. Links are 14px `--muted`, going `--ink` on hover. The nav floats — it never gets a solid background, even on scroll; increase the backdrop blur instead.",
+      "Cards": "1px `--line` stroke over `--surface` (3% white). No solid fills. Butt cards edge to edge sharing borders so the page reads as one subdivided surface. 14px radius only on the outermost container.",
+      "Tables": "Rare in this style. If needed: no zebra striping, 1px `--line` row rules, `--muted` headers in tracked caps, figures in `--ink`.",
+      "Chips & badges": "Tracked ALL-CAPS 10px labels in `--muted` preceded by a 4px `--accent` bullet dot. No pill background — the dot plus the tracking is the badge.",
+      "Modals & drawers": "Centred panel at `--raised` with a 1px `--line` stroke, backed by `rgba(8,8,13,.7)` plus `backdrop-filter: blur(8px)`. Keep the page's glow visible through the scrim.",
+      "Footer": "Separated by a hairline, generous 80px+ padding, link columns in `--muted` with tracked caps headers, and the wordmark scaled large enough to crop at the viewport edge."
+    },
+    "do": [
+      "Let one or two big radial glows do all the colour work",
+      "Define every card with a 1px white-alpha stroke, never a fill",
+      "Keep body copy `--muted` grey — reserve pure `--ink` for headlines",
+      "Add 2-4% noise over the page so gradients do not band",
+      "Butt modules edge to edge with shared hairlines and no gutters",
+      "Give the 3D hero object room — it is the only saturated mass allowed"
+    ],
+    "dont": [
+      "Do not set long body copy in pure white on black — it vibrates",
+      "Do not fill cards with a solid lighter grey; the stroke is the card",
+      "Do not add a second accent hue — the glow already carries the colour",
+      "Do not use this for a dense working dashboard people stare at for hours",
+      "Do not let the glow touch the text it sits behind; keep contrast above 4.5:1",
+      "Do not use hard rim lighting or lens flares — the light is soft and feathered"
+    ]
+  },
+  "frosted-field": {
+    "font_stack": "\"Aeonik\", \"General Sans\", \"Outfit\", ui-sans-serif, -apple-system, \"Segoe UI\", Inter, sans-serif",
+    "for": "Frosted Field suits products people check rather than operate — finance, wellness, smart home, an AI assistant. Everything is carved out of one gradient, so the interface feels like a single continuous material. It is the wrong choice anywhere legibility is safety-critical, because translucency always costs contrast.",
+    "components": {
+      "Buttons": "Primary is a solid `--accent` pill, 999px radius, 11px 22px, white label. Secondary is a frosted pill: `rgba(255,255,255,.5)` with `backdrop-filter: blur(16px)` and a 1px `rgba(255,255,255,.6)` inner highlight — no outer border. Ghost is label-only in `--muted`.",
+      "Inputs & selects": "Frosted capsule — `rgba(255,255,255,.45)`, `backdrop-filter: blur(16px)`, 999px radius, no border, 11px 18px padding. Focus lifts opacity to .72 and adds a 2px `--accent` ring.",
+      "Nav / sidebar": "A floating frosted capsule bar inset 16px from the top, not a full-width band. Sidebar items are frosted pills when active and plain `--muted` labels when not.",
+      "Cards": "`rgba(255,255,255,.55)` + `backdrop-filter: blur(24px)`, 20-24px radius, a 1px `rgba(255,255,255,.6)` inset highlight along the top edge, no outer border. Separation comes from 20px+ gaps, never from strokes.",
+      "Tables": "Avoid true tables. Use spaced rows on a single frosted card with 1px `rgba(255,255,255,.45)` dividers and generous 14px row padding.",
+      "Chips & badges": "Fully rounded, `rgba(255,255,255,.6)` frosted, `--muted` label. The accent version fills with `--accent` at 14% and takes `--accent` as its text colour.",
+      "Modals & drawers": "A heavier frost — `rgba(255,255,255,.78)` with `blur(40px)` — over a lightly dimmed field. The gradient must stay perceptible through it.",
+      "Footer": "Minimal: a frosted capsule row of links centred at the bottom, or nothing at all. This style dislikes heavy footers."
+    },
+    "do": [
+      "Carve every surface out of the gradient with translucency, never with a border",
+      "Keep one blurred colour metaball drifting behind the content for variation",
+      "Set type light — bold weights fight the softness",
+      "Use 20px+ gaps as the separator, since nothing has an edge",
+      "Render charts as translucent gradient fills or dot matrices",
+      "Check contrast on every frosted surface; raise opacity before you darken the ink"
+    ],
+    "dont": [
+      "Do not put hard 1px outer borders on frosted cards — only inner highlights",
+      "Do not stack more than two translucent layers; the third turns to mud",
+      "Do not use this for dense tables or anything with forty rows",
+      "Do not introduce a third hue beyond the violet and the seafoam",
+      "Do not use pure white or pure black anywhere in the palette",
+      "Do not let a blurred metaball sit directly behind body copy"
+    ]
+  },
+  "highlighter": {
+    "font_stack": "\"Space Grotesk\", \"General Sans\", \"Aeonik\", ui-sans-serif, -apple-system, \"Segoe UI\", Inter, sans-serif",
+    "for": "Highlighter is for products with an opinion — AI tooling, developer platforms, growth analytics, challenger fintech. The whole page is deliberately desaturated so that one fluorescent chartreuse reads as emphasis rather than decoration. Ration it: the moment the acid appears on more than a tenth of the screen, the effect dies.",
+    "components": {
+      "Buttons": "Primary is a solid `--accent` pill with `--accent_ink` label — never white text, which disappears on chartreuse. Secondary is a solid `--block` charcoal pill with `--block_ink` label. Ghost is a 1px `--line` outline with `--ink` label.",
+      "Inputs & selects": "White field, 1px `--line` border, 10px radius, 11px 14px padding. Focus swaps the border to `--ink` and adds a 3px `rgba(195,236,46,.45)` ring — the acid appears as a glow, not a fill.",
+      "Nav / sidebar": "Folder-tab navigation is the signature: tabs sit on the panel below and visually attach to it, with the active tab sharing the panel's fill and losing its bottom border. Collapse to a solid `--block` pill on mobile.",
+      "Cards": "Alternate white cards (1px `--line`) with solid `--block` charcoal cards carrying `--block_ink` text. The charcoal cards are the counterweight that lets the acid read.",
+      "Tables": "White rows, 1px `--line` rules, `--muted` tracked-caps headers. Highlight the active row with a 4px left rule in `--accent`, never a full-row fill.",
+      "Chips & badges": "Solid `--accent` pill with `--accent_ink` text for the emphatic case; otherwise a 1px `--line` outline chip with `--muted` text.",
+      "Modals & drawers": "White panel, 16px radius, `0 24px 60px -20px rgb(11 12 8 / .3)`, over a `rgba(11,12,8,.4)` dim. Header rule in `--line`.",
+      "Footer": "A solid `--block` charcoal band with `--block_ink` links and one `--accent` underline on the primary call to action."
+    },
+    "do": [
+      "Keep the ground desaturated so the chartreuse has something to work against",
+      "Apply the acid like a marker — a swipe behind a word, a thick underline, a pill",
+      "Let one oversized light-weight numeral carry each card's hierarchy",
+      "Use solid charcoal blocks as the counterweight to the acid",
+      "Render gauges as open thin arcs rather than filled donuts",
+      "Set `--accent_ink` (near-black) on chartreuse fills, never white"
+    ],
+    "dont": [
+      "Do not set type in chartreuse — it fails contrast at every body size",
+      "Do not let the accent cover more than about a tenth of the screen",
+      "Do not add a second bright hue; the acid must stay singular",
+      "Do not use this for clinical, regulated or safety-critical products",
+      "Do not rely on the accent alone to carry meaning — pair it with a label",
+      "Do not soften the palette with pastels; the ground is grey, not tinted"
+    ]
+  },
+  "poster-block": {
+    "font_stack": "\"Anton\", \"Archivo Black\", \"Bricolage Grotesque\", \"Haettenschweiler\", \"Arial Narrow Bold\", ui-sans-serif, sans-serif",
+    "for": "Poster Block is for work that should feel printed — campaign sites, studios, events, community marketplaces. The page is a stack of flat colour bands with an enormous display headline, and the ink is a chosen brand colour rather than black. It has no business anywhere near a dashboard.",
+    "components": {
+      "Buttons": "Sharp or barely-rounded rectangles (0-6px), solid `--accent` with `--accent_ink` label, no shadow. Secondary is a 2px `--ink` outline with a transparent fill. Buttons are chunky — 14px 26px padding minimum.",
+      "Inputs & selects": "2px `--ink` border, 0-4px radius, transparent fill, `--ink` text. Focus thickens the border to 3px. Nothing is soft here.",
+      "Nav / sidebar": "A simple horizontal row of links in the band's own ink colour, tracked slightly, with the active item underlined 3px. The nav sits inside the top band — it never floats over it.",
+      "Cards": "Flat colour rectangles inline in their band. No shadow, no border, no radius beyond 8px. Cards may deliberately overhang their band's edge to break the grid.",
+      "Tables": "Set as a print table: 2px rules above and below the header, 1px between rows, `--ink` text, no fills.",
+      "Chips & badges": "Flat rectangles or hard-edged pills in a band colour with contrasting ink. No tints, no transparency.",
+      "Modals & drawers": "A solid flat panel in a band colour filling most of the viewport, hard-edged, with a large close glyph. No scrim blur.",
+      "Footer": "A final full-bleed band in the darkest palette colour, carrying the wordmark set enormous and cropped by the viewport edge."
+    },
+    "do": [
+      "Stack edge-to-edge flat colour bands down the page",
+      "Set the headline enormous and justify it to the full column width",
+      "Use a brand ink (aubergine, forest, chocolate) instead of plain black",
+      "Let cut-out photography and illustration overlap and interrupt the type",
+      "Cut bands apart with zigzag, arc or angled dividers rather than straight rules",
+      "Add a 4% paper grain so the flat colour reads as printed"
+    ],
+    "dont": [
+      "Do not use drop shadows — nothing floats in this style",
+      "Do not use gradients; every colour is a flat spot colour",
+      "Do not use this for dashboards, tables or any dense working UI",
+      "Do not round corners heavily — sharp is the default",
+      "Do not use pure black for text; the ink is always a chosen hue",
+      "Do not centre everything — asymmetry and overhang give the page its energy"
+    ]
+  },
+  "studio-object": {
+    "font_stack": "\"Aeonik\", \"General Sans\", ui-sans-serif, -apple-system, \"Segoe UI\", Inter, Helvetica, sans-serif",
+    "for": "Studio Object is for products with something physical at their centre — hardware, logistics, construction, manufacturing. A single matte render fills most of the frame and the interface shrinks to hairline pills docked around it. If there is nothing to render, this style has nothing to stand on.",
+    "components": {
+      "Buttons": "Hairline pills — 1px `--line` border, 999px radius, transparent fill, `--ink` label, 9px 18px padding. The primary version fills with `--ink` and takes `--surface` as its label colour. Buttons float over the render, so they stay small.",
+      "Inputs & selects": "1px `--line` border, 999px radius, `--surface` fill at 90% opacity, 10px 16px padding. Focus swaps the border to `--accent`.",
+      "Nav / sidebar": "A thin transparent bar with hairline-pill links, docked to the top edge over the render. Never a solid band — the render must run beneath it.",
+      "Cards": "Small floating micro-panels: `--surface`, 12px radius, 1px `--line`, `0 4px 16px -6px rgb(5 5 5 / .18)`, 16px padding. They annotate the object rather than containing the page.",
+      "Tables": "Compact specification tables — 1px `--line` rules, `--muted` tracked-caps labels in the left column, `--ink` values right-aligned. This style loves a spec sheet.",
+      "Chips & badges": "Hairline outline pills only, `--muted` text. The `--warm` amber version marks a single status and appears at most once per screen.",
+      "Modals & drawers": "A `--surface` panel with a 1px `--line` border and a soft shadow, over a lightly dimmed render. Keep the object visible behind it.",
+      "Footer": "A quiet hairline-separated row of links in `--muted` over flat `--bg`, with the render stopping short of it."
+    },
+    "do": [
+      "Give the render 60-75% of the viewport — it is the page",
+      "Dock UI to one edge or into a quiet area of the image",
+      "Alternate weight inside a single headline instead of using colour",
+      "Use 1px leader lines to tie annotations to points on the object",
+      "Keep every surface matte — no gloss, no chrome, no specular hits",
+      "Hold at least 30% flat grey ground on one side for type"
+    ],
+    "dont": [
+      "Do not use this when there is no object worth rendering",
+      "Do not add coloured lighting — the studio is neutral",
+      "Do not let UI cover the object's silhouette",
+      "Do not use more than one small colour note in the whole composition",
+      "Do not use dramatic contrast or hard shadows; the light is large and soft",
+      "Do not fill the frame with text — this style is image-led by definition"
+    ]
+  }
+}

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Poster Block — Groundwork Festival</title>
+<style>
+:root{
+  --bg:#FBFBEF; --surface:#FFFFFF; --ink:#2E2440; --muted:#6E667E;
+  --line:#DEDACF; --accent:#F5CE3E; --accent-ink:#3A2E10;
+  --band-a:#0F6B4C; --band-b:#D96A5E; --band-c:#C9D8B0;
+  --display:"Anton","Archivo Black","Bricolage Grotesque",Haettenschweiler,
+            "Arial Narrow",Impact,ui-sans-serif,sans-serif;
+  --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 30px}
+/* paper grain — flat colour should read as printed */
+.grain{position:relative}
+.grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)'/%3E%3C/svg%3E")}
+
+.band{position:relative}
+.btn{display:inline-block;border-radius:4px;padding:14px 26px;font-weight:700;font-size:15px;
+  border:2px solid transparent;cursor:pointer;font-family:inherit;letter-spacing:.01em}
+.btn.pri{background:var(--accent);color:var(--accent-ink)}
+.btn.out{border-color:currentColor;background:transparent}
+
+/* nav sits inside the top band, never floats over it */
+.top{background:var(--bg)}
+.top .wrap{display:flex;align-items:center;gap:26px;height:76px}
+.brand{font-family:var(--display);font-size:26px;letter-spacing:.005em;text-transform:uppercase}
+.top a.l{font-size:14px;font-weight:600;letter-spacing:.02em}
+.top a.l.on{border-bottom:3px solid var(--accent);padding-bottom:2px}
+.grow{flex:1}
+
+/* headline justified to the full column width — type as graphic */
+.hero{background:var(--bg);padding:26px 0 0}
+.kicker{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+.kicker span{background:var(--band-c);color:var(--ink);padding:5px 11px;border-radius:3px}
+.kicker span.b{background:var(--band-b);color:#fff}
+h1{font-family:var(--display);text-transform:uppercase;margin:0;line-height:.84;
+  font-size:clamp(58px,15.5vw,190px);letter-spacing:-.012em;
+  display:flex;flex-direction:column}
+h1 span{display:block;white-space:nowrap}
+h1 span:nth-child(2){color:var(--band-a)}
+h1 span:nth-child(3){color:var(--band-b)}
+.herofoot{display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;
+  padding:26px 0 40px;border-bottom:3px solid var(--ink)}
+.herofoot p{margin:0;max-width:40ch;font-size:17px}
+
+/* edge-to-edge bands; elements break their band's boundary */
+.b-green{background:var(--band-a);color:#F4F8F2;padding:66px 0}
+.b-coral{background:var(--band-b);color:#FFF6F4;padding:66px 0}
+.b-sage{background:var(--band-c);color:var(--ink);padding:66px 0}
+.b-yellow{background:var(--accent);color:var(--accent-ink);padding:66px 0}
+h2{font-family:var(--display);text-transform:uppercase;font-size:clamp(32px,5.6vw,62px);
+  line-height:.9;letter-spacing:-.008em;margin:0 0 18px;max-width:16ch}
+.sub{max-width:52ch;margin:0;font-size:17px;opacity:.92}
+
+/* zigzag divider instead of a straight rule */
+.zig{display:block;width:100%;height:26px}
+
+.lineup{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;
+  border-top:3px solid currentColor;margin-top:40px}
+.act{border-bottom:3px solid currentColor;border-right:3px solid currentColor;padding:20px 18px}
+.act:last-child{border-right:0}
+.act b{font-family:var(--display);text-transform:uppercase;font-size:27px;line-height:1;
+  display:block;margin-bottom:7px;letter-spacing:.005em}
+.act span{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.78}
+.act p{margin:9px 0 0;font-size:14px;opacity:.85;line-height:1.5}
+
+.sched{border-collapse:collapse;width:100%;margin-top:34px}
+.sched th{font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-align:left;
+  padding:10px 12px;border-bottom:3px solid currentColor;font-weight:700}
+.sched td{padding:12px;border-bottom:1px solid rgba(46,36,64,.28);font-size:15px}
+.sched td:last-child{text-align:right;font-weight:700}
+
+.tickets{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;
+  margin-top:36px}
+.tk{background:var(--bg);color:var(--ink);padding:24px 22px;border-radius:6px}
+.tk.dark{background:var(--ink);color:var(--bg)}
+.tk em{font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:700;opacity:.72;display:block;margin-bottom:12px}
+.tk b{font-family:var(--display);font-size:44px;line-height:1;display:block;margin-bottom:10px}
+.tk ul{list-style:none;margin:0 0 18px;padding:0;font-size:14px;opacity:.85}
+.tk li{padding:4px 0}
+.tk li::before{content:"—  ";opacity:.6}
+
+.mascot{position:absolute;right:4%;top:-42px;width:132px;height:132px;z-index:2}
+@media(max-width:840px){.mascot{display:none}}
+
+footer{background:var(--ink);color:var(--bg);padding:60px 0 40px}
+.fcols{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:26px;margin-bottom:44px}
+@media(max-width:720px){.fcols{grid-template-columns:1fr 1fr}}
+footer h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px;
+  opacity:.6;font-weight:700}
+footer a.f{display:block;padding:3px 0;font-size:14.5px;opacity:.85}
+footer a.f:hover{opacity:1}
+.wordmark{font-family:var(--display);text-transform:uppercase;
+  font-size:clamp(54px,17vw,196px);line-height:.8;letter-spacing:-.015em;
+  white-space:nowrap;overflow:hidden;opacity:.16}
+</style>
+</head>
+<body>
+
+<div class="top grain"><div class="wrap">
+  <span class="brand">Groundwork</span>
+  <a class="l on" href="#">Programme</a><a class="l" href="#">Speakers</a>
+  <a class="l" href="#">Venue</a><a class="l" href="#">Tickets</a>
+  <span class="grow"></span>
+  <a class="btn pri" href="#">Get a pass</a>
+</div></div>
+
+<header class="hero grain"><div class="wrap">
+  <div class="kicker"><span>18–20 Sept 2026</span><span class="b">Rotterdam</span><span>4th edition</span></div>
+  <h1><span>Ground</span><span>work</span><span>Festival</span></h1>
+  <div class="herofoot">
+    <p>Three days of design, civic technology and building things that outlast their
+      funding round. 42 speakers, one very old shipyard.</p>
+    <span class="grow"></span>
+    <a class="btn pri" href="#">Passes from €95</a>
+    <a class="btn out" href="#">See the programme</a>
+  </div>
+</div></header>
+
+<svg class="zig" viewBox="0 0 1200 26" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 26h1200V0l-50 13-50-13-50 13-50-13-50 13-50-13-50 13-50-13-50 13-50-13-50 13-50-13-50 13-50-13-50 13-50-13-50 13-50-13-50 13-50-13-50 13-50-13-50 13-50-13z" fill="#0F6B4C"/>
+</svg>
+
+<section class="b-green grain band">
+  <svg class="mascot" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+    <circle cx="60" cy="60" r="52" fill="#F5CE3E"/>
+    <circle cx="44" cy="52" r="7" fill="#2E2440"/><circle cx="76" cy="52" r="7" fill="#2E2440"/>
+    <path d="M40 78c7 8 33 8 40 0" stroke="#2E2440" stroke-width="5" stroke-linecap="round"/>
+    <path d="M60 8v14M28 20l8 12M92 20l-8 12" stroke="#D96A5E" stroke-width="6" stroke-linecap="round"/>
+  </svg>
+  <div class="wrap">
+    <h2>Forty-two people who finished something</h2>
+    <p class="sub">No roadmap talks. Every speaker is here because a thing they built is
+      still standing.</p>
+    <div class="lineup">
+      <div class="act"><b>Ama Osei</b><span>Keynote · Fri</span>
+        <p>Rebuilt Accra's transit map with 400 volunteers and a spreadsheet.</p></div>
+      <div class="act"><b>Ruben Sant</b><span>Talk · Fri</span>
+        <p>Twelve years maintaining the same open-source mapping library.</p></div>
+      <div class="act"><b>Lise Andersen</b><span>Workshop · Sat</span>
+        <p>Designing services for people who will never read the manual.</p></div>
+      <div class="act"><b>Kofi Mensah</b><span>Closing · Sun</span>
+        <p>What the shipyard taught us about maintenance as a discipline.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="b-sage grain"><div class="wrap">
+  <h2>Three days, one shipyard</h2>
+  <p class="sub">Everything happens within a ten-minute walk. The ferry from Centraal runs
+    every twenty minutes and is included with your pass.</p>
+  <table class="sched">
+    <thead><tr><th>Day</th><th>Programme</th><th>Venue</th><th>Doors</th></tr></thead>
+    <tbody>
+      <tr><td><b>Friday 18</b></td><td>Opening keynote, four tracks, harbour dinner</td><td>Dock Three</td><td>09:00</td></tr>
+      <tr><td><b>Saturday 19</b></td><td>Workshops, unconference, night programme</td><td>The Machine Hall</td><td>10:00</td></tr>
+      <tr><td><b>Sunday 20</b></td><td>Talks, closing session, long lunch</td><td>Dock Three</td><td>10:00</td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<section class="b-yellow grain"><div class="wrap">
+  <h2>Passes</h2>
+  <p class="sub">Community rate is unquestioned — if you need it, take it. We hold back
+    120 of them every year.</p>
+  <div class="tickets">
+    <div class="tk"><em>Community</em><b>€95</b>
+      <ul><li>All three days</li><li>Ferry included</li><li>No questions asked</li></ul>
+      <a class="btn out" href="#" style="display:block;text-align:center">Request a pass</a></div>
+    <div class="tk dark"><em>Standard</em><b>€245</b>
+      <ul><li>All three days</li><li>Ferry &amp; harbour dinner</li><li>Workshop priority</li><li>Recordings</li></ul>
+      <a class="btn pri" href="#" style="display:block;text-align:center">Buy a pass</a></div>
+    <div class="tk"><em>Supporter</em><b>€480</b>
+      <ul><li>Everything in Standard</li><li>Funds two community passes</li><li>Friday reception</li></ul>
+      <a class="btn out" href="#" style="display:block;text-align:center">Support us</a></div>
+  </div>
+</div></section>
+
+<footer class="grain"><div class="wrap">
+  <div class="fcols">
+    <div><span class="brand">Groundwork</span>
+      <p style="opacity:.72;font-size:14.5px;max-width:32ch;margin:12px 0 0">
+        A festival about maintenance, made by people who do it.</p></div>
+    <div><h4>Festival</h4><a class="f" href="#">Programme</a><a class="f" href="#">Speakers</a>
+      <a class="f" href="#">Venue</a><a class="f" href="#">Access</a></div>
+    <div><h4>Take part</h4><a class="f" href="#">Volunteer</a><a class="f" href="#">Propose a talk</a>
+      <a class="f" href="#">Sponsor</a><a class="f" href="#">Press</a></div>
+    <div><h4>Archive</h4><a class="f" href="#">2025</a><a class="f" href="#">2024</a>
+      <a class="f" href="#">2023</a><a class="f" href="#">Recordings</a></div>
+  </div>
+  <div class="wordmark">GROUNDWORK</div>
+</div></footer>
+
+</body>
+</html>
