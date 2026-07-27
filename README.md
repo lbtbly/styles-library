@@ -7,6 +7,44 @@ gallery is a view for humans; the filesystem is the source of truth.
 
 **18 styles · 5 collections · derived from 117 bookmarked shots by 40 designers.**
 
+## Install as a Claude Code plugin
+
+The repo is also a Claude Code plugin marketplace — installing it makes the
+`style-picker` skill available in every session, so Claude reaches for the
+library on its own whenever it is about to design something.
+
+In Claude Code:
+
+```
+/plugin marketplace add lbtbly/styles-library
+/plugin install styles-library@styles-library
+```
+
+Or point at a local clone instead of GitHub:
+
+```
+/plugin marketplace add ~/Claude/styles-library
+/plugin install styles-library@styles-library
+```
+
+Then just ask for UI work — *"design a landing page for a fintech app"* — and
+the skill triggers itself. `/style-picker` invokes it explicitly.
+
+Once installed, the library root is `${CLAUDE_PLUGIN_ROOT}`, not your working
+directory: the index lives at `${CLAUDE_PLUGIN_ROOT}/styles/index.json`. Every
+path in `CLAUDE.md` and the skill is relative to that root.
+
+To update after re-syncing the collection, or to remove it:
+
+```
+/plugin marketplace update styles-library
+/plugin uninstall styles-library@styles-library
+```
+
+The plugin ships the styles, briefs, image recipes, previews and the
+`style-picker` skill. The gallery and the `scripts/` maintenance tooling come
+along with it but are meant to be used from a clone.
+
 ## Run the gallery
 
 ```bash
@@ -34,6 +72,7 @@ intake questions, always a primary plus one alternate.
 
 ```
 CLAUDE.md                     agent contract
+.claude-plugin/               plugin + marketplace manifests
 sources/                      harvested shots, manifest, per-shot analysis
 styles/index.json             master index — counts computed, never hardcoded
 styles/<id>/style.json        full definition: tokens, fit, surfaces, sources
