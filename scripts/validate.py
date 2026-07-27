@@ -8,6 +8,9 @@ Checks:
   4. files       — brief.md, image-recipe.md, >=1 preview exist and are non-trivial
   5. contrast    — WCAG AA check on each style's ink/bg and accent/bg pairs
   6. render      — previews are self-contained (no external http(s) asset refs)
+  7. version     — plugin version bumped whenever published content changed
+                   (the version is the plugin autoUpdate cache key: without a
+                   bump, installed copies never refresh)
 
 Usage: python3 scripts/validate.py [--quiet]
 Exit code 0 = all pass, 1 = failures.
@@ -15,6 +18,7 @@ Exit code 0 = all pass, 1 = failures.
 import json
 import os
 import re
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -63,6 +67,58 @@ def contrast(a, b):
 
 
 HEX = re.compile(r"^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$")
+
+# ---------- plugin version discipline ----------
+PLUGIN_JSON = os.path.join(ROOT, ".claude-plugin", "plugin.json")
+
+
+def _git(*args):
+    r = subprocess.run(["git", "-C", ROOT, *args],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        raise RuntimeError(r.stderr.strip())
+    return r.stdout
+
+
+def check_version_discipline():
+    """The plugin version is autoUpdate's cache key: installed copies only
+    refresh when it changes. Fail if published content drifted since the
+    commit that introduced the current version string."""
+    if not os.path.exists(PLUGIN_JSON):
+        return  # not packaged as a plugin
+    try:
+        current = json.load(open(PLUGIN_JSON)).get("version")
+    except Exception as e:
+        fail(f"plugin.json unparseable — {e}")
+        return
+    if not current:
+        fail("plugin.json has no 'version' — autoUpdate cannot track releases")
+        return
+    try:
+        commits = _git("rev-list", "HEAD", "--",
+                       ".claude-plugin/plugin.json").split()
+    except (RuntimeError, FileNotFoundError):
+        return  # not a git checkout (e.g. an installed plugin copy) — skip
+    # walk newest→oldest to the commit that introduced the current version
+    bump_commit = None
+    for c in commits:
+        try:
+            v = json.loads(_git("show", f"{c}:.claude-plugin/plugin.json")).get("version")
+        except (RuntimeError, ValueError):
+            break
+        if v != current:
+            break
+        bump_commit = c
+    if bump_commit is None:
+        return  # version bumped in the working tree, not yet committed — fine
+    # plugin installs ship the whole repo, so any tracked change requires a bump
+    drifted = _git("diff", "--name-only", bump_commit, "--", ".").split("\n")
+    drifted = [f for f in drifted if f and f != ".claude-plugin/plugin.json"]
+    if drifted:
+        fail(f"plugin version {current} unchanged but {len(drifted)} published "
+             f"file(s) drifted since it was set (e.g. {drifted[0]}) — bump "
+             f"'version' in .claude-plugin/plugin.json or installed copies "
+             f"never receive the change")
 
 
 def main():
@@ -237,6 +293,9 @@ def main():
                        if isinstance(v, str) and HEX.match(v) and v.lower() not in brief]
             if missing:
                 warn(f"{d}: brief.md does not cite palette value(s) {missing[:3]} — possible style drift")
+
+    # 7. plugin version discipline
+    check_version_discipline()
 
     return report(quiet, len(styles))
 

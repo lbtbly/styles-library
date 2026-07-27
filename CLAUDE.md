@@ -161,6 +161,12 @@ styles-library/
 - **Previews are original work in the style**, never reproductions of a source shot.
 - **Previews must render offline** — inline CSS/JS, no external asset URLs. The
   validator fails the build on any `http(s)` asset reference.
+- **Bump the plugin version before every commit.** The `version` in
+  `.claude-plugin/plugin.json` is the plugin autoUpdate cache key — installed
+  copies only refresh when it changes, and installs ship the whole repo. Before
+  committing anything, bump the version in the same commit, or the change
+  silently never reaches installs. `validate.py` fails when content has drifted
+  without a bump.
 
 ## Maintenance
 

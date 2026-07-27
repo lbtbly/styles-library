@@ -1,7 +1,7 @@
 {
   "name": "styles-library",
   "description": "A catalog of 18 reusable visual styles synthesised from a personal Dribbble collection. Ships a style-picker skill that selects and applies the right design DNA for any app, website or product artifact.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Lambert BOULEY"
   },
